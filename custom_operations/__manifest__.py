@@ -1,0 +1,42 @@
+{
+    'name': "Custom Operations",
+
+    'summary': "Custom changes to Sales, Contacts, Project and Inventory",
+
+    'description': """
+Custom Operations
+==================
+Centralized module for client-specific customizations across:
+- Sales (sale.order)
+- Contacts (res.partner)
+- Project (project.project / project.task)
+- Inventory (stock)
+""",
+
+    'author': "Core2Plus",
+    'website': "https://www.core2plus.com",
+
+    'category': 'Customizations',
+    'version': '1.0',
+
+    'depends': ['base', 'account', 'sale', 'sale_project', 'contacts', 'project', 'stock'],
+
+    'data': [
+        'security/ir.model.access.csv',
+        'views/industry_ea_code_views.xml',
+        'views/employment_type_views.xml',
+        'views/certification_standard_views.xml',
+        'views/auditor_category_views.xml',
+        'views/service_category_views.xml',
+        'views/unit_of_billing_views.xml',
+        'views/res_partner_views.xml',
+        'views/product_template_views.xml',
+        'views/sale_order_views.xml',
+        'views/project_views.xml',
+        'views/stock_views.xml',
+    ],
+
+    'installable': True,
+    'application': False,
+    'license': 'LGPL-3',
+}

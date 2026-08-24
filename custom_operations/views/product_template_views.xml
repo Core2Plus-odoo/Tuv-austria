@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_template_form_inherit_custom_operations" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.custom.operations</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- Tax Applicable field right below Sales Price; Sales Tax only shows when it's Yes -->
+            <label for="taxes_id" position="before">
+                <field name="tax_applicable"/>
+            </label>
+            <label for="taxes_id" position="attributes">
+                <attribute name="invisible">type == 'combo' or tax_applicable != 'yes'</attribute>
+            </label>
+            <div name="taxes_div" position="attributes">
+                <attribute name="invisible">type == 'combo' or tax_applicable != 'yes'</attribute>
+            </div>
+
+            <!-- Purchase Tax always hidden -->
+            <field name="supplier_taxes_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <group name="internal_notes" position="before">
+                <group name="group_custom_operations" string="Service Details">
+                    <field name="man_day_rate_pkr_currency_id" invisible="1"/>
+                    <field name="man_day_rate_usd_currency_id" invisible="1"/>
+                    <field name="service_category_ids" widget="many2many_tags"/>
+                    <field name="certification_standard_ids" widget="many2many_tags"/>
+                    <field name="code_applicable_ids" widget="many2many_tags"/>
+                    <field name="unit_of_billing_id"/>
+                    <field name="man_day_rate_pkr"/>
+                    <field name="man_day_rate_usd"/>
+                    <field name="min_man_days"/>
+                    <field name="max_man_days"/>
+                </group>
+            </group>
+
+        </field>
+    </record>
+
+</odoo>

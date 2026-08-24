@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_industry_ea_code_user,industry.ea.code.user,model_industry_ea_code,base.group_user,1,0,0,0
+access_industry_ea_code_manager,industry.ea.code.manager,model_industry_ea_code,base.group_system,1,1,1,1
+access_employment_type_user,employment.type.user,model_employment_type,base.group_user,1,0,0,0
+access_employment_type_manager,employment.type.manager,model_employment_type,base.group_system,1,1,1,1
+access_certification_standard_user,certification.standard.user,model_certification_standard,base.group_user,1,0,0,0
+access_certification_standard_manager,certification.standard.manager,model_certification_standard,base.group_system,1,1,1,1
+access_auditor_category_user,auditor.category.user,model_auditor_category,base.group_user,1,0,0,0
+access_auditor_category_manager,auditor.category.manager,model_auditor_category,base.group_system,1,1,1,1
+access_service_category_user,service.category.user,model_service_category,base.group_user,1,0,0,0
+access_service_category_manager,service.category.manager,model_service_category,base.group_system,1,1,1,1
+access_unit_of_billing_user,unit.of.billing.user,model_unit_of_billing,base.group_user,1,0,0,0
+access_unit_of_billing_manager,unit.of.billing.manager,model_unit_of_billing,base.group_system,1,1,1,1

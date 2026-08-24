@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form_inherit_custom_operations" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.custom.operations</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_address_format') and not(@name)]" position="after">
+                <field name="contact_type" placeholder="Select Contact Type"/>
+            </xpath>
+            <xpath expr="//field[@name='contact_type']" position="after">
+                <field name="industry_ea_code_id"
+                    invisible="contact_type not in ('client', 'vendor')"/>
+                <field name="employment_type_ids" widget="many2many_tags"
+                    invisible="contact_type != 'auditor'"/>
+                <field name="approved_ea_code_ids" widget="many2many_tags"
+                    invisible="contact_type != 'auditor'"/>
+                <field name="certification_standard_ids" widget="many2many_tags"
+                    invisible="contact_type != 'auditor'"/>
+                <field name="auditor_category_ids" widget="many2many_tags"
+                    invisible="contact_type != 'auditor'"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="lead_auditor" invisible="contact_type != 'auditor'"/>
+                <field name="auditor_active" invisible="contact_type != 'auditor'"/>
+                <field name="auditor_notes" invisible="contact_type != 'auditor'"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
