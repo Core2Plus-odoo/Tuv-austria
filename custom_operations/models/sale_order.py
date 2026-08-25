@@ -19,3 +19,29 @@ class SaleOrder(models.Model):
     certificate_status = fields.Char(string='Certificate Status')
     office_issued_from = fields.Char(string='Office Issued From')
     notes = fields.Char(string='Notes')
+
+    def action_view_project_ids(self):
+        self.ensure_one()
+        projects = self.project_ids.filtered('active')
+        if len(projects) == 1:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': projects.name,
+                'res_model': 'project.project',
+                'res_id': projects.id,
+                'view_mode': 'form',
+                'views': [(False, 'form')],
+                'target': 'current',
+            }
+        return super().action_view_project_ids()
+
+    def action_view_task_ids(self):
+        self.ensure_one()
+        tasks = self.tasks_ids
+        action = self.env['ir.actions.actions']._for_xml_id('project.action_view_all_task')
+        if len(tasks) == 1:
+            action['views'] = [(False, 'form')]
+            action['res_id'] = tasks.id
+        else:
+            action['domain'] = [('id', 'in', tasks.ids)]
+        return action

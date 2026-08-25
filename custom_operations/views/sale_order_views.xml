@@ -12,7 +12,31 @@
             </field>
             <field name="partner_id" position="attributes">
                 <attribute name="string">Client / Certificate Holder</attribute>
+                <attribute name="domain">[('contact_type', '=', 'client')]</attribute>
             </field>
+
+            <xpath expr="//button[@name='action_view_project_ids']" position="replace">
+                <button
+                    name="action_view_project_ids"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-puzzle-piece"
+                    invisible="not show_project_button"
+                    groups="project.group_project_user"
+                >
+                    <field name="project_count" widget="statinfo" string="Projects"/>
+                </button>
+                <button
+                    name="action_view_task_ids"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-tasks"
+                    invisible="not tasks_count"
+                    groups="project.group_project_user"
+                >
+                    <field name="tasks_count" widget="statinfo" string="Tasks"/>
+                </button>
+            </xpath>
 
             <group name="sale_header" position="after">
                 <group name="group_certification_details" string="Certification Details">
