@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_partner_form_inherit_custom_operations" model="ir.ui.view">
+    <record id="view_partner_form_inherit_tuv_austria_customization" model="ir.ui.view">
         <field name="name">res.partner.form.inherit.custom.operations</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="telefax" invisible="not is_company"/>
+                <field name="distinctive_title" invisible="not is_company"/>
+            </xpath>
             <xpath expr="//div[hasclass('o_address_format') and not(@name)]" position="after">
                 <field name="contact_type" placeholder="Select Contact Type"/>
             </xpath>

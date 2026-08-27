@@ -4,6 +4,8 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    telefax = fields.Char(string='Telefax')
+    distinctive_title = fields.Char(string='Distinctive Title')
     contact_type = fields.Selection([
         ('client', 'Client'),
         ('vendor', 'Vendor'),

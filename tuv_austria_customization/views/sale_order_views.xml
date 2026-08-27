@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.custom.operations</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <field name="partner_id" position="before">
+                <field name="certificate_no" invisible="1"/>
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Client / Certificate Holder</attribute>
+                <attribute name="domain">[('contact_type', '=', 'client')]</attribute>
+                <attribute name="context">{'res_partner_search_mode': 'customer', 'show_address': 0, 'show_vat': False}</attribute>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="distinctive_title"/>
+                <span class="o_form_label o_td_label" name="partner_address_name">Address</span>
+                <div class="o_address_format">
+                    <field name="partner_street" placeholder="Street..." class="o_address_street"/>
+                    <field name="partner_street2" placeholder="Street 2..." class="o_address_street"/>
+                    <field name="partner_city" placeholder="City" class="o_address_city"/>
+                    <field name="partner_state_id" placeholder="State" class="o_address_state"
+                        options="{'no_open': True, 'no_quick_create': True}"/>
+                    <field name="partner_zip" placeholder="ZIP" class="o_address_zip"/>
+                    <field name="partner_country_id" placeholder="Country" class="o_address_country"
+                        options="{'no_open': True, 'no_create': True}"/>
+                </div>
+                <field name="partner_phone"/>
+                <field name="partner_email"/>
+                <field name="telefax"/>
+                <field name="website" widget="url"/>
+                <field name="vat"/>
+            </field>
+
+            <xpath expr="//group[@name='order_details']/field[@name='validity_date']" position="before">
+                <field name="document_type"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_project_ids']" position="replace">
+                <button
+                    name="action_view_project_ids"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-puzzle-piece"
+                    invisible="not show_project_button"
+                    groups="project.group_project_user"
+                >
+                    <field name="project_count" widget="statinfo" string="Projects"/>
+                </button>
+                <button
+                    name="action_view_task_ids"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-tasks"
+                    invisible="not tasks_count"
+                    groups="project.group_project_user"
+                >
+                    <field name="tasks_count" widget="statinfo" string="Tasks"/>
+                </button>
+            </xpath>
+
+            <group name="sale_header" position="after">
+                <group name="group_certification_details" string="Certification Details" invisible="1">
+                    <group name="group_certification_details_left">
+                        <field name="certification_standard"/>
+                        <field name="ea_code_ids" widget="many2many_tags"/>
+                        <field name="scope_of_certification"/>
+                        <field name="issue_date" options="{'numeric': true}"/>
+                        <field name="expiry_date" options="{'numeric': true}"/>
+                        <field name="next_surveillance" options="{'numeric': true}"/>
+                    </group>
+                    <group name="group_certification_details_right">
+                        <field name="audit_type"/>
+                        <field name="lead_auditor"/>
+                        <field name="certificate_status"/>
+                        <field name="office_issued_from"/>
+                        <field name="notes"/>
+                    </group>
+                </group>
+                <group name="group_application_form" string="Application Form"
+                    invisible="document_type != 'offer_application'">
+                    <group name="group_application_form_left">
+                        <field name="audit_site"/>
+                        <field name="other_facilities"/>
+                        <field name="sites_to_be_audited"/>
+                        <field name="company_representative"/>
+                        <field name="management_system_representative"/>
+                        <field name="management_system_representative_phone"/>
+                        <field name="management_system_representative_email"/>
+                        <field name="consultant"/>
+                        <field name="consultant_phone"/>
+                        <field name="consultant_email"/>
+                    </group>
+                    <group name="group_application_form_right">
+
+                        <field name="scope_of_activity"/>
+                        <field name="critical_processes"/>
+                        <field name="legislation_relative"/>
+                        <field name="permanent_personnel"/>
+                        <field name="temporary_personnel"/>
+                        <field name="personnel_on_shifts"/>
+                        <field name="number_of_shifts"/>
+                        <field name="other_certified_management_system"/>
+                        <field name="license_attachment_filename" invisible="1"/>
+                        <field name="license_attachment" filename="license_attachment_filename"/>
+                    </group>
+                </group>
+            </group>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="edit_project_inherit_custom_operations" model="ir.ui.view">
+    <record id="edit_project_inherit_tuv_austria_customization" model="ir.ui.view">
         <field name="name">project.project.form.inherit.custom.operations</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
@@ -31,7 +31,7 @@
         </field>
     </record>
 
-    <record id="task_type_edit_inherit_custom_operations" model="ir.ui.view">
+    <record id="task_type_edit_inherit_tuv_austria_customization" model="ir.ui.view">
         <field name="name">project.task.type.form.inherit.custom.operations</field>
         <field name="model">project.task.type</field>
         <field name="inherit_id" ref="project.task_type_edit"/>
@@ -42,7 +42,7 @@
         </field>
     </record>
 
-    <record id="task_type_tree_inherit_custom_operations" model="ir.ui.view">
+    <record id="task_type_tree_inherit_tuv_austria_customization" model="ir.ui.view">
         <field name="name">project.task.type.list.inherit.custom.operations</field>
         <field name="model">project.task.type</field>
         <field name="inherit_id" ref="project.task_type_tree"/>

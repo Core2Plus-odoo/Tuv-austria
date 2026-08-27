@@ -1,5 +1,5 @@
 {
-    'name': "Custom Operations",
+    'name': "TUV Austria Customization",
 
     'summary': "Custom changes to Sales, Contacts, Project and Inventory",
 
@@ -34,6 +34,7 @@ Centralized module for client-specific customizations across:
         'views/sale_order_views.xml',
         'views/project_views.xml',
         'views/stock_views.xml',
+        'report/sale_order_application_form_report.xml',
     ],
 
     'installable': True,
