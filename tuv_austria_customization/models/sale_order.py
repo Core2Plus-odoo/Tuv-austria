@@ -72,6 +72,39 @@ class SaleOrder(models.Model):
         string='Operation License / Environmental License / Corporation Charter (please attach)')
     license_attachment_filename = fields.Char(string='License Attachment Filename')
 
+    # Proposal Form (<<XYZ>> / <<STANDARD>> placeholders of the Word proposal template)
+    management_system_name = fields.Char(
+        string='Management System Name', help='Goes into "<<XYZ>> MANAGEMENT SYSTEM" of the proposal.')
+    charge_stage_1_audit = fields.Char(string='Stage 1 Audit')
+    charge_stage_2_audit = fields.Char(string='Stage 2 Audit')
+    travel_boarding_lodging = fields.Char(string='Traveling, Boarding & Lodging')
+    charge_surveillance_1 = fields.Char(string='1ST Annual Surveillance@')
+    charge_surveillance_2 = fields.Char(string='2nd Annual Surveillance@')
+
+    # Summary of Cost - typed in by hand, nothing is taken from the order lines
+    cost_tax_label = fields.Char(string='Sales Tax Row Label')
+    cost_initial_audit = fields.Char(string='Initial Audit')
+    cost_surveillance_1 = fields.Char(string='1st Surveillance Audit')
+    cost_surveillance_2 = fields.Char(string='2nd Surveillance Audit')
+    cost_total = fields.Char(string='Total')
+    cost_tax_initial_audit = fields.Char(string='Initial Audit')
+    cost_tax_surveillance_1 = fields.Char(string='1st Surveillance Audit')
+    cost_tax_surveillance_2 = fields.Char(string='2nd Surveillance Audit')
+    cost_tax_total = fields.Char(string='Total')
+    cost_grand_initial_audit = fields.Char(string='Initial Audit')
+    cost_grand_surveillance_1 = fields.Char(string='1st Surveillance Audit')
+    cost_grand_surveillance_2 = fields.Char(string='2nd Surveillance Audit')
+    cost_grand_total = fields.Char(string='Total')
+    proposal_invoicing_terms = fields.Char(string='Invoicing Terms')
+
+    # Prepared By block - blank falls back to the salesperson on the order
+    prepared_by_name = fields.Char(string='Prepared By Name')
+    prepared_by_designation = fields.Char(string='Designation')
+    prepared_by_phone = fields.Char(string='Prepared By Phone')
+    prepared_by_email = fields.Char(string='Prepared By Email')
+    prepared_by_signature = fields.Binary(string='Signature', attachment=True)
+    prepared_by_signature_filename = fields.Char(string='Signature Filename')
+
     def action_view_project_ids(self):
         self.ensure_one()
         projects = self.project_ids.filtered('active')

@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_sale_order_proposal" model="ir.actions.report">
+        <field name="name">Proposal</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_sale_order_proposal</field>
+        <field name="report_file">tuv_austria_customization.report_sale_order_proposal</field>
+        <field name="print_report_name">'Proposal - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_sale_order_proposal">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page tuv_pr">
+                        <style>
+                            .tuv_pr { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 12.5px; }
+                            .tuv_pr p { margin: 0 0 9px 0; text-align: justify; }
+
+                            /* ---------- cover ---------- */
+                            .tuv_pr .pr_cover { text-align: center; padding-top: 40px; }
+                            .tuv_pr .pr_cover .pr_c_lbl {
+                                font-size: 20px; font-weight: 800; letter-spacing: .06em; color: #111111;
+                            }
+                            .tuv_pr .pr_cover .pr_c_val {
+                                font-size: 24px; font-weight: 800; color: #1a56db; margin-top: 4px;
+                            }
+                            .tuv_pr .pr_cover .pr_c_block { margin-bottom: 34px; }
+                            .tuv_pr .pr_cover .pr_c_sub {
+                                font-size: 13px; font-weight: 700; letter-spacing: .05em;
+                                text-transform: uppercase; color: #111111;
+                            }
+                            .tuv_pr .pr_cover .pr_c_org {
+                                font-size: 14px; font-weight: 700; color: #111111; margin-top: 6px;
+                            }
+                            .tuv_pr .pr_cover .pr_c_date { font-size: 13px; margin-top: 44px; }
+
+                            /* ---------- headings ---------- */
+                            .tuv_pr .pr_h1 {
+                                font-size: 18px; font-weight: 800; text-align: center; letter-spacing: .04em;
+                                text-transform: uppercase; margin: 0 0 20px 0; padding-bottom: 8px;
+                                border-bottom: 2px solid #111111;
+                            }
+                            .tuv_pr .pr_h2 {
+                                page-break-after: avoid;
+                                font-size: 14px; font-weight: 800; text-transform: uppercase; color: #111111;
+                                margin: 22px 0 10px 0; padding-bottom: 5px; border-bottom: 1.5px solid #111111;
+                            }
+                            .tuv_pr .pr_h3 {
+                                page-break-after: avoid;
+                                font-size: 12.8px; font-weight: 700; color: #111111; margin: 16px 0 7px 0;
+                            }
+                            .tuv_pr .pr_h4 {
+                                page-break-after: avoid;
+                                font-size: 12.5px; font-weight: 700; text-transform: uppercase;
+                                margin: 14px 0 7px 0;
+                            }
+
+                            /* ---------- prepared for / by ---------- */
+                            .tuv_pr table.pr_party {
+                                width: 100%; border-collapse: collapse; table-layout: fixed;
+                                border: 1.2px solid #333333; page-break-inside: avoid;
+                                margin-bottom: 4px;
+                            }
+                            .tuv_pr table.pr_party td {
+                                border: 1px solid #333333; padding: 7px 10px; vertical-align: top;
+                                font-size: 11.5px;
+                            }
+                            .tuv_pr table.pr_party td.pr_p_title {
+                                text-align: center; font-weight: 800; font-size: 13px;
+                                background-color: #f0f2f5; letter-spacing: .03em;
+                            }
+                            .tuv_pr table.pr_party td.pr_p_head {
+                                font-weight: 700; background-color: #f7f7f8; font-size: 12px;
+                            }
+                            .tuv_pr table.pr_party td.pr_p_name { font-weight: 700; font-size: 12.5px; }
+                            .tuv_pr table.pr_party .pr_lbl { font-weight: 700; }
+                            .tuv_pr table.pr_party .pr_office { font-weight: 700; }
+
+                            /* ---------- content list ---------- */
+                            .tuv_pr .pr_toc { font-size: 13px; }
+                            .tuv_pr .pr_toc .pr_toc_1 { font-weight: 700; margin: 10px 0 4px 0; }
+                            .tuv_pr .pr_toc .pr_toc_2 { margin: 2px 0 2px 30px; }
+
+                            /* ---------- lists ---------- */
+                            .tuv_pr ul.pr_ul { margin: 0 0 10px 0; padding-left: 20px; }
+                            .tuv_pr ul.pr_ul li { margin-bottom: 4px; text-align: justify; }
+                            .tuv_pr table.pr_std { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+                            .tuv_pr table.pr_std td { padding: 2px 6px; font-size: 12px; vertical-align: top; }
+                            .tuv_pr table.pr_std td.pr_std_code { font-weight: 700; width: 22%; white-space: nowrap; }
+
+                            /* ---------- charges (plain aligned text, exactly like the Word doc) ---------- */
+                            .tuv_pr table.pr_charges {
+                                width: 100%; border-collapse: collapse; table-layout: fixed;
+                                margin: 0 0 16px 0; page-break-inside: avoid;
+                            }
+                            .tuv_pr table.pr_charges,
+                            .tuv_pr table.pr_charges tbody,
+                            .tuv_pr table.pr_charges tr,
+                            .tuv_pr table.pr_charges tr:nth-child(odd),
+                            .tuv_pr table.pr_charges tr:nth-child(even),
+                            .tuv_pr table.pr_charges td {
+                                border: 0 !important; background-color: transparent !important;
+                            }
+                            .tuv_pr table.pr_charges td {
+                                padding: 1px 0; font-size: 12.5px; vertical-align: top;
+                            }
+                            .tuv_pr table.pr_charges td.pr_ch_lbl { font-weight: 700; width: 46%; }
+
+                            /* ---------- cost table ---------- */
+                            .tuv_pr table.pr_cost {
+                                width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 6px;
+                            }
+                            .tuv_pr table.pr_cost td, .tuv_pr table.pr_cost th {
+                                border: 1px solid #333333; padding: 7px 8px; font-size: 11.5px;
+                                text-align: center; vertical-align: middle;
+                            }
+                            .tuv_pr table.pr_cost th { font-weight: 700; background-color: #f0f2f5; }
+                            .tuv_pr table.pr_cost td.pr_cost_row { text-align: right; font-weight: 700; }
+                            .tuv_pr table.pr_cost tr.pr_cost_total td { font-weight: 800; background-color: #f7f7f8; }
+
+                            .tuv_pr .pr_note {
+                                font-weight: 800; font-size: 12.5px; margin: 14px 0; letter-spacing: .02em;
+                            }
+
+                            /* ---------- signature (laid out like the Word doc) ---------- */
+                            .tuv_pr .pr_sign {
+                                margin-top: 34px; font-size: 12.5px; font-weight: 700;
+                                line-height: 1.45; page-break-inside: avoid;
+                            }
+                            .tuv_pr .pr_sign .pr_sign_lbl { margin-bottom: 16px; }
+                            .tuv_pr .pr_sign .pr_sign_name { margin-bottom: 14px; }
+                            .tuv_pr .pr_sign .pr_sign_img {
+                                border: 1px solid #333333; display: inline-block;
+                                padding: 2px; margin-bottom: 16px;
+                            }
+                            .tuv_pr .pr_sign .pr_sign_img img { max-height: 62px; max-width: 190px; }
+                            .tuv_pr .pr_sign .pr_sign_gap { height: 62px; }
+
+                            .tuv_pr .pr_break { page-break-after: always; }
+                        </style>
+
+                        <!-- ══════════════════ COVER ══════════════════ -->
+                        <div class="pr_cover">
+                            <div class="pr_c_block">
+                                <div class="pr_c_lbl">PROPOSAL FOR</div>
+                                <div class="pr_c_val"><span t-field="doc.partner_id.name"/></div>
+                            </div>
+                            <div class="pr_c_block">
+                                <div class="pr_c_lbl">PROJECT NAME:</div>
+                                <div class="pr_c_val">
+                                    <span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM
+                                </div>
+                            </div>
+                            <div class="pr_c_block">
+                                <div class="pr_c_lbl">STANDARD(s):</div>
+                                <div class="pr_c_val"><span t-field="doc.certification_standard"/></div>
+                            </div>
+                            <div class="pr_c_block" style="margin-top: 56px;">
+                                <div class="pr_c_sub">PROPOSAL SUBMITTED BY:</div>
+                                <div class="pr_c_org">
+                                    TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION
+                                    PRIVATE LIMITED, PAKISTAN
+                                </div>
+                            </div>
+                            <div class="pr_c_date">
+                                <span t-field="doc.date_order" t-options='{"widget": "date", "format": "MMMM dd, yyyy"}'/>
+                            </div>
+                        </div>
+                        <div class="pr_break"/>
+
+                        <!-- ══════════════════ PREPARED FOR / BY ══════════════════ -->
+                        <div class="pr_h1">Certification Services Proposal</div>
+
+                        <table class="pr_party">
+                            <colgroup>
+                                <col style="width: 16%;"/><col style="width: 34%;"/>
+                                <col style="width: 16%;"/><col style="width: 34%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="pr_p_title" colspan="4">
+                                    PROJECT NAME: <span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pr_p_head" colspan="2">Prepared For:</td>
+                                <td class="pr_p_head" colspan="2">Prepared By:</td>
+                            </tr>
+                            <tr>
+                                <td class="pr_p_name" colspan="2"><span t-field="doc.partner_id.name"/></td>
+                                <td class="pr_p_name" colspan="2">
+                                    TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION PRIVATE LIMITED
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="pr_lbl">Address:</div>
+                                    <div class="pr_lbl" style="margin-top: 8px;">Mobile:</div>
+                                    <div class="pr_lbl" style="margin-top: 8px;">Email:</div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span t-field="doc.partner_street"/>
+                                        <t t-if="doc.partner_street2">, <span t-field="doc.partner_street2"/></t>
+                                        <t t-if="doc.partner_city"><br/><span t-field="doc.partner_city"/></t>
+                                        <t t-if="doc.partner_zip"> <span t-field="doc.partner_zip"/></t>
+                                        <t t-if="doc.partner_state_id">, <span t-field="doc.partner_state_id.name"/></t>
+                                        <t t-if="doc.partner_country_id"><br/><span t-field="doc.partner_country_id.name"/></t>
+                                    </div>
+                                    <div style="margin-top: 8px;"><span t-field="doc.partner_phone"/></div>
+                                    <div style="margin-top: 8px;"><span t-field="doc.partner_email"/></div>
+                                </td>
+                                <td>
+                                    <div class="pr_lbl">Lahore:</div>
+                                    <div class="pr_lbl" style="margin-top: 26px;">Tel:</div>
+                                    <div class="pr_lbl">Fax:</div>
+                                    <div class="pr_lbl" style="margin-top: 10px;">Karachi:</div>
+                                    <div class="pr_lbl" style="margin-top: 52px;">Islamabad:</div>
+                                    <div class="pr_lbl" style="margin-top: 26px;">Mobile:</div>
+                                </td>
+                                <td>
+                                    <div class="pr_office">Corporate Head Office</div>
+                                    <div>72 B-2, Block B2, Gulberg III, Lahore.</div>
+                                    <div>042-111 284 284</div>
+                                    <div>042-5872179</div>
+                                    <div class="pr_office" style="margin-top: 8px;">
+                                        Oil &amp; Gas Inspection Services HQ
+                                    </div>
+                                    <div>
+                                        Building # 15-C, 2nd floor, Lane 1, Ittehad Commercial Area,
+                                        D.H.A Phase 6 Defence Housing Authority, Karachi.
+                                    </div>
+                                    <div class="pr_office" style="margin-top: 8px;">Branch Office</div>
+                                    <div>189, Korang Road, I-10/3, Islamabad.</div>
+                                    <div>0307-4449107</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pr_lbl">Contact:</td>
+                                <td><span t-field="doc.partner_id.name"/></td>
+                                <td class="pr_lbl">Prepared By:</td>
+                                <td>
+                                    <div class="pr_p_name"><span t-field="doc.user_id.name"/></div>
+                                    <div t-if="doc.user_id.function"><span t-field="doc.user_id.function"/></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════════ CONTENT ══════════════════ -->
+                        <div class="pr_h2">Content</div>
+                        <div class="pr_toc">
+                            <div class="pr_toc_1">1. INTRODUCTION</div>
+                            <div class="pr_toc_2">1.1 BACKGROUND INFORMATION</div>
+                            <div class="pr_toc_2">1.2 COMPANY PROFILE</div>
+                            <div class="pr_toc_1">2. TECHNICAL PROPOSAL (AUDIT METHODOLOGY)</div>
+                            <div class="pr_toc_2">2.1 Stage 1 – DOCUMENT REVIEW</div>
+                            <div class="pr_toc_2">2.2 Stage 2 – VERIFICATION AUDIT</div>
+                            <div class="pr_toc_2">2.3 ACCREDITATION LOGOS</div>
+                            <div class="pr_toc_2">2.4 ROUTINE SURVEILLANCE VISITS</div>
+                            <div class="pr_toc_1">
+                                3. FINANCIAL PROPOSAL (SUMMARY OF TUV AUSTRIA BIC SERVICE CHARGES)
+                            </div>
+                            <div class="pr_toc_2">3.1 CHARGES</div>
+                            <div class="pr_toc_2">3.2 INVOICING</div>
+                            <div class="pr_toc_2">3.3 CONTRACT</div>
+                        </div>
+
+                        <!-- ══════════════════ 1. INTRODUCTION ══════════════════ -->
+                        <div class="pr_h2">1. Introduction</div>
+
+                        <div class="pr_h3">1.1 BACKGROUND INFORMATION:</div>
+                        <p>
+                            This Proposal is compiled by TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION,
+                            hereinafter called as TUV AUS BIC, for
+                            <strong><span t-field="doc.partner_id.name"/></strong>
+                            hereinafter called as FFP with the purpose of TUV AUS BIC executing
+                            Verification/Validation for FFP the Verification/Validation will be carried out at
+                            the nominated FFP site(s). TUV AUS BIC has extensive local and international
+                            experience with this method of Verification/Validation processes.
+                        </p>
+
+                        <div class="pr_h3">1.2 COMPANY PROFILE:</div>
+                        <div class="pr_h4">The TUV AUS BIC Group</div>
+                        <p>
+                            Before TUV Austria AG. Group took over Moody International Pvt. Limited was the name
+                            of the venture. MI was established in Pakistan in the year 1997, and soon achieved
+                            the position of market leaders and were rated as a pioneer in the field of
+                            certification business in Pakistan.
+                        </p>
+                        <p>
+                            In 2011, Moody Group was globally sold to another player and it was decided amicably
+                            &amp; concluded between Moody International Pakistan &amp; Moody Group to part ways
+                            for the sake of good order. As a result of that negotiation, between the management
+                            of Moody International Pakistan and Moody Group the company Moody International
+                            Pakistan became 100% independent and subsequently TUV Austria Holding AG., a company
+                            established since 1872 acquired shareholding in Moody International Pvt. Limited.
+                        </p>
+                        <p>
+                            TUV Austria enjoys major market share in certification business having hundreds of
+                            certified clients all over Pakistan and thousands of clients internationally.
+                        </p>
+                        <p>
+                            TUV Austria’s Corporate Head Office in Lahore - Pakistan is the South Asian Head
+                            Office, having branch offices in Karachi (Pakistan), Islamabad (Pakistan) and
+                            Bangladesh.
+                        </p>
+                        <p>
+                            TUV Austria is a leading Certification and Inspection Company Globally with its
+                            origin and International HQ in Vienna.
+                        </p>
+                        <p>
+                            TÜV AUSTRIA has been established as one of the primary auditing leaders in the
+                            European, Asian, East Mediterranean and Middle East market in sectors such as Food,
+                            Quality, Environment, Health &amp; Safety and Information Security Management
+                            Systems Certification and Inspections – Certification of Materials, Products,
+                            Machinery and Equipment, Building and Industrial Installations.
+                        </p>
+                        <p>
+                            Certification Services against the following standards are being offered by
+                            TUV AUS BIC;
+                        </p>
+
+                        <table class="pr_std">
+                            <tr><td class="pr_std_code">ISO 9001</td><td>(QUALITY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO14001</td><td>(ENVIRONMENT MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 45001</td><td>(OCCUPATIONAL HEALTH AND SAFETY)</td></tr>
+                            <tr><td class="pr_std_code">ISO 22000</td><td>(FOOD &amp; SAFTEY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 27001</td><td>(INFORMATION SECURITY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 20000-1</td><td>(IT SERVICE MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">IFS</td><td>(INTERNATIONAL FOOD SAFETY)</td></tr>
+                            <tr><td class="pr_std_code">ISO 50001</td><td>(ENERGY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 22301</td><td>(BUSINESS CONTINUITY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 28000</td><td>(SUPPLY CHAIN SECURITY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 37001</td><td>(ANTI-BRIBERY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 31001</td><td>(RISK MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 39001</td><td>(ROAD TRAFFIC SAFETY MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 21001</td><td>(EDUCATIONAL ORGANIZATION MANAGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO 29993</td><td>(LEARNING SERVICES OUTSIDE FORMAL EDUCATION)</td></tr>
+                            <tr><td class="pr_std_code">HALAL</td><td>(HALAL FOOD CERTIFICATION AS PER PS 3733)</td></tr>
+                            <tr><td class="pr_std_code">HACCP</td><td>(HAZARD ANALYSIS &amp; CRITICAL CONTROL POINT)</td></tr>
+                            <tr><td class="pr_std_code">FSSC 22000</td><td>(FOOD SAFETY SYSTEM CERTIFICATION)</td></tr>
+                            <tr><td class="pr_std_code">TAC 16000</td><td>(FIRE PROTECTION MANGEMENT SYSTEM)</td></tr>
+                            <tr><td class="pr_std_code">ISO14064-1</td><td>(GREENHOUSE GASES -PART 1)</td></tr>
+                            <tr><td class="pr_std_code">ISO 14064-2</td><td>(GREENHOUSE GASES -PART 2)</td></tr>
+                            <tr><td class="pr_std_code">PAS 2060</td><td>(CARBON NEUTRALITY)</td></tr>
+                            <tr><td class="pr_std_code">EN 15343</td><td>(RECYCLED PLASTICS)</td></tr>
+                            <tr><td class="pr_std_code">OK Recycled</td><td/></tr>
+                        </table>
+
+                        <p>
+                            TÜV AUSTRIA BIC has won the trust of the market by providing accredited technical
+                            services. The services provided in the fields of Audit, Certification, Technical
+                            Inspection and Training are:
+                        </p>
+                        <ul class="pr_ul">
+                            <li>
+                                Assessment and Certification of Management Systems based on the requirement of
+                                ISO 9001, ISO 14001, EMAS Regulation, HACCP, ISO 22000, FSSC 22000, BRC, IFS,
+                                IFS Logistics, IFS Broker, ISO 45001, ISO 13485, SA 8000, ΕΝ 16001, ISO 50001,
+                                AGRO 2.1- 2.2, AGRO 3.1- 3.2- 3.3- 3.4, GLOBALG.A.P. Protocol, ISO 27001,
+                                BS 25999, ISO 20000.
+                            </li>
+                            <li>
+                                Audits and Certifications according to ISO17021-1, ISO 22003-1, ELOT 1433,
+                                ELOT 1429, ELOT 1435, ΕΝ 15733
+                            </li>
+                            <li>Environment and Energy Audits, Inspections and Measurements.</li>
+                            <li>
+                                Renewable Sources of Energy- Photovoltaic and Wind Air Generators Inspections.
+                            </li>
+                            <li>
+                                Verification of Greenhouse Gases (CO2) emissions reports according to the
+                                Emission Trading Scheme.
+                            </li>
+                            <li>
+                                Lift Inspections- CE Type Approval, Safety Construction Elements of CE type,
+                                Technical Inspections, Certification of Quality Assurance Systems according to
+                                EC 95/16 directive.
+                            </li>
+                            <li>Inspection of Industrial Building Installations and Metallic Constructions.</li>
+                            <li>Inspection of Buildings with N.D.T. / N.D.E. methods.</li>
+                            <li>
+                                Inspection Body of Quality Assurance in Civil Engineers Projects, Building and
+                                Road Constructions.
+                            </li>
+                            <li>Inspection and Certification of Hoist Cranes, Bridge Cranes.</li>
+                            <li>
+                                Inspection and Certification of Pressure Vessels, Air Chambers, Steam Boilers,
+                                Gas Apparatus.
+                            </li>
+                            <li>Certification of Welding Procedures and Welders.</li>
+                            <li>Certification of Products according to CE Marking.</li>
+                            <li>
+                                Transportation and Vehicle checking that carry dangerous loads according to ADR
+                                and ATP Regulations.
+                            </li>
+                            <li>
+                                Cargo Inspections (Third party, Member of IUS- Independent Unified Surveyors-).
+                            </li>
+                            <li>
+                                Risk Analysis in Refineries, Chemical Industries, Energy Production Units.
+                            </li>
+                            <li>
+                                Training courses, through TÜV ACADEMY and IRCA and custom-tailored seminars for
+                                companies, in all the above subjects.
+                            </li>
+                        </ul>
+
+                        <!-- ══════════════════ 2. TECHNICAL PROPOSAL ══════════════════ -->
+                        <div class="pr_h2">2. Technical Proposal (Audit Methodology)</div>
+
+                        <div class="pr_h3">2.1 STAGE - 1 DOCUMENT REVIEW:</div>
+                        <p>
+                            TUV AUS BIC will carry out Stage 1 Audit of your
+                            <strong><span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM</strong>
+                            emissions according to the Verification Regulation and the requirements of
+                            <strong><span t-field="doc.certification_standard"/></strong> standard In order to
+                            establish to what extent, the
+                            <strong><span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM</strong>
+                            addresses the requirements of
+                            <strong><span t-field="doc.certification_standard"/></strong> Standard, and if a
+                            subsequent final Assessment for Accredited Certificate is likely to result in
+                            successful certification at an early stage, by which usually companies take the
+                            necessary corrective/preventive actions as appropriate and prior to the final
+                            Assessment. Audit Reports will be compiled as per the requirements specified and
+                            will be sent to necessary action if required.
+                        </p>
+
+                        <div class="pr_h3">2.2 STAGE - 2 VERIFICATION AUDIT:</div>
+                        <p>
+                            TUV AUS BIC shall conduct onsite Verification audit according to the Verification
+                            Regulation and the requirements of
+                            <strong><span t-field="doc.certification_standard"/></strong> standard and award the
+                            Verification Statement stating the result of the verification process in case of a
+                            positive result.
+                        </p>
+
+                        <div class="pr_h3">2.3 ACCREDITATION LOGOS:</div>
+                        <p>TUV AUS BIC shall offer PNAC Accredited Certificate.</p>
+
+                        <div class="pr_h3">2.4 ROUTINE SURVEILLANCE VISITS:</div>
+                        <p>
+                            It is also an obligatory service TUV AUS BIC will perform Surveillance Visit after
+                            every year i.e. 2 Surveillance Visits will be performed during the 3 years
+                            validation period of the Certificate during the three years validation.
+                        </p>
+                        <p>
+                            Such routine Surveillance Visits are performed to ensure the continuous compliance
+                            of your
+                            <strong><span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM</strong>
+                            to the requirements of
+                            <strong><span t-field="doc.certification_standard"/></strong> Standard.
+                        </p>
+
+                        <!-- ══════════════════ 3. FINANCIAL PROPOSAL ══════════════════ -->
+                        <div class="pr_h2">
+                            3. Financial Proposal (Summary of TUV Austria BIC Service Charges)
+                        </div>
+
+                        <div class="pr_h3">3.1 CHARGES</div>
+                        <t t-set="charge_rows" t-value="[
+                            ('Stage 1 Audit:', doc.charge_stage_1_audit),
+                            ('Stage 2 Audit:', doc.charge_stage_2_audit),
+                            ('Traveling, Boarding &amp; Lodging', doc.travel_boarding_lodging),
+                            ('1ST Annual Surveillance@', doc.charge_surveillance_1),
+                            ('2nd Annual Surveillance@', doc.charge_surveillance_2),
+                        ]"/>
+                        <table class="pr_charges">
+                            <colgroup><col style="width: 46%;"/><col style="width: 54%;"/></colgroup>
+                            <tr t-foreach="[r for r in charge_rows if r[1]]" t-as="row">
+                                <td class="pr_ch_lbl"><span t-out="row[0]"/></td>
+                                <td>=<span t-out="row[1]"/></td>
+                            </tr>
+                        </table>
+
+                        <div class="pr_h4">Summary of Cost</div>
+                        <table class="pr_cost">
+                            <colgroup>
+                                <col style="width: 24%;"/><col style="width: 19%;"/>
+                                <col style="width: 19%;"/><col style="width: 19%;"/>
+                                <col style="width: 19%;"/>
+                            </colgroup>
+                            <tr>
+                                <th>Standard(s)</th>
+                                <th>Initial Audit</th>
+                                <th>1st Surveillance Audit</th>
+                                <th>2nd Surveillance Audit</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td class="pr_cost_row">
+                                    <span t-field="doc.certification_standard"/> CERTIFICATION
+                                </td>
+                                <td><span t-field="doc.cost_initial_audit"/></td>
+                                <td><span t-field="doc.cost_surveillance_1"/></td>
+                                <td><span t-field="doc.cost_surveillance_2"/></td>
+                                <td><span t-field="doc.cost_total"/></td>
+                            </tr>
+                            <tr>
+                                <td class="pr_cost_row"><span t-field="doc.cost_tax_label"/></td>
+                                <td><span t-field="doc.cost_tax_initial_audit"/></td>
+                                <td><span t-field="doc.cost_tax_surveillance_1"/></td>
+                                <td><span t-field="doc.cost_tax_surveillance_2"/></td>
+                                <td><span t-field="doc.cost_tax_total"/></td>
+                            </tr>
+                            <tr class="pr_cost_total">
+                                <td class="pr_cost_row">Total</td>
+                                <td><span t-field="doc.cost_grand_initial_audit"/></td>
+                                <td><span t-field="doc.cost_grand_surveillance_1"/></td>
+                                <td><span t-field="doc.cost_grand_surveillance_2"/></td>
+                                <td><span t-field="doc.cost_grand_total"/></td>
+                            </tr>
+                        </table>
+
+                        <div class="pr_note">NOTE: NO HIDDEN CHARGES OR OVER &amp; ABOVE THIS COST</div>
+
+                        <!-- advance = "Total" row / "Initial Audit" column of the cost table -->
+                        <t t-set="advance"
+                            t-value="(doc.cost_grand_initial_audit or '').replace('USD', '').replace('$', '').strip()"/>
+                        <div class="pr_h3">3.2 Invoicing:</div>
+                        <p>
+                            <span t-field="doc.proposal_invoicing_terms"/><t t-if="advance">
+                            i.e., <strong>USD <span t-out="advance"/></strong></t>
+                            only is required to initiate the contract.
+                        </p>
+
+                        <div class="pr_h3">3.3 Contract:</div>
+                        <p>
+                            Once the terms &amp; condition are agreed between both the parties a formal contract
+                            will be sent to you for signatures.
+                        </p>
+
+                        <div class="pr_note">
+                            NOTE: THIS PROPOSAL IS VALID FOR 30 DAYS FROM DATE OF ISSUE<t
+                                t-if="doc.validity_date"> (UP TO <span t-field="doc.validity_date"
+                                t-options='{"widget": "date", "format": "MMMM dd, yyyy"}'/>)</t>.
+                        </div>
+
+                        <!-- ══════════════════ SIGNATURE ══════════════════ -->
+                        <div class="pr_sign">
+                            <t t-set="pb_name" t-value="doc.prepared_by_name"/>
+                            <t t-set="pb_job" t-value="doc.prepared_by_designation"/>
+                            <t t-set="pb_phone" t-value="doc.prepared_by_phone"/>
+                            <t t-set="pb_email" t-value="doc.prepared_by_email"/>
+                            <div class="pr_sign_lbl">Prepared by:</div>
+                            <div class="pr_sign_name" t-if="pb_name"><span t-out="pb_name"/></div>
+                            <div class="pr_sign_img" t-if="doc.prepared_by_signature">
+                                <img t-att-src="image_data_uri(doc.prepared_by_signature)" alt="Signature"/>
+                            </div>
+                            <div class="pr_sign_gap" t-else=""/>
+                            <div t-if="pb_job"><span t-out="pb_job"/></div>
+                            <div><span t-field="doc.company_id.name"/></div>
+                            <div t-if="pb_phone"><span t-out="pb_phone"/></div>
+                            <div t-if="pb_email"><span t-out="pb_email"/></div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

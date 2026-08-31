@@ -35,6 +35,7 @@ Centralized module for client-specific customizations across:
         'views/project_views.xml',
         'views/stock_views.xml',
         'report/sale_order_application_form_report.xml',
+        'report/sale_order_proposal_report.xml',
     ],
 
     'installable': True,

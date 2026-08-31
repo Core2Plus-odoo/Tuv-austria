@@ -108,6 +108,67 @@
                         <field name="license_attachment" filename="license_attachment_filename"/>
                     </group>
                 </group>
+                <group name="group_proposal_form" string="Proposal Form"
+                    invisible="document_type != 'proposal_form'">
+                    <group name="group_proposal_form_left">
+                        <field name="management_system_name"/>
+                    </group>
+                    <group name="group_proposal_form_right">
+                        <field name="certification_standard"/>
+                    </group>
+                </group>
+                <group name="group_proposal_charges" string="Charges"
+                    invisible="document_type != 'proposal_form'">
+                    <group name="group_proposal_charges_left">
+                        <field name="charge_stage_1_audit"/>
+                        <field name="charge_stage_2_audit"/>
+                        <field name="travel_boarding_lodging"/>
+                    </group>
+                    <group name="group_proposal_charges_right">
+                        <field name="charge_surveillance_1"/>
+                        <field name="charge_surveillance_2"/>
+                    </group>
+                </group>
+                <group name="group_proposal_cost" string="Summary of Cost"
+                    invisible="document_type != 'proposal_form'">
+                    <group name="group_proposal_cost_amount" string="Certification Fee">
+                        <field name="cost_initial_audit"/>
+                        <field name="cost_surveillance_1"/>
+                        <field name="cost_surveillance_2"/>
+                        <field name="cost_total"/>
+                    </group>
+                    <group name="group_proposal_cost_tax" string="Sales Tax">
+                        <field name="cost_tax_label"/>
+                        <field name="cost_tax_initial_audit"/>
+                        <field name="cost_tax_surveillance_1"/>
+                        <field name="cost_tax_surveillance_2"/>
+                        <field name="cost_tax_total"/>
+                    </group>
+                    <group name="group_proposal_cost_grand" string="Total">
+                        <field name="cost_grand_initial_audit"/>
+                        <field name="cost_grand_surveillance_1"/>
+                        <field name="cost_grand_surveillance_2"/>
+                        <field name="cost_grand_total"/>
+                    </group>
+                    <group name="group_proposal_cost_invoicing" string="Invoicing">
+                        <field name="proposal_invoicing_terms"/>
+                    </group>
+                </group>
+                <group name="group_proposal_prepared_by" string="Prepared By"
+                    invisible="document_type != 'proposal_form'">
+                    <group name="group_proposal_prepared_by_left">
+                        <field name="prepared_by_name"/>
+                        <field name="prepared_by_designation"/>
+                        <field name="prepared_by_phone"/>
+                        <field name="prepared_by_email"/>
+                    </group>
+                    <group name="group_proposal_prepared_by_right">
+                        <field name="prepared_by_signature_filename" invisible="1"/>
+                        <field name="prepared_by_signature" widget="image"
+                            filename="prepared_by_signature_filename"
+                            options="{'size': [200, 90]}"/>
+                    </group>
+                </group>
             </group>
 
         </field>
