@@ -154,6 +154,56 @@
                         <field name="proposal_invoicing_terms"/>
                     </group>
                 </group>
+                <group name="group_contract_form" string="TAC-TAH-Contract"
+                    invisible="document_type != 'contract_form'">
+                    <group name="group_contract_form_left">
+                        <field name="contract_standards"/>
+                        <field name="contract_address_1"/>
+                        <field name="contract_address_2"/>
+                        <field name="contract_representative"/>
+                    </group>
+                    <group name="group_contract_form_right">
+                        <field name="contract_designation"/>
+                        <field name="contract_date"/>
+                        <field name="contract_ref"/>
+                        <field name="contract_advance_amount"/>
+                    </group>
+                </group>
+                <group name="group_contract_services" string="Certification Services Offered"
+                    invisible="document_type != 'contract_form'">
+                    <group name="group_contract_services_1" string="Row 1">
+                        <field name="contract_service_1"/>
+                        <field name="contract_accreditation_1"/>
+                    </group>
+                    <group name="group_contract_services_2" string="Row 2">
+                        <field name="contract_service_2"/>
+                        <field name="contract_accreditation_2"/>
+                    </group>
+                </group>
+                <group name="group_contract_charges" string="Contract Charges"
+                    invisible="document_type != 'contract_form'">
+                    <group name="group_contract_charges_y1" string="1st Year Initial Audit (USD)">
+                        <field name="contract_fee_y1" string="Standard(s)"/>
+                        <field name="contract_mandays_y1" string="*# of Man-days"/>
+                        <field name="contract_tax_y1" string="Sales Tax"/>
+                        <field name="contract_total_y1" string="Total Payable"/>
+                    </group>
+                    <group name="group_contract_charges_y2" string="2nd Year Surveillance Audit (USD)">
+                        <field name="contract_fee_y2" string="Standard(s)"/>
+                        <field name="contract_mandays_y2" string="*# of Man-days"/>
+                        <field name="contract_tax_y2" string="Sales Tax"/>
+                        <field name="contract_total_y2" string="Total Payable"/>
+                    </group>
+                    <group name="group_contract_charges_y3" string="3rd Year Surveillance Audit (USD)">
+                        <field name="contract_fee_y3" string="Standard(s)"/>
+                        <field name="contract_mandays_y3" string="*# of Man-days"/>
+                        <field name="contract_tax_y3" string="Sales Tax"/>
+                        <field name="contract_total_y3" string="Total Payable"/>
+                    </group>
+                    <group name="group_contract_charges_tax" string="Tax Row Label">
+                        <field name="contract_tax_province"/>
+                    </group>
+                </group>
                 <group name="group_proposal_prepared_by" string="Prepared By"
                     invisible="document_type != 'proposal_form'">
                     <group name="group_proposal_prepared_by_left">

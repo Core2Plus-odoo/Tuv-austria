@@ -6,7 +6,7 @@ class SaleOrder(models.Model):
 
     document_type = fields.Selection([
         ('offer_application', 'Offer Application'),
-        ('contract_form', 'Contract Form'),
+        ('contract_form', 'TAC-TAH-Contract'),
         ('proposal_form', 'Proposal Form'),
     ], string='Document Type')
     partner_street = fields.Char(related='partner_id.street', string='Street', readonly=True)
@@ -104,6 +104,40 @@ class SaleOrder(models.Model):
     prepared_by_email = fields.Char(string='Prepared By Email')
     prepared_by_signature = fields.Binary(string='Signature', attachment=True)
     prepared_by_signature_filename = fields.Char(string='Signature Filename')
+
+    # ------------------------------------------------------------------
+    # Contract Form (TAC-TAH template) - every <<placeholder>> of the doc
+    # ------------------------------------------------------------------
+    contract_standards = fields.Char(
+        string='Standard(s)', help='Goes into "<<Enter Standard(s)>>" of the contract.')
+    contract_address_1 = fields.Char(string='Address 1')
+    contract_address_2 = fields.Char(string='Address 2')
+    contract_representative = fields.Char(string='Company Representative (Attn)')
+    contract_designation = fields.Char(string='Designation')
+    contract_date = fields.Date(string='Contract Date')
+    contract_ref = fields.Char(string='Ref #')
+
+    # Table: Certification Services Offered / ACCREDITATION (2 rows)
+    contract_service_1 = fields.Char(string='Service 1 - Standard(s)')
+    contract_accreditation_1 = fields.Char(string='Service 1 - Accreditation Body')
+    contract_service_2 = fields.Char(string='Service 2 - Standard(s)')
+    contract_accreditation_2 = fields.Char(string='Service 2 - Accreditation Body')
+
+    # CHARGES table - 4 rows x 3 year columns, all typed in by hand
+    contract_fee_y1 = fields.Char(string='Standard(s) - 1st Year')
+    contract_fee_y2 = fields.Char(string='Standard(s) - 2nd Year')
+    contract_fee_y3 = fields.Char(string='Standard(s) - 3rd Year')
+    contract_mandays_y1 = fields.Char(string='# of Man-days - 1st Year')
+    contract_mandays_y2 = fields.Char(string='# of Man-days - 2nd Year')
+    contract_mandays_y3 = fields.Char(string='# of Man-days - 3rd Year')
+    contract_tax_province = fields.Char(string='Sales Tax (Province)@')
+    contract_tax_y1 = fields.Char(string='Sales Tax - 1st Year')
+    contract_tax_y2 = fields.Char(string='Sales Tax - 2nd Year')
+    contract_tax_y3 = fields.Char(string='Sales Tax - 3rd Year')
+    contract_total_y1 = fields.Char(string='Total Payable - 1st Year')
+    contract_total_y2 = fields.Char(string='Total Payable - 2nd Year')
+    contract_total_y3 = fields.Char(string='Total Payable - 3rd Year')
+    contract_advance_amount = fields.Char(string='1st Year Initial Audit Amount (Advance)')
 
     def action_view_project_ids(self):
         self.ensure_one()

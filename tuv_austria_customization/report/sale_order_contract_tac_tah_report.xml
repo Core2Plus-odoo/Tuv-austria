@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_sale_order_contract_tac_tah" model="ir.actions.report">
+        <field name="name">TAC-TAH-Contract</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_sale_order_contract_tac_tah</field>
+        <field name="report_file">tuv_austria_customization.report_sale_order_contract_tac_tah</field>
+        <field name="print_report_name">'TAC-TAH-Contract - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_sale_order_contract_tac_tah">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page tuv_ct">
+                        <style>
+                            .tuv_ct { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 11.5px; }
+                            .tuv_ct p { margin: 0 0 8px 0; text-align: justify; }
+                            .tuv_ct .ct_val { color: #c00000; font-weight: 700; }
+
+                            /* ---------- title block ---------- */
+                            .tuv_ct .ct_title {
+                                text-align: center; font-size: 15px; font-weight: 800;
+                                text-decoration: underline; margin-bottom: 16px;
+                            }
+                            .tuv_ct .ct_between {
+                                text-align: center; font-weight: 800; font-size: 12.5px; margin: 12px 0;
+                            }
+                            .tuv_ct .ct_party {
+                                text-align: center; font-weight: 800; font-size: 12.5px;
+                                text-decoration: underline;
+                            }
+                            .tuv_ct .ct_party_sub { text-align: center; font-weight: 800; font-size: 12px; }
+
+                            /* ---------- ref block ---------- */
+                            .tuv_ct table.ct_ref {
+                                width: 100%; border-collapse: collapse; table-layout: fixed; margin: 14px 0;
+                            }
+                            .tuv_ct table.ct_ref,
+                            .tuv_ct table.ct_ref tbody,
+                            .tuv_ct table.ct_ref tr,
+                            .tuv_ct table.ct_ref tr:nth-child(odd),
+                            .tuv_ct table.ct_ref tr:nth-child(even),
+                            .tuv_ct table.ct_ref td {
+                                border: 0 !important; background-color: transparent !important;
+                            }
+                            .tuv_ct table.ct_ref td { padding: 1px 0; vertical-align: top; font-size: 11.5px; }
+                            .tuv_ct table.ct_ref td.ct_ref_lbl { font-weight: 800; width: 22%; }
+
+                            /* ---------- data tables ---------- */
+                            .tuv_ct table.ct_tbl {
+                                width: 100%; border-collapse: collapse; table-layout: fixed;
+                                margin: 6px 0 14px 0; page-break-inside: avoid;
+                            }
+                            .tuv_ct table.ct_tbl td, .tuv_ct table.ct_tbl th {
+                                border: 1px solid #000000; padding: 4px 6px; font-size: 11px;
+                                text-align: center; vertical-align: middle;
+                            }
+                            .tuv_ct table.ct_tbl th { font-weight: 800; }
+                            .tuv_ct table.ct_tbl td.ct_row_lbl { font-weight: 800; text-align: right; }
+                            .tuv_ct table.ct_tbl td.ct_row_lbl_c { font-weight: 800; text-align: center; }
+
+                            .tuv_ct .ct_charges_head {
+                                font-weight: 800; text-decoration: underline; font-size: 12px; margin-top: 10px;
+                            }
+                            .tuv_ct .ct_bold { font-weight: 800; }
+
+                            /* ---------- clauses ---------- */
+                            .tuv_ct .ct_vows {
+                                font-weight: 800; text-decoration: underline; font-size: 12px;
+                                margin: 16px 0 8px 0; page-break-after: avoid;
+                            }
+                            .tuv_ct ol.ct_ol { margin: 0 0 8px 0; padding-left: 24px; }
+                            .tuv_ct ol.ct_ol > li { margin-bottom: 7px; text-align: justify; }
+                            .tuv_ct ol.ct_sub { margin: 6px 0 0 0; padding-left: 22px; list-style-type: decimal; }
+                            .tuv_ct ol.ct_sub > li { margin-bottom: 5px; }
+
+                            /* ---------- signatures ---------- */
+                            .tuv_ct .ct_sign_head {
+                                font-weight: 800; text-decoration: underline; margin: 18px 0 2px 0;
+                                page-break-after: avoid;
+                            }
+                            .tuv_ct .ct_sign_sub { font-weight: 800; margin-bottom: 6px; }
+                            .tuv_ct table.ct_sign {
+                                width: 100%; border-collapse: collapse; table-layout: fixed;
+                                page-break-inside: avoid; margin-bottom: 10px;
+                            }
+                            .tuv_ct table.ct_sign,
+                            .tuv_ct table.ct_sign tbody,
+                            .tuv_ct table.ct_sign tr,
+                            .tuv_ct table.ct_sign tr:nth-child(odd),
+                            .tuv_ct table.ct_sign tr:nth-child(even),
+                            .tuv_ct table.ct_sign td {
+                                border: 0 !important; background-color: transparent !important;
+                            }
+                            .tuv_ct table.ct_sign td {
+                                padding: 6px 0; font-size: 11.5px; vertical-align: bottom;
+                            }
+                            .tuv_ct table.ct_sign td.ct_sign_lbl { font-weight: 800; padding-left: 6px; }
+                            /* the blank a person writes on is just a rule, exactly like the Word doc.
+                               The rule sits in an inner div so the cell can keep a real gap before the
+                               next label instead of the border running into it. */
+                            .tuv_ct table.ct_sign td.ct_sign_line { padding-right: 34px; }
+                            .tuv_ct table.ct_sign td.ct_sign_line .ct_rule {
+                                border-bottom: 1px solid #000000; height: 15px;
+                            }
+                            .tuv_ct table.ct_sign tr.ct_sign_gap td { height: 16px; }
+
+                            /* ---------- contact details ---------- */
+                            .tuv_ct .ct_contact_title {
+                                text-align: center; font-weight: 800; text-decoration: underline;
+                                font-size: 12.5px; margin: 22px 0 14px 0;
+                            }
+                            .tuv_ct .ct_contact_head {
+                                font-weight: 800; text-decoration: underline; font-size: 11.5px;
+                                margin: 14px 0 3px 0; page-break-after: avoid;
+                            }
+                            .tuv_ct table.ct_contact {
+                                width: 56%; border-collapse: collapse; table-layout: fixed;
+                                page-break-inside: avoid;
+                            }
+                            .tuv_ct table.ct_contact,
+                            .tuv_ct table.ct_contact tbody,
+                            .tuv_ct table.ct_contact tr,
+                            .tuv_ct table.ct_contact tr:nth-child(odd),
+                            .tuv_ct table.ct_contact tr:nth-child(even),
+                            .tuv_ct table.ct_contact td {
+                                border: 0 !important; background-color: transparent !important;
+                            }
+                            .tuv_ct table.ct_contact td {
+                                padding: 7px 0 3px 0; font-size: 11px; vertical-align: bottom;
+                            }
+                            .tuv_ct table.ct_contact td.ct_contact_lbl {
+                                font-weight: 800; width: 36%; padding-right: 14px;
+                            }
+                            .tuv_ct table.ct_contact td.ct_contact_line .ct_rule {
+                                border-bottom: 1px solid #000000; height: 14px;
+                            }
+                        </style>
+
+                        <!-- ══════════════ TITLE ══════════════ -->
+                        <div class="ct_title">
+                            CONTRACT FOR CERTIFICATION OF
+                            <span class="ct_val" t-out="doc.contract_standards"/>
+                        </div>
+                        <div class="ct_between">BETWEEN</div>
+                        <div class="ct_party">TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION PVT. LTD.</div>
+                        <div class="ct_party">(Hereinafter referred to as the Company)</div>
+                        <div class="ct_between">AND</div>
+                        <div class="ct_party"><span class="ct_val" t-field="doc.partner_id.name"/></div>
+                        <div class="ct_party_sub">(Hereinafter referred as the Client)</div>
+
+                        <p style="margin-top: 14px;">
+                            This Contract is made between <span class="ct_bold">the Company</span> and
+                            <span class="ct_bold">the Client</span> for the purpose of
+                            <span class="ct_val" t-out="doc.contract_standards"/> CERTIFICATION of
+                            <span class="ct_bold">the Client.</span>
+                        </p>
+
+                        <!-- ══════════════ REF BLOCK ══════════════ -->
+                        <table class="ct_ref">
+                            <colgroup><col style="width: 22%;"/><col style="width: 78%;"/></colgroup>
+                            <tr>
+                                <td class="ct_ref_lbl">Address:</td>
+                                <td>
+                                    <div class="ct_val" t-field="doc.partner_id.name"/>
+                                    <div class="ct_val" t-if="doc.contract_address_1"
+                                        t-out="doc.contract_address_1"/>
+                                    <div class="ct_val" t-if="doc.contract_address_2"
+                                        t-out="doc.contract_address_2"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ct_ref_lbl" style="padding-top: 8px;">Attn:</td>
+                                <td style="padding-top: 8px;">
+                                    <div class="ct_val" t-if="doc.contract_representative"
+                                        t-out="doc.contract_representative"/>
+                                    <div class="ct_val" t-if="doc.contract_designation"
+                                        t-out="doc.contract_designation"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ct_ref_lbl" style="padding-top: 8px;">Dated:</td>
+                                <td style="padding-top: 8px;">
+                                    <span class="ct_val" t-field="doc.contract_date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ct_ref_lbl" style="padding-top: 8px;">Ref:</td>
+                                <td style="padding-top: 8px;">
+                                    <span class="ct_val" t-out="doc.contract_ref"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ SERVICES / ACCREDITATION ══════════════ -->
+                        <table class="ct_tbl">
+                            <colgroup><col style="width: 50%;"/><col style="width: 50%;"/></colgroup>
+                            <tr>
+                                <th>Certification Services Offered</th>
+                                <th>ACCREDITATION</th>
+                            </tr>
+                            <tr t-if="doc.contract_service_1 or doc.contract_accreditation_1">
+                                <td class="ct_val"><span t-out="doc.contract_service_1"/></td>
+                                <td class="ct_val"><span t-out="doc.contract_accreditation_1"/></td>
+                            </tr>
+                            <tr t-if="doc.contract_service_2 or doc.contract_accreditation_2">
+                                <td class="ct_val"><span t-out="doc.contract_service_2"/></td>
+                                <td class="ct_val"><span t-out="doc.contract_accreditation_2"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ CHARGES ══════════════ -->
+                        <div class="ct_charges_head">CHARGES:</div>
+                        <table class="ct_tbl">
+                            <colgroup>
+                                <col style="width: 28%;"/><col style="width: 24%;"/>
+                                <col style="width: 24%;"/><col style="width: 24%;"/>
+                            </colgroup>
+                            <tr>
+                                <th>Standard(s)</th>
+                                <th>1st Year Initial Audit (USD)</th>
+                                <th>2nd Year Surveillance Audit (USD)</th>
+                                <th>3rd Year Surveillance Audit (USD)</th>
+                            </tr>
+                            <tr>
+                                <td class="ct_row_lbl_c ct_val"><span t-out="doc.contract_standards"/></td>
+                                <td><span t-out="doc.contract_fee_y1"/></td>
+                                <td><span t-out="doc.contract_fee_y2"/></td>
+                                <td><span t-out="doc.contract_fee_y3"/></td>
+                            </tr>
+                            <tr>
+                                <td class="ct_row_lbl_c ct_val">*# of Man-days</td>
+                                <td><span t-out="doc.contract_mandays_y1"/></td>
+                                <td><span t-out="doc.contract_mandays_y2"/></td>
+                                <td><span t-out="doc.contract_mandays_y3"/></td>
+                            </tr>
+                            <tr>
+                                <td class="ct_row_lbl">Sales Tax
+                                    <span class="ct_val" t-out="doc.contract_tax_province"/>@</td>
+                                <td><span t-out="doc.contract_tax_y1"/></td>
+                                <td><span t-out="doc.contract_tax_y2"/></td>
+                                <td><span t-out="doc.contract_tax_y3"/></td>
+                            </tr>
+                            <tr>
+                                <td class="ct_row_lbl">Total Payable</td>
+                                <td><span t-out="doc.contract_total_y1"/></td>
+                                <td><span t-out="doc.contract_total_y2"/></td>
+                                <td><span t-out="doc.contract_total_y3"/></td>
+                            </tr>
+                            <tr>
+                                <td class="ct_row_lbl">Traveling, Boarding &amp; Lodging</td>
+                                <td>To be borne by client</td>
+                                <td>To be borne by client</td>
+                                <td>To be borne by client</td>
+                            </tr>
+                        </table>
+
+                        <p class="ct_bold">
+                            In order to initiate this contract 100% advance i.e., USD
+                            <span class="ct_val" t-out="doc.contract_advance_amount"/>
+                            only of the initial audit fee shall be taken. For surveillance audits it will be
+                            payable before every surveillance audit visit and must be settled before the audit
+                            activity at site.
+                        </p>
+                        <p class="ct_bold">Please note that the Advance Fee is Non-Refundable.</p>
+                        <p style="font-size: 9.5px;">
+                            * No. of Man-Days are proposed and may require adjustment as per final approval of
+                            MD Calculation.
+                        </p>
+
+                        <!-- ══════════════ UNDERTAKINGS ══════════════ -->
+                        <div class="ct_vows">The Client hereby undertakes and vows:</div>
+                        <ol class="ct_ol">
+                            <li>
+                                To comply at all times with the provision of the rules of the Company
+                                (TUV Austria Bureau of Inspection &amp; Certification (Pvt.) Ltd.) and its
+                                sister companies i.e. TUV AUSTRIA HELLAS and TUV AUSTRIA CERT GMBH.
+                            </li>
+                            <li>
+                                To pay all fees and charges connected with the Stage 1 &amp; Stage 2 assessment
+                                process, Certification, Surveillance &amp; Re-certification Audit Process
+                                irrespective of whether the Client’s Company passes the audit, or not, and a
+                                certificate is, or not, granted or maintained.
+                            </li>
+                            <li>
+                                Both parties shall give a prior notice of three (3) months in case of
+                                cancellation of contract along with a cogent reason.
+                            </li>
+                            <li>
+                                The Client hereby undertakes to accept the surveillance audit execution date,
+                                as per the frequency mentioned on page 1 i.e., within fifteen days of
+                                notification from the Company. In case the client fails to comply with the CB
+                                rules &amp; regulations of the Company and fails to have the surveillance audit
+                                conducted within twelve (12) months after the initial audit conducted, then
+                                Certification will be suspended and may be further withdrawn (cancelled), e.g.,
+                                if the initial audit is conducted on May 20, 2024, then the surveillance audit
+                                will be due and conducted before or on May 19, 2025. Please note in case of
+                                suspension additional man-days shall be applicable for reinstatement and lifting
+                                of suspension. In case of cancellation new audit activity shall take place. In
+                                either case additional man-day charges shall be invoiced to the client.
+                            </li>
+                            <li>
+                                In case the client is in breach of clause no. 4 of this contract, the Issued
+                                Certificate will be suspended/cancelled. A suspension letter would be sent by
+                                the Scheme Manager / Certification &amp; Controlling Manager, which would specify
+                                timeframe to take actions to avoid cancellation. Any such cancellation may be
+                                published in the newspaper and updated on TUV Austria website and IAF Portal and
+                                a copy may be forwarded to accreditation bodies, relevant ministries and
+                                chambers of commerce.
+                            </li>
+                            <li>
+                                The Client shall facilitate a witness audit if requested by the Company’s
+                                Accreditation Body. Such witness audit is observed against the working of the CB
+                                and does not in any manner concerns the Client’s activities or system.
+                            </li>
+                            <li>
+                                TUV Austria Bureau of Inspection &amp; Certification (Pvt.) Ltd. can conduct the
+                                unannounced audits as part of surveillance activities where required as per
+                                applicable standards.
+                            </li>
+                            <li>
+                                All payments will be made in advance or before the start of the audit activity
+                                through cross cheque/DD/P.O. payable to “TUV Austria Bureau of Inspection &amp;
+                                Certification (Pvt.) Ltd.” only.
+                            </li>
+                            <li>
+                                All payments shall be strictly and only made in favor of the Company through
+                                Cross Cheque/DD/PO only. It is advised to the Client that under no circumstances
+                                they should make payment in cash or bank transfer to any other party, person or
+                                company other than TUV Austria Bureau of Inspection &amp; Certification (Pvt.)
+                                Ltd. Failing to comply with this clause will give TUV Austria Bureau of
+                                Inspection &amp; Certification (Pvt.) Ltd. the right to claim any payment from
+                                the Client which has not been realized by TUV Austria Bureau of Inspection &amp;
+                                Certification (Pvt.) Ltd.
+                            </li>
+                            <li>
+                                In view of provision referred in clause (b) of sub-section (1) of section 153
+                                read with sub-section (4A) of section 153 and clause (94) of part- IV of second
+                                schedule of the Income Tax Ordinance 2001. TUV Austria Bureau of Inspection &amp;
+                                Certification (Pvt.) Ltd., is subject to 6% WHT deduction as referred u/s 153
+                                (1) (b) of Income Tax Ordinance 2001. This percentage may change time to time as
+                                per government regulation. Therefore, while making payment you shall deduct 6%
+                                WHT on invoice amount.
+                            </li>
+                            <li>
+                                The certificate issued remains the property of TUV AUSTRIA BUREAU OF INSPECTION
+                                &amp; CERTIFICATION (PVT.) LTD. to whom it must be returned on request.
+                            </li>
+                            <li>
+                                In case of verification of correction of a major non-conformance additional
+                                amount of USD. 80/- will be charged for each man-day. In case of minor
+                                non-conformance, no additional amount will be charged.
+                            </li>
+                            <li>
+                                This contract is valid for 3 years which includes Initial Audit activity and
+                                minimum 2 surveillance audits during the 3 years of certification cycle.
+                            </li>
+                            <li>
+                                For any cheque that is bounced / not honored Rs. 750/- will be charged from the
+                                client.
+                            </li>
+                            <li>
+                                The above price of the services provided are net off any Government taxes i.e.
+                                Sales Tax, VAT, Duties etc. These will be borne by the Client levied if any
+                                thereafter.
+                            </li>
+                            <li>
+                                Client cannot challenge the services rendered by the Company or the result of
+                                the audit in any court of law.
+                            </li>
+                            <li>
+                                Certificates will be issued within 4-6 weeks after successful completion of the
+                                audits and closure of NCRs.
+                            </li>
+                            <li>
+                                Neither Party shall be liable for any failure or delay in performing its
+                                obligations under this Agreement if such failure or delay is due to causes
+                                beyond its reasonable control, including but not limited to acts of God, natural
+                                disasters, war, terrorism, civil unrest, labor strikes, epidemic or pandemic,
+                                government actions, or failures of suppliers or subcontractors due to any such
+                                cause (each a “Force Majeure Event”). The affected Party shall notify the other
+                                Party promptly, within five (5) working days of the occurrence of a Force
+                                Majeure Event, and shall use reasonable efforts to mitigate the impact and
+                                resume performance as soon as possible. If the Force Majeure Event continues for
+                                more than thirty (30) days, either Party may terminate this Agreement upon
+                                written notice to the other.
+                            </li>
+                            <li>Annually Client shall be charged 5% as inflation charge.</li>
+                            <li>
+                                Use of Certification Logo/Marks &amp; Accreditation Marks
+                                <ol class="ct_sub">
+                                    <li>
+                                        The Client understands that the Certification Logo/Marks and
+                                        Accreditation Marks are the property of TUV Austria Bureau of Inspection
+                                        &amp; Certification (Pvt.) Ltd. and the
+                                        <span class="ct_val" t-out="doc.contract_accreditation_1"/>
+                                        respectively.
+                                    </li>
+                                    <li>
+                                        The Client has thoroughly read Annexure 1: Use of Certification and
+                                        Accreditation Marks and will ensure full compliance, only where
+                                        applicable.
+                                    </li>
+                                    <li>
+                                        Any deviation from the Use of Certification Logo/Marks and Accreditation
+                                        Marks Policy shall result in cancellation of the Certificate(s).
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                Each Party acknowledges and agrees that the confidential information received by
+                                it from the other Party shall be kept strictly confidential and shall not be
+                                disclosed or revealed to any other person other than those employees of such
+                                party who needs to know the confidential information for the purpose of
+                                performing their respective obligations under this Agreement and such employees
+                                shall take appropriate steps to keep secret all information provided to them.
+                                The obligations of the Company under this article shall remain valid and in full
+                                force even after termination of this Agreement, maximum up to two (02) years
+                                after termination. However, the Company shall not be held liable or responsible
+                                for the information already in the public knowledge. For the purposes of this
+                                article the confidential information shall include but not limited to the
+                                information pertaining to the business and operations of
+                                <span class="ct_val" t-field="doc.partner_id.name"/>
+                                and information relating to its audit result, charges, accreditation details
+                                etc. etc.
+                            </li>
+                        </ol>
+
+                        <p class="ct_bold">
+                            In case of any conflict between TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION
+                            (PVT.) LTD. Pakistan and the Client, TUV Austria Vienna shall assume the role of the
+                            arbitrator and the verdict of the TUV Austria Global DIRECTOR shall be deemed as
+                            final.
+                        </p>
+
+                        <!-- ══════════════ SIGNATURES ══════════════ -->
+                        <div class="ct_sign_head">On Behalf of the Client</div>
+                        <div class="ct_sign_sub ct_val"><span t-out="doc.contract_designation"/></div>
+                        <table class="ct_sign">
+                            <colgroup>
+                                <col style="width: 14%;"/><col style="width: 36%;"/>
+                                <col style="width: 18%;"/><col style="width: 32%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="ct_sign_lbl">Signature:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                                <td class="ct_sign_lbl">Company Stamp:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                            </tr>
+                            <tr class="ct_sign_gap"><td/><td/><td/><td/></tr>
+                            <tr>
+                                <td class="ct_sign_lbl">Name:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                                <td class="ct_sign_lbl">Date:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                            </tr>
+                        </table>
+
+                        <div class="ct_sign_head">On Behalf of the Company</div>
+                        <div class="ct_sign_sub">
+                            Certification &amp; Controlling Manager – Business Assurance / CEO
+                        </div>
+                        <table class="ct_sign">
+                            <colgroup>
+                                <col style="width: 14%;"/><col style="width: 36%;"/>
+                                <col style="width: 18%;"/><col style="width: 32%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="ct_sign_lbl">Signature:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                                <td class="ct_sign_lbl">Company Stamp:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                            </tr>
+                            <tr class="ct_sign_gap"><td/><td/><td/><td/></tr>
+                            <tr>
+                                <td class="ct_sign_lbl">Name:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                                <td class="ct_sign_lbl">Date:</td>
+                                <td class="ct_sign_line"><div class="ct_rule"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ CONTACT DETAILS ══════════════ -->
+                        <div style="page-break-before: always;"/>
+                        <div class="ct_contact_title">CONTACT DETAILS</div>
+
+                        <div class="ct_contact_head">DIRECTOR</div>
+                        <table class="ct_contact">
+                            <tr><td class="ct_contact_lbl">Name:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Direct Number:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Mobile Number:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Email:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Company NTN:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                        </table>
+
+                        <div class="ct_contact_head">FINANCE MANAGER</div>
+                        <table class="ct_contact">
+                            <tr><td class="ct_contact_lbl">Name:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Direct Number:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Mobile Number:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Email:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                        </table>
+
+                        <div class="ct_contact_head">MANAGEMENT REPRESENTATIVE</div>
+                        <table class="ct_contact">
+                            <tr><td class="ct_contact_lbl">Name:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Direct Number:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Mobile Number:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                            <tr><td class="ct_contact_lbl">Email:</td><td class="ct_contact_line"><div class="ct_rule"/></td></tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
