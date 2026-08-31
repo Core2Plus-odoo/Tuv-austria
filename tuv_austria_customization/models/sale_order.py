@@ -7,6 +7,7 @@ class SaleOrder(models.Model):
     document_type = fields.Selection([
         ('offer_application', 'Offer Application'),
         ('contract_form', 'TAC-TAH-Contract'),
+        ('pnac_contract', 'PNAC-Contract'),
         ('proposal_form', 'Proposal Form'),
     ], string='Document Type')
     partner_street = fields.Char(related='partner_id.street', string='Street', readonly=True)
@@ -138,6 +139,14 @@ class SaleOrder(models.Model):
     contract_total_y2 = fields.Char(string='Total Payable - 2nd Year')
     contract_total_y3 = fields.Char(string='Total Payable - 3rd Year')
     contract_advance_amount = fields.Char(string='1st Year Initial Audit Amount (Advance)')
+    pnac_logo_1 = fields.Binary(string='PNAC Logo 1', attachment=True)
+    pnac_logo_1_filename = fields.Char(string='PNAC Logo 1 Filename')
+    pnac_logo_2 = fields.Binary(string='PNAC Logo 2', attachment=True)
+    pnac_logo_2_filename = fields.Char(string='PNAC Logo 2 Filename')
+    pnac_logo_3 = fields.Binary(string='PNAC Logo 3', attachment=True)
+    pnac_logo_3_filename = fields.Char(string='PNAC Logo 3 Filename')
+    pnac_logo_4 = fields.Binary(string='PNAC Logo 4', attachment=True)
+    pnac_logo_4_filename = fields.Char(string='PNAC Logo 4 Filename')
 
     def action_view_project_ids(self):
         self.ensure_one()

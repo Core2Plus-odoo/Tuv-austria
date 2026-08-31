@@ -36,7 +36,9 @@ Centralized module for client-specific customizations across:
         'views/stock_views.xml',
         'report/sale_order_application_form_report.xml',
         'report/sale_order_proposal_report.xml',
+        'report/sale_order_contract_body.xml',
         'report/sale_order_contract_tac_tah_report.xml',
+        'report/sale_order_contract_pnac_report.xml',
     ],
 
     'installable': True,

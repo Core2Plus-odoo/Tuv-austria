@@ -154,8 +154,8 @@
                         <field name="proposal_invoicing_terms"/>
                     </group>
                 </group>
-                <group name="group_contract_form" string="TAC-TAH-Contract"
-                    invisible="document_type != 'contract_form'">
+                <group name="group_contract_form" string="Contract Details"
+                    invisible="document_type not in ('contract_form', 'pnac_contract')">
                     <group name="group_contract_form_left">
                         <field name="contract_standards"/>
                         <field name="contract_address_1"/>
@@ -170,7 +170,7 @@
                     </group>
                 </group>
                 <group name="group_contract_services" string="Certification Services Offered"
-                    invisible="document_type != 'contract_form'">
+                    invisible="document_type not in ('contract_form', 'pnac_contract')">
                     <group name="group_contract_services_1" string="Row 1">
                         <field name="contract_service_1"/>
                         <field name="contract_accreditation_1"/>
@@ -181,7 +181,7 @@
                     </group>
                 </group>
                 <group name="group_contract_charges" string="Contract Charges"
-                    invisible="document_type != 'contract_form'">
+                    invisible="document_type not in ('contract_form', 'pnac_contract')">
                     <group name="group_contract_charges_y1" string="1st Year Initial Audit (USD)">
                         <field name="contract_fee_y1" string="Standard(s)"/>
                         <field name="contract_mandays_y1" string="*# of Man-days"/>
@@ -202,6 +202,29 @@
                     </group>
                     <group name="group_contract_charges_tax" string="Tax Row Label">
                         <field name="contract_tax_province"/>
+                    </group>
+                </group>
+                <group name="group_pnac_annexure" string="PNAC Annexure 1 - Logos"
+                    invisible="document_type != 'pnac_contract'">
+                    <group name="group_pnac_logos_left">
+                        <field name="pnac_logo_1_filename" invisible="1"/>
+                        <field name="pnac_logo_1" widget="image"
+                            filename="pnac_logo_1_filename"
+                            options="{'size': [200, 90]}"/>
+                        <field name="pnac_logo_3_filename" invisible="1"/>
+                        <field name="pnac_logo_3" widget="image"
+                            filename="pnac_logo_3_filename"
+                            options="{'size': [200, 90]}"/>
+                    </group>
+                    <group name="group_pnac_logos_right">
+                        <field name="pnac_logo_2_filename" invisible="1"/>
+                        <field name="pnac_logo_2" widget="image"
+                            filename="pnac_logo_2_filename"
+                            options="{'size': [200, 90]}"/>
+                        <field name="pnac_logo_4_filename" invisible="1"/>
+                        <field name="pnac_logo_4" widget="image"
+                            filename="pnac_logo_4_filename"
+                            options="{'size': [200, 90]}"/>
                     </group>
                 </group>
                 <group name="group_proposal_prepared_by" string="Prepared By"
