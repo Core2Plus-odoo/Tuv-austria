@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- No company letterhead on this one: the invoice draws its own header, so the
+         page only needs a small top margin instead of the 52mm the default reserves. -->
+    <record id="paperformat_commercial_invoice" model="report.paperformat">
+        <field name="name">A4 - Commercial Invoice</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+        <field name="css_margins" eval="True"/>
+    </record>
+
+    <record id="action_report_account_move_commercial_invoice" model="ir.actions.report">
+        <field name="name">Commercial Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_account_move_commercial_invoice</field>
+        <field name="report_file">tuv_austria_customization.report_account_move_commercial_invoice</field>
+        <field name="print_report_name">'Commercial Invoice - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_commercial_invoice"/>
+    </record>
+
+    <template id="report_account_move_commercial_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="article"
+                    t-att-data-oe-model="doc._name" t-att-data-oe-id="doc.id"
+                    t-att-data-oe-lang="doc.env.context.get('lang')">
+                <div class="page ci">
+                    <style>
+                        .ci { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 13px; }
+
+                        /* ---------- header ---------- */
+                        .ci table.ci_head { width: 100%; border-collapse: collapse; table-layout: fixed; }
+                        .ci table.ci_head td { border: 0; padding: 0; vertical-align: middle; }
+                        .ci table.ci_head td.ci_logo { width: 142px; }
+                        .ci table.ci_head td.ci_logo img { max-height: 80px; max-width: 134px; }
+                        .ci .ci_co_name { font-size: 18px; font-weight: 800; }
+                        .ci .ci_co_addr { font-size: 12px; margin-top: 4px; }
+
+                        /* the title box straddles the rule, exactly like the sample */
+                        .ci .ci_ruleline { border-top: 2px solid #000000; margin-top: 6px; }
+                        .ci .ci_titlewrap { text-align: center; margin: -15px 0 22px 0; }
+                        .ci .ci_title {
+                            display: inline-block; background-color: #ffffff;
+                            border: 1.5px solid #000000; padding: 3px 22px;
+                            font-size: 15px; font-weight: 800;
+                        }
+
+                        /* ---------- info block ---------- */
+                        .ci table.ci_info {
+                            width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 6px;
+                        }
+                        .ci table.ci_info,
+                        .ci table.ci_info tbody,
+                        .ci table.ci_info tr,
+                        .ci table.ci_info tr:nth-child(odd),
+                        .ci table.ci_info tr:nth-child(even),
+                        .ci table.ci_info td {
+                            border: 0 !important; background-color: transparent !important;
+                        }
+                        .ci table.ci_info td { padding: 5px 0 2px 0; vertical-align: bottom; }
+                        .ci table.ci_info td.ci_lbl { font-weight: 800; padding-left: 4px; }
+                        .ci table.ci_info td.ci_v {
+                            border-bottom: 1px solid #000000 !important; padding-left: 8px;
+                            padding-right: 22px;
+                        }
+                        .ci table.ci_info td.ci_v.ci_v_tall { height: 32px; }
+
+                        /* ---------- lines ---------- */
+                        .ci table.ci_lines {
+                            width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 4px;
+                        }
+                        .ci table.ci_lines td, .ci table.ci_lines th {
+                            border: 1px solid #000000; padding: 6px 6px; font-size: 12px;
+                            text-align: center; vertical-align: middle;
+                        }
+                        .ci table.ci_lines th { font-weight: 800; }
+                        .ci table.ci_lines td.ci_desc {
+                            text-align: left; font-weight: 800; height: 48px;
+                        }
+                        .ci table.ci_lines td.ci_num { text-align: right; }
+                        .ci table.ci_lines td.ci_sum_lbl { text-align: left; font-weight: 800; }
+                        .ci table.ci_lines td.ci_sum_val { text-align: right; font-weight: 800; }
+                        .ci table.ci_lines td.ci_blank { border-left: 0; border-right: 0; }
+
+                        /* ---------- words / notes / bank ---------- */
+                        .ci .ci_words { margin: 26px 0 30px 0; }
+                        .ci .ci_words .ci_words_lbl { font-weight: 800; font-size: 14px; }
+                        .ci .ci_words .ci_words_val {
+                            border-bottom: 1px solid #000000; padding: 0 32px 2px 8px;
+                        }
+                        .ci ol.ci_notes { margin: 0; padding-left: 20px; }
+                        .ci ol.ci_notes > li { margin-bottom: 4px; text-align: left; }
+                        .ci .ci_bank { margin-top: 34px; line-height: 1.6; }
+                    </style>
+
+                    <!-- ══════════════ HEADER ══════════════ -->
+                    <t t-set="cp" t-value="doc.company_id"/>
+                    <t t-set="cpp" t-value="cp.partner_id"/>
+                    <t t-set="addr" t-value="', '.join(x for x in [
+                        cpp.street, cpp.street2,
+                        ('%s (%s)%s' % (cpp.city or '', cpp.zip or '', ' ' + cpp.state_id.name if cpp.state_id else '')).strip()
+                            if (cpp.city or cpp.zip or cpp.state_id) else '',
+                        cpp.country_id.name or '',
+                    ] if x)"/>
+                    <table class="ci_head">
+                        <tr>
+                            <td class="ci_logo">
+                                <img t-if="cp.logo" t-att-src="image_data_uri(cp.logo)" alt="Logo"/>
+                            </td>
+                            <td>
+                                <div class="ci_co_name"><span t-out="cp.name"/></div>
+                                <div class="ci_co_addr"><span t-out="addr"/></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="ci_ruleline"/>
+                    <div class="ci_titlewrap"><span class="ci_title">Commercial Invoice</span></div>
+
+                    <!-- ══════════════ INFO ══════════════ -->
+                    <table class="ci_info">
+                        <colgroup>
+                            <col style="width: 14%;"/><col style="width: 34%;"/>
+                            <col style="width: 14%;"/><col style="width: 38%;"/>
+                        </colgroup>
+                        <tr>
+                            <td class="ci_lbl">CI No.:</td>
+                            <td class="ci_v"><span t-out="doc.name"/></td>
+                            <td class="ci_lbl">Customer:</td>
+                            <td class="ci_v ci_v_tall"><span t-out="doc.partner_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="ci_lbl">CI Date:</td>
+                            <td class="ci_v">
+                                <span t-field="doc.invoice_date"
+                                    t-options='{"widget": "date", "format": "EEEE, MMMM d, yyyy"}'/>
+                            </td>
+                            <td class="ci_lbl">NTN</td>
+                            <td class="ci_v"><span t-out="doc.partner_id.vat"/></td>
+                        </tr>
+                        <tr>
+                            <td class="ci_lbl">Business Line</td>
+                            <td class="ci_v"><span t-out="doc.business_line"/></td>
+                            <td class="ci_lbl">CNIC</td>
+                            <td class="ci_v"><span t-out="doc.partner_id.cnic"/></td>
+                        </tr>
+                        <tr>
+                            <td class="ci_lbl">Company NTN</td>
+                            <td class="ci_v"><span t-out="cp.vat"/></td>
+                            <td class="ci_lbl">PO No</td>
+                            <td class="ci_v"><span t-out="doc.partner_id.phone"/></td>
+                        </tr>
+                    </table>
+
+                    <!-- ══════════════ LINES ══════════════ -->
+                    <t t-set="lines" t-value="doc.invoice_line_ids.filtered(lambda l: l.display_type == 'product')"/>
+                    <t t-set="cur" t-value="doc.currency_id.name"/>
+                    <table class="ci_lines">
+                        <colgroup>
+                            <col style="width: 5%;"/><col style="width: 25%;"/><col style="width: 8%;"/>
+                            <col style="width: 8%;"/><col style="width: 10%;"/><col style="width: 8%;"/>
+                            <col style="width: 10%;"/><col style="width: 10%;"/><col style="width: 16%;"/>
+                        </colgroup>
+                        <tr>
+                            <th>Sr.#</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Tax %</th>
+                            <th>Tax Value</th>
+                            <th>Tax Type</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr t-foreach="lines" t-as="line">
+                            <td><span t-out="line_index + 1"/></td>
+                            <td class="ci_desc"><span t-out="line.name"/></td>
+                            <td>
+                                <span t-out="line.quantity"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td><span t-out="line.product_uom_id.name"/></td>
+                            <td class="ci_num">
+                                <span t-out="line.price_unit"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td>
+                                <t t-foreach="line.tax_ids.filtered(lambda t: t.amount_type == 'percent')"
+                                    t-as="tx"><t t-if="not tx_first">, </t><span
+                                    t-out="int(tx.amount) if tx.amount == int(tx.amount) else tx.amount"/>%</t>
+                            </td>
+                            <td class="ci_num">
+                                <span t-out="line.price_total - line.price_subtotal"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td/>
+                            <td class="ci_num">
+                                <span t-out="line.price_subtotal"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ci_blank"/>
+                            <td class="ci_sum_lbl">TOTAL QUANTITY</td>
+                            <td class="ci_sum_val">
+                                <span t-out="sum(lines.mapped('quantity'))"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td colspan="6"/>
+                        </tr>
+                        <tr>
+                            <td class="ci_blank"/>
+                            <td class="ci_sum_lbl" colspan="7">TOTAL AMOUNT <span t-out="cur"/> :</td>
+                            <td class="ci_sum_val">
+                                <span t-out="doc.amount_untaxed"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ci_blank"/>
+                            <td class="ci_sum_lbl" colspan="7">TOTAL SALES TAX <span t-out="cur"/> :</td>
+                            <td class="ci_sum_val">
+                                <span t-out="doc.amount_tax"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ci_blank"/>
+                            <td class="ci_sum_lbl" colspan="7">GRAND TOTAL <span t-out="cur"/> :</td>
+                            <td class="ci_sum_val">
+                                <span t-out="doc.amount_total"
+                                    t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- ══════════════ AMOUNT IN WORDS ══════════════ -->
+                    <div class="ci_words">
+                        <span class="ci_words_lbl">Amount In Words:</span>
+                        <span class="ci_words_val"><span t-out="doc.amount_in_words"/></span>
+                    </div>
+
+                    <!-- ══════════════ NOTES (static) ══════════════ -->
+                    <ol class="ci_notes">
+                        <li>
+                            Please note that reimbursable expenses (if mentioned in invoice) are not subject to
+                            deduction of withholding income tax at 6%.
+                        </li>
+                        <li>
+                            As per Income Tax Ordinance 2001, with reference of section 153(1)(b) read with
+                            first schedule, part III, division III, payment for services, section 2 clause (i)
+                            the rate of tax to be deducted from our payment is at 6% (excluding of reimbursable
+                            expenses).
+                        </li>
+                        <li>
+                            As per “Punjab sales tax on services withholding rules 2015”, we are exempt from
+                            withholding of sales tax. [see Rule 3(1)]
+                        </li>
+                        <li>
+                            Only for invoices in US$ amounts: Recipient of the services shall determine the
+                            exchange rate for the purpose of payment of our invoice with respect to the
+                            conversion of US$ to PKR on the date on which payment is being released,
+                            irrespective of the conversion rate reference on the date of signing of contract/
+                            agreement/ work order and or invoice.
+                        </li>
+                        <li>
+                            Payment in respect of our services mentioned above shall be made by cross cheque or
+                            electronic funds transmission in PKR (for PKR invoice amount) and or in USD (for
+                            U.S dollars invoice amount) without any offset or deduction of any nature
+                            whatsoever.
+                        </li>
+                        <li>
+                            Cash transactions are strictly prohibited. Under no circumstances give cash to
+                            sales personnel or deposit into their accounts. Use only authorized methods into
+                            Company's Bank Account.
+                        </li>
+                    </ol>
+
+                    <!-- ══════════════ BANK DETAILS (static) ══════════════ -->
+                    <div class="ci_bank">
+                        <div>Title: TUV Austria Bureau of Inspection &amp; Certification (Pvt.) Ltd.</div>
+                        <div>Bank Name: MCB Bank Limited, Account Number: 0671277331006236</div>
+                        <div>IBAN Number: PK68MUCB0671277331006236</div>
+                        <div>Bank Address: KSB BUILDING BRANCH LAHORE, Code: 1322</div>
+                    </div>
+
+                </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

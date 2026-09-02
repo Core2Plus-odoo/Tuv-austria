@@ -26,6 +26,7 @@
                     invisible="contact_type != 'auditor'"/>
             </xpath>
             <xpath expr="//field[@name='category_id']" position="after">
+                <field name="cnic"/>
                 <field name="lead_auditor" invisible="contact_type != 'auditor'"/>
                 <field name="auditor_active" invisible="contact_type != 'auditor'"/>
                 <field name="auditor_notes" invisible="contact_type != 'auditor'"/>

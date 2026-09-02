@@ -7,5 +7,6 @@ from . import unit_of_billing
 from . import res_partner
 from . import product_template
 from . import sale_order
+from . import account_move
 from . import project
 from . import stock

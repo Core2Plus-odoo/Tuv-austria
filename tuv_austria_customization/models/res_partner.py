@@ -12,6 +12,7 @@ class ResPartner(models.Model):
         ('auditor', 'Auditor'),
     ], string='Contact Type')
     industry_ea_code_id = fields.Many2one('industry.ea.code', string='Industry/EA Code')
+    cnic = fields.Char(string='CNIC')
 
     employment_type_ids = fields.Many2many('employment.type', string='Employment Type')
     approved_ea_code_ids = fields.Many2many(
