@@ -34,6 +34,7 @@ Centralized module for client-specific customizations across:
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
         'views/project_views.xml',
+        'views/project_task_mandays_views.xml',
         'views/stock_views.xml',
         'report/sale_order_application_form_report.xml',
         'report/sale_order_proposal_report.xml',
@@ -41,6 +42,7 @@ Centralized module for client-specific customizations across:
         'report/sale_order_contract_body.xml',
         'report/sale_order_contract_tac_tah_report.xml',
         'report/sale_order_contract_pnac_report.xml',
+        'report/project_task_mandays_report.xml',
     ],
 
     'installable': True,

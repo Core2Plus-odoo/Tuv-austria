@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_project_task_mandays" model="ir.actions.report">
+        <field name="name">Mandays Calculation</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_project_task_mandays</field>
+        <field name="report_file">tuv_austria_customization.report_project_task_mandays</field>
+        <field name="print_report_name">'Mandays Calculation - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_task"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_project_task_mandays">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page tuv_md">
+                        <style>
+                            .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 12px; }
+                            .tuv_md .md_title {
+                                text-align: center; font-size: 17px; font-weight: 800; margin-bottom: 5px;
+                            }
+                            .tuv_md .md_subtitle { text-align: center; font-size: 12px; margin-bottom: 16px; }
+
+                            .tuv_md table.md_tbl {
+                                width: 100%; border-collapse: collapse; table-layout: fixed;
+                                margin-bottom: 16px; page-break-inside: avoid;
+                            }
+                            .tuv_md table.md_tbl td, .tuv_md table.md_tbl th {
+                                border: 1px solid #000000; padding: 5px 7px; font-size: 12px;
+                                vertical-align: middle;
+                            }
+                            .tuv_md table.md_tbl th, .tuv_md table.md_tbl td.md_lbl {
+                                background-color: #D9D9D9; font-weight: 700;
+                            }
+                            .tuv_md table.md_tbl td.md_section {
+                                background-color: #D9D9D9; font-weight: 700; text-align: center;
+                            }
+                            .tuv_md table.md_tbl td.md_val { background-color: #FFFFFF; }
+                            .tuv_md table.md_tbl td.md_val.center { text-align: center; }
+
+                            .tuv_md .md_pagebreak { page-break-before: always; }
+                            .tuv_md .md_landscape {
+                                width: 277mm; margin-left: calc(-138.5mm + 50%);
+                            }
+                        </style>
+
+                        <div class="md_title">Calculation of Audit Mandays</div>
+                        <div class="md_subtitle">Certification</div>
+
+                        <!-- ══════════════ COMPANY INFORMATION ══════════════ -->
+                        <table class="md_tbl">
+                            <colgroup><col style="width: 28%;"/><col style="width: 72%;"/></colgroup>
+                            <tr><td class="md_section" colspan="2">COMPANY INFORMATION</td></tr>
+                            <tr>
+                                <td class="md_lbl">Company Name:</td>
+                                <td class="md_val"><span t-field="doc.md_company_name"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Full Address<br/>(Street / Number / P.O/Town/Country)</td>
+                                <td class="md_val">
+                                    <span t-field="doc.md_street"/>
+                                    <t t-if="doc.md_street2">, <span t-field="doc.md_street2"/></t>
+                                    <t t-if="doc.md_city">, <span t-field="doc.md_city"/></t>
+                                    <t t-if="doc.md_zip"> <span t-field="doc.md_zip"/></t>
+                                    <t t-if="doc.md_country_id">, <span t-field="doc.md_country_id.name"/></t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Other audited sites (permanent or temporary)</td>
+                                <td class="md_val"><span t-field="doc.md_other_sites"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Company Representative</td>
+                                <td class="md_val"><span t-field="doc.md_company_representative"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">
+                                    Description of the company (number of personnel, basic business
+                                    processes, commercial activities, brief history)
+                                </td>
+                                <td class="md_val"><span t-field="doc.md_company_description"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ AUDIT INFORMATION ══════════════ -->
+                        <table class="md_tbl">
+                            <colgroup>
+                                <col style="width: 14%;"/><col style="width: 7%;"/>
+                                <col style="width: 15%;"/><col style="width: 14%;"/>
+                                <col style="width: 15%;"/><col style="width: 20%;"/>
+                                <col style="width: 15%;"/>
+                            </colgroup>
+                            <tr><td class="md_section" colspan="7">AUDIT INFORMATION</td></tr>
+                            <tr>
+                                <td class="md_lbl" rowspan="2">Audit date</td>
+                                <td class="md_lbl">St.1</td>
+                                <td class="md_val center"><span t-field="doc.md_audit_date_st1"/></td>
+                                <td class="md_lbl">Surveillance</td>
+                                <td class="md_val center">
+                                    <span t-field="doc.md_audit_date_surveillance"/>
+                                </td>
+                                <td class="md_lbl" rowspan="2">Audit Duration (Mandays)</td>
+                                <td class="md_val center" rowspan="2">
+                                    <span t-field="doc.md_audit_duration"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">St.2</td>
+                                <td class="md_val center"><span t-field="doc.md_audit_date_st2"/></td>
+                                <td class="md_lbl">Recertification</td>
+                                <td class="md_val center">
+                                    <span t-field="doc.md_audit_date_recert"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" rowspan="4">Certification Scope</td>
+                                <td class="md_val" colspan="4" rowspan="4">
+                                    <span t-field="doc.md_certification_scope"/>
+                                </td>
+                                <td class="md_lbl">EA CODE</td>
+                                <td class="md_val">
+                                    <span t-field="doc.ea_code_ids" widget="many2many_tags"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">NACE</td>
+                                <td class="md_val"><span t-field="doc.md_nace"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Category</td>
+                                <td class="md_val"><span t-field="doc.md_category"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Other</td>
+                                <td class="md_val"><span t-field="doc.md_other_code"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">Use of remote auditing activities (describe)</td>
+                                <td class="md_val" colspan="5"><span t-field="doc.md_remote_auditing"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="3">Audit type</td>
+                                <td class="md_lbl" colspan="2">Audit Kind</td>
+                                <td class="md_lbl" colspan="2">Audit language</td>
+                            </tr>
+                            <tr>
+                                <td class="md_val center" colspan="3">
+                                    <span t-field="doc.md_audit_type"/>
+                                </td>
+                                <td class="md_val center" colspan="2">
+                                    <span t-field="doc.md_audit_kind"/>
+                                </td>
+                                <td class="md_val center" colspan="2">
+                                    <span t-field="doc.md_audit_language"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" rowspan="2">Covered Standards</td>
+                                <td class="md_lbl" colspan="2">Standard 1</td>
+                                <td class="md_lbl" colspan="2">Standard 2</td>
+                                <td class="md_lbl" colspan="2">Standard 3</td>
+                            </tr>
+                            <tr>
+                                <td class="md_val center" colspan="2">
+                                    <span t-field="doc.md_standard_1"/>
+                                </td>
+                                <td class="md_val center" colspan="2">
+                                    <span t-field="doc.md_standard_2"/>
+                                </td>
+                                <td class="md_val center" colspan="2">
+                                    <span t-field="doc.md_standard_3"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Other</td>
+                                <td class="md_val" colspan="2"><span t-field="doc.md_standard_other"/></td>
+                                <td class="md_lbl">For FSSC 22000</td>
+                                <td class="md_val" colspan="3"><span t-field="doc.md_fssc_22000"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ AUDIT TEAM ══════════════ -->
+                        <table class="md_tbl">
+                            <colgroup>
+                                <col style="width: 8%;"/><col style="width: 25%;"/>
+                                <col style="width: 8%;"/><col style="width: 25%;"/>
+                                <col style="width: 8%;"/><col style="width: 26%;"/>
+                            </colgroup>
+                            <tr><td class="md_section" colspan="6">AUDIT TEAM</td></tr>
+                            <tr>
+                                <td class="md_lbl">LA</td>
+                                <td class="md_val"><span t-field="doc.auditor_id.name"/></td>
+                                <td class="md_lbl">CA</td>
+                                <td class="md_val"><span t-field="doc.md_co_auditor_id.name"/></td>
+                                <td class="md_lbl">TR</td>
+                                <td class="md_val"><span t-field="doc.md_trainee_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">
+                                    Other participants (observers, interpreters, experts etc)
+                                </td>
+                                <td class="md_val" colspan="4">
+                                    <span t-field="doc.md_other_participants"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ ANNEX I ══════════════ -->
+                        <div class="md_pagebreak"/>
+                        <table class="md_tbl">
+                            <colgroup><col style="width: 48%;"/><col style="width: 52%;"/></colgroup>
+                            <tr><td class="md_section" colspan="2">ANNEX I</td></tr>
+                            <tr>
+                                <td class="md_section" colspan="2">
+                                    Individual Management Systems – Manday Calculation
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Applicable Management System:</td>
+                                <td class="md_val"><span t-field="doc.md1_applicable_system"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Complexity / risk Ranking</td>
+                                <td class="md_val"><span t-field="doc.md1_complexity_ranking"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Justification of Reduced Complexity / Risk</td>
+                                <td class="md_val"><span t-field="doc.md1_justification"/></td>
+                            </tr>
+                        </table>
+                        <table class="md_tbl">
+                            <colgroup>
+                                <col style="width: 32%;"/><col style="width: 18%;"/>
+                                <col style="width: 32%;"/><col style="width: 18%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="md_lbl">Total number of Personnel</td>
+                                <td class="md_val"><span t-field="doc.md1_total_personnel"/></td>
+                                <td class="md_lbl">Number of employees on shifts</td>
+                                <td class="md_val"><span t-field="doc.md1_employees_on_shifts"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Number of employees without shifts</td>
+                                <td class="md_val"><span t-field="doc.md1_employees_without_shifts"/></td>
+                                <td class="md_lbl">Number of shifts</td>
+                                <td class="md_val"><span t-field="doc.md1_number_of_shifts"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Permanent contracted personnel</td>
+                                <td class="md_val"><span t-field="doc.md1_permanent_contracted"/></td>
+                                <td class="md_lbl">Seasonal personnel</td>
+                                <td class="md_val"><span t-field="doc.md1_seasonal"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Part time personnel (including contracted personnel)</td>
+                                <td class="md_val"><span t-field="doc.md1_part_time"/></td>
+                                <td class="md_lbl">Months of employment</td>
+                                <td class="md_val"><span t-field="doc.md1_months_employment"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Temporary unskilled personnel</td>
+                                <td class="md_val"><span t-field="doc.md1_temporary_unskilled"/></td>
+                                <td class="md_lbl">Equivalent number of personnel</td>
+                                <td class="md_val"><span t-field="doc.md1_equivalent_personnel"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="3">
+                                    Final MD calculation based on the relevant table
+                                </td>
+                                <td class="md_val"><span t-field="doc.md1_final_md"/></td>
+                            </tr>
+                        </table>
+                        <table class="md_tbl">
+                            <colgroup><col style="width: 48%;"/><col style="width: 52%;"/></colgroup>
+                            <tr><td class="md_lbl" colspan="2">Special requirements per standard</td></tr>
+                            <tr><td class="md_lbl" colspan="2">For ISO22000 / FSSC22000 fill in the equation:</td></tr>
+                            <tr>
+                                <td class="md_lbl">Ds = (TD + TH + TFTE)</td>
+                                <td class="md_val">Ds = <span t-field="doc.md1_ds_equation"/></td>
+                            </tr>
+                            <tr><td class="md_lbl" colspan="2">ISO50001 fill in the equation:</td></tr>
+                            <tr>
+                                <td class="md_lbl">C = (FEC x WEC) + (FES x WES) + (FSEU x WSEU)</td>
+                                <td class="md_val">C = <span t-field="doc.md1_c_equation"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">
+                                    <i>
+                                        ISO 45001/OHSAS 18001 for similar activities, as described in
+                                        ANNEX 3 of the Management Systems Audit Mandays Calculation
+                                        Guidance, pg.2: Occupational Health and Safety Management
+                                        Systems: (please add as many lines as required for each activity)
+                                    </i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Name of the activity:</td>
+                                <td class="md_val"><span t-field="doc.md1_activity_name"/></td>
+                            </tr>
+                        </table>
+                        <table class="md_tbl">
+                            <colgroup>
+                                <col style="width: 32%;"/><col style="width: 18%;"/>
+                                <col style="width: 32%;"/><col style="width: 18%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="md_lbl">Number of personnel for this activity:</td>
+                                <td class="md_val"><span t-field="doc.md1_activity_personnel"/></td>
+                                <td class="md_lbl">Reduction of the number of personnel:</td>
+                                <td class="md_val"><span t-field="doc.md1_personnel_reduction"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Non Repetitive activity</td>
+                                <td class="md_val center">
+                                    <span t-if="doc.md1_non_repetitive">☑</span>
+                                    <span t-else="">☐</span>
+                                </td>
+                                <td class="md_lbl">Repetitive activity</td>
+                                <td class="md_val center">
+                                    <span t-if="doc.md1_repetitive">☑</span>
+                                    <span t-else="">☐</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">Risk level</td>
+                                <td class="md_val center" colspan="2">
+                                    <span t-field="doc.md1_risk_level"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="3">
+                                    Remaining number of personnel used to calculate the Equivalent
+                                    number of personnel:
+                                </td>
+                                <td class="md_val"><span t-field="doc.md1_remaining_personnel"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">Other standard (fill in)</td>
+                                <td class="md_val" colspan="2"><span t-field="doc.md1_other_standard"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">Final mandays calculation</td>
+                                <td class="md_val" colspan="2"><span t-field="doc.md1_final_mandays"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Observations</td>
+                                <td class="md_val" colspan="3"><span t-field="doc.md1_observations"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- ══════════════ ANNEX II ══════════════ -->
+                        <div class="md_pagebreak"/>
+                        <table class="md_tbl">
+                            <colgroup>
+                                <col style="width: 25%;"/><col style="width: 25%;"/>
+                                <col style="width: 25%;"/><col style="width: 25%;"/>
+                            </colgroup>
+                            <tr><td class="md_section" colspan="4">ANNEX II</td></tr>
+                            <tr>
+                                <td class="md_section" colspan="4">
+                                    M/D CALCULATION – Integrated Management Systems
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl" colspan="2">Applicable Management System:</td>
+                                <td class="md_val" colspan="2"><span t-field="doc.md2_applicable_system"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Total number of Personnel</td>
+                                <td class="md_val"><span t-field="doc.md2_total_personnel"/></td>
+                                <td class="md_lbl">Number of employees on shifts</td>
+                                <td class="md_val"><span t-field="doc.md2_employees_on_shifts"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Number of employees without shifts</td>
+                                <td class="md_val"><span t-field="doc.md2_employees_without_shifts"/></td>
+                                <td class="md_lbl">Number of shifts</td>
+                                <td class="md_val"><span t-field="doc.md2_number_of_shifts"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Permanent contracted personnel</td>
+                                <td class="md_val"><span t-field="doc.md2_permanent_contracted"/></td>
+                                <td class="md_lbl">Seasonal personnel</td>
+                                <td class="md_val"><span t-field="doc.md2_seasonal"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Part time personnel (including contracted personnel)</td>
+                                <td class="md_val"><span t-field="doc.md2_part_time"/></td>
+                                <td class="md_lbl">Months of employment</td>
+                                <td class="md_val"><span t-field="doc.md2_months_employment"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Temporary unskilled personnel</td>
+                                <td class="md_val"><span t-field="doc.md2_temporary_unskilled"/></td>
+                                <td class="md_lbl">Equivalent number of personnel</td>
+                                <td class="md_val"><span t-field="doc.md2_equivalent_personnel"/></td>
+                            </tr>
+                            <t t-foreach="[
+                                ('System 1:', doc.md2_sys1_complexity, doc.md2_sys1_mandays),
+                                ('System 2:', doc.md2_sys2_complexity, doc.md2_sys2_mandays),
+                                ('System 3:', doc.md2_sys3_complexity, doc.md2_sys3_mandays),
+                                ('System 4:', doc.md2_sys4_complexity, doc.md2_sys4_mandays),
+                            ]" t-as="sysrow">
+                                <tr><td class="md_section" colspan="4"><span t-out="sysrow[0]"/></td></tr>
+                                <tr>
+                                    <td class="md_lbl" colspan="3">Complexity / Risk Ranking</td>
+                                    <td class="md_val"><span t-out="sysrow[1]"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="md_lbl" colspan="3">Man-Days according to relevant table</td>
+                                    <td class="md_val"><span t-out="sysrow[2]"/></td>
+                                </tr>
+                            </t>
+                            <tr><td class="md_section" colspan="4">Factors for increase / decrease of audit's Man-Days</td></tr>
+                            <tr>
+                                <td class="md_lbl" colspan="3">Factors for increase of audit's Man-Days</td>
+                                <td class="md_lbl">Increase %</td>
+                            </tr>
+                            <t t-foreach="[
+                                ('System 1', doc.md2_inc_sys1, doc.md2_inc_sys1_pct),
+                                ('System 2', doc.md2_inc_sys2, doc.md2_inc_sys2_pct),
+                                ('System 3', doc.md2_inc_sys3, doc.md2_inc_sys3_pct),
+                                ('System 4', doc.md2_inc_sys4, doc.md2_inc_sys4_pct),
+                            ]" t-as="incrow">
+                                <tr>
+                                    <td class="md_lbl"><span t-out="incrow[0]"/></td>
+                                    <td class="md_val" colspan="2"><span t-out="incrow[1]"/></td>
+                                    <td class="md_val"><span t-out="incrow[2]"/></td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td class="md_lbl" colspan="3">Factors for decrease of audit's Man-Days</td>
+                                <td class="md_lbl">Decrease %</td>
+                            </tr>
+                            <t t-foreach="[
+                                ('System 1', doc.md2_dec_sys1, doc.md2_dec_sys1_pct),
+                                ('System 2', doc.md2_dec_sys2, doc.md2_dec_sys2_pct),
+                                ('System 3', doc.md2_dec_sys3, doc.md2_dec_sys3_pct),
+                                ('System 4', doc.md2_dec_sys4, doc.md2_dec_sys4_pct),
+                            ]" t-as="decrow">
+                                <tr>
+                                    <td class="md_lbl"><span t-out="decrow[0]"/></td>
+                                    <td class="md_val" colspan="2"><span t-out="decrow[1]"/></td>
+                                    <td class="md_val"><span t-out="decrow[2]"/></td>
+                                </tr>
+                            </t>
+                        </table>
+
+                        <!-- ══════════════ FINAL M/D CALCULATION (landscape look) ══════════════ -->
+                        <div class="md_pagebreak"/>
+                        <table class="md_tbl">
+                            <colgroup><col style="width: 100%;"/></colgroup>
+                            <tr><td class="md_section">Final M/D calculation – Integrated Management Systems</td></tr>
+                            <tr><td class="md_section">METHOD 1: EXTENDED AUDIT APPROACH</td></tr>
+                        </table>
+                        <table class="md_tbl">
+                            <colgroup>
+                                <col style="width: 16%;"/><col style="width: 14%;"/>
+                                <col style="width: 34%;"/><col style="width: 12%;"/>
+                                <col style="width: 12%;"/><col style="width: 12%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="md_lbl"/>
+                                <td class="md_lbl">M/D after decrease / increase</td>
+                                <td class="md_lbl">Percentage % of decrease due to integrated audit</td>
+                                <td class="md_lbl">*Certification / re-Certification (Stage 1, 2)</td>
+                                <td class="md_lbl">*1st surveillance</td>
+                                <td class="md_lbl">*2nd surveillance</td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl center">System 1</td>
+                                <td class="md_val center">A=<span t-field="doc.md4_sys1_md"/></td>
+                                <td class="md_val" rowspan="4">
+                                    Level of integration %: <span t-field="doc.md4_level_of_integration"/><br/>
+                                    Due to:<br/>
+                                    - <span t-field="doc.md4_due_to_1"/><br/>
+                                    - <span t-field="doc.md4_due_to_2"/><br/>
+                                    <br/>
+                                    Ability to perform combined audit % =<br/>
+                                    <br/>
+                                    <span class="md_val center" style="display:inline-block;">
+                                        100((X1-1) + (X2-1) + (X3-1) + (Xn-1)) / Ζ(Υ-1)
+                                        =…. <span t-field="doc.md4_combined_audit_pct"/>%
+                                    </span>
+                                </td>
+                                <td class="md_val center"><span t-field="doc.md4_sys1_cert"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys1_surv1"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys1_surv2"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl center">System 2</td>
+                                <td class="md_val center">B=<span t-field="doc.md4_sys2_md"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys2_cert"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys2_surv1"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys2_surv2"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl center">System 3</td>
+                                <td class="md_val center">C=<span t-field="doc.md4_sys3_md"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys3_cert"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys3_surv1"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys3_surv2"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl center">System 4</td>
+                                <td class="md_val center">D=<span t-field="doc.md4_sys4_md"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys4_cert"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys4_surv1"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_sys4_surv2"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl center">Total</td>
+                                <td class="md_val center"><span t-field="doc.md4_total_md"/></td>
+                                <td class="md_val center">
+                                    <span t-field="doc.md4_total_pct"/>….%
+                                </td>
+                                <td class="md_val center"><span t-field="doc.md4_total_cert"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_total_surv1"/></td>
+                                <td class="md_val center"><span t-field="doc.md4_total_surv2"/></td>
+                            </tr>
+                        </table>
+                        <table class="md_tbl">
+                            <colgroup><col style="width: 60%;"/><col style="width: 40%;"/></colgroup>
+                            <tr><td class="md_section" colspan="2">METHOD 2: EXTENDED AUDIT APPROACH</td></tr>
+                            <tr>
+                                <td class="md_lbl">T = A + 0,5 B + 0,5 C+ 0,5 D =</td>
+                                <td class="md_val">T = <span t-field="doc.md4_t_equation"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Observations</td>
+                                <td class="md_val"><span t-field="doc.md4_observations"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Lead auditor</td>
+                                <td class="md_val"><span t-field="doc.md4_lead_auditor"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Date</td>
+                                <td class="md_val"><span t-field="doc.md4_date"/></td>
+                            </tr>
+                            <tr>
+                                <td class="md_lbl">Signature</td>
+                                <td class="md_val">
+                                    <img t-if="doc.md4_signature"
+                                        t-att-src="image_data_uri(doc.md4_signature)"
+                                        style="max-height:62px;max-width:180px;" alt="Signature"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 10px;">
+                            *calculations after applying the corrections and the 50% cut-off limit
+                        </p>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
