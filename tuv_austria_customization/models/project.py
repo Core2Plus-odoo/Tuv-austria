@@ -31,8 +31,28 @@ class ProjectProject(models.Model):
         related='sale_order_id.notes', store=True, readonly=True)
 
 
+class ProjectTaskType(models.Model):
+    _inherit = 'project.task.type'
+
+    # Which stages count as "the auditor is currently working". Untick it on the
+    # closing stage(s) so an auditor parked there shows up as available again.
+    auditor_busy = fields.Boolean(
+        string='Occupies The Auditor', default=True,
+        help='While a task sits in this stage its auditor is reported as Not Available '
+             'in the Auditor list of other tasks.')
+
+
 class ProjectTask(models.Model):
     _inherit = 'project.task'
+
+    ea_code_ids = fields.Many2many(
+        'industry.ea.code', 'project_task_ea_code_rel', 'task_id', 'ea_code_id',
+        string='EA Code')
+    # Only auditors approved for at least one of the codes picked above. With no code
+    # selected the domain resolves to an empty list, so nothing is offered.
+    auditor_id = fields.Many2one(
+        'res.partner', string='Auditor',
+        domain="[('contact_type', '=', 'auditor'), ('approved_ea_code_ids', 'in', ea_code_ids)]")
 
     # Core narrows the stage to the ones linked to the task's own project
     # (domain="[('project_ids', '=', project_id)]"), which is why stages that are not

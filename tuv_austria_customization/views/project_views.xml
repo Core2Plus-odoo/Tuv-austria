@@ -31,6 +31,20 @@
         </field>
     </record>
 
+    <record id="view_task_form2_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.custom.operations</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="user_ids" position="after">
+                <field name="ea_code_ids" widget="many2many_tags"/>
+                <field name="auditor_id"
+                    context="{'show_auditor_availability': True}"
+                    options="{'no_quick_create': True}"/>
+            </field>
+        </field>
+    </record>
+
     <record id="task_type_edit_inherit_tuv_austria_customization" model="ir.ui.view">
         <field name="name">project.task.type.form.inherit.custom.operations</field>
         <field name="model">project.task.type</field>
@@ -38,6 +52,9 @@
         <field name="arch" type="xml">
             <field name="project_ids" position="attributes">
                 <attribute name="required">False</attribute>
+            </field>
+            <field name="project_ids" position="after">
+                <field name="auditor_busy"/>
             </field>
         </field>
     </record>
@@ -49,6 +66,9 @@
         <field name="arch" type="xml">
             <field name="project_ids" position="attributes">
                 <attribute name="required">False</attribute>
+            </field>
+            <field name="project_ids" position="after">
+                <field name="auditor_busy" optional="show"/>
             </field>
         </field>
     </record>
