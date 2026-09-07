@@ -34,6 +34,13 @@ class ProjectProject(models.Model):
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
+    # Core narrows the stage to the ones linked to the task's own project
+    # (domain="[('project_ids', '=', project_id)]"), which is why stages that are not
+    # attached to any project never appear. Stages here are shared across every project,
+    # so any non-personal stage is selectable on any task - this keeps the statusbar and
+    # the kanban columns showing the same set no matter how the task was opened.
+    stage_id = fields.Many2one(domain="[('user_id', '=', False)]")
+
     @api.model
     def _read_group_stage_ids(self, stages, domain):
         # shared (non-personal) stages always show as columns in every project's kanban

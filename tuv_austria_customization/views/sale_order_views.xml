@@ -104,6 +104,7 @@
                         <field name="personnel_on_shifts"/>
                         <field name="number_of_shifts"/>
                         <field name="other_certified_management_system"/>
+                        <field name="level_of_integration"/>
                         <field name="license_attachment_filename" invisible="1"/>
                         <field name="license_attachment" filename="license_attachment_filename"/>
                     </group>

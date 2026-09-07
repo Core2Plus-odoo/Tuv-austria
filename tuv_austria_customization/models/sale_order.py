@@ -64,6 +64,8 @@ class SaleOrder(models.Model):
     temporary_personnel = fields.Char(string='Temporary Personnel')
     personnel_on_shifts = fields.Char(string='Number Of Personnel On Shifts')
     number_of_shifts = fields.Char(string='Nr. Of Shifts (if any)')
+    level_of_integration = fields.Char(
+        string='Level Of Integration Of Management Systems (%)')
     other_certified_management_system = fields.Selection([
         ('yes', 'Yes'),
         ('no', 'No'),

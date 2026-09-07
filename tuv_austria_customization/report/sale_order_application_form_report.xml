@@ -286,6 +286,15 @@
                                 </table>
                                 <table class="af_pa_tbl">
                                     <colgroup>
+                                        <col style="width: 46%;"/><col style="width: 54%;"/>
+                                    </colgroup>
+                                    <tr>
+                                        <td>Level of integration of management systems (%):</td>
+                                        <td><span t-field="doc.level_of_integration"/></td>
+                                    </tr>
+                                </table>
+                                <table class="af_pa_tbl">
+                                    <colgroup>
                                         <col style="width: 25%;"/><col style="width: 75%;"/>
                                     </colgroup>
                                     <tr>
