@@ -1,0 +1,10 @@
+// The client's app names are long, and the app switcher caption ships with
+// Bootstrap's .text-truncate, which cuts them off with an ellipsis
+// ("Client List-Busin..."). Let the caption wrap over two lines instead.
+.o_home_menu .o_app .o_caption {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-break: break-word;
+    line-height: 1.2;
+}

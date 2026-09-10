@@ -15,14 +15,9 @@ APP_MENU_RENAMES = [
         'labels': ['Project'],
     },
     {
-        # ``documents`` (Enterprise) is not installed everywhere; the Dashboards
-        # app carries the same label for the client.
         'name': 'Database-Business Insurance',
-        'xml_ids': [
-            'documents.menu_root',
-            'spreadsheet_dashboard.spreadsheet_dashboard_menu_root',
-        ],
-        'labels': ['Documents', 'Dashboards'],
+        'xml_ids': ['documents.menu_root'],
+        'labels': ['Documents'],
     },
     {
         # ``accountant`` (Enterprise) replaces the Invoicing root menu with its
@@ -32,7 +27,7 @@ APP_MENU_RENAMES = [
         'labels': ['Invoicing', 'Accounting'],
     },
     {
-        'name': 'OrganoGram -Business Insurance',
+        'name': 'Organogram -Business Insurance',
         'xml_ids': ['hr.menu_hr_root'],
         'labels': ['Employees'],
     },

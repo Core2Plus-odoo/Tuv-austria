@@ -49,6 +49,7 @@ Centralized module for client-specific customizations across:
     'assets': {
         'web.assets_backend': [
             'tuv_austria_customization/static/src/scss/project_task_mandays.scss',
+            'tuv_austria_customization/static/src/scss/home_menu_caption.scss',
         ],
     },
 
