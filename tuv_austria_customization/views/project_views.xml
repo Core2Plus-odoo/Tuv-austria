@@ -6,6 +6,17 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
+            <!-- The task's two custom header fields, on the project as well. -->
+            <field name="tag_ids" position="after">
+                <field name="ea_code_ids" widget="many2many_tags"/>
+                <field name="auditor_id"
+                    context="{'show_auditor_availability': True}"
+                    options="{'no_quick_create': True}"/>
+                <field name="contract_completed" invisible="1"/>
+                <field name="contract_status" widget="badge"
+                    decoration-success="contract_completed"
+                    invisible="not contract_completed"/>
+            </field>
             <page name="description" position="after">
                 <page name="certification_details" string="Certification Details">
                     <group>

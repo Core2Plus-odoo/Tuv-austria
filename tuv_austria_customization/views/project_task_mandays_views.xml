@@ -240,4 +240,245 @@
         </field>
     </record>
 
+    <!-- The very same page on the project. project.task and project.project share the
+         Mandays fields through tuv.mandays.mixin, so only the anchor differs. -->
+    <record id="edit_project_mandays_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.mandays.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="mandays_calculation" string="Mandays Calculation">
+                    <!-- The tab is wrapped so its stylesheet can target only these groups.
+                         Children are left at their original indentation to keep the diff readable. -->
+                    <div class="o_tuv_mandays_page">
+
+                    <!-- ============ COMPANY INFORMATION ============ -->
+                    <group string="Company Information">
+                        <group>
+                            <field name="md_company_name"/>
+                            <label for="md_street" string="Full Address"/>
+                            <div class="o_address_format">
+                                <field name="md_street" class="o_address_street"/>
+                                <field name="md_street2" class="o_address_street"/>
+                                <field name="md_city" class="o_address_city"/>
+                                <field name="md_state_id" class="o_address_state"
+                                    options="{'no_open': True}"/>
+                                <field name="md_zip" class="o_address_zip"/>
+                                <field name="md_country_id" class="o_address_country"
+                                    options="{'no_open': True}"/>
+                            </div>
+                            <field name="md_other_sites"/>
+                        </group>
+                        <group>
+                            <field name="md_company_representative"/>
+                            <field name="md_company_description"/>
+                        </group>
+                    </group>
+
+                    <!-- ============ AUDIT INFORMATION ============ -->
+                    <group string="Audit Information">
+                        <group string="Audit date">
+                            <field name="md_audit_date_st1"/>
+                            <field name="md_audit_date_st2"/>
+                            <field name="md_audit_date_surveillance"/>
+                            <field name="md_audit_date_recert"/>
+                            <field name="md_audit_duration"/>
+                        </group>
+                        <group string="Scope / Codes">
+                            <field name="md_certification_scope"/>
+                            <field name="ea_code_ids" widget="many2many_tags"
+                                string="EA CODE"/>
+                            <field name="md_nace"/>
+                            <field name="md_category"/>
+                            <field name="md_other_code"/>
+                        </group>
+                        <group string="Audit">
+                            <field name="md_audit_type"/>
+                            <field name="md_audit_kind"/>
+                            <field name="md_audit_language"/>
+                            <field name="md_remote_auditing"/>
+                        </group>
+                        <group string="Covered Standards">
+                            <field name="md_standard_1"/>
+                            <field name="md_standard_2"/>
+                            <field name="md_standard_3"/>
+                            <field name="md_standard_other"/>
+                            <field name="md_fssc_22000"/>
+                        </group>
+                    </group>
+
+                    <!-- ============ AUDIT TEAM ============ -->
+                    <group string="Audit Team">
+                        <group>
+                            <field name="auditor_id" string="LA (Lead Auditor)"
+                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
+                            <field name="md_co_auditor_id"
+                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
+                        </group>
+                        <group>
+                            <field name="md_trainee_id"
+                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
+                            <field name="md_other_participants"/>
+                        </group>
+                    </group>
+
+                    <!-- ============ ANNEX I ============ -->
+                    <group string="Annex I - Individual Management Systems, Manday Calculation">
+                        <group>
+                            <field name="md1_applicable_system"/>
+                            <field name="md1_complexity_ranking"/>
+                            <field name="md1_justification"/>
+                        </group>
+                        <group/>
+                        <group string="Personnel">
+                            <field name="md1_total_personnel"/>
+                            <field name="md1_employees_without_shifts"/>
+                            <field name="md1_permanent_contracted"/>
+                            <field name="md1_part_time"/>
+                            <field name="md1_temporary_unskilled"/>
+                        </group>
+                        <group string="Personnel (cont.)">
+                            <field name="md1_employees_on_shifts"/>
+                            <field name="md1_number_of_shifts"/>
+                            <field name="md1_seasonal"/>
+                            <field name="md1_months_employment"/>
+                            <field name="md1_equivalent_personnel"/>
+                        </group>
+                        <group string="Special requirements per standard">
+                            <field name="md1_final_md"/>
+                            <field name="md1_ds_equation"
+                                help="ISO22000 / FSSC22000: Ds = (TD + TH + TFTE)"/>
+                            <field name="md1_c_equation"
+                                help="ISO50001: C = (FEC x WEC) + (FES x WES) + (FSEU x WSEU)"/>
+                        </group>
+                        <group string="ISO 45001 / OHSAS 18001 - similar activities">
+                            <field name="md1_activity_name"/>
+                            <field name="md1_activity_personnel"/>
+                            <field name="md1_personnel_reduction"/>
+                            <field name="md1_non_repetitive"/>
+                            <field name="md1_repetitive"/>
+                            <field name="md1_risk_level"/>
+                            <field name="md1_remaining_personnel"/>
+                        </group>
+                        <group>
+                            <field name="md1_other_standard"/>
+                            <field name="md1_final_mandays"/>
+                            <field name="md1_observations"/>
+                        </group>
+                    </group>
+
+                    <!-- ============ ANNEX II ============ -->
+                    <group string="Annex II - M/D Calculation, Integrated Management Systems">
+                        <group>
+                            <field name="md2_applicable_system"/>
+                        </group>
+                        <group/>
+                        <group string="Personnel">
+                            <field name="md2_total_personnel"/>
+                            <field name="md2_employees_without_shifts"/>
+                            <field name="md2_permanent_contracted"/>
+                            <field name="md2_part_time"/>
+                            <field name="md2_temporary_unskilled"/>
+                        </group>
+                        <group string="Personnel (cont.)">
+                            <field name="md2_employees_on_shifts"/>
+                            <field name="md2_number_of_shifts"/>
+                            <field name="md2_seasonal"/>
+                            <field name="md2_months_employment"/>
+                            <field name="md2_equivalent_personnel"/>
+                        </group>
+                        <group string="System 1">
+                            <field name="md2_sys1_complexity"/>
+                            <field name="md2_sys1_mandays"/>
+                        </group>
+                        <group string="System 2">
+                            <field name="md2_sys2_complexity"/>
+                            <field name="md2_sys2_mandays"/>
+                        </group>
+                        <group string="System 3">
+                            <field name="md2_sys3_complexity"/>
+                            <field name="md2_sys3_mandays"/>
+                        </group>
+                        <group string="System 4">
+                            <field name="md2_sys4_complexity"/>
+                            <field name="md2_sys4_mandays"/>
+                        </group>
+                        <group string="Factors for increase of audit's Man-Days">
+                            <field name="md2_inc_sys1"/>
+                            <field name="md2_inc_sys1_pct"/>
+                            <field name="md2_inc_sys2"/>
+                            <field name="md2_inc_sys2_pct"/>
+                            <field name="md2_inc_sys3"/>
+                            <field name="md2_inc_sys3_pct"/>
+                            <field name="md2_inc_sys4"/>
+                            <field name="md2_inc_sys4_pct"/>
+                        </group>
+                        <group string="Factors for decrease of audit's Man-Days">
+                            <field name="md2_dec_sys1"/>
+                            <field name="md2_dec_sys1_pct"/>
+                            <field name="md2_dec_sys2"/>
+                            <field name="md2_dec_sys2_pct"/>
+                            <field name="md2_dec_sys3"/>
+                            <field name="md2_dec_sys3_pct"/>
+                            <field name="md2_dec_sys4"/>
+                            <field name="md2_dec_sys4_pct"/>
+                        </group>
+                    </group>
+
+                    <!-- ============ FINAL M/D CALCULATION ============ -->
+                    <group string="Final M/D Calculation - Method 1: Extended Audit Approach">
+                        <group string="M/D after decrease / increase">
+                            <field name="md4_sys1_md"/>
+                            <field name="md4_sys2_md"/>
+                            <field name="md4_sys3_md"/>
+                            <field name="md4_sys4_md"/>
+                            <field name="md4_total_md"/>
+                        </group>
+                        <group string="% of decrease due to integrated audit">
+                            <field name="md4_level_of_integration"/>
+                            <field name="md4_due_to_1"/>
+                            <field name="md4_due_to_2"/>
+                            <field name="md4_combined_audit_pct"/>
+                            <field name="md4_total_pct"/>
+                        </group>
+                        <group string="Certification / re-Certification (Stage 1, 2)">
+                            <field name="md4_sys1_cert"/>
+                            <field name="md4_sys2_cert"/>
+                            <field name="md4_sys3_cert"/>
+                            <field name="md4_sys4_cert"/>
+                            <field name="md4_total_cert"/>
+                        </group>
+                        <group string="1st surveillance">
+                            <field name="md4_sys1_surv1"/>
+                            <field name="md4_sys2_surv1"/>
+                            <field name="md4_sys3_surv1"/>
+                            <field name="md4_sys4_surv1"/>
+                            <field name="md4_total_surv1"/>
+                        </group>
+                        <group string="2nd surveillance">
+                            <field name="md4_sys1_surv2"/>
+                            <field name="md4_sys2_surv2"/>
+                            <field name="md4_sys3_surv2"/>
+                            <field name="md4_sys4_surv2"/>
+                            <field name="md4_total_surv2"/>
+                        </group>
+                        <group string="Method 2 &amp; Sign-off">
+                            <field name="md4_t_equation"/>
+                            <field name="md4_observations"/>
+                            <field name="md4_lead_auditor"/>
+                            <field name="md4_date"/>
+                            <field name="md4_signature_filename" invisible="1"/>
+                            <field name="md4_signature" widget="image"
+                                filename="md4_signature_filename"
+                                options="{'size': [200, 90]}"/>
+                        </group>
+                    </group>
+
+                    </div>
+                </page>
+            </page>
+        </field>
+    </record>
+
 </odoo>

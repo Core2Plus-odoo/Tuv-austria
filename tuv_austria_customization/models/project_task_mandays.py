@@ -57,26 +57,48 @@ MD_RISK_LEVEL = [
 ]
 
 
-class ProjectTask(models.Model):
-    _inherit = 'project.task'
+# Master data pulled from the customer, per model using the mixin.
+MD_PARTNER_DEPENDS = (
+    'partner_id', 'partner_id.name', 'partner_id.street', 'partner_id.street2',
+    'partner_id.city', 'partner_id.zip', 'partner_id.state_id', 'partner_id.country_id',
+)
+
+
+class MandaysMixin(models.AbstractModel):
+    """The Mandays Calculation sheet, shared by project.task and project.project.
+
+    Both carry the very same fields, form page and PDF report, so everything lives
+    here once; the two models only tell the mixin which sale order and customer the
+    master data has to come from.
+    """
+
+    _name = 'tuv.mandays.mixin'
+    _description = 'Mandays Calculation'
+
+    # The order the calculation reads its master data from. Stored and editable so it
+    # can be corrected, but it fills itself in from the record it belongs to.
+    md_sale_order_id = fields.Many2one(
+        'sale.order', string='Mandays Sales Order',
+        compute='_compute_md_sale_order_id', store=True, readonly=False)
 
     # ==================================================================
     # COMPANY INFORMATION - owned by the order/customer, shown read-only
     # ==================================================================
     md_company_name = fields.Char(
-        related='partner_id.name', string='Company Name', readonly=True)
-    md_street = fields.Char(related='partner_id.street', string='Street', readonly=True)
-    md_street2 = fields.Char(related='partner_id.street2', string='Street 2', readonly=True)
-    md_city = fields.Char(related='partner_id.city', string='City', readonly=True)
-    md_zip = fields.Char(related='partner_id.zip', string='ZIP', readonly=True)
-    md_state_id = fields.Many2one(related='partner_id.state_id', string='State', readonly=True)
-    md_country_id = fields.Many2one(related='partner_id.country_id', string='Country', readonly=True)
+        string='Company Name', compute='_compute_md_master_data')
+    md_street = fields.Char(string='Street', compute='_compute_md_master_data')
+    md_street2 = fields.Char(string='Street 2', compute='_compute_md_master_data')
+    md_city = fields.Char(string='City', compute='_compute_md_master_data')
+    md_zip = fields.Char(string='ZIP', compute='_compute_md_master_data')
+    md_state_id = fields.Many2one(
+        'res.country.state', string='State', compute='_compute_md_master_data')
+    md_country_id = fields.Many2one(
+        'res.country', string='Country', compute='_compute_md_master_data')
     md_other_sites = fields.Char(
-        related='sale_order_id.other_facilities',
-        string='Other audited sites (permanent or temporary)', readonly=True)
+        string='Other audited sites (permanent or temporary)',
+        compute='_compute_md_master_data')
     md_company_representative = fields.Char(
-        related='sale_order_id.company_representative',
-        string='Company Representative', readonly=True)
+        string='Company Representative', compute='_compute_md_master_data')
     md_company_description = fields.Text(
         string='Description of the company',
         help='Number of personnel, basic business processes, commercial activities, '
@@ -93,8 +115,7 @@ class ProjectTask(models.Model):
     md_audit_date_recert = fields.Date(string='Audit date Recertification')
     md_audit_duration = fields.Char(string='Audit Duration (Mandays)')
     md_certification_scope = fields.Char(
-        related='sale_order_id.scope_of_certification',
-        string='Certification Scope', readonly=True)
+        string='Certification Scope', compute='_compute_md_master_data')
     # EA CODE reuses the task's own ea_code_ids field
     md_nace = fields.Char(string='NACE')
     md_category = fields.Char(string='Category')
@@ -252,14 +273,84 @@ class ProjectTask(models.Model):
     # is pre-filled, but stored and readonly=False so the auditor can
     # override them for the man-day calculation without touching the order.
     # ------------------------------------------------------------------
-    @api.depends('sale_order_id')
+    @api.depends('md_sale_order_id')
     def _compute_md_from_order(self):
-        for task in self:
-            order = task.sale_order_id
-            task.md_audit_date_surveillance = order.next_surveillance or False
-            task.md1_applicable_system = order.management_system_name or False
-            task.md1_employees_on_shifts = order.personnel_on_shifts or False
-            task.md1_number_of_shifts = order.number_of_shifts or False
-            task.md1_permanent_contracted = order.permanent_personnel or False
-            task.md1_temporary_unskilled = order.temporary_personnel or False
-            task.md4_level_of_integration = order.level_of_integration or False
+        for record in self:
+            order = record.md_sale_order_id
+            record.md_audit_date_surveillance = order.next_surveillance or False
+            record.md1_applicable_system = order.management_system_name or False
+            record.md1_employees_on_shifts = order.personnel_on_shifts or False
+            record.md1_number_of_shifts = order.number_of_shifts or False
+            record.md1_permanent_contracted = order.permanent_personnel or False
+            record.md1_temporary_unskilled = order.temporary_personnel or False
+            record.md4_level_of_integration = order.level_of_integration or False
+
+    # ------------------------------------------------------------------
+    # Read-only master data, owned by the customer and the order.
+    # ------------------------------------------------------------------
+    @api.depends('md_sale_order_id')
+    def _compute_md_master_data(self):
+        for record in self:
+            partner = record._md_get_partner()
+            order = record.md_sale_order_id
+            record.md_company_name = partner.name
+            record.md_street = partner.street
+            record.md_street2 = partner.street2
+            record.md_city = partner.city
+            record.md_zip = partner.zip
+            record.md_state_id = partner.state_id
+            record.md_country_id = partner.country_id
+            record.md_other_sites = order.other_facilities
+            record.md_company_representative = order.company_representative
+            record.md_certification_scope = order.scope_of_certification
+
+    # ------------------------------------------------------------------
+    # Hooks - where the model using the mixin keeps its master data
+    # ------------------------------------------------------------------
+    def _compute_md_sale_order_id(self):
+        for record in self:
+            record.md_sale_order_id = record._md_get_sale_order()
+
+    def _md_get_sale_order(self):
+        self.ensure_one()
+        return self.env['sale.order']
+
+    def _md_get_partner(self):
+        self.ensure_one()
+        return self.partner_id
+
+
+class ProjectTask(models.Model):
+    _name = 'project.task'
+    _inherit = ['project.task', 'tuv.mandays.mixin']
+
+    @api.depends('sale_order_id')
+    def _compute_md_sale_order_id(self):
+        return super()._compute_md_sale_order_id()
+
+    @api.depends(*MD_PARTNER_DEPENDS)
+    def _compute_md_master_data(self):
+        return super()._compute_md_master_data()
+
+    def _md_get_sale_order(self):
+        self.ensure_one()
+        return self.sale_order_id
+
+
+class ProjectProject(models.Model):
+    _name = 'project.project'
+    _inherit = ['project.project', 'tuv.mandays.mixin']
+
+    @api.depends('sale_line_id', 'reinvoiced_sale_order_id')
+    def _compute_md_sale_order_id(self):
+        return super()._compute_md_sale_order_id()
+
+    @api.depends(*MD_PARTNER_DEPENDS)
+    def _compute_md_master_data(self):
+        return super()._compute_md_master_data()
+
+    def _md_get_sale_order(self):
+        # sale_order_id only follows an order line; orders confirmed without any line
+        # link their project through reinvoiced_sale_order_id instead.
+        self.ensure_one()
+        return self.sale_order_id or self.reinvoiced_sale_order_id

@@ -1,15 +1,32 @@
-from odoo import fields, models
+from odoo import Command, _, api, fields, models
+
+# Handing one of these to the client means the contract is done: that is the moment
+# the order gets its project, not the confirmation.
+CONTRACT_DOCUMENT_TYPES = ('contract_form', 'pnac_contract')
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    # The order of the values is the order of the statusbar in the form header.
     document_type = fields.Selection([
         ('offer_application', 'Offer Application'),
+        ('proposal_form', 'Proposal Form'),
         ('contract_form', 'TAC-TAH-Contract'),
         ('pnac_contract', 'PNAC-Contract'),
-        ('proposal_form', 'Proposal Form'),
-    ], string='Document Type')
+    ], string='Document Type', tracking=True)
+    contract_completed = fields.Boolean(
+        string='Contract Completed', copy=False, tracking=True,
+        help='Set automatically the moment a contract document type is chosen, '
+             'which is also when the project is created.')
+    # The read-only tag shown on the order and on its project.
+    contract_status = fields.Char(
+        string='Contract', compute='_compute_contract_status')
+
+    @api.depends('contract_completed')
+    def _compute_contract_status(self):
+        for order in self:
+            order.contract_status = _('Completed') if order.contract_completed else False
     partner_street = fields.Char(related='partner_id.street', string='Street', readonly=True)
     partner_street2 = fields.Char(related='partner_id.street2', string='Street 2', readonly=True)
     partner_city = fields.Char(related='partner_id.city', string='City', readonly=True)
@@ -176,3 +193,87 @@ class SaleOrder(models.Model):
         else:
             action['domain'] = [('id', 'in', tasks.ids)]
         return action
+
+    # ------------------------------------------------------------------
+    # The header buttons that move the order along the document type bar
+    # ------------------------------------------------------------------
+    def action_document_offer_application(self):
+        return self._set_document_type('offer_application')
+
+    def action_document_proposal_form(self):
+        return self._set_document_type('proposal_form')
+
+    def action_document_contract_form(self):
+        return self._set_document_type('contract_form')
+
+    def action_document_pnac_contract(self):
+        return self._set_document_type('pnac_contract')
+
+    def _set_document_type(self, document_type):
+        # write(), so a contract type still creates the project and ticks the flag
+        self.write({'document_type': document_type})
+        return True
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = super().create(vals_list)
+        orders._handle_contract_document()
+        return orders
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'document_type' in vals:
+            self._handle_contract_document()
+        return res
+
+    def _handle_contract_document(self):
+        """Give the order its project as soon as the contract is handed over.
+
+        Offer Application and Proposal Form are still pre-sales, so they create
+        nothing; only the two contract document types do. Order lines are hidden on
+        the form, so sale_project's own generation (driven by the service products of
+        those lines) never runs and the project is created here, without any task.
+        """
+        for order in self:
+            if order.document_type not in CONTRACT_DOCUMENT_TYPES:
+                continue
+            if not order.contract_completed:
+                order.contract_completed = True
+            # The Confirm button is gone from the header: handing over the contract is
+            # what closes the sale, so the order confirms itself here. Without it the
+            # order would stay a quotation and could never be invoiced.
+            if order.state in ('draft', 'sent'):
+                order.action_confirm()
+            if order.order_line or order.project_ids:
+                continue
+            order._create_order_project()
+            # project_ids is a non stored compute that was just read above, so drop
+            # the now stale cache to keep the Projects smart button in sync.
+            order.invalidate_recordset(['project_ids', 'project_count'])
+
+    def _create_order_project(self):
+        """Create the project an order without any line should still get."""
+        self.ensure_one()
+        values = {
+            'name': '%s - %s' % (self.client_order_ref, self.name) if self.client_order_ref else self.name,
+            'partner_id': self.partner_id.id,
+            'company_id': self.company_id.id,
+            'user_id': self.user_id.id,
+            'reinvoiced_sale_order_id': self.id,
+            'allow_billable': True,
+            'active': True,
+        }
+        # Reuse the shared task stages. Without this, core seeds every freshly created
+        # project with its own To Do / In Progress / Done / Cancelled set, which is what
+        # made the same task show different stages depending on how it was opened.
+        shared_stages = self.env['project.task.type'].sudo().search([('user_id', '=', False)])
+        if shared_stages:
+            values['type_ids'] = [Command.set(shared_stages.ids)]
+        # A project generated by confirming an order is already live work, so it starts
+        # In Progress instead of in the first ("To Do") stage.
+        in_progress = self.env.ref('project.project_project_stage_1', raise_if_not_found=False)
+        if in_progress:
+            values['stage_id'] = in_progress.id
+        # sudo: the salesperson confirming the order is not necessarily a project user,
+        # and project.stage_id sits behind project.group_project_stages.
+        return self.env['project.project'].sudo().create(values)

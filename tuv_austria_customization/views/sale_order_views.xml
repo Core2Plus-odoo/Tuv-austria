@@ -37,6 +37,66 @@
 
             <xpath expr="//group[@name='order_details']/field[@name='validity_date']" position="before">
                 <field name="document_type"/>
+                <field name="contract_completed" invisible="1"/>
+                <field name="contract_status" widget="badge"
+                    decoration-success="contract_completed"
+                    invisible="not contract_completed"/>
+            </xpath>
+
+            <!-- The order runs on its document type, not on the quotation states, so the
+                 statusbar shows the document types and one button per type moves it there.
+                 Send / Preview / Cancel are not part of that flow. -->
+            <field name="state" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//header/button[1]" position="before">
+                <!-- Only the steps still ahead: the flow starts at Offer Application,
+                     the Proposal is optional, and the two contracts stay swappable. -->
+                <button name="action_document_offer_application" type="object"
+                    string="Offer Application" class="btn-primary" data-hotkey="1"
+                    invisible="document_type"/>
+                <button name="action_document_proposal_form" type="object"
+                    string="Proposal Form" data-hotkey="2"
+                    invisible="document_type != 'offer_application'"/>
+                <button name="action_document_contract_form" type="object"
+                    string="TAC-TAH-Contract" data-hotkey="3"
+                    invisible="document_type not in ('proposal_form', 'pnac_contract')"/>
+                <button name="action_document_pnac_contract" type="object"
+                    string="PNAC-Contract" data-hotkey="4"
+                    invisible="document_type not in ('proposal_form', 'contract_form')"/>
+            </xpath>
+            <field name="state" position="after">
+                <field name="document_type" widget="statusbar"/>
+            </field>
+
+            <xpath expr="//header/button[@id='quotation_send_primary']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@id='send_proforma_primary']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@id='send_proforma']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@id='quotation_send']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_preview_sale_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='sale.action_report_saleorder']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Confirmation is not a step the user takes any more: handing over a
+                 contract confirms the order (see _handle_contract_document). -->
+            <xpath expr="(//header/button[@name='action_confirm'])[1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="(//header/button[@name='action_confirm'])[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <xpath expr="//button[@name='action_view_project_ids']" position="replace">
@@ -244,6 +304,15 @@
                     </group>
                 </group>
             </group>
+
+            <!-- The client drives everything from the form sections above, so the
+                 standard order lines and Other Info tabs are hidden. -->
+            <xpath expr="//page[@name='order_lines']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
 
         </field>
     </record>
