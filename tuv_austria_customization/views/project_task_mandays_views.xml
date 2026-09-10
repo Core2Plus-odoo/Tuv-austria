@@ -8,6 +8,9 @@
         <field name="arch" type="xml">
             <page name="extra_info" position="before">
                 <page name="mandays_calculation" string="Mandays Calculation">
+                    <!-- The tab is wrapped so its stylesheet can target only these groups.
+                         Children are left at their original indentation to keep the diff readable. -->
+                    <div class="o_tuv_mandays_page">
 
                     <!-- ============ COMPANY INFORMATION ============ -->
                     <group string="Company Information">
@@ -231,6 +234,7 @@
                         </group>
                     </group>
 
+                    </div>
                 </page>
             </page>
         </field>

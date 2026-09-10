@@ -45,6 +45,12 @@ Centralized module for client-specific customizations across:
         'report/project_task_mandays_report.xml',
     ],
 
+    'assets': {
+        'web.assets_backend': [
+            'tuv_austria_customization/static/src/scss/project_task_mandays.scss',
+        ],
+    },
+
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

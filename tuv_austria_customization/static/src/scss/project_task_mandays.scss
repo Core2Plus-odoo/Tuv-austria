@@ -1,0 +1,26 @@
+// Odoo caps the label column of an inner group at 150px, so a long label wraps
+// onto several lines instead of eating the width the value needs:
+//
+//     .o_inner_group { grid-template-columns: fit-content(150px) minmax(0, 1fr); }
+//     (web/static/src/views/form/form_controller.scss)
+//
+// Deployments serving an older compiled asset bundle miss that cap and size the
+// label column to the longest label instead. The Mandays Calculation tab has very
+// long labels ("Other audited sites (permanent or temporary)"), so the column grows
+// to ~375px, the values are pushed into the neighbouring group and the address block
+// gets clipped. Restating the rule for this tab keeps it laid out the same way on
+// every deployment, whatever state the core bundle is in.
+//
+// Deliberately plain CSS - no variables or mixins - so it cannot fail to compile.
+// 576px is Bootstrap's `sm` breakpoint, matching the core rule's media query.
+@media (min-width: 576px) {
+    .o_tuv_mandays_page .o_inner_group {
+        grid-template-columns: fit-content(150px) minmax(0, 1fr);
+    }
+}
+
+// The address sub-grid has no width of its own; without this it refuses to shrink
+// below its content and overflows the cell it sits in.
+.o_tuv_mandays_page .o_address_format {
+    min-width: 0;
+}
