@@ -68,11 +68,13 @@
                     <group string="Audit Team">
                         <group>
                             <field name="auditor_id" string="LA (Lead Auditor)"
-                                context="{'show_auditor_availability': True}"/>
-                            <field name="md_co_auditor_id"/>
+                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
+                            <field name="md_co_auditor_id"
+                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
                         </group>
                         <group>
-                            <field name="md_trainee_id"/>
+                            <field name="md_trainee_id"
+                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
                             <field name="md_other_participants"/>
                         </group>
                     </group>

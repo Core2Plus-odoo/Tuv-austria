@@ -34,12 +34,19 @@ class ProjectProject(models.Model):
 class ProjectTaskType(models.Model):
     _inherit = 'project.task.type'
 
-    # Which stages count as "the auditor is currently working". Untick it on the
-    # closing stage(s) so an auditor parked there shows up as available again.
+    # Which stages count as "the audit team is currently working". It ships unticked
+    # on Certificate Issuance and Feedback & Continuous Improvement (see
+    # migrations/1.1), the two stages that mean the task is finished, so the team
+    # parked there shows up as available again.
     auditor_busy = fields.Boolean(
         string='Occupies The Auditor', default=True,
-        help='While a task sits in this stage its auditor is reported as Not Available '
-             'in the Auditor list of other tasks.')
+        help='While a task sits in this stage its auditor, co-auditor and trainee are '
+             'reported as Not Available in the audit team fields of other tasks.')
+
+
+# The three audit-team slots. md_co_auditor_id / md_trainee_id are declared in
+# project_task_mandays.py, on the same model.
+AUDIT_TEAM_FIELDS = ('auditor_id', 'md_co_auditor_id', 'md_trainee_id')
 
 
 class ProjectTask(models.Model):
@@ -60,6 +67,26 @@ class ProjectTask(models.Model):
     # so any non-personal stage is selectable on any task - this keeps the statusbar and
     # the kanban columns showing the same set no matter how the task was opened.
     stage_id = fields.Many2one(domain="[('user_id', '=', False)]")
+
+    def web_read(self, specification):
+        """Tell the audit-team fields which task they are being displayed on.
+
+        Those fields ask for the (Available) / (Not Available) suffix through their
+        context, and the check has to skip the task at hand: a contact is not taken
+        by the very task it is shown on. The view cannot supply the id on its own -
+        when the client builds the read specification the record is not loaded yet,
+        so evalPartialContext drops any context key that reads `id` and only the
+        literal flag survives. The dropdown keeps working from the view context,
+        which is evaluated later against a complete record; this fills in the gap
+        for the value already stored on the task, the same way industry_fsm and
+        im_livechat pass their own id down to a many2one.
+        """
+        if len(self) == 1:
+            for field_name in AUDIT_TEAM_FIELDS:
+                field_context = specification.get(field_name, {}).get('context')
+                if field_context and field_context.get('show_auditor_availability'):
+                    field_context['availability_exclude_task'] = self._origin.id
+        return super().web_read(specification)
 
     @api.model
     def _read_group_stage_ids(self, stages, domain):

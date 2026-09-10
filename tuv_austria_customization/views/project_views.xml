@@ -39,7 +39,7 @@
             <field name="user_ids" position="after">
                 <field name="ea_code_ids" widget="many2many_tags"/>
                 <field name="auditor_id"
-                    context="{'show_auditor_availability': True}"
+                    context="{'show_auditor_availability': True, 'availability_exclude_task': id}"
                     options="{'no_quick_create': True}"/>
             </field>
         </field>
