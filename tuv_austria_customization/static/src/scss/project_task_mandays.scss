@@ -1,26 +1,85 @@
-// Odoo caps the label column of an inner group at 150px, so a long label wraps
-// onto several lines instead of eating the width the value needs:
+// ============================================================================
+// Mandays Calculation tab - layout hardening
+// ============================================================================
+// Odoo 19 renders every <group> inside a <group> as
 //
-//     .o_inner_group { grid-template-columns: fit-content(150px) minmax(0, 1fr); }
-//     (web/static/src/views/form/form_controller.scss)
+//     <div class="o_inner_group grid"> ... </div>
 //
-// Deployments serving an older compiled asset bundle miss that cap and size the
-// label column to the longest label instead. The Mandays Calculation tab has very
-// long labels ("Other audited sites (permanent or temporary)"), so the column grows
-// to ~375px, the values are pushed into the neighbouring group and the address block
-// gets clipped. Restating the rule for this tab keeps it laid out the same way on
-// every deployment, whatever state the core bundle is in.
+// so the cells are laid out by CSS grid. Two core rules make that readable:
 //
-// Deliberately plain CSS - no variables or mixins - so it cannot fail to compile.
-// 576px is Bootstrap's `sm` breakpoint, matching the core rule's media query.
+//   1. web/static/src/views/form/form_controller.scss
+//        @media (min-width: 576px) {
+//            .o_form_view .o_inner_group {
+//                grid-template-columns: fit-content(150px) minmax(0, 1fr);
+//            }
+//        }
+//      This caps the label column. Without it the `grid` utility class from
+//      Bootstrap takes over (`repeat(var(--bs-columns, 12), 1fr)`), or the
+//      column is simply sized to its content.
+//
+//   2. The label cell carries Bootstrap's `text-break`, so a long label wraps
+//      and its min-content width stays small.
+//
+// `fit-content(150px)` resolves to `min(max-content, max(min-content, 150px))`,
+// so rule 1 only caps the column while rule 2 keeps min-content below 150px.
+// The moment anything on the deployment sets `white-space: nowrap` on
+// `.o_form_label` (a theme module, a debranding module, an older core bundle),
+// min-content becomes the full one-line label width and the cap stops capping:
+// the label column grows to the longest label in the group.
+//
+// This tab has labels of 40-75 characters ("Other audited sites (permanent or
+// temporary)", "Remaining number of personnel used to calculate the Equivalent
+// number of personnel"), so the column grows past 390px and the symptoms are
+// exactly what staging shows:
+//   - values pushed into the neighbouring group's label column (they look merged)
+//   - the address block and long labels spilling outside the form sheet
+//
+// Everything below therefore restates the layout from scratch instead of
+// relying on the core rules, and uses !important so no other bundle can undo
+// it. Deliberately plain CSS - no variables or mixins - so it cannot fail to
+// compile. 576px is Bootstrap's `sm` breakpoint, matching the core rule.
+// ============================================================================
+
+// --- 1. Labels must always be allowed to wrap -------------------------------
+// This is the actual root cause. With wrapping restored, min-content is one
+// word wide and the 150px cap in rule 2 below can do its job.
+.o_tuv_mandays_page .o_form_label,
+.o_tuv_mandays_page .o_wrap_label,
+.o_tuv_mandays_page .o_wrap_label > label {
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+// --- 2. Cap the label column ------------------------------------------------
+// Below 576px Odoo intentionally stacks label above value (no template at all),
+// so this stays inside the same media query as the core rule.
 @media (min-width: 576px) {
     .o_tuv_mandays_page .o_inner_group {
-        grid-template-columns: fit-content(150px) minmax(0, 1fr);
+        grid-template-columns: fit-content(150px) minmax(0, 1fr) !important;
     }
 }
 
-// The address sub-grid has no width of its own; without this it refuses to shrink
-// below its content and overflows the cell it sits in.
+// --- 3. Nothing may refuse to shrink ----------------------------------------
+// Grid and flex children default to `min-width: auto`, which lets a wide child
+// blow its track out past the form sheet. Zero them so the tracks defined in
+// rule 2 are actually respected.
+.o_tuv_mandays_page .o_cell,
+.o_tuv_mandays_page .o_inner_group > div,
+.o_tuv_mandays_page .o_field_widget,
 .o_tuv_mandays_page .o_address_format {
     min-width: 0;
+}
+
+// --- 4. Long values wrap instead of overflowing the sheet -------------------
+.o_tuv_mandays_page .o_field_widget,
+.o_tuv_mandays_page .o_field_widget span,
+.o_tuv_mandays_page .o_form_uri {
+    overflow-wrap: break-word;
+}
+
+// --- 5. The tab itself never exceeds the sheet ------------------------------
+.o_tuv_mandays_page {
+    max-width: 100%;
+    overflow-x: hidden;
 }
