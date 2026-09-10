@@ -11,4 +11,5 @@ from . import sale_order_line
 from . import account_move
 from . import project
 from . import project_task_mandays
+from . import ir_ui_menu
 from . import stock

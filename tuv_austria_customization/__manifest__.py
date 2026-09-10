@@ -19,7 +19,7 @@ Centralized module for client-specific customizations across:
     'category': 'Customizations',
     'version': '1.1',
 
-    'depends': ['base', 'account', 'sale', 'sale_project', 'contacts', 'project', 'stock'],
+    'depends': ['base', 'account', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
 
     'data': [
         'security/ir.model.access.csv',
@@ -36,6 +36,7 @@ Centralized module for client-specific customizations across:
         'views/project_views.xml',
         'views/project_task_mandays_views.xml',
         'views/stock_views.xml',
+        'data/ir_ui_menu_data.xml',
         'report/sale_order_application_form_report.xml',
         'report/sale_order_proposal_report.xml',
         'report/account_move_commercial_invoice_report.xml',

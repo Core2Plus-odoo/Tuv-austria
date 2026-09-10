@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rename the client's app menus on the dashboard -->
+    <function model="ir.ui.menu" name="_tuv_rename_app_menus"/>
+</odoo>
