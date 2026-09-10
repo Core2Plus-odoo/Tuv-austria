@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Geometry taken from the client's own printout (Application Form-QMS.pdf,
+         KFM-002b Rev.01): A4, left margin 23 mm, right 12 mm, so the table is 175 mm
+         wide. The header block (title + TUV AUSTRIA Group + document code) is 41 mm
+         tall and the footer strip sits 13 mm from the bottom edge. -->
+    <record id="paperformat_application_form" model="report.paperformat">
+        <field name="name">TUV Application Form (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <!-- wkhtmltopdf draws the header with its top at (margin_top - header_spacing),
+             so 41 - 31 puts it 10 mm below the paper edge, exactly like the original. -->
+        <field name="margin_top">41</field>
+        <field name="margin_bottom">14</field>
+        <field name="margin_left">23</field>
+        <field name="margin_right">12</field>
+        <field name="header_spacing">31</field>
+        <field name="header_line" eval="False"/>
+        <field name="dpi">96</field>
+    </record>
+
     <record id="action_report_sale_order_application_form" model="ir.actions.report">
         <field name="name">Application Form</field>
         <field name="model">sale.order</field>
@@ -8,375 +28,438 @@
         <field name="report_name">tuv_austria_customization.report_sale_order_application_form</field>
         <field name="report_file">tuv_austria_customization.report_sale_order_application_form</field>
         <field name="print_report_name">'Application Form - %s' % (object.name)</field>
+        <field name="paperformat_id" ref="paperformat_application_form"/>
         <field name="binding_model_id" ref="sale.model_sale_order"/>
         <field name="binding_type">report</field>
     </record>
 
+    <template id="report_sale_order_application_form_style">
+        <style>
+            /* Everything below is the original document's geometry (Application
+               Form-QMS.pdf, KFM-002b Rev.01) expressed for this pipeline, where
+               wkhtmltopdf turns 1 CSS px into 0.6 pt of output: a value in px is
+               therefore the wanted point size divided by 0.6.
+               Original: Arial, 9 pt labels, 14 pt title, 10 pt subtitle,
+               8 pt document code / footer, 6 pt privacy block, 0.75 pt rules and
+               2.8 pt of spacing around every row (Word cell spacing). */
+            .o_body_pdf { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+            .tuv_af {
+                font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+                color: #000000; font-size: 15px;               /* 9 pt   */
+            }
+            .tuv_af table {
+                width: 100%; table-layout: fixed;
+                border-collapse: separate !important; border-spacing: 4px 2.33px;
+                margin: 0; background-color: transparent !important;
+            }
+            .tuv_af table tr, .tuv_af table tbody { background-color: transparent !important; }
+            .tuv_af table td {
+                border: 1.25px solid #000000 !important;        /* 0.75 pt */
+                background-color: transparent !important;
+                padding: 0 8px; vertical-align: middle; font-size: 15px; word-wrap: break-word;
+            }
+            .tuv_af td.af_bar { text-align: center; font-weight: bold; }
+            .tuv_af td.af_c { text-align: center; }
+            .tuv_af td.af_b { font-weight: bold; }
+            .tuv_af td.af_i { font-style: italic; }
+            .tuv_af td.af_bottom { vertical-align: bottom; }
+            .tuv_af .af_sm { font-size: 13.3px; }               /* 8 pt   */
+            .tuv_af .af_it { font-style: italic; }
+            .tuv_af a { color: #0000ff; }
+            .tuv_af .af_2l { line-height: 1.15; }
+
+            /* 8.5 pt square, 0.75 pt rule - the ticked one carries a cross. */
+            .tuv_af .af_box {
+                display: inline-block; width: 14.2px; height: 14.2px; line-height: 11.8px;
+                border: 1.25px solid #000000; text-align: center; font-size: 11.7px;
+                margin-right: 6.7px; vertical-align: middle;
+            }
+            .tuv_af .af_icon { height: 21px; width: auto; vertical-align: middle; }
+
+            .tuv_af .af_title { font-size: 23.3px; font-weight: bold; text-align: center; }
+            .tuv_af .af_group { font-size: 16.7px; font-weight: bold; text-align: center; }
+            .tuv_af .af_code { font-size: 13.3px; text-align: right; padding: 4px 0 0 0; }
+            .tuv_af .af_logo { max-height: 71px; max-width: 127px; }
+
+            .tuv_af .af_gdpr { font-size: 10px; text-align: justify; line-height: 1.45; }
+            .tuv_af .af_gdpr p { margin: 0; }
+            .tuv_af .af_gdpr .af_gdpr_head { letter-spacing: 0.12em; margin-bottom: 3px; }
+        </style>
+    </template>
+
+    <!-- Repeated on every page: title block + logo cell + document code -->
+    <template id="report_sale_order_application_form_header">
+        <div class="header tuv_af">
+            <t t-call="tuv_austria_customization.report_sale_order_application_form_style"/>
+            <table>
+                <colgroup><col style="width: 77.17%;"/><col style="width: 22.83%;"/></colgroup>
+                <tr>
+                    <td class="af_title" style="line-height: 51.6px;">Management Systems Application Form</td>
+                    <td class="af_c" rowspan="2">
+                        <img t-if="doc.company_id.logo" class="af_logo"
+                             t-att-src="image_data_uri(doc.company_id.logo)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="af_group" style="line-height: 53.4px;">TÜV AUSTRIA Group</td>
+                </tr>
+            </table>
+            <div class="af_code">KFM-002b, Rev.01</div>
+        </div>
+    </template>
+
+    <template id="report_sale_order_application_form_footer">
+        <div class="footer tuv_af">
+            <t t-call="tuv_austria_customization.report_sale_order_application_form_style"/>
+            <table>
+                <colgroup>
+                    <col style="width: 40.57%;"/><col style="width: 18.85%;"/>
+                    <col style="width: 18.44%;"/><col style="width: 22.14%;"/>
+                </colgroup>
+                <tr>
+                    <td class="af_c af_sm" style="line-height: 22.9px;">Application Form-IMS</td>
+                    <td class="af_c af_sm">Revision: 00</td>
+                    <td class="af_c af_sm">VKL: Public</td>
+                    <td class="af_c af_sm">
+                        Page <span class="page" style="font-weight: bold;"/> of
+                        <span class="topage" style="font-weight: bold;"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
     <template id="report_sale_order_application_form">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <div class="page tuv_af">
-                        <style>
-                            .tuv_af { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 13px; }
+                <t t-call="tuv_austria_customization.report_sale_order_application_form_header"/>
+                <t t-call="tuv_austria_customization.report_sale_order_application_form_footer"/>
 
-                            .tuv_af .af_titleblock { text-align: center; margin-bottom: 22px; }
-                            .tuv_af .af_maintitle {
-                                font-size: 23px; font-weight: 800; letter-spacing: .04em; color: #111111;
-                            }
-                            .tuv_af .af_subtitle {
-                                font-size: 11.5px; color: #667085; text-transform: uppercase;
-                                letter-spacing: .08em; margin-top: 3px;
-                            }
+                <div class="article tuv_af" t-att-data-oe-model="doc and doc._name"
+                     t-att-data-oe-id="doc and doc.id">
+                    <t t-call="tuv_austria_customization.report_sale_order_application_form_style"/>
 
-                            .tuv_af .af_card {
-                                border: 1px solid #dde2e8; border-radius: 12px; padding: 26px 30px 8px 30px;
-                            }
+                    <!-- ================= COMPANY INFORMATION ================= -->
+                    <table>
+                        <tr><td class="af_bar" style="line-height: 27.3px;">C O M P A N Y &#160;I N F O R M A T I O N</td></tr>
+                    </table>
 
-                            .tuv_af .af_sectionhead {
-                                font-size: 14px; font-weight: 700; color: #111111;
-                                margin: 20px 0 12px 0; padding-bottom: 6px; border-bottom: 1.5px solid #111111;
-                            }
-                            .tuv_af .af_sectionhead:first-child { margin-top: 0; }
+                    <table>
+                        <colgroup><col style="width: 23.68%;"/><col style="width: 76.32%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 24.0px;">COMPANY NAME</td>
+                            <td><span t-field="doc.partner_id.name"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup><col style="width: 23.68%;"/><col style="width: 76.32%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 24.6px;">DISTINCTIVE TITLE</td>
+                            <td><span t-field="doc.distinctive_title"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup><col style="width: 23.68%;"/><col style="width: 76.32%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 26.9px;">ADDRESS</td>
+                            <td>
+                                <span t-field="doc.partner_street"/>
+                                <t t-if="doc.partner_street2"> <span t-field="doc.partner_street2"/></t>
+                            </td>
+                        </tr>
+                    </table>
 
-                            .tuv_af table.af_uline {
-                                width: 100%; border-collapse: separate; border-spacing: 10px 8px;
-                                table-layout: fixed; margin-bottom: 6px;
-                            }
-                            .tuv_af table.af_uline, .tuv_af table.af_uline tr, .tuv_af table.af_uline td {
-                                background-color: transparent !important;
-                            }
-                            .tuv_af table.af_uline td { vertical-align: middle; }
-                            .tuv_af table.af_uline td.af_lbl {
-                                font-weight: 700; font-size: 14.5px; color: #1f2937;
-                                white-space: normal; padding-right: 14px;
-                            }
-                            .tuv_af table.af_uline td.af_val {
-                                background-color: #f7f7f8 !important; border: 1px solid #e6e7e9;
-                                border-radius: 4px; font-size: 12.5px; font-weight: 400; color: #111111;
-                                padding: 7px 10px; height: 32px;
-                            }
-                            .tuv_af table.af_uline td.af_val.af_yesno { font-weight: 700; }
+                    <table>
+                        <colgroup>
+                            <col style="width: 16.19%;"/><col style="width: 16.40%;"/>
+                            <col style="width: 12.96%;"/><col style="width: 24.09%;"/>
+                            <col style="width: 12.96%;"/><col style="width: 17.40%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 27.3px;">ZIP - CITY</td>
+                            <td><span t-field="doc.partner_zip"/> <span t-field="doc.partner_city"/></td>
+                            <td class="af_c">
+                                <img class="af_icon" src="/tuv_austria_customization/static/src/img/icon_phone.jpg"/>
+                            </td>
+                            <td><span t-field="doc.partner_phone"/>&#160;</td>
+                            <td class="af_c">
+                                <img class="af_icon" src="/tuv_austria_customization/static/src/img/icon_email.jpg"/>
+                            </td>
+                            <td><span t-field="doc.partner_email"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 16.19%;"/><col style="width: 16.40%;"/>
+                            <col style="width: 12.96%;"/><col style="width: 24.09%;"/>
+                            <col style="width: 12.96%;"/><col style="width: 17.40%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 24.7px;">TELEFAX</td>
+                            <td><span t-field="doc.telefax"/>&#160;</td>
+                            <td>URL</td>
+                            <td><span t-field="doc.website"/>&#160;</td>
+                            <td>VAT Nr.</td>
+                            <td><span t-field="doc.vat"/>&#160;</td>
+                        </tr>
+                    </table>
 
-                            .tuv_af .af_note { font-size: 11px; font-style: italic; color: #667085; margin: 0 0 10px 0; }
+                    <table>
+                        <colgroup><col style="width: 57.09%;"/><col style="width: 42.91%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 27.6px;">SITE WHERE THE AUDIT WILL TAKE PLACE:</td>
+                            <td><span t-field="doc.audit_site"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup><col style="width: 57.09%;"/><col style="width: 42.91%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 27.2px;">OTHER FACILITIES / SUBSIDIARIES / TEMPORARY SITES:</td>
+                            <td><span t-field="doc.other_facilities"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 57.09%;"/><col style="width: 15.38%;"/><col style="width: 27.53%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 23.7px;">DO YOU WISH THOSE SITES TO BE AUDITED AS WELL?</td>
+                            <td><span class="af_box"><t t-if="doc.sites_to_be_audited == 'yes'">X</t></span>YES</td>
+                            <td><span class="af_box"><t t-if="doc.sites_to_be_audited == 'no'">X</t></span>NO</td>
+                        </tr>
+                    </table>
 
-                            .tuv_af .af_pa_box {
-                                border: 1.4px solid #333333; border-radius: 4px; margin-top: 4px; overflow: hidden;
-                                page-break-inside: avoid;
-                            }
-                            .tuv_af table.af_pa_tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
-                            .tuv_af table.af_pa_tbl + table.af_pa_tbl tr:first-child td {
-                                border-top: 1.2px solid #333333;
-                            }
-                            .tuv_af table.af_pa_tbl td {
-                                padding: 8px 12px; vertical-align: middle; font-size: 12.5px; font-weight: 700;
-                            }
-                            .tuv_af table.af_pa_tbl td.af_pa_check { font-weight: 400; white-space: nowrap; }
-                            .tuv_af .af_box {
-                                display: inline-block; width: 10px; height: 10px; border: 1.3px solid #333333;
-                                margin-right: 5px; vertical-align: middle;
-                            }
-                            .tuv_af table.af_pa_tbl td.af_pa_declaration { font-weight: 400; }
-                            .tuv_af table.af_pa_tbl.af_pa_signtbl { page-break-inside: avoid; }
-                            .tuv_af table.af_pa_tbl td.af_pa_signbox { height: 60px; }
-                            .tuv_af table.af_pa_tbl td.af_pa_signbox.af_pa_stamp { background-color: #e4ecf9; }
-                            .tuv_af table.af_pa_tbl td.af_pa_caption {
-                                text-align: center; font-weight: 700; font-size: 11.5px; letter-spacing: .03em;
-                            }
-                            .tuv_af table.af_pa_tbl td.af_pa_footer {
-                                text-align: center; font-weight: 400; font-size: 11.5px;
-                            }
-                            .tuv_af table.af_pa_tbl td.af_pa_footer a { color: #1a56db; }
+                    <table>
+                        <colgroup><col style="width: 57.09%;"/><col style="width: 42.91%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 28.1px;">COMPANY REPRESENTATIVE:</td>
+                            <td><span t-field="doc.company_representative"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 40.89%;"/><col style="width: 16.19%;"/>
+                            <col style="width: 4.66%;"/><col style="width: 15.79%;"/>
+                            <col style="width: 7.89%;"/><col style="width: 14.58%;"/>
+                        </colgroup>
+                        <tr>
+                            <td class="af_2l" style="padding: 1.1px 8px;">MANAGEMENT SYSTEM<br/>REPRESENTATIVE:</td>
+                            <td><span t-field="doc.management_system_representative"/>&#160;</td>
+                            <td class="af_c">
+                                <img class="af_icon" src="/tuv_austria_customization/static/src/img/icon_phone.jpg"/>
+                            </td>
+                            <td><span t-field="doc.management_system_representative_phone"/>&#160;</td>
+                            <td class="af_c">
+                                <img class="af_icon" src="/tuv_austria_customization/static/src/img/icon_email.jpg"/>
+                            </td>
+                            <td><span t-field="doc.management_system_representative_email"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 25.51%;"/><col style="width: 31.58%;"/>
+                            <col style="width: 4.66%;"/><col style="width: 15.79%;"/>
+                            <col style="width: 7.89%;"/><col style="width: 14.57%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 27.0px;">CONSULTANT</td>
+                            <td><span t-field="doc.consultant"/>&#160;</td>
+                            <td class="af_c">
+                                <img class="af_icon" src="/tuv_austria_customization/static/src/img/icon_phone.jpg"/>
+                            </td>
+                            <td><span t-field="doc.consultant_phone"/>&#160;</td>
+                            <td class="af_c">
+                                <img class="af_icon" src="/tuv_austria_customization/static/src/img/icon_email.jpg"/>
+                            </td>
+                            <td><span t-field="doc.consultant_email"/>&#160;</td>
+                        </tr>
+                    </table>
 
-                            .tuv_af .af_pdinfo { margin-top: 26px; font-size: 11px; line-height: 1.6; color: #1a1a1a; }
-                            .tuv_af .af_pdinfo .af_pdtitle {
-                                font-size: 13px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase;
-                            }
-                            .tuv_af .af_pdinfo p { margin: 0 0 6px 0; }
-                            .tuv_af .af_pdinfo a { color: #1a56db; }
-                            .tuv_af .af_pdinfo .af_pdcheck { margin-top: 8px; }
-                        </style>
+                    <table>
+                        <colgroup><col style="width: 25.91%;"/><col style="width: 74.09%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 27.4px;">SCOPE OF ACTIVITY:</td>
+                            <td><span t-field="doc.scope_of_activity"/>&#160;</td>
+                        </tr>
+                    </table>
 
-                        <div class="af_titleblock">
-                            <div class="af_maintitle">Application Form</div>
-                            <div class="af_subtitle">Certification Services — <span t-field="doc.name"/></div>
-                        </div>
+                    <table>
+                        <tr><td style="line-height: 25.5px;">CRITICAL PROCESSES, PROCESSES CARRIED OUT BY SUBCONTRACTORS AND THEIR INTERACTION:</td></tr>
+                    </table>
+                    <table>
+                        <tr><td style="line-height: 24.7px;"><span t-field="doc.critical_processes"/>&#160;</td></tr>
+                    </table>
+                    <table>
+                        <tr><td style="line-height: 24.6px;">LEGISLATION RELATIVE TO THE PRODUCTS OR THE SERVICES OF THE COMPANY</td></tr>
+                    </table>
+                    <table>
+                        <tr><td style="line-height: 26.0px;"><span t-field="doc.legislation_relative"/>&#160;</td></tr>
+                    </table>
 
-                        <div class="af_card">
+                    <table>
+                        <colgroup>
+                            <col style="width: 31.78%;"/><col style="width: 24.90%;"/>
+                            <col style="width: 31.58%;"/><col style="width: 11.74%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 25.2px;">PERMANENT&#160; PERSONNEL</td>
+                            <td><span t-field="doc.permanent_personnel"/>&#160;</td>
+                            <td>TEMPORARY PERSONNEL</td>
+                            <td><span t-field="doc.temporary_personnel"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 41.50%;"/><col style="width: 15.18%;"/>
+                            <col style="width: 31.58%;"/><col style="width: 11.74%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 26.2px;">NUMBER OF PERSONEL ON SHIFTS</td>
+                            <td><span t-field="doc.personnel_on_shifts"/>&#160;</td>
+                            <td>Nr. OF SHIFTS (if any)</td>
+                            <td><span t-field="doc.number_of_shifts"/>&#160;</td>
+                        </tr>
+                    </table>
 
-                            <div class="af_sectionhead">Client Information</div>
-                            <table class="af_uline">
-                                <colgroup><col style="width: 22%;"/><col style="width: 78%;"/></colgroup>
-                                <tr>
-                                    <td class="af_lbl">Company Name:</td>
-                                    <td class="af_val"><span t-field="doc.partner_id.name"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Distinctive Title:</td>
-                                    <td class="af_val"><span t-field="doc.distinctive_title"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Address:</td>
-                                    <td class="af_val">
-                                        <span t-field="doc.partner_street"/>
-                                        <t t-if="doc.partner_street2">, <span t-field="doc.partner_street2"/></t>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table class="af_uline">
-                                <colgroup>
-                                    <col style="width: 12%;"/><col style="width: 21.33%;"/>
-                                    <col style="width: 10%;"/><col style="width: 23.33%;"/>
-                                    <col style="width: 10%;"/><col style="width: 23.34%;"/>
-                                </colgroup>
-                                <tr>
-                                    <td class="af_lbl">Zip - City:</td>
-                                    <td class="af_val">
-                                        <span t-field="doc.partner_zip"/> <span t-field="doc.partner_city"/>
-                                    </td>
-                                    <td class="af_lbl">Phone:</td>
-                                    <td class="af_val"><span t-field="doc.partner_phone"/></td>
-                                    <td class="af_lbl">Email:</td>
-                                    <td class="af_val"><span t-field="doc.partner_email"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Telefax:</td>
-                                    <td class="af_val"><span t-field="doc.telefax"/></td>
-                                    <td class="af_lbl">URL:</td>
-                                    <td class="af_val"><span t-field="doc.website"/></td>
-                                    <td class="af_lbl">VAT Nr.:</td>
-                                    <td class="af_val"><span t-field="doc.vat"/></td>
-                                </tr>
-                            </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 60.12%;"/><col style="width: 19.03%;"/><col style="width: 20.85%;"/>
+                        </colgroup>
+                        <tr>
+                            <td class="af_2l" style="padding: 5.6px 8px;">EXISTANCE OF OTHER CERTIFIED MANAGEMENT SYSTEM<br/>
+                                <span class="af_sm">(Please fill in relevant Annex in case of transfer request)</span></td>
+                            <td><span class="af_box"><t t-if="doc.other_certified_management_system == 'yes'">X</t></span>YES</td>
+                            <td><span class="af_box"><t t-if="doc.other_certified_management_system == 'no'">X</t></span>NO</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td style="line-height: 25.8px;">OPERATION LICENSE / ENVIRONMENTAL LICENSE / CORPORATION CHARTER
+                                <span class="af_it">(please attach)</span></td>
+                        </tr>
+                    </table>
 
-                            <div class="af_sectionhead">Audit Site Details</div>
-                            <table class="af_uline">
-                                <colgroup><col style="width: 40%;"/><col style="width: 60%;"/></colgroup>
-                                <tr>
-                                    <td class="af_lbl">Site Where The Audit Will Take Place:</td>
-                                    <td class="af_val"><span t-field="doc.audit_site"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Other Facilities / Subsidiaries / Temporary Sites:</td>
-                                    <td class="af_val"><span t-field="doc.other_facilities"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Do You Wish Those Sites To Be Audited As Well?</td>
-                                    <td class="af_val af_yesno"><span t-field="doc.sites_to_be_audited"/></td>
-                                </tr>
-                            </table>
+                    <!-- ============ INFORMATION FOR THE CERTIFICATION ============ -->
+                    <table>
+                        <tr><td class="af_bar" style="line-height: 26.2px;">INFORMATION FOR THE CERTIFICATION</td></tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 16.60%;"/><col style="width: 17.00%;"/><col style="width: 16.60%;"/>
+                            <col style="width: 16.80%;"/><col style="width: 16.60%;"/><col style="width: 16.40%;"/>
+                        </colgroup>
+                        <tr>
+                            <td class="af_c" style="line-height: 23.3px;"><span t-field="doc.certification_standard"/>&#160;</td>
+                            <td class="af_c">&#160;</td><td class="af_c">&#160;</td><td class="af_c">&#160;</td><td class="af_c">&#160;</td><td class="af_c">&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr><td class="af_sm" style="line-height: 27.3px;">*Please fill in the relevant Application Annex</td></tr>
+                    </table>
 
-                            <div class="af_sectionhead">Representatives</div>
-                            <table class="af_uline">
-                                <colgroup><col style="width: 22%;"/><col style="width: 78%;"/></colgroup>
-                                <tr>
-                                    <td class="af_lbl">Company Representative:</td>
-                                    <td class="af_val"><span t-field="doc.company_representative"/></td>
-                                </tr>
-                            </table>
-                            <table class="af_uline">
-                                <colgroup>
-                                    <col style="width: 22%;"/><col style="width: 22%;"/>
-                                    <col style="width: 12%;"/><col style="width: 22%;"/>
-                                    <col style="width: 10%;"/><col style="width: 12%;"/>
-                                </colgroup>
-                                <tr>
-                                    <td class="af_lbl">Management System Representative:</td>
-                                    <td class="af_val"><span t-field="doc.management_system_representative"/></td>
-                                    <td class="af_lbl">Phone:</td>
-                                    <td class="af_val"><span t-field="doc.management_system_representative_phone"/></td>
-                                    <td class="af_lbl">Email:</td>
-                                    <td class="af_val"><span t-field="doc.management_system_representative_email"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Consultant:</td>
-                                    <td class="af_val"><span t-field="doc.consultant"/></td>
-                                    <td class="af_lbl">Phone:</td>
-                                    <td class="af_val"><span t-field="doc.consultant_phone"/></td>
-                                    <td class="af_lbl">Email:</td>
-                                    <td class="af_val"><span t-field="doc.consultant_email"/></td>
-                                </tr>
-                            </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 74.09%;"/><col style="width: 12.55%;"/><col style="width: 13.36%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 24.0px;">DO YOU WISH A PRE-ASSESMENT AUDIT TO TAKE PLACE?</td>
+                            <td><span class="af_box"/>YES</td>
+                            <td><span class="af_box"/>NO</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col style="width: 43.32%;"/><col style="width: 14.17%;"/>
+                            <col style="width: 16.60%;"/><col style="width: 25.91%;"/>
+                        </colgroup>
+                        <tr>
+                            <td style="line-height: 25.5px;">DESIRABLE AUDIT DATE (MONTH / DATE)</td>
+                            <td>&#160;</td>
+                            <td>AUDIT TYPE:</td>
+                            <td><span t-field="doc.audit_type"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup><col style="width: 43.32%;"/><col style="width: 56.68%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 25.5px;">LEVEL OF INTEGRATION OF MANAGEMENT SYSTEMS (%)</td>
+                            <td><span t-field="doc.level_of_integration"/>&#160;</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup><col style="width: 43.32%;"/><col style="width: 56.68%;"/></colgroup>
+                        <tr>
+                            <td style="line-height: 26.5px;">OTHER INFORMATION – REMARKS:</td>
+                            <td>&#160;</td>
+                        </tr>
+                    </table>
 
-                            <div class="af_sectionhead">Scope &amp; Legislation</div>
-                            <table class="af_uline">
-                                <colgroup><col style="width: 40%;"/><col style="width: 60%;"/></colgroup>
-                                <tr>
-                                    <td class="af_lbl">Scope Of Activity:</td>
-                                    <td class="af_val"><span t-field="doc.scope_of_activity"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">
-                                        Critical Processes, Processes Carried Out By Subcontractors
-                                        And Their Interaction:
-                                    </td>
-                                    <td class="af_val"><span t-field="doc.critical_processes"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">
-                                        Legislation Relative To The Products Or The Services Of The Company:
-                                    </td>
-                                    <td class="af_val"><span t-field="doc.legislation_relative"/></td>
-                                </tr>
-                            </table>
+                    <table>
+                        <tr>
+                            <td style="line-height: 27.9px;">I hereby declare that the company has in place all the
+                                necessary legislative documentation relating to its operations</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <colgroup><col style="width: 45.55%;"/><col style="width: 54.45%;"/></colgroup>
+                        <tr>
+                            <td class="af_c af_bottom" style="line-height: 1.15; padding: 77px 8px 4px 8px;">DATE</td>
+                            <td class="af_c af_bottom">SIGNATURE AND STAMP</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="af_c" style="line-height: 24.2px;">Please fill in the application form and FAX it to
+                                +30 210 5203990&#160; or email it to
+                                <a href="mailto:certification@tuv.at">certification@tuv.at</a></td>
+                        </tr>
+                    </table>
 
-                            <div class="af_sectionhead">Personnel</div>
-                            <table class="af_uline">
-                                <colgroup>
-                                    <col style="width: 28%;"/><col style="width: 22%;"/>
-                                    <col style="width: 28%;"/><col style="width: 22%;"/>
-                                </colgroup>
-                                <tr>
-                                    <td class="af_lbl">Permanent Personnel:</td>
-                                    <td class="af_val"><span t-field="doc.permanent_personnel"/></td>
-                                    <td class="af_lbl">Temporary Personnel:</td>
-                                    <td class="af_val"><span t-field="doc.temporary_personnel"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="af_lbl">Number Of Personnel On Shifts:</td>
-                                    <td class="af_val"><span t-field="doc.personnel_on_shifts"/></td>
-                                    <td class="af_lbl">Nr. Of Shifts (if any):</td>
-                                    <td class="af_val"><span t-field="doc.number_of_shifts"/></td>
-                                </tr>
-                            </table>
+                    <!-- ===================== PAGE 2 ===================== -->
+                    <div style="page-break-before: always;">
+                        <table>
+                            <colgroup>
+                                <col style="width: 12.53%;"/><col style="width: 71.72%;"/><col style="width: 15.75%;"/>
+                            </colgroup>
+                            <tr>
+                                <td class="af_c" rowspan="2" style="line-height: 30.1px;">Date</td>
+                                <td class="af_c af_b" style="text-decoration: underline;">A P P L I C A T I O N&#160; R E V I E W</td>
+                                <td class="af_c" rowspan="2">Signature</td>
+                            </tr>
+                            <tr>
+                                <td class="af_c af_i af_sm">(to be filled in by the Certification Body)</td>
+                            </tr>
+                        </table>
 
-                            <div class="af_sectionhead">
-                                Other Certified Management System
-                            </div>
-                            <table class="af_uline">
-                                <colgroup><col style="width: 40%;"/><col style="width: 60%;"/></colgroup>
-                                <tr>
-                                    <td class="af_lbl">
-                                        Existence Of Other Certified Management System
-                                        (Please fill in relevant Annex in case of transfer request):
-                                    </td>
-                                    <td class="af_val af_yesno">
-                                        <span t-field="doc.other_certified_management_system"/>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <div class="af_sectionhead">
-                                Pre-Assessment &amp; Declaration
-                            </div>
-                            <div class="af_note">* Please fill in the relevant Application Annex</div>
-
-                            <div class="af_pa_box">
-                                <table class="af_pa_tbl">
-                                    <colgroup>
-                                        <col style="width: 62%;"/><col style="width: 19%;"/><col style="width: 19%;"/>
-                                    </colgroup>
-                                    <tr>
-                                        <td>Do you wish a pre-assessment audit to take place?</td>
-                                        <td class="af_pa_check"><span class="af_box"/>YES</td>
-                                        <td class="af_pa_check"><span class="af_box"/>NO</td>
-                                    </tr>
-                                </table>
-                                <table class="af_pa_tbl">
-                                    <colgroup>
-                                        <col style="width: 34%;"/><col style="width: 16%;"/>
-                                        <col style="width: 25%;"/><col style="width: 25%;"/>
-                                    </colgroup>
-                                    <tr>
-                                        <td>Desirable audit date (month / date):</td>
-                                        <td style="border-right: 1px solid #333333;"/>
-                                        <td>Audit type:</td>
-                                        <td/>
-                                    </tr>
-                                </table>
-                                <table class="af_pa_tbl">
-                                    <colgroup>
-                                        <col style="width: 46%;"/><col style="width: 54%;"/>
-                                    </colgroup>
-                                    <tr>
-                                        <td>Level of integration of management systems (%):</td>
-                                        <td><span t-field="doc.level_of_integration"/></td>
-                                    </tr>
-                                </table>
-                                <table class="af_pa_tbl">
-                                    <colgroup>
-                                        <col style="width: 25%;"/><col style="width: 75%;"/>
-                                    </colgroup>
-                                    <tr>
-                                        <td>Other information – remarks:</td>
-                                        <td/>
-                                    </tr>
-                                </table>
-                                <table class="af_pa_tbl">
-                                    <tr>
-                                        <td class="af_pa_declaration">
-                                            I hereby declare that the company has in place all the necessary
-                                            legislative documentation relating to its operations
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="af_pa_tbl af_pa_signtbl">
-                                    <colgroup>
-                                        <col style="width: 50%;"/><col style="width: 50%;"/>
-                                    </colgroup>
-                                    <tr>
-                                        <td class="af_pa_signbox"/>
-                                        <td class="af_pa_signbox af_pa_stamp"/>
-                                    </tr>
-                                    <tr>
-                                        <td class="af_pa_caption">Date</td>
-                                        <td class="af_pa_caption">Signature and Stamp</td>
-                                    </tr>
-                                </table>
-                                <table class="af_pa_tbl">
-                                    <tr>
-                                        <td class="af_pa_footer">
-                                            Please fill in the application form and FAX it to +30 210 5203990
-                                            or email it to
-                                            <a href="mailto:certification@tuv.at">certification@tuv.at</a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                        </div>
-
-                        <div class="af_pdinfo">
-                            <div class="af_pdtitle">Information About Personal Data</div>
-                            <p>
-                                1. In the context of this transaction, we inform you that TÜV AUSTRIA HELLAS
-                                becomes the Data Controller for the data you provide to us.
-                            </p>
-                            <p>
-                                2. Access to your Data has the absolutely necessary staff of TÜV AUSTRIA HELLAS,
-                                which is committed to maintaining the confidentiality of the Data as well as the
-                                cooperating companies (external accountant, computer technician, etc.) which
-                                process the Data as Data Processor on behalf of the Company and in accordance
-                                with its orders, in order to support and serve this contract.
-                            </p>
-                            <p>
-                                3. TÜV AUSTRIA HELLAS, taking all appropriate technical and organizational
-                                measures, shall not transmit them to any third party (natural or legal person),
-                                except where provided by the law and retains them for as long as the transaction
-                                in question lasts and for as long as there is a legal obligation to maintain
-                                them by the Company, unless an extension of this time is required due to legal
-                                claims.
-                            </p>
-                            <p>
-                                4. You have the right to access the correction, deletion, restriction of
-                                processing, objection or revocation of your consent for the processing of
-                                personal data maintained by the Company in its files, by sending an email to
-                                <a href="mailto:dpo-gr@tuv.at">dpo-gr@tuv.at</a>. If your right is not upheld,
-                                you can appeal to the Personal Data Protection Authority at
-                                <a href="http://www.dpa.gr">www.dpa.gr</a>.
-                            </p>
-                            <p>
-                                5. For more information regarding the processing of data, please see the
-                                Privacy Policy posted on the official website of the company
-                                <a href="http://www.tuvaustriahellas.gr">www.tuvaustriahellas.gr</a>.
-                            </p>
-                            <p class="af_pdcheck">
-                                <span class="af_box"/>
-                                I would like to be informed about the new services offered by the Company
-                            </p>
+                        <div class="af_gdpr" style="margin-top: 24px;">
+                            <p class="af_gdpr_head">INFORMATION ABOUT PERSONAL DATA</p>
+                            <p>1. In the context of this transaction, we inform you that TÜV AUSTRIA HELLAS becomes
+                                the Data Controller for the data you provide to us.</p>
+                            <p>2. Access to your Data has the absolutely necessary staff of TÜV AUSTRIA HELLAS, which
+                                is committed to maintaining the confidentiality of the Data as well as the cooperating
+                                companies (external accountant, computer technician, etc.) which process the Data as
+                                Data Processor on behalf of the Company and in accordance with its orders, in order to
+                                support and serve this contract.</p>
+                            <p>3. TÜV AUSTRIA HELLAS, taking all appropriate technical and organizational measures,
+                                shall not transmit them to any third party (natural or legal person), except where
+                                provided by the law and retains them for as long as the transaction in question lasts
+                                and for as long as there is a legal obligation to maintain them by the Company, unless
+                                an extension of this time is required due to legal claims.</p>
+                            <p>4. You have the right to access the correction, deletion, restriction of processing,
+                                objection or revocation of your consent for the processing of personal data maintained
+                                by the Company in its files, by sending an email to
+                                <a href="mailto:dpo-gr@tuv.at">dpo-gr@tuv.at</a>. If your right is not upheld, you can
+                                appeal to the Personal Data Protection Authority at
+                                <a href="http://www.dpa.gr">www.dpa.gr</a>.</p>
+                            <p>5. For more information regarding the processing of data, please see the Privacy Policy
+                                posted on the official website of the company
+                                <a href="http://www.tuvaustriahellas.gr">www.tuvaustriahellas.gr</a>.</p>
+                            <p style="margin-top: 3px;"><span class="af_box"
+                                style="width: 5.5px; height: 5.5px; line-height: 4.5px; margin-right: 3px;"/>
+                                I would like to be informed about the new services offered by the Company</p>
                         </div>
                     </div>
-                </t>
+                </div>
             </t>
         </t>
     </template>
