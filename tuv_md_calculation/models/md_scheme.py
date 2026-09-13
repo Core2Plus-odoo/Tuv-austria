@@ -74,9 +74,11 @@ class MdScheme(models.Model):
     complexity_levels = fields.Char(compute='_compute_complexity_levels',
                                     string='Complexity Levels')
 
-    _sql_constraints = [
-        ('name_unique', 'unique(name)', 'This standard is already set up.'),
-    ]
+    # Odoo 19 declares constraints on the model, not in _sql_constraints
+    _name_unique = models.Constraint(
+        'UNIQUE(name)',
+        'This standard is already set up: open the existing scheme instead of adding a second one.',
+    )
 
     @api.depends('duration_line_ids', 'factor_ids', 'risk_category_ids', 'section_ids')
     def _compute_counts(self):
