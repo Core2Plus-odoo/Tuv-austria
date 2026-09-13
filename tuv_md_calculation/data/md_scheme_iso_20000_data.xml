@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- VB-BA-ZET-MS-All-003-Ann-MDC-20000-EN.docx (KFM-002b, Rev.01):
+             the Auditor Time Chart of that annex is a picture, so its 12 bands are
+             typed in here once. -->
+        <record id="md_scheme_iso_20000" model="md.scheme">
+            <field name="name">ISO/IEC 20000-1:2018</field>
+            <field name="short_name">ISO 20000</field>
+            <field name="scheme_type">IT Service MS</field>
+            <field name="sequence">60</field>
+            <field name="document_reference">VB-BA-ZET-MS-All-003-Ann-MDC-20000-EN.docx</field>
+            <field name="document_code">KFM-002b, Rev.01</field>
+            <field name="revision">Revision: 00</field>
+            <field name="duration_basis">Audit time: Stage 1 + Stage 2 (days)</field>
+            <field name="duration_intro">Calculation of M/D for the initial certification audit according to the Information technology service management - Requirements for bodies providing audit and certification of IT service management systems is based on the values shown in the table below.</field>
+            <field name="annex_filename">VB-BA-ZET-MS-All-003-Ann-MDC-20000-EN.docx</field>
+            <field name="annex_file" type="base64" file="tuv_md_calculation/static/annexes/VB-BA-ZET-MS-All-003-Ann-MDC-20000-EN.docx"/>
+            <field name="time_chart_image" type="base64" file="tuv_md_calculation/static/annexes/iso_20000_auditor_time_chart.png"/>
+            <field name="multi_site_note">In case of multi site organizations, a representative number of sites have been sampled taking into account:
+- Operating under the same SMS, which is certainly administrated
+- Included within the client's internal audit programme
+- Included within the client's management review programme</field>
+        </record>
+
+        <record id="md_line_iso20000_01" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">1</field>
+            <field name="personnel_to">15</field>
+            <field name="audit_days">3.5</field>
+        </record>
+        <record id="md_line_iso20000_02" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">16</field>
+            <field name="personnel_to">25</field>
+            <field name="audit_days">4.5</field>
+        </record>
+        <record id="md_line_iso20000_03" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">26</field>
+            <field name="personnel_to">45</field>
+            <field name="audit_days">5.5</field>
+        </record>
+        <record id="md_line_iso20000_04" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">46</field>
+            <field name="personnel_to">65</field>
+            <field name="audit_days">6</field>
+        </record>
+        <record id="md_line_iso20000_05" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">66</field>
+            <field name="personnel_to">85</field>
+            <field name="audit_days">7</field>
+        </record>
+        <record id="md_line_iso20000_06" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">86</field>
+            <field name="personnel_to">125</field>
+            <field name="audit_days">8</field>
+        </record>
+        <record id="md_line_iso20000_07" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">126</field>
+            <field name="personnel_to">175</field>
+            <field name="audit_days">9</field>
+        </record>
+        <record id="md_line_iso20000_08" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">176</field>
+            <field name="personnel_to">275</field>
+            <field name="audit_days">10</field>
+        </record>
+        <record id="md_line_iso20000_09" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">276</field>
+            <field name="personnel_to">425</field>
+            <field name="audit_days">11</field>
+        </record>
+        <record id="md_line_iso20000_10" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">426</field>
+            <field name="personnel_to">625</field>
+            <field name="audit_days">12</field>
+        </record>
+        <record id="md_line_iso20000_11" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">626</field>
+            <field name="personnel_to">875</field>
+            <field name="audit_days">13</field>
+        </record>
+        <record id="md_line_iso20000_12" model="md.duration.line">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="personnel_from">876</field>
+            <field name="personnel_to">1175</field>
+            <field name="audit_days">15</field>
+        </record>
+
+        <record id="md_factor_iso20000_decrease_01" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">10</field>
+            <field name="name">A low rate of change to the SMS and the services</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_02" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">20</field>
+            <field name="name">Previously demonstrated effective performance of the SMS, e.g. previously certified with another accredited certification body</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_03" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">30</field>
+            <field name="name">Combined audit of the SMS with one or more other relevant management systems</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_04" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">40</field>
+            <field name="name">Prior knowledge of the organization, e.g. already certified to another standard by the same certification body</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_05" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">50</field>
+            <field name="name">A single, simple service</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_06" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">60</field>
+            <field name="name">Identical activities performed on all shifts, with appropriate evidence of equivalent performance on all shifts, e.g. service desk</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_07" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">70</field>
+            <field name="name">A significant proportion of service management personnel carry out a similar simple function</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_08" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">80</field>
+            <field name="name">Single site with low number of personnel</field>
+        </record>
+        <record id="md_factor_iso20000_decrease_09" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">decrease</field>
+            <field name="sequence">90</field>
+            <field name="name">A low level of reliance on other parties, such as suppliers, internal groups or customers acting as suppliers, involved in the provision of services</field>
+        </record>
+        <record id="md_factor_iso20000_increase_01" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">10</field>
+            <field name="name">Complicated logistics involving multi-jurisdiction, multi-site working, in the same, or across a number of, time zone(s)</field>
+        </record>
+        <record id="md_factor_iso20000_increase_02" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">20</field>
+            <field name="name">Complexity of language differences across different locations, e.g. personnel speaking in more than one language (requiring interpreter(s) or preventing individual auditors from working independently)</field>
+        </record>
+        <record id="md_factor_iso20000_increase_03" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">30</field>
+            <field name="name">Large size or complexity of the SMS scope, e.g. high number of services, personnel or locations, specialized services which are difficult to understand and maintain</field>
+        </record>
+        <record id="md_factor_iso20000_increase_04" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">40</field>
+            <field name="name">High degree of legal and regulatory requirements affecting the client's SMS, e.g. intellectual property rights, privacy, food, drug, aerospace, nuclear</field>
+        </record>
+        <record id="md_factor_iso20000_increase_05" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">50</field>
+            <field name="name">Different activities done in different shifts</field>
+        </record>
+        <record id="md_factor_iso20000_increase_06" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">60</field>
+            <field name="name">Temporary sites within the scope of the SMS for a specific audit</field>
+        </record>
+        <record id="md_factor_iso20000_increase_07" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">70</field>
+            <field name="name">Complex business processes performed within the scope of the SMS</field>
+        </record>
+        <record id="md_factor_iso20000_increase_08" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">80</field>
+            <field name="name">A high level of reliance on other parties, such as suppliers, internal groups or customers acting as suppliers, involved in the provision of services</field>
+        </record>
+        <record id="md_factor_iso20000_increase_09" model="md.adjustment.factor">
+            <field name="scheme_id" ref="md_scheme_iso_20000"/>
+            <field name="factor_type">increase</field>
+            <field name="sequence">90</field>
+            <field name="name">Frequent addition of new services, removal of services, transfer of services or significant changes to services</field>
+        </record>
+
+    </data>
+</odoo>
