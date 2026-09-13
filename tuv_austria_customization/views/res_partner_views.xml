@@ -34,4 +34,17 @@
         </field>
     </record>
 
+    <!-- City is only reachable through "Custom Group"; put it in the Group By list,
+         right under Country. -->
+    <record id="view_res_partner_filter_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit.custom.operations</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <filter name="group_country" position="after">
+                <filter name="group_city" string="City" context="{'group_by': 'city'}"/>
+            </filter>
+        </field>
+    </record>
+
 </odoo>

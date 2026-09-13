@@ -22,6 +22,7 @@ Centralized module for client-specific customizations across:
     'depends': ['base', 'account', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
 
     'data': [
+        'security/tuv_groups.xml',
         'security/ir.model.access.csv',
         'views/industry_ea_code_views.xml',
         'views/employment_type_views.xml',
@@ -37,7 +38,9 @@ Centralized module for client-specific customizations across:
         'views/project_task_mandays_views.xml',
         'views/stock_views.xml',
         'data/ir_ui_menu_data.xml',
+        'data/project_stages.xml',
         'report/sale_order_application_form_report.xml',
+        'report/sale_order_review_form_report.xml',
         'report/sale_order_proposal_report.xml',
         'report/account_move_commercial_invoice_report.xml',
         'report/sale_order_contract_body.xml',

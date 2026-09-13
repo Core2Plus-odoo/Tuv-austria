@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The two stages the review adds in front of the client's own flow: a
+             project opens in Draft and moves to Review Approved when the planning
+             team accepts the review form. -->
+        <record id="project_stage_draft" model="project.project.stage">
+            <field name="name">Draft</field>
+            <field name="sequence">40</field>
+            <field name="fold" eval="False"/>
+        </record>
+
+        <record id="project_stage_review_approved" model="project.project.stage">
+            <field name="name">Review Approved</field>
+            <field name="sequence">45</field>
+            <field name="fold" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

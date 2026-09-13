@@ -84,4 +84,173 @@
         </field>
     </record>
 
+    <!-- The planning team's workspace: review form + contract of the order, read only,
+         plus the two buttons that move the order's review forward. -->
+    <record id="edit_project_review_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.review.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <!-- the form already has a header, so the review buttons go inside it -->
+            <xpath expr="//header" position="inside">
+                    <button name="action_approve_review" type="object"
+                        string="Approve Review" class="btn-primary" data-hotkey="a"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"
+                        invisible="review_state != 'waiting_review'"/>
+                    <button name="action_reject_review" type="object"
+                        string="Send Back to Sales" data-hotkey="r"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"
+                        invisible="review_state != 'waiting_review'"/>
+                    <!-- One step at a time: each button shows only while the project
+                         sits in the stage right before it. -->
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Application Review" class="btn-primary"
+                        invisible="stage_name != 'Review Approved'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Contract Received" class="btn-primary"
+                        invisible="stage_name != 'Application Review'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Planing" class="btn-primary"
+                        invisible="stage_name != 'Contract Received'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Execution" class="btn-primary"
+                        invisible="stage_name != 'Planing'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Invoicing &amp; Recovery" class="btn-primary"
+                        invisible="stage_name != 'Execution'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Certificate Issuance" class="btn-primary"
+                        invisible="stage_name != 'Invoicing &amp; Recovery'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Feedback &amp; Continuous Improvement" class="btn-primary"
+                        invisible="stage_name != 'Certificate Issuance'"/>
+                    <field name="stage_name" invisible="1"/>
+                    <field name="review_state" invisible="1"/>
+                    <field name="md_sale_order_id" invisible="1"/>
+                    <field name="document_stage" invisible="1"/>
+            </xpath>
+
+            <!-- for now the client does not use this one -->
+            <xpath expr="//page[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <page name="certification_details" position="before">
+                <page name="review_form" string="Review Form"
+                    invisible="not md_sale_order_id">
+                    <group>
+                        <group string="Competence Evaluation &amp; Impartiality Check">
+                            <field name="rf_competent"/>
+                            <field name="rf_info_sufficient"/>
+                            <field name="rf_impartiality_risk"/>
+                            <field name="rf_specify"/>
+                        </group>
+                        <group string="Audit Type &amp; Client Information">
+                            <field name="rf_audit_type"/>
+                            <field name="rf_scope"/>
+                            <field name="rf_iaf_code"/>
+                            <field name="rf_standards"/>
+                        </group>
+                        <group string="Certification History">
+                            <field name="rf_certified_since"/>
+                            <field name="rf_iso_9001"/>
+                            <field name="rf_iso_14001"/>
+                            <field name="rf_iso_45001"/>
+                            <field name="rf_iso_22000"/>
+                            <field name="rf_others"/>
+                            <field name="rf_others_text" invisible="not rf_others"/>
+                        </group>
+                        <group string="Previous Cycle">
+                            <field name="rf_docs_reviewed"/>
+                            <field name="rf_reports_evaluated"/>
+                        </group>
+                        <group string="Initial Certification">
+                            <field name="rf_ic_dates"/>
+                            <field name="rf_ic_report_reviewed"/>
+                            <field name="rf_ic_nc"/>
+                            <field name="rf_ic_nc_status"/>
+                        </group>
+                        <group string="Surveillance 01">
+                            <field name="rf_s1_dates"/>
+                            <field name="rf_s1_report_reviewed"/>
+                            <field name="rf_s1_nc"/>
+                            <field name="rf_s1_nc_status"/>
+                        </group>
+                        <group string="Surveillance 02">
+                            <field name="rf_s2_dates"/>
+                            <field name="rf_s2_report_reviewed"/>
+                            <field name="rf_s2_nc"/>
+                            <field name="rf_s2_nc_status"/>
+                        </group>
+                        <group string="Review Outcome">
+                            <field name="rf_outcome"/>
+                            <field name="rf_reviewer_name"/>
+                            <field name="rf_date"/>
+                            <field name="rf_signature_filename" invisible="1"/>
+                            <field name="rf_signature" widget="image"
+                                filename="rf_signature_filename" options="{'size': [200, 90]}"/>
+                        </group>
+                        <group string="Review Trace">
+                            <field name="review_submitted_by"/>
+                            <field name="review_submitted_on"/>
+                            <field name="review_approved_by"/>
+                            <field name="review_approved_on"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="contract_details" string="Contract"
+                    invisible="document_stage &lt; 4">
+                    <group>
+                        <group string="Contract Details">
+                            <field name="contract_standards"/>
+                            <field name="contract_address_1"/>
+                            <field name="contract_address_2"/>
+                            <field name="contract_representative"/>
+                            <field name="contract_designation"/>
+                            <field name="contract_date"/>
+                            <field name="contract_ref"/>
+                            <field name="contract_advance_amount"/>
+                        </group>
+                        <group string="Certification Services Offered">
+                            <field name="contract_service_1"/>
+                            <field name="contract_accreditation_1"/>
+                            <field name="contract_service_2"/>
+                            <field name="contract_accreditation_2"/>
+                        </group>
+                        <group string="Charges">
+                            <field name="contract_fee_y1"/>
+                            <field name="contract_fee_y2"/>
+                            <field name="contract_fee_y3"/>
+                            <field name="contract_mandays_y1"/>
+                            <field name="contract_mandays_y2"/>
+                            <field name="contract_mandays_y3"/>
+                        </group>
+                        <group string="Taxes &amp; Totals">
+                            <field name="contract_tax_province"/>
+                            <field name="contract_tax_y1"/>
+                            <field name="contract_tax_y2"/>
+                            <field name="contract_tax_y3"/>
+                            <field name="contract_total_y1"/>
+                            <field name="contract_total_y2"/>
+                            <field name="contract_total_y3"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- The Invoicing page is added by sale_timesheet, so it has to be hidden from a
+         view that inherits that one. -->
+    <record id="project_project_view_form_invoicing_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.invoicing.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='billing_employee_rate']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

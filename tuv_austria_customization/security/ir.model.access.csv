@@ -11,3 +11,4 @@ access_service_category_user,service.category.user,model_service_category,base.g
 access_service_category_manager,service.category.manager,model_service_category,base.group_system,1,1,1,1
 access_unit_of_billing_user,unit.of.billing.user,model_unit_of_billing,base.group_user,1,0,0,0
 access_unit_of_billing_manager,unit.of.billing.manager,model_unit_of_billing,base.group_system,1,1,1,1
+access_sale_order_planning_team,sale.order.planning.team,sale.model_sale_order,tuv_austria_customization.group_planning_team,1,0,0,0

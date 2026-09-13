@@ -7,9 +7,11 @@ from . import unit_of_billing
 from . import res_partner
 from . import product_template
 from . import sale_order
+from . import sale_order_review
 from . import sale_order_line
 from . import account_move
 from . import project
 from . import project_task_mandays
+from . import project_review
 from . import ir_ui_menu
 from . import stock

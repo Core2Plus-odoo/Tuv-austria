@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="module_category_tuv_austria" model="ir.module.category">
+        <field name="name">TUV Austria</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Odoo 19 groups their access rights under a privilege instead of a category. -->
+    <record id="privilege_tuv_austria" model="res.groups.privilege">
+        <field name="name">TUV Austria</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- The team that reviews an application before sales may continue. The project
+         is their workspace - they move it through the stages and run the audit from
+         it - so they need the project manager rights, not just the reader ones. -->
+    <record id="group_planning_team" model="res.groups">
+        <field name="name">Planning Team</field>
+        <field name="privilege_id" ref="privilege_tuv_austria"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_manager')),
+                                         (4, ref('project.group_project_stages'))]"/>
+    </record>
+
+</odoo>
