@@ -420,12 +420,52 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
             <filter name="order_month" position="before">
+                <filter name="group_flow_state" string="Flow"
+                    context="{'group_by': 'flow_state'}"/>
                 <filter name="group_document_type" string="Document Type"
                     context="{'group_by': 'document_type'}"/>
-                <filter name="group_review_state" string="Review Status"
-                    context="{'group_by': 'review_state'}"/>
             </filter>
         </field>
+    </record>
+
+    <!-- The quotation list drops the stock My Quotations / Quotations / Sales Orders
+         filters (and the default one) and filters on the flow instead. -->
+    <record id="sale_order_view_search_quotation_inherit_tuv" model="ir.ui.view">
+        <field name="name">sale.order.search.quotation.inherit.custom.operations</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <filter name="my_quotation" position="replace">
+                <filter name="flow_draft" string="Draft"
+                    domain="[('flow_state', '=', 'draft')]"/>
+                <filter name="flow_review_form" string="Review Form"
+                    domain="[('flow_state', '=', 'review_form')]"/>
+                <filter name="flow_waiting_review" string="Waiting for Review"
+                    domain="[('flow_state', '=', 'waiting_review')]"/>
+                <filter name="flow_review_approved" string="Review Approved"
+                    domain="[('flow_state', '=', 'review_approved')]"/>
+                <separator/>
+                <filter name="flow_offer_application" string="Offer Application"
+                    domain="[('flow_state', '=', 'offer_application')]"/>
+                <filter name="flow_proposal_form" string="Proposal Form"
+                    domain="[('flow_state', '=', 'proposal_form')]"/>
+                <filter name="flow_contract" string="Contract"
+                    domain="[('flow_state', '=', 'contract')]"/>
+            </filter>
+            <filter name="draft" position="replace"/>
+            <filter name="sales" position="replace"/>
+        </field>
+    </record>
+
+    <!-- no filter switched on by default -->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="context">{}</field>
+    </record>
+    <record id="sale.action_quotations" model="ir.actions.act_window">
+        <field name="context">{}</field>
+    </record>
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="context">{}</field>
     </record>
 
 </odoo>

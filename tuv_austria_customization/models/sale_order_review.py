@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
         ('offer_application', 'Offer Application'),
         ('proposal_form', 'Proposal Form'),
         ('contract', 'Contract'),
-    ], string='Flow', compute='_compute_flow_state')
+    ], string='Flow', compute='_compute_flow_state', store=True, index=True)
 
     @api.depends('review_state', 'document_type')
     def _compute_flow_state(self):
