@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field
+                    name="pdf_watermark"
+                    widget="pdf_viewer"
+                    help="Upload a PDF (or an image) to use as the company letterhead. It is printed behind the reports listed below."
+                />
+                <field
+                    name="watermark_report_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True, 'no_open': True}"
+                    invisible="not pdf_watermark"
+                    placeholder="Pick the reports this letterhead belongs on..."
+                />
+                <label
+                    for="watermark_margin_left"
+                    string="Letterhead Margins (mm)"
+                    invisible="not pdf_watermark or not watermark_report_ids"
+                />
+                <div
+                    class="o_row"
+                    invisible="not pdf_watermark or not watermark_report_ids"
+                >
+                    <field name="watermark_margin_left" class="oe_inline" />
+                    <span class="oe_inline">left</span>
+                    <field name="watermark_margin_right" class="oe_inline" />
+                    <span class="oe_inline">right</span>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
