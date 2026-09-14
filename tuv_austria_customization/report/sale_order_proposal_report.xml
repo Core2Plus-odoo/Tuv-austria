@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Geometry of "PROPOSAL TEMPLATE-FINAL.docx". The Word file is set on a
+         215.9 x 302.3 mm page; printed on A4 the proportions are kept, so the red
+         header band still runs across 55.8% of the sheet and the footer band still
+         bleeds to both edges. Left/right margins are 0 because wkhtmltopdf insets
+         the header and footer by them - the 12.7 mm text margin of the Word file is
+         applied as padding on the body instead. -->
+    <record id="paperformat_proposal" model="report.paperformat">
+        <field name="name">TUV Proposal (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">18</field>
+        <field name="margin_bottom">17</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_spacing">18</field>
+        <field name="header_line" eval="False"/>
+        <field name="dpi">96</field>
+    </record>
+
     <record id="action_report_sale_order_proposal" model="ir.actions.report">
         <field name="name">Proposal</field>
         <field name="model">sale.order</field>
@@ -8,16 +28,14 @@
         <field name="report_name">tuv_austria_customization.report_sale_order_proposal</field>
         <field name="report_file">tuv_austria_customization.report_sale_order_proposal</field>
         <field name="print_report_name">'Proposal - %s' % (object.name)</field>
+        <field name="paperformat_id" ref="paperformat_proposal"/>
         <field name="binding_model_id" ref="sale.model_sale_order"/>
         <field name="binding_type">report</field>
     </record>
 
-    <template id="report_sale_order_proposal">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <div class="page tuv_pr">
-                        <style>
+
+    <template id="report_sale_order_proposal_style">
+        <style>
                             .tuv_pr { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 12.5px; }
                             .tuv_pr p { margin: 0 0 9px 0; text-align: justify; }
 
@@ -142,7 +160,85 @@
                             .tuv_pr .pr_sign .pr_sign_gap { height: 62px; }
 
                             .tuv_pr .pr_break { page-break-after: always; }
-                        </style>
+                            /* wkhtmltopdf calibration: 1 CSS px prints as 0.6 pt, so one
+                               millimetre on paper is 4.7244 px. Every measurement below is
+                               taken off "PROPOSAL TEMPLATE-FINAL.docx" in mm and written in px. */
+
+                            /* the bands bleed to the paper edge, so no browser body margin */
+                            html, body { margin: 0 !important; padding: 0 !important; }
+
+                            /* ---------- letterhead, straight off the Word template ---------- */
+                            /* band: C00000, 13.2 mm tall, across 120.4 of the 215.9 mm sheet */
+                            .tuv_pr .pr_hd { position: relative; height: 62px; }
+                            .tuv_pr .pr_hd_band {
+                                position: absolute; top: 0; left: 0;
+                                width: 55.77%; height: 62px; background-color: #C00000;
+                            }
+                            /* icon: 87.5 mm wide, sitting centred against the band */
+                            .tuv_pr .pr_hd_icon {
+                                position: absolute; top: 5px; right: 17px;
+                                width: 41.67%; height: auto;
+                            }
+
+                            /* footer band: full bleed, 8 pt white bold on C00000 */
+                            .tuv_pr .pr_ft_band {
+                                background-color: #C00000; color: #FFFFFF;
+                                text-align: center; font-size: 13.3px; font-weight: 700;
+                                line-height: 17.3px; padding: 3px 0 4px 0;
+                            }
+                            /* the Word footer stops 4.9 mm short of the paper edge */
+                            .tuv_pr .pr_ft_gap { height: 20px; }
+
+                            /* ---------- cover photo ---------- */
+                            /* cancels the body inset so the photo bleeds to both paper edges,
+                               and fills the text area so its own red bars meet the two bands */
+                            .tuv_pr .pr_cover_img { margin: 0 -60px; }
+                            .tuv_pr .pr_cover_img img {
+                                display: block; width: 100% !important; height: 1238px !important;
+                                max-width: none !important; max-height: none !important;
+                            }
+        </style>
+    </template>
+
+    <template id="report_sale_order_proposal_header">
+        <div class="header tuv_pr">
+            <t t-call="tuv_austria_customization.report_sale_order_proposal_style"/>
+            <div class="pr_hd">
+                <div class="pr_hd_band"/>
+                <img class="pr_hd_icon"
+                     src="/tuv_austria_customization/static/src/img/tuv_header_icon.png"
+                     alt="TUV Austria Bureau of Inspection &amp; Certification (Pvt.) Ltd."/>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_sale_order_proposal_footer">
+        <div class="footer tuv_pr">
+            <t t-call="tuv_austria_customization.report_sale_order_proposal_style"/>
+            <div class="pr_ft_band">
+                <div>Trust is Good</div>
+                <div>TUV is Better</div>
+                <div>Our Motto is Quality, Quantity and Delivery</div>
+            </div>
+            <div class="pr_ft_gap"/>
+        </div>
+    </template>
+
+    <template id="report_sale_order_proposal">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="tuv_austria_customization.report_sale_order_proposal_header"/>
+                <t t-call="tuv_austria_customization.report_sale_order_proposal_footer"/>
+                <div class="article tuv_pr" style="padding: 0 60px;"
+                     t-att-data-oe-model="doc and doc._name" t-att-data-oe-id="doc and doc.id">
+                    <t t-call="tuv_austria_customization.report_sale_order_proposal_style"/>
+
+                    <!-- ══════════════════ COVER PHOTO ══════════════════ -->
+                    <div class="pr_cover_img">
+                        <img src="/tuv_austria_customization/static/src/img/proposal_cover.png"
+                             alt="TUV Austria Bureau of Inspection &amp; Certification"/>
+                    </div>
+                    <div class="pr_break"/>
 
                         <!-- ══════════════════ COVER ══════════════════ -->
                         <div class="pr_cover">
@@ -558,8 +654,7 @@
                             <div t-if="pb_email"><span t-out="pb_email"/></div>
                         </div>
 
-                    </div>
-                </t>
+                </div>
             </t>
         </t>
     </template>
