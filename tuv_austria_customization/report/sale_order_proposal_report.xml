@@ -18,7 +18,7 @@
         <field name="margin_right">0</field>
         <field name="header_spacing">18</field>
         <field name="header_line" eval="False"/>
-        <field name="dpi">96</field>
+        <field name="dpi">110</field>
     </record>
 
     <record id="action_report_sale_order_proposal" model="ir.actions.report">
@@ -36,85 +36,85 @@
 
     <template id="report_sale_order_proposal_style">
         <style>
-                            .tuv_pr { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 12.5px; }
-                            .tuv_pr p { margin: 0 0 9px 0; text-align: justify; }
+                            .tuv_pr { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 21px; }
+                            .tuv_pr p { margin: 0 0 10.3px 0; text-align: justify; }
 
                             /* ---------- cover ---------- */
-                            .tuv_pr .pr_cover { text-align: center; padding-top: 40px; }
+                            .tuv_pr .pr_cover { text-align: center; padding-top: 45.8px; }
                             .tuv_pr .pr_cover .pr_c_lbl {
-                                font-size: 20px; font-weight: 800; letter-spacing: .06em; color: #111111;
+                                font-size: 42px; font-weight: 800; color: #111111;
                             }
                             .tuv_pr .pr_cover .pr_c_val {
-                                font-size: 24px; font-weight: 800; color: #1a56db; margin-top: 4px;
+                                font-size: 42px; font-weight: 800; color: #1a56db; margin-top: 4.6px;
                             }
-                            .tuv_pr .pr_cover .pr_c_block { margin-bottom: 34px; }
+                            .tuv_pr .pr_cover .pr_c_block { margin-bottom: 39px; }
                             .tuv_pr .pr_cover .pr_c_sub {
-                                font-size: 13px; font-weight: 700; letter-spacing: .05em;
+                                font-size: 42px; font-weight: 700;
                                 text-transform: uppercase; color: #111111;
                             }
                             .tuv_pr .pr_cover .pr_c_org {
-                                font-size: 14px; font-weight: 700; color: #111111; margin-top: 6px;
+                                font-size: 42px; font-weight: 700; color: #111111; margin-top: 6.9px;
                             }
-                            .tuv_pr .pr_cover .pr_c_date { font-size: 13px; margin-top: 44px; }
+                            .tuv_pr .pr_cover .pr_c_date { font-size: 42px; margin-top: 50.4px; }
 
                             /* ---------- headings ---------- */
                             .tuv_pr .pr_h1 {
-                                font-size: 18px; font-weight: 800; text-align: center; letter-spacing: .04em;
-                                text-transform: uppercase; margin: 0 0 20px 0; padding-bottom: 8px;
-                                border-bottom: 2px solid #111111;
+                                font-size: 21px; font-weight: 800; text-align: center;
+                                text-transform: uppercase; margin: 0 0 22.9px 0; padding-bottom: 9.2px;
+                                border-bottom: 2.3px solid #111111;
                             }
                             .tuv_pr .pr_h2 {
                                 page-break-after: avoid;
-                                font-size: 14px; font-weight: 800; text-transform: uppercase; color: #111111;
-                                margin: 22px 0 10px 0; padding-bottom: 5px; border-bottom: 1.5px solid #111111;
+                                font-size: 21px; font-weight: 800; text-transform: uppercase; color: #111111;
+                                margin: 25.2px 0 11.5px 0; padding-bottom: 5.7px; border-bottom: 1.5px solid #111111;
                             }
                             .tuv_pr .pr_h3 {
                                 page-break-after: avoid;
-                                font-size: 12.8px; font-weight: 700; color: #111111; margin: 16px 0 7px 0;
+                                font-size: 21px; font-weight: 700; color: #111111; margin: 18.3px 0 8px 0;
                             }
                             .tuv_pr .pr_h4 {
                                 page-break-after: avoid;
-                                font-size: 12.5px; font-weight: 700; text-transform: uppercase;
-                                margin: 14px 0 7px 0;
+                                font-size: 21px; font-weight: 700; text-transform: uppercase;
+                                margin: 16px 0 8px 0;
                             }
 
                             /* ---------- prepared for / by ---------- */
                             .tuv_pr table.pr_party {
                                 width: 100%; border-collapse: collapse; table-layout: fixed;
                                 border: 1.2px solid #333333; page-break-inside: avoid;
-                                margin-bottom: 4px;
+                                margin-bottom: 4.6px;
                             }
                             .tuv_pr table.pr_party td {
-                                border: 1px solid #333333; padding: 7px 10px; vertical-align: top;
-                                font-size: 11.5px;
+                                border: 1px solid #333333; padding: 8px 11.5px; vertical-align: top;
+                                font-size: 21px;
                             }
                             .tuv_pr table.pr_party td.pr_p_title {
-                                text-align: center; font-weight: 800; font-size: 13px;
-                                background-color: #f0f2f5; letter-spacing: .03em;
+                                text-align: center; font-weight: 800; font-size: 21px;
+                                background-color: #f0f2f5;
                             }
                             .tuv_pr table.pr_party td.pr_p_head {
-                                font-weight: 700; background-color: #f7f7f8; font-size: 12px;
+                                font-weight: 700; background-color: #f7f7f8; font-size: 21px;
                             }
-                            .tuv_pr table.pr_party td.pr_p_name { font-weight: 700; font-size: 12.5px; }
+                            .tuv_pr table.pr_party td.pr_p_name { font-weight: 700; font-size: 21px; }
                             .tuv_pr table.pr_party .pr_lbl { font-weight: 700; }
                             .tuv_pr table.pr_party .pr_office { font-weight: 700; }
 
                             /* ---------- content list ---------- */
-                            .tuv_pr .pr_toc { font-size: 13px; }
-                            .tuv_pr .pr_toc .pr_toc_1 { font-weight: 700; margin: 10px 0 4px 0; }
-                            .tuv_pr .pr_toc .pr_toc_2 { margin: 2px 0 2px 30px; }
+                            .tuv_pr .pr_toc { font-size: 21px; }
+                            .tuv_pr .pr_toc .pr_toc_1 { font-weight: 700; margin: 11.5px 0 4.6px 0; }
+                            .tuv_pr .pr_toc .pr_toc_2 { margin: 2.3px 0 2.3px 34.4px; }
 
                             /* ---------- lists ---------- */
-                            .tuv_pr ul.pr_ul { margin: 0 0 10px 0; padding-left: 20px; }
-                            .tuv_pr ul.pr_ul li { margin-bottom: 4px; text-align: justify; }
-                            .tuv_pr table.pr_std { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-                            .tuv_pr table.pr_std td { padding: 2px 6px; font-size: 12px; vertical-align: top; }
+                            .tuv_pr ul.pr_ul { margin: 0 0 11.5px 0; padding-left: 22.9px; }
+                            .tuv_pr ul.pr_ul li { margin-bottom: 4.6px; text-align: justify; }
+                            .tuv_pr table.pr_std { width: 100%; border-collapse: collapse; margin-bottom: 11.5px; }
+                            .tuv_pr table.pr_std td { padding: 2.3px 6.9px; font-size: 21px; vertical-align: top; }
                             .tuv_pr table.pr_std td.pr_std_code { font-weight: 700; width: 22%; white-space: nowrap; }
 
                             /* ---------- charges (plain aligned text, exactly like the Word doc) ---------- */
                             .tuv_pr table.pr_charges {
                                 width: 100%; border-collapse: collapse; table-layout: fixed;
-                                margin: 0 0 16px 0; page-break-inside: avoid;
+                                margin: 0 0 18.3px 0; page-break-inside: avoid;
                             }
                             .tuv_pr table.pr_charges,
                             .tuv_pr table.pr_charges tbody,
@@ -125,16 +125,16 @@
                                 border: 0 !important; background-color: transparent !important;
                             }
                             .tuv_pr table.pr_charges td {
-                                padding: 1px 0; font-size: 12.5px; vertical-align: top;
+                                padding: 1px 0; font-size: 21px; vertical-align: top;
                             }
                             .tuv_pr table.pr_charges td.pr_ch_lbl { font-weight: 700; width: 46%; }
 
                             /* ---------- cost table ---------- */
                             .tuv_pr table.pr_cost {
-                                width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 6px;
+                                width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 6.9px;
                             }
                             .tuv_pr table.pr_cost td, .tuv_pr table.pr_cost th {
-                                border: 1px solid #333333; padding: 7px 8px; font-size: 11.5px;
+                                border: 1px solid #333333; padding: 8px 9.2px; font-size: 21px;
                                 text-align: center; vertical-align: middle;
                             }
                             .tuv_pr table.pr_cost th { font-weight: 700; background-color: #f0f2f5; }
@@ -142,22 +142,22 @@
                             .tuv_pr table.pr_cost tr.pr_cost_total td { font-weight: 800; background-color: #f7f7f8; }
 
                             .tuv_pr .pr_note {
-                                font-weight: 800; font-size: 12.5px; margin: 14px 0; letter-spacing: .02em;
+                                font-weight: 800; font-size: 21px; margin: 16px 0;
                             }
 
                             /* ---------- signature (laid out like the Word doc) ---------- */
                             .tuv_pr .pr_sign {
-                                margin-top: 34px; font-size: 12.5px; font-weight: 700;
+                                margin-top: 39px; font-size: 21px; font-weight: 700;
                                 line-height: 1.45; page-break-inside: avoid;
                             }
-                            .tuv_pr .pr_sign .pr_sign_lbl { margin-bottom: 16px; }
-                            .tuv_pr .pr_sign .pr_sign_name { margin-bottom: 14px; }
+                            .tuv_pr .pr_sign .pr_sign_lbl { margin-bottom: 18.3px; }
+                            .tuv_pr .pr_sign .pr_sign_name { margin-bottom: 16px; }
                             .tuv_pr .pr_sign .pr_sign_img {
                                 border: 1px solid #333333; display: inline-block;
-                                padding: 2px; margin-bottom: 16px;
+                                padding: 2.3px; margin-bottom: 18.3px;
                             }
-                            .tuv_pr .pr_sign .pr_sign_img img { max-height: 62px; max-width: 190px; }
-                            .tuv_pr .pr_sign .pr_sign_gap { height: 62px; }
+                            .tuv_pr .pr_sign .pr_sign_img img { max-height: 71px; max-width: 217.7px; }
+                            .tuv_pr .pr_sign .pr_sign_gap { height: 71px; }
 
                             .tuv_pr .pr_break { page-break-after: always; }
                             /* wkhtmltopdf calibration: 1 CSS px prints as 0.6 pt, so one
@@ -169,32 +169,32 @@
 
                             /* ---------- letterhead, straight off the Word template ---------- */
                             /* band: C00000, 13.2 mm tall, across 120.4 of the 215.9 mm sheet */
-                            .tuv_pr .pr_hd { position: relative; height: 62px; }
+                            .tuv_pr .pr_hd { position: relative; height: 71px; }
                             .tuv_pr .pr_hd_band {
                                 position: absolute; top: 0; left: 0;
-                                width: 55.77%; height: 62px; background-color: #C00000;
+                                width: 55.77%; height: 71px; background-color: #C00000;
                             }
                             /* icon: 87.5 mm wide, sitting centred against the band */
                             .tuv_pr .pr_hd_icon {
-                                position: absolute; top: 5px; right: 17px;
+                                position: absolute; top: 5.7px; right: 19.5px;
                                 width: 41.67%; height: auto;
                             }
 
                             /* footer band: full bleed, 8 pt white bold on C00000 */
                             .tuv_pr .pr_ft_band {
                                 background-color: #C00000; color: #FFFFFF;
-                                text-align: center; font-size: 13.3px; font-weight: 700;
-                                line-height: 17.3px; padding: 3px 0 4px 0;
+                                text-align: center; font-size: 15.2px; font-weight: 700;
+                                line-height: 19.8px; padding: 3.4px 0 4.6px 0;
                             }
                             /* the Word footer stops 4.9 mm short of the paper edge */
-                            .tuv_pr .pr_ft_gap { height: 20px; }
+                            .tuv_pr .pr_ft_gap { height: 19px; }
 
                             /* ---------- cover photo ---------- */
                             /* cancels the body inset so the photo bleeds to both paper edges,
                                and fills the text area so its own red bars meet the two bands */
-                            .tuv_pr .pr_cover_img { margin: 0 -60px; }
+                            .tuv_pr .pr_cover_img { margin: 0 -68.8px; }
                             .tuv_pr .pr_cover_img img {
-                                display: block; width: 100% !important; height: 1238px !important;
+                                display: block; width: 100% !important; height: 1412px !important;
                                 max-width: none !important; max-height: none !important;
                             }
         </style>
@@ -229,7 +229,7 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="tuv_austria_customization.report_sale_order_proposal_header"/>
                 <t t-call="tuv_austria_customization.report_sale_order_proposal_footer"/>
-                <div class="article tuv_pr" style="padding: 0 60px;"
+                <div class="article tuv_pr" style="padding: 0 68.8px;"
                      t-att-data-oe-model="doc and doc._name" t-att-data-oe-id="doc and doc.id">
                     <t t-call="tuv_austria_customization.report_sale_order_proposal_style"/>
 
@@ -256,7 +256,7 @@
                                 <div class="pr_c_lbl">STANDARD(s):</div>
                                 <div class="pr_c_val"><span t-field="doc.certification_standard"/></div>
                             </div>
-                            <div class="pr_c_block" style="margin-top: 56px;">
+                            <div class="pr_c_block" style="margin-top: 64.2px;">
                                 <div class="pr_c_sub">PROPOSAL SUBMITTED BY:</div>
                                 <div class="pr_c_org">
                                     TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION
@@ -295,8 +295,8 @@
                             <tr>
                                 <td>
                                     <div class="pr_lbl">Address:</div>
-                                    <div class="pr_lbl" style="margin-top: 8px;">Mobile:</div>
-                                    <div class="pr_lbl" style="margin-top: 8px;">Email:</div>
+                                    <div class="pr_lbl" style="margin-top: 9.2px;">Mobile:</div>
+                                    <div class="pr_lbl" style="margin-top: 9.2px;">Email:</div>
                                 </td>
                                 <td>
                                     <div>
@@ -307,30 +307,30 @@
                                         <t t-if="doc.partner_state_id">, <span t-field="doc.partner_state_id.name"/></t>
                                         <t t-if="doc.partner_country_id"><br/><span t-field="doc.partner_country_id.name"/></t>
                                     </div>
-                                    <div style="margin-top: 8px;"><span t-field="doc.partner_phone"/></div>
-                                    <div style="margin-top: 8px;"><span t-field="doc.partner_email"/></div>
+                                    <div style="margin-top: 9.2px;"><span t-field="doc.partner_phone"/></div>
+                                    <div style="margin-top: 9.2px;"><span t-field="doc.partner_email"/></div>
                                 </td>
                                 <td>
                                     <div class="pr_lbl">Lahore:</div>
-                                    <div class="pr_lbl" style="margin-top: 26px;">Tel:</div>
+                                    <div class="pr_lbl" style="margin-top: 29.8px;">Tel:</div>
                                     <div class="pr_lbl">Fax:</div>
-                                    <div class="pr_lbl" style="margin-top: 10px;">Karachi:</div>
-                                    <div class="pr_lbl" style="margin-top: 52px;">Islamabad:</div>
-                                    <div class="pr_lbl" style="margin-top: 26px;">Mobile:</div>
+                                    <div class="pr_lbl" style="margin-top: 11.5px;">Karachi:</div>
+                                    <div class="pr_lbl" style="margin-top: 59.6px;">Islamabad:</div>
+                                    <div class="pr_lbl" style="margin-top: 29.8px;">Mobile:</div>
                                 </td>
                                 <td>
                                     <div class="pr_office">Corporate Head Office</div>
                                     <div>72 B-2, Block B2, Gulberg III, Lahore.</div>
                                     <div>042-111 284 284</div>
                                     <div>042-5872179</div>
-                                    <div class="pr_office" style="margin-top: 8px;">
+                                    <div class="pr_office" style="margin-top: 9.2px;">
                                         Oil &amp; Gas Inspection Services HQ
                                     </div>
                                     <div>
                                         Building # 15-C, 2nd floor, Lane 1, Ittehad Commercial Area,
                                         D.H.A Phase 6 Defence Housing Authority, Karachi.
                                     </div>
-                                    <div class="pr_office" style="margin-top: 8px;">Branch Office</div>
+                                    <div class="pr_office" style="margin-top: 9.2px;">Branch Office</div>
                                     <div>189, Korang Road, I-10/3, Islamabad.</div>
                                     <div>0307-4449107</div>
                                 </td>
