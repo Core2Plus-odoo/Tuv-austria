@@ -1,0 +1,352 @@
+// TUV Austria house colours, sampled from the company letterhead.
+$tuv-red: #e72929;
+$tuv-red-dark: #b81d1d;
+$tuv-navy: #0f1c2e;
+$tuv-navy-soft: #1b2b42;
+$tuv-ink: #1f2933;
+$tuv-muted: #6b7784;
+$tuv-line: #e4e8ec;
+
+.o_tuv_dashboard {
+    height: 100%;
+    overflow: auto;
+    padding: 0 0 32px 0;
+    background: #f4f6f8;
+    color: $tuv-ink;
+    font-family: inherit;
+
+    .o_tuv_loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+        color: $tuv-red;
+    }
+
+    // ------------------------------------------------------------------ hero
+    .o_tuv_hero {
+        position: relative;
+        background: linear-gradient(120deg, $tuv-navy 0%, $tuv-navy-soft 65%, #24374f 100%);
+        color: #fff;
+        padding: 26px 32px 30px 32px;
+        overflow: hidden;
+
+        // the red rule the letterhead carries down its left edge
+        .o_tuv_hero_bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 8px;
+            background: $tuv-red;
+        }
+        // a soft diagonal sheen, the way the printed letterhead folds
+        &:after {
+            content: "";
+            position: absolute;
+            top: -60%;
+            right: -10%;
+            width: 46%;
+            height: 220%;
+            background: rgba(231, 41, 41, 0.10);
+            transform: rotate(18deg);
+        }
+    }
+
+    .o_tuv_hero_body {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        padding-left: 14px;
+    }
+
+    .o_tuv_hero_eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 11px;
+        font-weight: 700;
+        color: $tuv-red;
+    }
+
+    .o_tuv_hero_title {
+        margin: 4px 0 6px 0;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: #fff;
+    }
+
+    .o_tuv_hero_sub {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.72);
+        .o_tuv_dot { margin: 0 8px; color: $tuv-red; }
+    }
+
+    .o_tuv_hero_tools {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 0 0 auto;
+    }
+
+    .o_tuv_live {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.66);
+        white-space: nowrap;
+
+        .o_tuv_live_every {
+            padding-left: 8px;
+            margin-left: 2px;
+            border-left: 1px solid rgba(255, 255, 255, 0.22);
+            color: rgba(255, 255, 255, 0.42);
+        }
+    }
+
+    .o_tuv_live_dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: $tuv-red;
+        box-shadow: 0 0 0 0 rgba(231, 41, 41, 0.6);
+
+        // a quiet pulse only while a refresh is actually in flight
+        &.o_tuv_live_on { animation: o_tuv_pulse 1s ease-out infinite; }
+    }
+
+    @keyframes o_tuv_pulse {
+        0% { box-shadow: 0 0 0 0 rgba(231, 41, 41, 0.6); }
+        100% { box-shadow: 0 0 0 7px rgba(231, 41, 41, 0); }
+    }
+
+    .o_tuv_refresh {
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: transparent;
+        color: #fff;
+        border-radius: 6px;
+        width: 34px;
+        height: 34px;
+        line-height: 1;
+        transition: background 0.15s ease;
+        &:hover { background: rgba(255, 255, 255, 0.14); }
+    }
+
+    // ------------------------------------------------------------------ KPIs
+    .o_tuv_kpis {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 16px;
+        padding: 20px 32px 4px 32px;
+    }
+
+    .o_tuv_kpi {
+        background: #fff;
+        border: 1px solid $tuv-line;
+        border-top: 3px solid $tuv-red;
+        border-radius: 6px;
+        padding: 14px 16px 12px 16px;
+        box-shadow: 0 1px 2px rgba(15, 28, 46, 0.06);
+        transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+        &:hover {
+            box-shadow: 0 6px 18px rgba(15, 28, 46, 0.12);
+            transform: translateY(-1px);
+        }
+    }
+
+    .o_tuv_kpi_label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $tuv-muted;
+    }
+    .o_tuv_kpi_value {
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.15;
+        color: $tuv-navy;
+    }
+    .o_tuv_kpi_foot {
+        font-size: 12px;
+        color: $tuv-muted;
+        i { color: $tuv-red; margin-right: 4px; }
+    }
+
+    // ---------------------------------------------------------------- panels
+    .o_tuv_panels {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 20px;
+        padding: 20px 32px 0 32px;
+        align-items: start;
+    }
+
+    .o_tuv_col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .o_tuv_panel {
+        background: #fff;
+        border: 1px solid $tuv-line;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px rgba(15, 28, 46, 0.06);
+        overflow: hidden;
+    }
+
+    .o_tuv_panel_head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        border-bottom: 2px solid $tuv-red;
+
+        h2 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+            color: $tuv-navy;
+            i { color: $tuv-red; margin-right: 8px; }
+        }
+    }
+
+    .o_tuv_count { font-size: 12px; color: $tuv-muted; }
+
+    .o_tuv_link {
+        border: 0;
+        background: transparent;
+        color: $tuv-red;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0;
+        &:hover { color: $tuv-red-dark; text-decoration: underline; }
+    }
+
+    .o_tuv_rows { padding: 6px 18px 16px 18px; }
+
+    .o_tuv_row {
+        padding: 9px 0 10px 0;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(228, 232, 236, 0.7);
+        &:last-child { border-bottom: 0; }
+        &:hover .o_tuv_row_name { color: $tuv-red; }
+        &:hover .o_tuv_fill { filter: brightness(1.08); }
+    }
+
+    .o_tuv_row_head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 6px;
+    }
+
+    .o_tuv_row_name {
+        font-size: 13px;
+        font-weight: 600;
+        color: $tuv-ink;
+        transition: color 0.15s ease;
+    }
+
+    .o_tuv_badge {
+        margin-left: 6px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: $tuv-muted;
+        border: 1px solid $tuv-line;
+        border-radius: 3px;
+        padding: 1px 4px;
+    }
+
+    .o_tuv_row_fig {
+        font-size: 13px;
+        color: $tuv-navy;
+        white-space: nowrap;
+        .o_tuv_pct { margin-left: 8px; font-size: 12px; color: $tuv-muted; }
+    }
+
+    .o_tuv_track {
+        height: 8px;
+        border-radius: 4px;
+        background: #eef1f4;
+        overflow: hidden;
+    }
+
+    .o_tuv_fill {
+        height: 100%;
+        border-radius: 4px;
+        background: linear-gradient(90deg, $tuv-red-dark 0%, $tuv-red 100%);
+        transition: width 0.45s ease, filter 0.15s ease;
+    }
+
+    .o_tuv_fill_alt {
+        background: linear-gradient(90deg, $tuv-navy 0%, #3d5a7f 100%);
+    }
+
+    // ------------------------------------------------------- concentration bar
+    .o_tuv_stack {
+        display: flex;
+        height: 22px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 8px 0 14px 0;
+        background: #eef1f4;
+    }
+
+    .o_tuv_seg {
+        height: 100%;
+        transition: width 0.45s ease;
+        & + .o_tuv_seg { border-left: 1px solid rgba(255, 255, 255, 0.55); }
+    }
+
+    .o_tuv_legend {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 4px 14px;
+    }
+
+    .o_tuv_legend_item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 12px;
+        padding: 3px 0;
+        cursor: pointer;
+        &:hover .o_tuv_legend_name { color: $tuv-red; }
+    }
+
+    .o_tuv_swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        flex: 0 0 auto;
+    }
+
+    .o_tuv_legend_name {
+        color: $tuv-ink;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.15s ease;
+    }
+
+    .o_tuv_legend_pct {
+        margin-left: auto;
+        color: $tuv-muted;
+        font-weight: 600;
+    }
+
+    .o_tuv_foot {
+        padding: 18px 32px 0 32px;
+        font-size: 12px;
+        color: $tuv-muted;
+    }
+}

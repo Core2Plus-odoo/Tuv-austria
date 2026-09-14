@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="tuv_austria_dashboard.Dashboard">
+        <div class="o_tuv_dashboard">
+
+            <div t-if="state.loading" class="o_tuv_loading">
+                <i class="fa fa-circle-o-notch fa-spin fa-2x"/>
+            </div>
+
+            <t t-else="">
+                <!-- Masthead: the letterhead band, on screen -->
+                <div class="o_tuv_hero">
+                    <div class="o_tuv_hero_bar"/>
+                    <div class="o_tuv_hero_body">
+                        <div>
+                            <div class="o_tuv_hero_eyebrow">Business Insurance</div>
+                            <h1 class="o_tuv_hero_title">Client Portfolio</h1>
+                            <div class="o_tuv_hero_sub">
+                                <t t-esc="state.data.company"/>
+                                <span class="o_tuv_dot">&#8226;</span>
+                                <t t-esc="today"/>
+                            </div>
+                        </div>
+                        <div class="o_tuv_hero_tools">
+                            <div class="o_tuv_live">
+                                <span class="o_tuv_live_dot" t-att-class="{ 'o_tuv_live_on': state.refreshing }"/>
+                                <t t-if="state.updatedAt">Updated <t t-esc="state.updatedAt"/></t>
+                                <t t-else="">Live</t>
+                                <span class="o_tuv_live_every">auto every minute</span>
+                            </div>
+                            <button class="o_tuv_refresh" t-on-click="() => this.load()" title="Refresh now">
+                                <i class="fa fa-refresh" t-att-class="{ 'fa-spin': state.refreshing }"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Headline figures -->
+                <div class="o_tuv_kpis">
+                    <div class="o_tuv_kpi" t-on-click="() => this.openAllClients()">
+                        <div class="o_tuv_kpi_label">Total Clients</div>
+                        <div class="o_tuv_kpi_value" t-esc="state.data.totals.clients"/>
+                        <div class="o_tuv_kpi_foot"><i class="fa fa-building-o"/> in Contacts</div>
+                    </div>
+                    <div class="o_tuv_kpi">
+                        <div class="o_tuv_kpi_label">Countries</div>
+                        <div class="o_tuv_kpi_value" t-esc="state.data.totals.countries"/>
+                        <div class="o_tuv_kpi_foot"><i class="fa fa-globe"/> served</div>
+                    </div>
+                    <div class="o_tuv_kpi">
+                        <div class="o_tuv_kpi_label">Cities</div>
+                        <div class="o_tuv_kpi_value" t-esc="state.data.totals.cities"/>
+                        <div class="o_tuv_kpi_foot"><i class="fa fa-map-marker"/> covered</div>
+                    </div>
+                    <div class="o_tuv_kpi">
+                        <div class="o_tuv_kpi_label">New (30 days)</div>
+                        <div class="o_tuv_kpi_value" t-esc="state.data.totals.new_30_days"/>
+                        <div class="o_tuv_kpi_foot"><i class="fa fa-plus-circle"/> added</div>
+                    </div>
+                </div>
+
+                <div class="o_tuv_panels">
+
+                  <div class="o_tuv_col">
+                    <!-- Country wise -->
+                    <section class="o_tuv_panel">
+                        <header class="o_tuv_panel_head">
+                            <h2><i class="fa fa-globe"/> Clients by Country</h2>
+                            <span class="o_tuv_count"><t t-esc="state.data.countries.length"/> entries</span>
+                        </header>
+                        <div class="o_tuv_rows">
+                            <div t-foreach="state.data.countries" t-as="row" t-key="row_index"
+                                 class="o_tuv_row"
+                                 t-on-click="() => this.openClients(row.name, row.domain)">
+                                <div class="o_tuv_row_head">
+                                    <span class="o_tuv_row_name">
+                                        <t t-esc="row.name"/>
+                                        <span t-if="row.code" class="o_tuv_badge" t-esc="row.code"/>
+                                    </span>
+                                    <span class="o_tuv_row_fig">
+                                        <b t-esc="row.count"/>
+                                        <span class="o_tuv_pct"><t t-esc="row.percent"/>%</span>
+                                    </span>
+                                </div>
+                                <div class="o_tuv_track">
+                                    <div class="o_tuv_fill"
+                                         t-attf-style="width: {{ barWidth(row, state.data.countries) }}%"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Where the book is concentrated -->
+                    <section class="o_tuv_panel">
+                        <header class="o_tuv_panel_head">
+                            <h2><i class="fa fa-pie-chart"/> Portfolio Concentration</h2>
+                            <span class="o_tuv_count">top 5 cities</span>
+                        </header>
+                        <div class="o_tuv_rows">
+                            <div class="o_tuv_stack">
+                                <div t-foreach="concentration" t-as="seg" t-key="seg_index"
+                                     class="o_tuv_seg"
+                                     t-attf-style="width: {{ seg.percent }}%; background: {{ seg.colour }};"
+                                     t-attf-title="{{ seg.name }}: {{ seg.count }}"/>
+                            </div>
+                            <div class="o_tuv_legend">
+                                <div t-foreach="concentration" t-as="seg" t-key="seg_index"
+                                     class="o_tuv_legend_item"
+                                     t-on-click="() => seg.domain &amp;&amp; this.openClients(seg.name, seg.domain)">
+                                    <span class="o_tuv_swatch" t-attf-style="background: {{ seg.colour }};"/>
+                                    <span class="o_tuv_legend_name" t-esc="seg.name"/>
+                                    <span class="o_tuv_legend_pct"><t t-esc="seg.percent"/>%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                  </div>
+
+                    <!-- City wise -->
+                    <section class="o_tuv_panel">
+                        <header class="o_tuv_panel_head">
+                            <h2><i class="fa fa-map-marker"/> Clients by City</h2>
+                            <button class="o_tuv_link" t-on-click="() => this.toggleCities()">
+                                <t t-if="state.cityLimit">Show all (<t t-esc="state.data.cities.length"/>)</t>
+                                <t t-else="">Show top 10</t>
+                            </button>
+                        </header>
+                        <div class="o_tuv_rows">
+                            <div t-foreach="cities" t-as="row" t-key="row_index"
+                                 class="o_tuv_row"
+                                 t-on-click="() => this.openClients(row.name, row.domain)">
+                                <div class="o_tuv_row_head">
+                                    <span class="o_tuv_row_name" t-esc="row.name"/>
+                                    <span class="o_tuv_row_fig">
+                                        <b t-esc="row.count"/>
+                                        <span class="o_tuv_pct"><t t-esc="row.percent"/>%</span>
+                                    </span>
+                                </div>
+                                <div class="o_tuv_track">
+                                    <div class="o_tuv_fill o_tuv_fill_alt"
+                                         t-attf-style="width: {{ barWidth(row, state.data.cities) }}%"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="o_tuv_foot">
+                    Figures cover every company in Contacts. Click a bar to open that list.
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>
