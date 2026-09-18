@@ -37,6 +37,7 @@ Centralized module for client-specific customizations across:
         'views/project_views.xml',
         'views/project_task_mandays_views.xml',
         'views/stock_views.xml',
+        'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
         'data/project_stages.xml',
         'report/sale_order_application_form_report.xml',

@@ -21,6 +21,7 @@
                 <page name="certification_details" string="Certification Details">
                     <group>
                         <group>
+                            <field name="md_sequence_no"/>
                             <field name="certificate_no"/>
                             <field name="certification_standard"/>
                             <field name="ea_code_ids" widget="many2many_tags"/>

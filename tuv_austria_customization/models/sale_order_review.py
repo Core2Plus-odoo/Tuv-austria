@@ -49,10 +49,10 @@ class SaleOrder(models.Model):
     # folded into the one line the user follows from draft to contract.
     flow_state = fields.Selection([
         ('draft', 'Draft'),
+        ('offer_application', 'Offer Application'),
         ('review_form', 'Review Form'),
         ('waiting_review', 'Waiting for Review'),
         ('review_approved', 'Review Approved'),
-        ('offer_application', 'Offer Application'),
         ('proposal_form', 'Proposal Form'),
         ('contract', 'Contract'),
     ], string='Flow', compute='_compute_flow_state', store=True, index=True)
@@ -63,11 +63,15 @@ class SaleOrder(models.Model):
             if order.review_state == 'waiting_review':
                 order.flow_state = 'waiting_review'
             elif order.review_state == 'draft':
-                order.flow_state = 'review_form' if order.document_type == 'review_form' else 'draft'
+                # before the planning team is involved: nothing picked yet, the offer
+                # application, or the review form that is about to be sent over
+                order.flow_state = (order.document_type
+                                    if order.document_type in ('offer_application', 'review_form')
+                                    else 'draft')
             elif order.document_type in ('contract_form', 'pnac_contract'):
                 order.flow_state = 'contract'
-            elif order.document_type in ('offer_application', 'proposal_form'):
-                order.flow_state = order.document_type
+            elif order.document_type == 'proposal_form':
+                order.flow_state = 'proposal_form'
             else:
                 order.flow_state = 'review_approved'
 

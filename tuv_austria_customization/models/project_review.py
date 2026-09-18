@@ -35,6 +35,9 @@ class ProjectProject(models.Model):
         related='md_sale_order_id.review_approved_by', readonly=True)
     review_approved_on = fields.Datetime(
         related='md_sale_order_id.review_approved_on', readonly=True)
+    # The planning team's own document number. Deliberately not related to the
+    # order's: it starts empty so planning writes whichever number belongs here.
+    md_sequence_no = fields.Char(string='Sequence No', copy=False)
     document_type = fields.Selection(
         related='md_sale_order_id.document_type', string='Document Type', readonly=True)
     document_stage = fields.Integer(related='md_sale_order_id.document_stage', readonly=True)

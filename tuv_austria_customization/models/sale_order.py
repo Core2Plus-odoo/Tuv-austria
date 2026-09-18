@@ -8,11 +8,12 @@ CONTRACT_DOCUMENT_TYPES = ('contract_form', 'pnac_contract')
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    # The order of the values is the order of the statusbar in the form header, and
-    # also the order of the flow: review first, then the three sales documents.
+    # The order of the values is the order of the flow: the offer application is
+    # taken first, the review form goes to the planning team next, and only their
+    # approval opens the remaining sales documents.
     document_type = fields.Selection([
-        ('review_form', 'Review Form'),
         ('offer_application', 'Offer Application'),
+        ('review_form', 'Review Form'),
         ('proposal_form', 'Proposal Form'),
         ('contract_form', 'TAC-TAH-Contract'),
         ('pnac_contract', 'PNAC-Contract'),
@@ -24,10 +25,34 @@ class SaleOrder(models.Model):
     @api.depends('document_type')
     def _compute_document_stage(self):
         order_of = {t: i for i, t in enumerate(
-            ('review_form', 'offer_application', 'proposal_form', 'contract_form'), start=1)}
+            ('offer_application', 'review_form', 'proposal_form', 'contract_form'), start=1)}
         order_of['pnac_contract'] = order_of['contract_form']
         for order in self:
             order.document_stage = order_of.get(order.document_type, 0)
+    # ------------------------------------------------------------------
+    # Document numbers
+    # ------------------------------------------------------------------
+    # One number is drawn automatically, at the offer application, and stays with
+    # the order for good. Every other document carries its own number instead, left
+    # empty on purpose: the client writes whichever number belongs on that form, so
+    # none of them inherits the offer application's.
+    tuv_sequence = fields.Char(
+        string='Sequence No', copy=False, readonly=True, tracking=True, index='btree_not_null',
+        help='Drawn once, the moment the order reaches the Offer Application step.')
+    rf_sequence_no = fields.Char(string='Sequence No', copy=False)
+    pr_sequence_no = fields.Char(string='Sequence No', copy=False)
+    ct_sequence_no = fields.Char(string='Sequence No', copy=False)
+
+    def _assign_tuv_sequence(self):
+        """Draw the document number for orders that reached the offer application."""
+        for order in self:
+            if order.document_type and not order.tuv_sequence:
+                number = self.env['ir.sequence'].next_by_code('tuv.austria.document')
+                if number:
+                    # sudo: the field is readonly, and a salesperson may already be
+                    # locked out of the order by the review
+                    order.sudo().write({'tuv_sequence': number})
+
     contract_completed = fields.Boolean(
         string='Contract Completed', copy=False, tracking=True,
         help='Set automatically the moment a contract document type is chosen, '
@@ -234,12 +259,14 @@ class SaleOrder(models.Model):
     def create(self, vals_list):
         orders = super().create(vals_list)
         orders._handle_contract_document()
+        orders._assign_tuv_sequence()
         return orders
 
     def write(self, vals):
         res = super().write(vals)
         if 'document_type' in vals:
             self._handle_contract_document()
+            self._assign_tuv_sequence()
         return res
 
     def _handle_contract_document(self):
