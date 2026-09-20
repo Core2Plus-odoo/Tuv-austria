@@ -5,10 +5,11 @@ from odoo.exceptions import UserError
 class ProjectProject(models.Model):
     """The planning team's side of an order.
 
-    The project is created the moment sales sends the review form over, and shows
-    the very same review form and contract, read only: the planning team checks
-    what sales filled in and either approves it or sends it back. Everything is a
-    related field on the order (md_sale_order_id), so there is one copy of the data.
+    The project is created the moment sales sends the application form over, and
+    shows that very application form and the contract, read only: the planning team
+    checks what sales filled in and either approves it or sends it back. Everything
+    is a related field on the order (md_sale_order_id), so there is one copy of the
+    data.
     """
 
     _inherit = 'project.project'
@@ -42,9 +43,60 @@ class ProjectProject(models.Model):
         related='md_sale_order_id.document_type', string='Document Type', readonly=True)
     document_stage = fields.Integer(related='md_sale_order_id.document_stage', readonly=True)
 
+
     # ------------------------------------------------------------------
-    # Review form and contract of the order, read only
+    # Application form of the order, read only
     # ------------------------------------------------------------------
+    # This is what the planning team approves, so the whole form is mirrored here.
+    audit_site = fields.Char(
+        related='md_sale_order_id.audit_site', readonly=True)
+    other_facilities = fields.Char(
+        related='md_sale_order_id.other_facilities', readonly=True)
+    sites_to_be_audited = fields.Selection(
+        related='md_sale_order_id.sites_to_be_audited', readonly=True)
+    company_representative = fields.Char(
+        related='md_sale_order_id.company_representative', readonly=True)
+    management_system_representative = fields.Char(
+        related='md_sale_order_id.management_system_representative', readonly=True)
+    management_system_representative_phone = fields.Char(
+        related='md_sale_order_id.management_system_representative_phone', readonly=True)
+    management_system_representative_email = fields.Char(
+        related='md_sale_order_id.management_system_representative_email', readonly=True)
+    consultant = fields.Char(
+        related='md_sale_order_id.consultant', readonly=True)
+    consultant_phone = fields.Char(
+        related='md_sale_order_id.consultant_phone', readonly=True)
+    consultant_email = fields.Char(
+        related='md_sale_order_id.consultant_email', readonly=True)
+    scope_of_activity = fields.Char(
+        related='md_sale_order_id.scope_of_activity', readonly=True)
+    critical_processes = fields.Char(
+        related='md_sale_order_id.critical_processes', readonly=True)
+    legislation_relative = fields.Char(
+        related='md_sale_order_id.legislation_relative', readonly=True)
+    permanent_personnel = fields.Char(
+        related='md_sale_order_id.permanent_personnel', readonly=True)
+    temporary_personnel = fields.Char(
+        related='md_sale_order_id.temporary_personnel', readonly=True)
+    personnel_on_shifts = fields.Char(
+        related='md_sale_order_id.personnel_on_shifts', readonly=True)
+    number_of_shifts = fields.Char(
+        related='md_sale_order_id.number_of_shifts', readonly=True)
+    level_of_integration = fields.Selection(
+        related='md_sale_order_id.level_of_integration', readonly=True)
+    other_certified_management_system = fields.Selection(
+        related='md_sale_order_id.other_certified_management_system', readonly=True)
+    license_attachment = fields.Binary(
+        related='md_sale_order_id.license_attachment', readonly=True)
+    license_attachment_filename = fields.Char(
+        related='md_sale_order_id.license_attachment_filename', readonly=True)
+
+    # ------------------------------------------------------------------
+    # Review form of the order, read only
+    # ------------------------------------------------------------------
+    # No longer shown on the project - the planning team approves the application
+    # form now - but kept so an existing database whose stored project view still
+    # points at these fields can be upgraded without a validation error.
     rf_audit_type = fields.Selection(related='md_sale_order_id.rf_audit_type', readonly=True)
     rf_certified_since = fields.Date(related='md_sale_order_id.rf_certified_since', readonly=True)
     rf_competent = fields.Selection(related='md_sale_order_id.rf_competent', readonly=True)
@@ -79,6 +131,10 @@ class ProjectProject(models.Model):
     rf_signature_filename = fields.Char(related='md_sale_order_id.rf_signature_filename', readonly=True)
     rf_specify = fields.Char(related='md_sale_order_id.rf_specify', readonly=True)
     rf_standards = fields.Char(related='md_sale_order_id.rf_standards', readonly=True)
+
+    # ------------------------------------------------------------------
+    # Contract of the order, read only
+    # ------------------------------------------------------------------
     contract_accreditation_1 = fields.Char(related='md_sale_order_id.contract_accreditation_1', readonly=True)
     contract_accreditation_2 = fields.Char(related='md_sale_order_id.contract_accreditation_2', readonly=True)
     contract_address_1 = fields.Char(related='md_sale_order_id.contract_address_1', readonly=True)

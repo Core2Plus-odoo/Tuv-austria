@@ -45,14 +45,14 @@ class SaleOrder(models.Model):
     # Sales cannot touch the order while the planning team has it.
     review_locked = fields.Boolean(compute='_compute_review_locked')
 
-    # One single bar for the whole flow: the review status and the document type
+    # One single bar for the whole flow: the approval status and the document type
     # folded into the one line the user follows from draft to contract.
     flow_state = fields.Selection([
         ('draft', 'Draft'),
         ('offer_application', 'Offer Application'),
-        ('review_form', 'Review Form'),
         ('waiting_review', 'Waiting for Review'),
         ('review_approved', 'Review Approved'),
+        ('review_form', 'Review Form'),
         ('proposal_form', 'Proposal Form'),
         ('contract', 'Contract'),
     ], string='Flow', compute='_compute_flow_state', store=True, index=True)
@@ -63,16 +63,16 @@ class SaleOrder(models.Model):
             if order.review_state == 'waiting_review':
                 order.flow_state = 'waiting_review'
             elif order.review_state == 'draft':
-                # before the planning team is involved: nothing picked yet, the offer
-                # application, or the review form that is about to be sent over
-                order.flow_state = (order.document_type
-                                    if order.document_type in ('offer_application', 'review_form')
-                                    else 'draft')
+                # before the planning team is involved: nothing picked yet, or the
+                # application form that is about to be sent over
+                order.flow_state = ('offer_application'
+                                    if order.document_type == 'offer_application' else 'draft')
             elif order.document_type in ('contract_form', 'pnac_contract'):
                 order.flow_state = 'contract'
-            elif order.document_type == 'proposal_form':
-                order.flow_state = 'proposal_form'
+            elif order.document_type in ('review_form', 'proposal_form'):
+                order.flow_state = order.document_type
             else:
+                # approved, still sitting on the application form
                 order.flow_state = 'review_approved'
 
     @api.depends('review_state')
@@ -158,11 +158,10 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if self.review_state != 'draft':
             raise UserError(_('This order has already been sent to the planning team.'))
-        if not self.rf_outcome:
-            raise UserError(_('Fill in the Review Outcome before sending the review form '
-                              'to the planning team.'))
+        if self.document_type != 'offer_application':
+            raise UserError(_('Take the offer application first: the application form is '
+                              'what goes to the planning team.'))
         self.write({
-            'document_type': 'review_form',
             'review_state': 'waiting_review',
             'review_submitted_on': fields.Datetime.now(),
             'review_submitted_by': self.env.user.id,
@@ -175,13 +174,13 @@ class SaleOrder(models.Model):
         self.invalidate_recordset(['project_ids', 'project_count'])
 
         users = self._review_notified_users()
-        body = _('Review form of %(order)s was sent to the planning team by %(user)s.',
+        body = _('Application form of %(order)s was sent to the planning team by %(user)s.',
                  order=self.name, user=self.env.user.name)
         # message_post with recipients = chatter entry + outgoing e-mail
         self.message_post(body=body, partner_ids=users.partner_id.ids,
                           subtype_xmlid='mail.mt_comment')
-        summary = _('Review form to check - %s', self.name)
-        note = _('Sales sent the application review form of %s for approval.', self.name)
+        summary = _('Application form to check - %s', self.name)
+        note = _('Sales sent the application form of %s for approval.', self.name)
         for user in self._review_planning_users():
             self.activity_schedule('mail.mail_activity_data_todo', user_id=user.id,
                                    summary=summary, note=note)
@@ -217,8 +216,8 @@ class SaleOrder(models.Model):
         for project in self.sudo().project_ids:
             project.sudo().activity_feedback(['mail.mail_activity_data_todo'])
 
-        body = _('Review form of %(order)s was approved by %(user)s. Sales can continue with '
-                 'the application form, the proposal and the contract.',
+        body = _('Application form of %(order)s was approved by %(user)s. Sales can continue '
+                 'with the review form, the proposal and the contract.',
                  order=self.name, user=self.env.user.name)
         salespeople = self.sudo().user_id | self.sudo().create_uid
         self.sudo().message_post(body=body, partner_ids=salespeople.partner_id.ids,
@@ -226,9 +225,9 @@ class SaleOrder(models.Model):
         for user in salespeople:
             self.sudo().activity_schedule(
                 'mail.mail_activity_data_todo', user_id=user.id,
-                summary=_('Review approved - %s', self.name),
-                note=_('The planning team approved the review form. Continue with the '
-                       'application form, the proposal and the contract.'))
+                summary=_('Application form approved - %s', self.name),
+                note=_('The planning team approved the application form. Continue with the '
+                       'review form, the proposal and the contract.'))
         return True
 
     def action_reject_review(self):
@@ -240,16 +239,18 @@ class SaleOrder(models.Model):
         self.sudo().activity_feedback(['mail.mail_activity_data_todo'])
         for project in self.sudo().project_ids:
             project.sudo().activity_feedback(['mail.mail_activity_data_todo'])
-        salespeople = self.user_id | self.create_uid
-        body = _('Review form of %(order)s was sent back to sales by %(user)s.',
+        # sudo throughout: a planning user has no write access on sale.order, and
+        # posting a message or raising an activity on a record counts as writing it
+        salespeople = self.sudo().user_id | self.sudo().create_uid
+        body = _('Application form of %(order)s was sent back to sales by %(user)s.',
                  order=self.name, user=self.env.user.name)
-        self.message_post(body=body, partner_ids=salespeople.partner_id.ids,
-                          subtype_xmlid='mail.mt_comment')
+        self.sudo().message_post(body=body, partner_ids=salespeople.partner_id.ids,
+                                 subtype_xmlid='mail.mt_comment')
         for user in salespeople:
-            self.activity_schedule(
+            self.sudo().activity_schedule(
                 'mail.mail_activity_data_todo', user_id=user.id,
-                summary=_('Review form sent back - %s', self.name),
-                note=_('The planning team asked for corrections on the review form.'))
+                summary=_('Application form sent back - %s', self.name),
+                note=_('The planning team asked for corrections on the application form.'))
         return True
 
     # ------------------------------------------------------------------

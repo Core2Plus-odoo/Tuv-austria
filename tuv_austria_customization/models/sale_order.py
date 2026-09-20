@@ -33,12 +33,15 @@ class SaleOrder(models.Model):
     # Document numbers
     # ------------------------------------------------------------------
     # One number is drawn automatically, at the offer application, and stays with
-    # the order for good. Every other document carries its own number instead, left
-    # empty on purpose: the client writes whichever number belongs on that form, so
-    # none of them inherits the offer application's.
+    # the order; the user may overwrite it with a number of his own, and nothing
+    # draws over it afterwards. Every other document carries its own number instead,
+    # left empty on purpose: the client writes whichever number belongs on that
+    # form, so none of them inherits the offer application's.
     tuv_sequence = fields.Char(
-        string='Sequence No', copy=False, readonly=True, tracking=True, index='btree_not_null',
-        help='Drawn once, the moment the order reaches the Offer Application step.')
+        string='Sequence No', copy=False, tracking=True, index='btree_not_null',
+        help='Drawn from the sequence the moment the order reaches the Offer '
+             'Application step, and editable afterwards: type your own number and '
+             'it is kept as it is.')
     rf_sequence_no = fields.Char(string='Sequence No', copy=False)
     pr_sequence_no = fields.Char(string='Sequence No', copy=False)
     ct_sequence_no = fields.Char(string='Sequence No', copy=False)
@@ -49,8 +52,8 @@ class SaleOrder(models.Model):
             if order.document_type and not order.tuv_sequence:
                 number = self.env['ir.sequence'].next_by_code('tuv.austria.document')
                 if number:
-                    # sudo: the field is readonly, and a salesperson may already be
-                    # locked out of the order by the review
+                    # sudo: a salesperson may already be locked out of the order by
+                    # the review
                     order.sudo().write({'tuv_sequence': number})
 
     contract_completed = fields.Boolean(

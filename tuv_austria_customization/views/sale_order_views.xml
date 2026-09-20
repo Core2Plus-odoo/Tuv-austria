@@ -35,6 +35,11 @@
                 <field name="vat"/>
             </field>
 
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <!-- Drawn at the offer application, and the user may type his own
+                     over it; it belongs on the order head, not inside one tab. -->
+                <field name="tuv_sequence" placeholder="e.g. TUV-001"/>
+            </xpath>
             <xpath expr="//group[@name='order_details']/field[@name='validity_date']" position="before">
                 <field name="document_type"/>
                 <field name="contract_completed" invisible="1"/>
@@ -50,18 +55,15 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <xpath expr="//header/button[1]" position="before">
-                <!-- The flow, one step at a time: the offer application is taken
-                     first, then the review form goes to the planning team, and only
-                     their approval opens the remaining sales documents. -->
+                <!-- The flow, one step at a time: the application form is taken
+                     first and goes to the planning team, and only their approval
+                     opens the review form, the proposal and the contract. -->
                 <button name="action_document_offer_application" type="object"
                     string="Offer Application" class="btn-primary" data-hotkey="1"
                     invisible="document_type"/>
-                <button name="action_document_review_form" type="object"
-                    string="Review Form" class="btn-primary" data-hotkey="2"
-                    invisible="document_type != 'offer_application'"/>
                 <button name="action_submit_to_planning" type="object"
                     string="Submit to Planning Team" class="btn-primary" data-hotkey="s"
-                    invisible="document_type != 'review_form' or review_state != 'draft'"/>
+                    invisible="document_type != 'offer_application' or review_state != 'draft'"/>
                 <button name="action_approve_review" type="object"
                     string="Approve Review" class="btn-primary" data-hotkey="a"
                     groups="tuv_austria_customization.group_planning_team,base.group_system"
@@ -70,9 +72,12 @@
                     string="Send Back to Sales" data-hotkey="r"
                     groups="tuv_austria_customization.group_planning_team,base.group_system"
                     invisible="review_state != 'waiting_review'"/>
+                <button name="action_document_review_form" type="object"
+                    string="Review Form" class="btn-primary" data-hotkey="2"
+                    invisible="document_type != 'offer_application' or review_state != 'review_approved'"/>
                 <button name="action_document_proposal_form" type="object"
                     string="Proposal Form" class="btn-primary" data-hotkey="3"
-                    invisible="document_type != 'review_form' or review_state != 'review_approved'"/>
+                    invisible="document_type != 'review_form'"/>
                 <button name="action_document_contract_form" type="object"
                     string="TAC-TAH-Contract" data-hotkey="4"
                     invisible="document_type not in ('proposal_form', 'pnac_contract')"/>
@@ -172,7 +177,6 @@
                     <group name="group_application_form" string="Application Form"
                         invisible="document_stage &lt; 1">
                         <group name="group_application_form_left">
-                            <field name="tuv_sequence" placeholder="drawn automatically"/>
                             <field name="audit_site"/>
                             <field name="other_facilities"/>
                             <field name="sites_to_be_audited"/>
@@ -445,13 +449,13 @@
                     domain="[('flow_state', '=', 'draft')]"/>
                 <filter name="flow_offer_application" string="Offer Application"
                     domain="[('flow_state', '=', 'offer_application')]"/>
-                <filter name="flow_review_form" string="Review Form"
-                    domain="[('flow_state', '=', 'review_form')]"/>
                 <filter name="flow_waiting_review" string="Waiting for Review"
                     domain="[('flow_state', '=', 'waiting_review')]"/>
                 <filter name="flow_review_approved" string="Review Approved"
                     domain="[('flow_state', '=', 'review_approved')]"/>
                 <separator/>
+                <filter name="flow_review_form" string="Review Form"
+                    domain="[('flow_state', '=', 'review_form')]"/>
                 <filter name="flow_proposal_form" string="Proposal Form"
                     domain="[('flow_state', '=', 'proposal_form')]"/>
                 <filter name="flow_contract" string="Contract"

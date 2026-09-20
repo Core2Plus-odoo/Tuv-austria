@@ -17,11 +17,13 @@
                     decoration-success="contract_completed"
                     invisible="not contract_completed"/>
             </field>
+            <!-- The client does not use this page. It is hidden rather than dropped
+                 because the review view below still anchors itself on it, and a
+                 database that carries the older stored arch has to keep finding it. -->
             <page name="description" position="after">
-                <page name="certification_details" string="Certification Details">
+                <page name="certification_details" string="Certification Details" invisible="1">
                     <group>
                         <group>
-                            <field name="md_sequence_no"/>
                             <field name="certificate_no"/>
                             <field name="certification_standard"/>
                             <field name="ea_code_ids" widget="many2many_tags"/>
@@ -131,67 +133,50 @@
                     <field name="document_stage" invisible="1"/>
             </xpath>
 
-            <!-- for now the client does not use this one -->
+            <!-- pages and buttons the client does not use -->
             <xpath expr="//page[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='settings']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_open_share_project_wizard']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
             <page name="certification_details" position="before">
-                <page name="review_form" string="Review Form"
+                <!-- What the planning team approves: the application form sales
+                     filled in, read only, with the approval trace underneath. -->
+                <page name="application_form" string="Application Form"
                     invisible="not md_sale_order_id">
                     <group>
-                        <group string="Competence Evaluation &amp; Impartiality Check">
-                            <field name="rf_competent"/>
-                            <field name="rf_info_sufficient"/>
-                            <field name="rf_impartiality_risk"/>
-                            <field name="rf_specify"/>
+                        <group string="Site &amp; Contacts">
+                            <field name="audit_site"/>
+                            <field name="other_facilities"/>
+                            <field name="sites_to_be_audited"/>
+                            <field name="company_representative"/>
+                            <field name="management_system_representative"/>
+                            <field name="management_system_representative_phone"/>
+                            <field name="management_system_representative_email"/>
+                            <field name="consultant"/>
+                            <field name="consultant_phone"/>
+                            <field name="consultant_email"/>
                         </group>
-                        <group string="Audit Type &amp; Client Information">
-                            <field name="rf_audit_type"/>
-                            <field name="rf_scope"/>
-                            <field name="rf_iaf_code"/>
-                            <field name="rf_standards"/>
+                        <group string="Activity &amp; Personnel">
+                            <field name="scope_of_activity"/>
+                            <field name="critical_processes"/>
+                            <field name="legislation_relative"/>
+                            <field name="permanent_personnel"/>
+                            <field name="temporary_personnel"/>
+                            <field name="personnel_on_shifts"/>
+                            <field name="number_of_shifts"/>
+                            <field name="other_certified_management_system"/>
+                            <field name="level_of_integration"/>
+                            <field name="license_attachment_filename" invisible="1"/>
+                            <field name="license_attachment" filename="license_attachment_filename"/>
                         </group>
-                        <group string="Certification History">
-                            <field name="rf_certified_since"/>
-                            <field name="rf_iso_9001"/>
-                            <field name="rf_iso_14001"/>
-                            <field name="rf_iso_45001"/>
-                            <field name="rf_iso_22000"/>
-                            <field name="rf_others"/>
-                            <field name="rf_others_text" invisible="not rf_others"/>
-                        </group>
-                        <group string="Previous Cycle">
-                            <field name="rf_docs_reviewed"/>
-                            <field name="rf_reports_evaluated"/>
-                        </group>
-                        <group string="Initial Certification">
-                            <field name="rf_ic_dates"/>
-                            <field name="rf_ic_report_reviewed"/>
-                            <field name="rf_ic_nc"/>
-                            <field name="rf_ic_nc_status"/>
-                        </group>
-                        <group string="Surveillance 01">
-                            <field name="rf_s1_dates"/>
-                            <field name="rf_s1_report_reviewed"/>
-                            <field name="rf_s1_nc"/>
-                            <field name="rf_s1_nc_status"/>
-                        </group>
-                        <group string="Surveillance 02">
-                            <field name="rf_s2_dates"/>
-                            <field name="rf_s2_report_reviewed"/>
-                            <field name="rf_s2_nc"/>
-                            <field name="rf_s2_nc_status"/>
-                        </group>
-                        <group string="Review Outcome">
-                            <field name="rf_outcome"/>
-                            <field name="rf_reviewer_name"/>
-                            <field name="rf_date"/>
-                            <field name="rf_signature_filename" invisible="1"/>
-                            <field name="rf_signature" widget="image"
-                                filename="rf_signature_filename" options="{'size': [200, 90]}"/>
-                        </group>
-                        <group string="Review Trace">
+                        <group string="Approval Trace">
+                            <field name="md_sequence_no"/>
                             <field name="review_submitted_by"/>
                             <field name="review_submitted_on"/>
                             <field name="review_approved_by"/>
