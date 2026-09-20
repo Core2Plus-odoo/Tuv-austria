@@ -226,17 +226,5 @@
         </field>
     </record>
 
-    <!-- The Invoicing page is added by sale_timesheet, so it has to be hidden from a
-         view that inherits that one. -->
-    <record id="project_project_view_form_invoicing_tuv_austria_customization" model="ir.ui.view">
-        <field name="name">project.project.form.invoicing.custom.operations</field>
-        <field name="model">project.project</field>
-        <field name="inherit_id" ref="sale_timesheet.project_project_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//page[@name='billing_employee_rate']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
-    </record>
 
 </odoo>

@@ -19,7 +19,7 @@ Centralized module for client-specific customizations across:
     'category': 'Customizations',
     'version': '1.2',
 
-    'depends': ['base', 'account', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
+    'depends': ['base', 'account', 'product', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
 
     'data': [
         'security/tuv_groups.xml',

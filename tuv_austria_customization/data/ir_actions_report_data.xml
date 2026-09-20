@@ -4,4 +4,7 @@
          Runs on every upgrade, so a core module update that puts the binding back
          is undone again. -->
     <function model="ir.actions.report" name="_tuv_unbind_gear_reports"/>
+
+    <!-- Hide the Invoicing page of the project form when sale_timesheet is around -->
+    <function model="ir.ui.view" name="_tuv_hide_project_invoicing_page"/>
 </odoo>
