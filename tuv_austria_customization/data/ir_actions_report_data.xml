@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Drop PDF Quote / Quotation-Order / Timesheets from the sale order gear menu.
+         Runs on every upgrade, so a core module update that puts the binding back
+         is undone again. -->
+    <function model="ir.actions.report" name="_tuv_unbind_gear_reports"/>
+</odoo>

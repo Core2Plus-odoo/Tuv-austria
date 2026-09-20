@@ -189,7 +189,9 @@
                             <field name="consultant_email"/>
                         </group>
                         <group name="group_application_form_right">
-
+                            <field name="application_annex_id"
+                                options="{'no_quick_create': True}"
+                                placeholder="pick the annex for the standard applied for..."/>
                             <field name="scope_of_activity"/>
                             <field name="critical_processes"/>
                             <field name="legislation_relative"/>

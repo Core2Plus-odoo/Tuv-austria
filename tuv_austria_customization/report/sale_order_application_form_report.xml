@@ -84,6 +84,20 @@
             .tuv_af .af_gdpr { font-size: 10px; text-align: justify; line-height: 1.45; }
             .tuv_af .af_gdpr p { margin: 0; }
             .tuv_af .af_gdpr .af_gdpr_head { letter-spacing: 0.12em; margin-bottom: 3px; }
+
+            /* "Annex - ISO 22000 / FSSC 22000" (KFM-002b Rev.01, pages 3-4). Its
+               table is the same 175 mm wide and set one point larger than the
+               application form: 10 pt instead of 9 pt. */
+            .tuv_af table.af_annex td { font-size: 16.7px; text-align: center; }
+            .tuv_af table.af_a45 td { vertical-align: middle; }
+            .tuv_af table.af_en15 td { vertical-align: middle; }
+            .tuv_af table.af_en15 div { margin: 1px 0; }
+            .tuv_af table.af_annex td.af_l { text-align: left; }
+            .tuv_af table.af_annex td.af_val { text-align: left; }
+            .tuv_af .af_annex_name {
+                font-size: 23.3px; font-weight: bold; text-align: center;
+                line-height: 30px;
+            }
         </style>
     </template>
 
@@ -95,6 +109,31 @@
                 <colgroup><col style="width: 77.17%;"/><col style="width: 22.83%;"/></colgroup>
                 <tr>
                     <td class="af_title" style="line-height: 51.6px;">Management Systems Application Form</td>
+                    <td class="af_c" rowspan="2">
+                        <img t-if="doc.company_id.logo" class="af_logo"
+                             t-att-src="image_data_uri(doc.company_id.logo)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="af_group" style="line-height: 53.4px;">TÜV AUSTRIA Group</td>
+                </tr>
+            </table>
+            <div class="af_code">KFM-002b, Rev.01</div>
+        </div>
+    </template>
+
+    <!-- The annex is its own document inside the same report, so wkhtmltopdf can
+         give it a header of its own: the annex name only shows on the annex pages. -->
+    <template id="report_sale_order_application_form_annex_header">
+        <div class="header tuv_af">
+            <t t-call="tuv_austria_customization.report_sale_order_application_form_style"/>
+            <table>
+                <colgroup><col style="width: 77.17%;"/><col style="width: 22.83%;"/></colgroup>
+                <tr>
+                    <td class="af_title" style="line-height: 30px;">
+                        Management Systems Application Form
+                        <div class="af_annex_name" t-field="annex.name"/>
+                    </td>
                     <td class="af_c" rowspan="2">
                         <img t-if="doc.company_id.logo" class="af_logo"
                              t-att-src="image_data_uri(doc.company_id.logo)"/>
@@ -459,7 +498,507 @@
                                 I would like to be informed about the new services offered by the Company</p>
                         </div>
                     </div>
+
+                    <!-- ══════════ Annex - ISO 22000 / FSSC 22000 ══════════ -->
+                    <!-- Only when the order names one. The original prints it as a
+                         separate document behind the application form, with its own
+                         line in the page header; here that line repeats as the table
+                         head so it shows at the top of every annex page. -->
                 </div>
+
+                <!-- The annex is a second document of the same report: its own header,
+                     its own footer, its own article. That is what keeps the annex name
+                     off the application form's own pages. -->
+                <t t-set="annex" t-value="doc.application_annex_id"/>
+                <t t-if="annex">
+                    <t t-call="tuv_austria_customization.report_sale_order_application_form_annex_header"/>
+                    <t t-call="tuv_austria_customization.report_sale_order_application_form_footer"/>
+                    <div class="article tuv_af" t-att-data-oe-model="doc and doc._name"
+                         t-att-data-oe-id="doc and doc.id">
+                        <t t-call="tuv_austria_customization.report_sale_order_application_form_style"/>
+                    <div t-if="annex.annex_type == 'iso22000_fssc22000'">
+                        <table class="af_annex">
+                            <colgroup>
+                                <col style="width: 11.43%;"/><col style="width: 38.57%;"/>
+                                <col style="width: 5.71%;"/><col style="width: 5.71%;"/>
+                                <col style="width: 10.00%;"/><col style="width: 28.58%;"/>
+                            </colgroup>
+                            <tbody>
+                                <tr><td colspan="6" class="af_bar">ADDITIONAL INFORMATION</td></tr>
+                                <tr>
+                                    <td colspan="3">COID</td>
+                                    <td colspan="3" class="af_val"><span t-field="annex.coid"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Number of HACCP studies</td>
+                                    <td colspan="3" class="af_val"><span t-field="annex.haccp_studies"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Number of production lines</td>
+                                    <td colspan="3" class="af_val"><span t-field="annex.production_lines"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" rowspan="2">BLACKOUT PERIOD FOR UNANNOUNCED AUDIT
+                                        (only for FSCC 22000). At least one of the annual surveillance
+                                        audits shall be unannounced</td>
+                                    <td colspan="2">DATE</td>
+                                    <td>REASON FOR BLACKOUT</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="af_val"><span t-field="annex.blackout_date"/>&#160;</td>
+                                    <td class="af_val"><span t-field="annex.blackout_reason"/>&#160;</td>
+                                </tr>
+
+                                <tr><td colspan="6" class="af_bar">SCOPE DETAILS</td></tr>
+                                <tr>
+                                    <td colspan="2">PRODUCT(S):</td>
+                                    <td colspan="4" class="af_val"><span t-field="annex.products"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">PACKAGING METHOD (PLASTIC, GLASS ETC.)</td>
+                                    <td colspan="4" class="af_val"><span t-field="annex.packaging_method"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">MAIN PROCESSES</td>
+                                    <td colspan="4" class="af_val"><span t-field="annex.main_processes"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">EXCLUSIONS OF SCOPE</td>
+                                    <td colspan="4" class="af_val"><span t-field="annex.scope_exclusions"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">OFF SITE ACTIVITIES</td>
+                                    <td colspan="4" class="af_val"><span t-field="annex.off_site_activities"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">ARE THERE ANY SEASONAL PRODUCTS?</td>
+                                    <td colspan="4" class="af_val">
+                                        <t t-if="annex.seasonal_products"><span t-field="annex.seasonal_products"/></t>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">IF YES, WHAT PERIOD?</td>
+                                    <td colspan="4" class="af_val"><span t-field="annex.seasonal_period"/>&#160;</td>
+                                </tr>
+
+                                <tr><td colspan="6" class="af_bar">PRODUCT CATEGORY &#8211; ONLY FOR ISO 22000</td></tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td>Food Chain Categories<br/>(Annex A ISO/TS 22003-1:2022)</td>
+                                    <td colspan="2">Selection</td>
+                                    <td colspan="2">Give Short Description of Products Produced or Services</td>
+                                </tr>
+                                <tr t-foreach="annex.line_ids_of('iso22000')" t-as="line" t-key="line.id">
+                                    <td><span t-field="line.code"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td colspan="2"><span class="af_box"><t t-if="line.selected">X</t></span></td>
+                                    <td colspan="2" class="af_val"><span t-field="line.description"/>&#160;</td>
+                                </tr>
+
+                                <tr><td colspan="6" class="af_bar">PRODUCT CATEGORY &#8211; ONLY FOR FSSC 22000</td></tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td>Food Chain Categories<br/>(FSSC 22000 version 6)</td>
+                                    <td colspan="2">Selection</td>
+                                    <td colspan="2">Give Short Description of Products Produced or Services</td>
+                                </tr>
+                                <tr t-foreach="annex.line_ids_of('fssc22000')" t-as="line" t-key="line.id">
+                                    <td><span t-field="line.code"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td colspan="2"><span class="af_box"><t t-if="line.selected">X</t></span></td>
+                                    <td colspan="2" class="af_val"><span t-field="line.description"/>&#160;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6" class="af_l">
+                                        <span class="af_box"><t t-if="annex.terms_confirmed">X</t></span>
+                                        I confirm that I have read and agree to abide by all
+                                        T&#220;V AUSTRIA&#8217;s Terms and Conditions</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <!-- ══════════ Annex - ISO 45001 ══════════ -->
+                    <!-- "2. Application Form 45001.docx": 9 grid columns over 170 mm,
+                         the natural factors running down the left while sections 2 to 6
+                         stack on the right, exactly as the Word file sets them. -->
+                    <div t-if="annex.annex_type == 'iso45001'">
+                        <t t-set="box" t-value="'&lt;span class=\'af_box\'&gt;'"/>
+                        <table class="af_a45">
+                            <colgroup>
+                                <col style="width: 17.65%;"/><col style="width: 13.24%;"/>
+                                <col style="width: 5.88%;"/><col style="width: 27.94%;"/>
+                                <col style="width: 8.83%;"/><col style="width: 0.73%;"/>
+                                <col style="width: 8.09%;"/><col style="width: 4.77%;"/>
+                                <col style="width: 12.87%;"/>
+                            </colgroup>
+                            <tbody>
+                                <tr><td colspan="9" class="af_bar">A D D I T I O N A L&#160;&#160;I N F O R M A T I O N</td></tr>
+                                <tr><td colspan="9" class="af_b">KEY HAZARDS RELATED TO PROCESSES (Choose)</td></tr>
+
+                                <t t-set="nat" t-value="annex.rows_of('1. NATURAL FACTORS (Choose)')"/>
+                                <tr>
+                                    <td colspan="3" class="af_b af_2l">1. NATURAL FACTORS (Choose)</td>
+                                    <td colspan="2" class="af_b af_2l">2. CHEMICAL FACTORS / MATERIALS / SUBSTANCES (Describe)</td>
+                                    <td colspan="4"><span t-field="annex.row('chemical_factors').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span t-field="nat[0].name"/></td>
+                                    <td class="af_c"><span class="af_box"><t t-if="nat[0].selected">X</t></span></td>
+                                    <td colspan="2" class="af_b af_2l">3. BIOLOGICAL FACTORS (Describe)</td>
+                                    <td colspan="4"><span t-field="annex.row('biological_factors').description"/>&#160;</td>
+                                </tr>
+
+                                <!-- from here the left column keeps walking down the natural
+                                     factors while the right column changes section -->
+                                <t t-set="right" t-value="[
+                                    ('band', '4. ERGONOMIC FACTORS (Choose)', None),
+                                    ('check', 'OPTICAL DISPLAY SCREENS', 'erg_optical_display_screens'),
+                                    ('check', 'MANUAL HANDLING OF WEIGHTS', 'erg_manual_handling'),
+                                    ('check', 'REPEATABILITY OF MOVEMENTS', 'erg_repeatability'),
+                                    ('text', 'OTHER (Describe)', 'erg_other'),
+                                    ('band', '5. ELECTRICAL FACTORS (Choose)', None),
+                                    ('check', 'USE OF ELECTRICAL APPLIANCES', 'ele_appliances'),
+                                    ('check', 'WORKING ON HIGH / MEDIUM VOLTAGE SUBSTATIONS', 'ele_substations'),
+                                    ('check', 'ELECTRICAL NETWORK MAINTENANCE WORKS', 'ele_network_maintenance'),
+                                    ('text', 'OTHER (Describe)', 'ele_other'),
+                                    ('band', '6. PSYCHOLOGICAL FACTORS (Choose)', None),
+                                    ('check', 'DIFFICULT / VARIABLE WORKING HOURS', 'psy_working_hours'),
+                                    ('check', 'INTENSIVE WORK', 'psy_intensive_work'),
+                                    ('check', 'DANGEROUS WORK', 'psy_dangerous_work'),
+                                    ('text', 'OTHER (Describe)', 'psy_other'),
+                                ]"/>
+                                <tr t-foreach="right" t-as="r" t-key="r_index">
+                                    <t t-set="left" t-value="nat[r_index + 1] if r_index + 1 &lt; len(nat) else None"/>
+                                    <!-- the last natural factor is the one with a describe box -->
+                                    <t t-if="left and left.line_type == 'check_text'">
+                                        <td><span t-field="left.name"/></td>
+                                        <td colspan="2"><span t-field="left.description"/>&#160;</td>
+                                    </t>
+                                    <t t-elif="left">
+                                        <td colspan="2"><span t-field="left.name"/></td>
+                                        <td class="af_c"><span class="af_box"><t t-if="left.selected">X</t></span></td>
+                                    </t>
+                                    <t t-else="">
+                                        <td colspan="2">&#160;</td><td>&#160;</td>
+                                    </t>
+
+                                    <t t-if="r[0] == 'band'">
+                                        <td colspan="6" class="af_b"><span t-out="r[1]"/></td>
+                                    </t>
+                                    <t t-elif="r[0] == 'check'">
+                                        <td colspan="4"><span t-out="r[1]"/></td>
+                                        <td colspan="2" class="af_c">
+                                            <span class="af_box"><t t-if="annex.row(r[2]).selected">X</t></span></td>
+                                    </t>
+                                    <t t-else="">
+                                        <td colspan="2"><span t-out="r[1]"/></td>
+                                        <td colspan="4"><span t-field="annex.row(r[2]).description"/>&#160;</td>
+                                    </t>
+                                </tr>
+
+                                <tr><td colspan="9" class="af_b af_2l">KEY LEGAL OBLIGATIONS COMING FROM THE
+                                    APPLICABLE OH&amp;S LEGISLATION (Describe)</td></tr>
+                                <tr><td colspan="9" style="line-height: 38px;">
+                                    <span t-field="annex.row('legal_obligations').description"/>&#160;</td></tr>
+                                <tr>
+                                    <td colspan="6" class="af_2l">PROVISION OF SERVICES ON PREMISES OF ANOTHER
+                                        ORGANIZATION (eg. Realization of part of the production process or the
+                                        provision of the service)</td>
+                                    <td colspan="2"><span class="af_box"><t t-if="annex.row('services_other_premises').selected">X</t></span>YES</td>
+                                    <td><span class="af_box"><t t-if="annex.row('services_other_premises').description == 'No'">X</t></span>NO</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">EXISTENCE OF TEMPORARY SITES (eg Construction sites)</td>
+                                    <td colspan="2"><span class="af_box"><t t-if="annex.row('temporary_sites').selected">X</t></span>YES</td>
+                                    <td><span class="af_box"><t t-if="annex.row('temporary_sites').description == 'No'">X</t></span>NO</td>
+                                </tr>
+                                <tr><td colspan="9" class="af_2l">REFER TO ADDRESSES OF TEMPORARY SITES OR
+                                    ESTABLISHMENTS IN WHICH THE SERVICES ARE PROVIDED, THE NUMBER OF EMPLOYEES
+                                    AND THE TYPE OF THE SERVICE PROVIDED IN THESE SITES (or attach a separate file):</td></tr>
+                                <tr><td colspan="9" style="line-height: 38px;">
+                                    <span t-field="annex.row('temporary_sites_addresses').description"/>&#160;</td></tr>
+                                <tr>
+                                    <td colspan="4">NUMBER OF UNSKILLED PERSONNEL (ALL SITES)</td>
+                                    <td colspan="5"><span t-field="annex.row('unskilled_personnel').description"/>&#160;</td>
+                                </tr>
+                                <tr><td colspan="9">Other information &#8211; Remarks</td></tr>
+                                <tr><td colspan="9" style="line-height: 38px;">
+                                    <span t-field="annex.row('remarks').description"/>&#160;</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ══════════ Annex OK Recycled / EN 15343 ══════════ -->
+                    <!-- "10. EN15343_OK Recycled_ESYD_Application Form.docx" -->
+                    <div t-if="annex.annex_type == 'en15343_ok_recycled'">
+                        <table class="af_en15">
+                            <colgroup>
+                                <col style="width: 29.87%;"/><col style="width: 1.34%;"/>
+                                <col style="width: 14.76%;"/><col style="width: 4.02%;"/>
+                                <col style="width: 15.42%;"/><col style="width: 34.59%;"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div><span class="af_box"><t t-if="annex.row('new_certification').selected">X</t></span>New Certification</div>
+                                        <div><span class="af_box"><t t-if="annex.row('extension').selected">X</t></span>Extension</div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div><span class="af_box"><t t-if="annex.row('ok_recycled').selected">X</t></span>OK Recycled</div>
+                                        <div><span class="af_box"><t t-if="annex.row('en_15343').selected">X</t></span>EN 15343</div>
+                                        <div><span class="af_box"><t t-if="annex.row('ok_recycled_en_15343').selected">X</t></span>OK Recycled + EN 15343</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="af_i">Status of the applicant:</td>
+                                    <td colspan="5" class="af_i">Application for:</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="af_box"><t t-if="annex.row('status_manufacturer').selected">X</t></span>Manufacturer</td>
+                                    <td colspan="5">
+                                        <div><span class="af_box"><t t-if="annex.row('apply_waste_recycler').selected">X</t></span>Waste Recycler</div>
+                                        <div><span class="af_box"><t t-if="annex.row('apply_component').selected">X</t></span>Component / Semi Finished Product</div>
+                                        <div><span class="af_box"><t t-if="annex.row('apply_finished').selected">X</t></span>Finished product</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="af_box"><t t-if="annex.row('status_importer').selected">X</t></span>Importer / Representative</td>
+                                    <td colspan="5">
+                                        <div><span class="af_box"><t t-if="annex.row('apply_bottling').selected">X</t></span>Bottling Companies / Brand Owner</div>
+                                        <div><span class="af_box"><t t-if="annex.row('apply_trading').selected">X</t></span>Organisations trading finished products</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="af_i">With designation (trademark, production code):</td>
+                                    <td colspan="3"><span t-field="annex.row('designation').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="af_i">Number of different production sites:</td>
+                                    <td colspan="3"><span t-field="annex.row('production_sites').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="af_i">Reporting Period :</td>
+                                    <td colspan="3"><span t-field="annex.row('reporting_period').description"/>&#160;</td>
+                                </tr>
+                                <tr><td colspan="6" class="af_i">Certified true and complete by:</td></tr>
+                                <tr>
+                                    <td colspan="2">Name:</td>
+                                    <td colspan="4"><span t-field="annex.row('certified_name').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Position in the company:</td>
+                                    <td colspan="4"><span t-field="annex.row('certified_position').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Date:</td>
+                                    <td><span t-field="annex.row('certified_date').description"/>&#160;</td>
+                                    <td colspan="2">Signature:</td>
+                                    <td><span t-field="annex.row('certified_signature').description"/>&#160;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="af_b" style="margin: 10px 0 4px 0;">
+                            <span style="text-decoration: underline;">INFORMATION</span>
+                            <span style="font-weight: normal;"> (to be published on the Certificate and/or website)</span>
+                        </div>
+                        <table class="af_en15">
+                            <colgroup>
+                                <col style="width: 7.50%;"/><col style="width: 25.24%;"/>
+                                <col style="width: 67.26%;"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="4" class="af_c af_b">Certificate</td>
+                                    <td>Company name:</td>
+                                    <td><span t-field="annex.row('cert_company_name').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>Address&#160;&#160;&#160;Street</td>
+                                    <td><span t-field="annex.row('cert_street').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>ZIP Code / Country</td>
+                                    <td><span t-field="annex.row('cert_zip_country').description"/>&#160;</td>
+                                </tr>
+                                <tr><td>&#160;</td><td>&#160;</td></tr>
+                                <tr>
+                                    <td rowspan="4" class="af_c af_b">On website only</td>
+                                    <td>"Public" Contact Person</td>
+                                    <td><span t-field="annex.row('web_contact_person').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td><span t-field="annex.row('web_phone').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail</td>
+                                    <td><span t-field="annex.row('web_email').description"/>&#160;</td>
+                                </tr>
+                                <tr>
+                                    <td>Web site</td>
+                                    <td><span t-field="annex.row('web_site').description"/>&#160;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- PRODUCT DATA starts a page of its own, as in the Word file -->
+                        <div style="page-break-before: always;">
+                            <div class="af_b" style="text-decoration: underline; margin-bottom: 3px;">PRODUCT DATA:</div>
+                            <div style="margin-bottom: 8px;">Please, fill in the form carefully! The more
+                                accurate the form is filled in, the easier and faster the treatment!</div>
+
+                            <div class="af_b" style="margin-bottom: 3px;">A.&#160;&#160;fill in case of Individual Products</div>
+                            <table class="af_en15">
+                                <colgroup>
+                                    <col style="width: 7.15%;"/><col style="width: 12.86%;"/>
+                                    <col style="width: 18.56%;"/><col style="width: 12.70%;"/>
+                                    <col style="width: 10.16%;"/><col style="width: 12.27%;"/>
+                                    <col style="width: 11.44%;"/><col style="width: 14.86%;"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td class="af_c af_2l">A/A</td>
+                                        <td class="af_c af_2l">Product Type (Intended Use, size, thickness etc)</td>
+                                        <td class="af_c af_2l">Raw material Used (Aluminium, Plastic -PET, PP, PS, PVC etc &#8211; Fabric etc)</td>
+                                        <td class="af_c af_2l">Supplier of the Recycled material</td>
+                                        <td class="af_c af_2l">Pre or Post Consumer Waste</td>
+                                        <td class="af_c af_2l">Production Method</td>
+                                        <td class="af_c af_2l">Recycled Content Percentage (%)</td>
+                                        <td class="af_c af_2l">Quantity Produced during the Reporting Period (t)</td>
+                                    </tr>
+                                    <t t-set="individual" t-value="annex.product_line_ids.lines_of('individual')"/>
+                                    <tr t-foreach="individual" t-as="line" t-key="line.id">
+                                        <td class="af_c"><span t-field="line.reference"/>&#160;</td>
+                                        <td><span t-field="line.product_type"/>&#160;</td>
+                                        <td><span t-field="line.raw_material"/>&#160;</td>
+                                        <td><span t-field="line.supplier"/>&#160;</td>
+                                        <td><span t-field="line.waste_type"/>&#160;</td>
+                                        <td><span t-field="line.production_method"/>&#160;</td>
+                                        <td class="af_c"><span t-field="line.recycled_percentage"/>&#160;</td>
+                                        <td class="af_c"><span t-field="line.quantity"/>&#160;</td>
+                                    </tr>
+                                    <!-- the paper form always shows three blank rows -->
+                                    <tr t-foreach="range(max(3 - len(individual), 0))" t-as="blank" t-key="blank">
+                                        <td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td>
+                                        <td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" style="text-align: right; font-weight: bold;">Total:</td>
+                                        <td class="af_c"><span t-field="annex.row('individual_total').description"/>&#160;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="af_b" style="margin: 10px 0 3px 0;">B.&#160;&#160;Fill in case of Group Products</div>
+                            <table class="af_en15">
+                                <colgroup>
+                                    <col style="width: 9.91%;"/><col style="width: 9.67%;"/>
+                                    <col style="width: 17.79%;"/><col style="width: 11.65%;"/>
+                                    <col style="width: 11.34%;"/><col style="width: 12.70%;"/>
+                                    <col style="width: 11.34%;"/><col style="width: 15.60%;"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td class="af_c af_2l">Group</td>
+                                        <td class="af_c af_2l">Product Type (Intended Use, size, thickness etc)</td>
+                                        <td class="af_c af_2l">Raw material Used (Aluminium, Plastic -PET, PP, PS, PVC etc &#8211; Fabric etc)</td>
+                                        <td class="af_c af_2l">Supplier of the Recycled material</td>
+                                        <td class="af_c af_2l">Pre or Post Consumer Waste</td>
+                                        <td class="af_c af_2l">Production Method</td>
+                                        <td class="af_c af_2l">Recycled Content Percentage (%)</td>
+                                        <td class="af_c af_2l">Quantity Produced during the Reporting Period (t)</td>
+                                    </tr>
+                                    <t t-set="grouped" t-value="annex.product_line_ids.lines_of('group')"/>
+                                    <tr t-foreach="grouped" t-as="line" t-key="line.id">
+                                        <td class="af_c"><span t-field="line.reference"/>&#160;</td>
+                                        <td><span t-field="line.product_type"/>&#160;</td>
+                                        <td><span t-field="line.raw_material"/>&#160;</td>
+                                        <td><span t-field="line.supplier"/>&#160;</td>
+                                        <td><span t-field="line.waste_type"/>&#160;</td>
+                                        <td><span t-field="line.production_method"/>&#160;</td>
+                                        <td class="af_c"><span t-field="line.recycled_percentage"/>&#160;</td>
+                                        <td class="af_c"><span t-field="line.quantity"/>&#160;</td>
+                                    </tr>
+                                    <tr t-foreach="range(max(8 - len(grouped), 0))" t-as="blank" t-key="blank">
+                                        <td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td>
+                                        <td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" style="text-align: right; font-weight: bold;">Total:</td>
+                                        <td class="af_c"><span t-field="annex.row('group_total').description"/>&#160;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="margin-top: 8px;">All the provided information will be treated as highly confidential</div>
+                        </div>
+                    </div>
+
+                    <!-- Every other annex: its bands and rows, straight off its own
+                         Word file. The catalogue keeps each file's questions apart,
+                         so ISO 45001 never shows an ISO 13485 question. -->
+                    <div t-if="annex.annex_type not in ('iso22000_fssc22000', 'iso45001', 'en15343_ok_recycled')">
+                        <table class="af_annex">
+                            <colgroup>
+                                <col style="width: 50%;"/><col style="width: 12%;"/>
+                                <col style="width: 38%;"/>
+                            </colgroup>
+                            <tbody>
+                                <t t-set="last_section" t-value="None"/>
+                                <t t-set="last_code" t-value="None"/>
+                                <t t-foreach="annex.category_line_ids.sorted('sequence')"
+                                   t-as="row" t-key="row.id">
+                                    <tr t-if="row.section != last_section">
+                                        <td colspan="3" class="af_bar"><span t-field="row.section"/></td>
+                                    </tr>
+                                    <t t-set="last_section" t-value="row.section"/>
+
+                                    <!-- a grading row repeats its criterion only once -->
+                                    <t t-if="row.line_type == 'grade'">
+                                        <tr t-if="row.code != last_code">
+                                            <td colspan="3" class="af_l af_b">
+                                                <span t-out="row.code.split('|')[-1] if row.code else ''"/></td>
+                                        </tr>
+                                        <t t-set="last_code" t-value="row.code"/>
+                                        <tr>
+                                            <td class="af_l"><span t-field="row.name"/></td>
+                                            <td><span class="af_box"><t t-if="row.selected">X</t></span></td>
+                                            <td class="af_val"><span t-field="row.description"/>&#160;</td>
+                                        </tr>
+                                    </t>
+                                    <t t-elif="row.line_type == 'note'">
+                                        <!-- the band already carries the question when the
+                                             section is the question itself -->
+                                        <tr t-if="row.name != row.section">
+                                            <td colspan="3" class="af_l"><span t-field="row.name"/></td></tr>
+                                        <tr><td colspan="3" class="af_val"
+                                            style="line-height: 40px;"><span t-field="row.description"/>&#160;</td></tr>
+                                    </t>
+                                    <tr t-elif="row.line_type == 'band'">
+                                        <td colspan="3" class="af_bar"><span t-field="row.name"/></td>
+                                    </tr>
+                                    <tr t-elif="row.line_type == 'check'">
+                                        <td class="af_l"><span t-field="row.name"/></td>
+                                        <td><span class="af_box"><t t-if="row.selected">X</t></span></td>
+                                        <td class="af_val">&#160;</td>
+                                    </tr>
+                                    <tr t-elif="row.line_type == 'check_text'">
+                                        <td class="af_l"><span t-field="row.name"/></td>
+                                        <td><span class="af_box"><t t-if="row.selected">X</t></span></td>
+                                        <td class="af_val"><span t-field="row.description"/>&#160;</td>
+                                    </tr>
+                                    <tr t-else="">
+                                        <td colspan="2" class="af_l"><span t-field="row.name"/></td>
+                                        <td class="af_val"><span t-field="row.description"/>&#160;</td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    </div>
+                </t>
             </t>
         </t>
     </template>

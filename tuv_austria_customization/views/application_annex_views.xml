@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_application_annex_list" model="ir.ui.view">
+        <field name="name">tuv.application.annex.list</field>
+        <field name="model">tuv.application.annex</field>
+        <field name="arch" type="xml">
+            <list string="Application Annexes">
+                <field name="name"/>
+                <field name="annex_type"/>
+                <field name="coid"/>
+                <field name="products"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_application_annex_form" model="ir.ui.view">
+        <field name="name">tuv.application.annex.form</field>
+        <field name="model">tuv.application.annex</field>
+        <field name="arch" type="xml">
+            <form string="Application Annex">
+                <header>
+                    <button name="action_reset_category_lines" type="object"
+                        string="Reset Category Rows" class="btn-secondary"
+                        confirm="This replaces the product category rows with the printed
+                            list of the chosen annex. Anything typed in them is lost."/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                        invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name" string="Annex Name"/>
+                        <h1><field name="name" placeholder="e.g. Annex - ISO 22000 / FSSC 22000"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="annex_type"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="annex_iso22000" string="ISO 22000 / FSSC 22000"
+                            invisible="annex_type != 'iso22000_fssc22000'">
+
+                            <group string="Additional Information">
+                                <group>
+                                    <field name="coid"/>
+                                    <field name="haccp_studies"/>
+                                    <field name="production_lines"/>
+                                </group>
+                                <group>
+                                    <field name="blackout_date"/>
+                                    <field name="blackout_reason"/>
+                                </group>
+                            </group>
+
+                            <group string="Scope Details">
+                                <group>
+                                    <field name="products"/>
+                                    <field name="packaging_method"/>
+                                    <field name="main_processes"/>
+                                    <field name="scope_exclusions"/>
+                                </group>
+                                <group>
+                                    <field name="off_site_activities"/>
+                                    <field name="seasonal_products" widget="radio"
+                                        options="{'horizontal': True}"/>
+                                    <field name="seasonal_period"/>
+                                </group>
+                            </group>
+
+                            <!-- The two printed category tables, in the order they print -->
+                            <separator string="Product Category - only for ISO 22000"/>
+                            <field name="category_iso22000_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="sequence" column_invisible="1"/>
+                                    <field name="scheme" column_invisible="1"/>
+                                    <field name="code" width="80px"/>
+                                    <field name="name"/>
+                                    <field name="selected" width="90px"/>
+                                    <field name="description"/>
+                                </list>
+                            </field>
+
+                            <separator string="Product Category - only for FSSC 22000"/>
+                            <field name="category_fssc22000_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="sequence" column_invisible="1"/>
+                                    <field name="scheme" column_invisible="1"/>
+                                    <field name="code" width="80px"/>
+                                    <field name="name"/>
+                                    <field name="selected" width="90px"/>
+                                    <field name="description"/>
+                                </list>
+                            </field>
+
+                            <group>
+                                <field name="terms_confirmed"/>
+                            </group>
+                        </page>
+                        <!-- Every other annex is driven by its own catalogue of
+                             printed rows: the label and the band come from the Word
+                             file, the client fills in the tick and the text. -->
+                        <page name="annex_rows" string="Annex Form"
+                            invisible="annex_type == 'iso22000_fssc22000'">
+                            <!-- Question is the wording of the paper form; the two
+                                 columns on the right are what the client fills in. -->
+                            <field name="category_line_ids" nolabel="1">
+                                <list editable="bottom" default_order="sequence">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="key" column_invisible="1"/>
+                                    <field name="scheme" column_invisible="1"/>
+                                    <field name="line_type" column_invisible="1"/>
+                                    <!-- readonly: the printed layout looks its rows up by
+                                         section, so renaming one would break the page -->
+                                    <field name="section" string="Section" width="140px" readonly="1"/>
+                                    <field name="code" string="Criterion" optional="hide"/>
+                                    <field name="name" string="Question (from the form)" width="380px"/>
+                                    <field name="selected" string="Tick" width="60px"/>
+                                    <field name="description" string="Answer"
+                                        placeholder="type the answer here..."/>
+                                </list>
+                            </field>
+                        </page>
+                        <!-- The EN 15343 / OK Recycled product tables: the client
+                             adds as many rows as he has products. -->
+                        <page name="annex_products" string="Product Data"
+                            invisible="annex_type != 'en15343_ok_recycled'">
+                            <separator string="A. Fill in case of Individual Products"/>
+                            <field name="product_individual_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="table" column_invisible="1"/>
+                                    <field name="reference" string="A/A" width="70px"/>
+                                    <field name="product_type" string="Product Type"/>
+                                    <field name="raw_material" string="Raw material Used"/>
+                                    <field name="supplier" string="Supplier"/>
+                                    <field name="waste_type" string="Pre/Post Consumer Waste"/>
+                                    <field name="production_method" string="Production Method"/>
+                                    <field name="recycled_percentage" string="Recycled %"/>
+                                    <field name="quantity" string="Quantity (t)"/>
+                                </list>
+                            </field>
+                            <separator string="B. Fill in case of Group Products"/>
+                            <field name="product_group_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="table" column_invisible="1"/>
+                                    <field name="reference" string="Group" width="70px"/>
+                                    <field name="product_type" string="Product Type"/>
+                                    <field name="raw_material" string="Raw material Used"/>
+                                    <field name="supplier" string="Supplier"/>
+                                    <field name="waste_type" string="Pre/Post Consumer Waste"/>
+                                    <field name="production_method" string="Production Method"/>
+                                    <field name="recycled_percentage" string="Recycled %"/>
+                                    <field name="quantity" string="Quantity (t)"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_application_annex_search" model="ir.ui.view">
+        <field name="name">tuv.application.annex.search</field>
+        <field name="model">tuv.application.annex</field>
+        <field name="arch" type="xml">
+            <search string="Application Annexes">
+                <field name="name"/>
+                <field name="coid"/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_annex_type" string="Annex"
+                        context="{'group_by': 'annex_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_application_annex" model="ir.actions.act_window">
+        <field name="name">Application Annexes</field>
+        <field name="res_model">tuv.application.annex</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first application annex</p>
+            <p>An annex belongs to the standards marked * on the application form.
+               Fill one in and attach it to an offer application - its pages are then
+               printed underneath the application form.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_application_annex"
+        action="action_application_annex"
+        name="Application Annexes"
+        parent="sale.menu_sale_config"
+        sequence="20"/>
+
+</odoo>

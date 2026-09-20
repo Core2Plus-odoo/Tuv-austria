@@ -15,3 +15,5 @@ from . import project_task_mandays
 from . import project_review
 from . import ir_ui_menu
 from . import stock
+from . import ir_actions_report
+from . import application_annex

@@ -130,6 +130,14 @@ class SaleOrder(models.Model):
         ('no', 'No'),
     ], string='Existence Of Other Certified Management System '
               '(Please Fill In Relevant Annex In Case Of Transfer Request)')
+    # The annex that belongs with this application. The application form asks for
+    # one for every standard marked * on it; picking a record here prints its pages
+    # underneath the application form.
+    application_annex_id = fields.Many2one(
+        'tuv.application.annex', string='Application Annex', ondelete='restrict',
+        help='Pick the annex that belongs to the standard applied for. Its pages are '
+             'printed at the end of the Application Form.')
+
     license_attachment = fields.Binary(
         string='Operation License / Environmental License / Corporation Charter (please attach)')
     license_attachment_filename = fields.Char(string='License Attachment Filename')

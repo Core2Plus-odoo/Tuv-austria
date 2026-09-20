@@ -12,3 +12,9 @@ access_service_category_manager,service.category.manager,model_service_category,
 access_unit_of_billing_user,unit.of.billing.user,model_unit_of_billing,base.group_user,1,0,0,0
 access_unit_of_billing_manager,unit.of.billing.manager,model_unit_of_billing,base.group_system,1,1,1,1
 access_sale_order_planning_team,sale.order.planning.team,sale.model_sale_order,tuv_austria_customization.group_planning_team,1,0,0,0
+access_tuv_application_annex_user,tuv.application.annex.user,model_tuv_application_annex,base.group_user,1,1,1,0
+access_tuv_application_annex_manager,tuv.application.annex.manager,model_tuv_application_annex,base.group_system,1,1,1,1
+access_tuv_application_annex_line_user,tuv.application.annex.line.user,model_tuv_application_annex_line,base.group_user,1,1,1,1
+access_tuv_application_annex_line_manager,tuv.application.annex.line.manager,model_tuv_application_annex_line,base.group_system,1,1,1,1
+access_tuv_application_annex_product_user,tuv.application.annex.product.user,model_tuv_application_annex_product,base.group_user,1,1,1,1
+access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1
