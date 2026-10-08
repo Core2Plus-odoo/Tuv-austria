@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ATJF of a project, in the same table style as the Mandays Calculation. -->
+    <template id="report_project_atjf_body">
+        <div class="page tuv_md">
+            <style>
+                .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 12px; }
+                .tuv_md .md_title {
+                    text-align: center; font-size: 17px; font-weight: 800; margin-bottom: 5px;
+                }
+                .tuv_md .md_subtitle { text-align: center; font-size: 12px; margin-bottom: 16px; }
+                .tuv_md table.md_tbl {
+                    width: 100%; border-collapse: collapse; table-layout: fixed;
+                    margin-bottom: 16px; page-break-inside: avoid;
+                }
+                .tuv_md table.md_tbl td, .tuv_md table.md_tbl th {
+                    border: 1px solid #000000; padding: 5px 7px; font-size: 12px;
+                    vertical-align: middle;
+                }
+                .tuv_md table.md_tbl th, .tuv_md table.md_tbl td.md_lbl {
+                    background-color: #D9D9D9; font-weight: 700;
+                }
+                .tuv_md table.md_tbl td.md_section {
+                    background-color: #D9D9D9; font-weight: 700; text-align: center;
+                }
+                .tuv_md table.md_tbl td.md_val { background-color: #FFFFFF; }
+                .tuv_md table.md_tbl .center { text-align: center; }
+            </style>
+
+            <div class="md_title">ATJF</div>
+            <div class="md_subtitle">
+                <span t-field="doc.name"/>
+                <t t-if="doc.md_sale_order_id.tuv_sequence"> - <span t-field="doc.md_sale_order_id.tuv_sequence"/></t>
+                - <span t-field="doc.atjf_state"/>
+            </div>
+
+            <!-- ══════════════ CLIENT ══════════════ -->
+            <table class="md_tbl">
+                <colgroup><col style="width: 28%;"/><col style="width: 72%;"/></colgroup>
+                <tr><td class="md_section" colspan="2">CLIENT</td></tr>
+                <tr>
+                    <td class="md_lbl">Client Name</td>
+                    <td class="md_val"><span t-field="doc.partner_id.name"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Client Site Address</td>
+                    <td class="md_val"><span t-field="doc.atjf_site_address"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Other Sites</td>
+                    <td class="md_val"><span t-field="doc.other_facilities"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">EA Code</td>
+                    <td class="md_val"><t t-esc="', '.join(doc.ea_code_ids.mapped('name'))"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Standard(s)</td>
+                    <td class="md_val"><span t-field="doc.atjf_standards"/></td>
+                </tr>
+            </table>
+
+            <!-- ══════════════ AUDIT TEAM ══════════════ -->
+            <table class="md_tbl">
+                <colgroup><col style="width: 28%;"/><col style="width: 72%;"/></colgroup>
+                <tr><td class="md_section" colspan="2">AUDIT TEAM</td></tr>
+                <tr>
+                    <td class="md_lbl">Lead Auditor</td>
+                    <td class="md_val"><span t-field="doc.auditor_id.name"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Co-Auditor</td>
+                    <td class="md_val"><span t-field="doc.md_co_auditor_id.name"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Trainee</td>
+                    <td class="md_val"><span t-field="doc.md_trainee_id.name"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Other Participants</td>
+                    <td class="md_val"><span t-field="doc.md_other_participants"/></td>
+                </tr>
+            </table>
+
+            <!-- ══════════════ MAN-DAYS & AUDIT DATES ══════════════ -->
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 28%;"/><col style="width: 22%;"/>
+                    <col style="width: 28%;"/><col style="width: 22%;"/>
+                </colgroup>
+                <tr><td class="md_section" colspan="4">MAN-DAYS &amp; AUDIT DATES</td></tr>
+                <tr>
+                    <td class="md_lbl">Audit Duration (Man-days)</td>
+                    <td class="md_val center"><span t-field="doc.md_audit_duration"/></td>
+                    <td class="md_lbl">Audit Date Stage 1</td>
+                    <td class="md_val center"><span t-field="doc.md_audit_date_st1"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Certification / Re-certification</td>
+                    <td class="md_val center"><span t-field="doc.md4_total_cert"/></td>
+                    <td class="md_lbl">Audit Date Stage 2</td>
+                    <td class="md_val center"><span t-field="doc.md_audit_date_st2"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">1st Surveillance</td>
+                    <td class="md_val center"><span t-field="doc.md4_total_surv1"/></td>
+                    <td class="md_lbl">Surveillance Date</td>
+                    <td class="md_val center"><span t-field="doc.md_audit_date_surveillance"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">2nd Surveillance</td>
+                    <td class="md_val center"><span t-field="doc.md4_total_surv2"/></td>
+                    <td class="md_lbl">Recertification Date</td>
+                    <td class="md_val center"><span t-field="doc.md_audit_date_recert"/></td>
+                </tr>
+            </table>
+
+            <!-- ══════════════ FEE DETAILS ══════════════ -->
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 28%;"/><col style="width: 24%;"/>
+                    <col style="width: 24%;"/><col style="width: 24%;"/>
+                </colgroup>
+                <tr><td class="md_section" colspan="4">FEE DETAILS</td></tr>
+                <tr>
+                    <th></th>
+                    <th class="center">1st Year Initial Audit</th>
+                    <th class="center">2nd Year Surveillance</th>
+                    <th class="center">3rd Year Surveillance</th>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Fee</td>
+                    <td class="md_val center"><span t-field="doc.contract_fee_y1"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_fee_y2"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_fee_y3"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl"># of Man-days</td>
+                    <td class="md_val center"><span t-field="doc.contract_mandays_y1"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_mandays_y2"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_mandays_y3"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">
+                        Sales Tax <t t-if="doc.contract_tax_province"><span t-field="doc.contract_tax_province"/></t>
+                    </td>
+                    <td class="md_val center"><span t-field="doc.contract_tax_y1"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_tax_y2"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_tax_y3"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Total Payable</td>
+                    <td class="md_val center"><span t-field="doc.contract_total_y1"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_total_y2"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_total_y3"/></td>
+                </tr>
+            </table>
+
+            <!-- ══════════════ PREPARED / REVIEWED ══════════════ -->
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 28%;"/><col style="width: 22%;"/>
+                    <col style="width: 28%;"/><col style="width: 22%;"/>
+                </colgroup>
+                <tr><td class="md_section" colspan="4">PREPARED &amp; REVIEWED</td></tr>
+                <tr>
+                    <td class="md_lbl">Prepared By</td>
+                    <td class="md_val"><span t-field="doc.atjf_prepared_by.name"/></td>
+                    <td class="md_lbl">Prepared On</td>
+                    <td class="md_val"><span t-field="doc.atjf_prepared_on" t-options="{'widget': 'date'}"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Reviewed By</td>
+                    <td class="md_val"><span t-field="doc.atjf_reviewed_by.name"/></td>
+                    <td class="md_lbl">Reviewed On</td>
+                    <td class="md_val"><span t-field="doc.atjf_reviewed_on" t-options="{'widget': 'date'}"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Review Notes</td>
+                    <td class="md_val" colspan="3"><span t-field="doc.atjf_review_notes"/></td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_project_atjf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-call="tuv_austria_customization.report_project_atjf_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_project_atjf" model="ir.actions.report">
+        <field name="name">ATJF</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_project_atjf</field>
+        <field name="report_file">tuv_austria_customization.report_project_atjf</field>
+        <field name="print_report_name">'ATJF - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

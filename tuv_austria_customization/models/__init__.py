@@ -13,6 +13,7 @@ from . import account_move
 from . import project
 from . import project_task_mandays
 from . import project_review
+from . import project_atjf
 from . import ir_ui_menu
 from . import stock
 from . import ir_actions_report

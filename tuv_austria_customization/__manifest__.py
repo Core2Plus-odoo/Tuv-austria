@@ -50,6 +50,7 @@ Centralized module for client-specific customizations across:
         'report/sale_order_contract_tac_tah_report.xml',
         'report/sale_order_contract_pnac_report.xml',
         'report/project_task_mandays_report.xml',
+        'report/project_atjf_report.xml',
     ],
 
     'assets': {
