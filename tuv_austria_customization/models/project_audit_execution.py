@@ -6,7 +6,7 @@ from .project_task_mandays import MD_STANDARD
 AUDIT_RESULT = [
     ('pending', 'Not Audited Yet'),
     ('conform', 'Conforming'),
-    ('ofi', 'Opportunity for Improvement'),
+    ('ofi', 'Observation / OFI'),
     ('minor_nc', 'Minor Nonconformity'),
     ('major_nc', 'Major Nonconformity'),
     ('not_applicable', 'Not Applicable'),

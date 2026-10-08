@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="edit_project_audit_report_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.audit.report.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="report_state" invisible="1"/>
+                <button name="action_report_submit" type="object"
+                    string="Submit Audit Report" class="btn-primary"
+                    invisible="audit_state != 'done' or report_state != 'draft'"/>
+                <button name="action_report_reset" type="object"
+                    string="Report Back to Draft"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="report_state != 'submitted'"/>
+            </xpath>
+
+            <page name="settings" position="before">
+                <page name="audit_report" string="Audit Report" invisible="audit_state != 'done'">
+                    <div class="mb-2 d-flex gap-2">
+                        <field name="report_state" widget="badge" readonly="1"
+                            decoration-warning="report_state == 'draft'"
+                            decoration-success="report_state == 'submitted'"/>
+                        <field name="report_on_time" invisible="1"/>
+                        <span class="badge text-bg-success"
+                            invisible="report_state != 'submitted' or not report_on_time">On Time</span>
+                        <span class="badge text-bg-danger"
+                            invisible="report_state != 'submitted' or report_on_time">Late</span>
+                    </div>
+                    <group>
+                        <group string="Submission">
+                            <field name="auditor_id" string="Prepared By (Lead Auditor)" readonly="1"/>
+                            <field name="audit_completed_on" string="Audit Completed On"/>
+                            <field name="report_due_date"/>
+                            <field name="report_submitted_by"/>
+                            <field name="report_submitted_on"/>
+                            <field name="report_days_late" invisible="report_state != 'submitted' or report_on_time"/>
+                            <field name="report_late_reason"
+                                readonly="report_state == 'submitted'"
+                                placeholder="only needed when submitted after the due date"/>
+                        </group>
+                        <group string="Audit Conclusion">
+                            <field name="report_conclusion" widget="radio"
+                                readonly="report_state == 'submitted'"/>
+                            <field name="report_conclusion_note"
+                                readonly="report_state == 'submitted'"
+                                placeholder="required when recommending with a major nonconformity"/>
+                            <field name="audit_major_count" string="Major NC"/>
+                            <field name="audit_minor_count" string="Minor NC"/>
+                            <field name="audit_ofi_count" string="Observations"/>
+                        </group>
+                    </group>
+
+                    <separator string="Audit Summary"/>
+                    <field name="report_summary" readonly="report_state == 'submitted'"
+                        placeholder="Overall picture of the audit: what was covered, how the system performs..."/>
+
+                    <separator string="Findings"/>
+                    <field name="report_findings" readonly="report_state == 'submitted'"
+                        placeholder="Strengths, notable points and general findings..."/>
+
+                    <separator string="Nonconformities &amp; Observations (from the audit checklist)"/>
+                    <field name="audit_finding_line_ids" nolabel="1">
+                        <list create="0" delete="0"
+                            decoration-info="result == 'ofi'"
+                            decoration-warning="result == 'minor_nc'"
+                            decoration-danger="result == 'major_nc'">
+                            <field name="standard" optional="show"/>
+                            <field name="code" width="70px"/>
+                            <field name="name"/>
+                            <field name="result" widget="badge"
+                                decoration-info="result == 'ofi'"
+                                decoration-warning="result == 'minor_nc'"
+                                decoration-danger="result == 'major_nc'"/>
+                            <field name="evidence"/>
+                            <field name="auditor_id"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_project_project_filter_audit_report_tuv" model="ir.ui.view">
+        <field name="name">project.project.search.audit.report.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter name="report_overdue" string="Audit Report Overdue"
+                    domain="[('audit_state', '=', 'done'), ('report_state', '=', 'draft'),
+                             ('report_due_date', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="report_pending" string="Audit Report Pending"
+                    domain="[('audit_state', '=', 'done'), ('report_state', '=', 'draft')]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

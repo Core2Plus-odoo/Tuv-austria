@@ -39,6 +39,7 @@ Centralized module for client-specific customizations across:
         'views/project_task_mandays_views.xml',
         'views/audit_document_views.xml',
         'views/audit_execution_views.xml',
+        'views/audit_report_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
@@ -57,6 +58,7 @@ Centralized module for client-specific customizations across:
         'report/project_task_mandays_report.xml',
         'report/project_atjf_report.xml',
         'report/project_audit_checklist_report.xml',
+        'report/project_audit_report_report.xml',
     ],
 
     'assets': {

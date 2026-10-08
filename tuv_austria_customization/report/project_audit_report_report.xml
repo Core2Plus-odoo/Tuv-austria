@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_project_audit_report_body">
+        <div class="page tuv_md">
+            <style>
+                .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 11.5px; }
+                .tuv_md .md_title { text-align: center; font-size: 17px; font-weight: 800; margin-bottom: 5px; }
+                .tuv_md .md_subtitle { text-align: center; font-size: 12px; margin-bottom: 14px; }
+                .tuv_md table.md_tbl { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 14px; }
+                .tuv_md table.md_tbl td, .tuv_md table.md_tbl th {
+                    border: 1px solid #000000; padding: 4px 6px; vertical-align: top;
+                }
+                .tuv_md table.md_tbl th, .tuv_md table.md_tbl td.md_lbl { background-color: #D9D9D9; font-weight: 700; }
+                .tuv_md table.md_tbl td.md_section { background-color: #D9D9D9; font-weight: 700; text-align: center; }
+                .tuv_md table.md_tbl tr { page-break-inside: avoid; }
+                .tuv_md .md_conclusion { font-size: 13px; font-weight: 800; }
+            </style>
+
+            <div class="md_title">Audit Report</div>
+            <div class="md_subtitle">
+                <span t-field="doc.name"/> - <span t-field="doc.report_state"/>
+            </div>
+
+            <!-- ══════════════ AUDIT ══════════════ -->
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 20%;"/><col style="width: 30%;"/>
+                    <col style="width: 20%;"/><col style="width: 30%;"/>
+                </colgroup>
+                <tr><td class="md_section" colspan="4">AUDIT</td></tr>
+                <tr>
+                    <td class="md_lbl">Client</td><td><span t-field="doc.partner_id.name"/></td>
+                    <td class="md_lbl">Standard(s)</td><td><span t-field="doc.atjf_standards"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Audit Site</td><td><span t-field="doc.atjf_site_address"/></td>
+                    <td class="md_lbl">EA Code</td><td><t t-esc="', '.join(doc.ea_code_ids.mapped('name'))"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Lead Auditor</td><td><span t-field="doc.auditor_id.name"/></td>
+                    <td class="md_lbl">Co-Auditor / Trainee</td>
+                    <td><t t-esc="', '.join((doc.md_co_auditor_id | doc.md_trainee_id).mapped('name'))"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Audit Dates</td>
+                    <td>
+                        <span t-field="doc.md_audit_date_st1"/>
+                        <t t-if="doc.md_audit_date_st2"> / <span t-field="doc.md_audit_date_st2"/></t>
+                    </td>
+                    <td class="md_lbl">Audit Completed</td>
+                    <td><span t-field="doc.audit_completed_on" t-options="{'widget': 'date'}"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Audited Scope</td><td colspan="3"><span t-field="doc.audit_scope"/></td>
+                </tr>
+            </table>
+
+            <!-- ══════════════ SUMMARY & FINDINGS ══════════════ -->
+            <table class="md_tbl">
+                <tr><td class="md_section">AUDIT SUMMARY</td></tr>
+                <tr><td><div t-field="doc.report_summary"/></td></tr>
+            </table>
+            <table class="md_tbl">
+                <tr><td class="md_section">FINDINGS</td></tr>
+                <tr><td><div t-field="doc.report_findings"/></td></tr>
+            </table>
+
+            <!-- ══════════════ NONCONFORMITIES ══════════════ -->
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 9%;"/><col style="width: 29%;"/><col style="width: 15%;"/>
+                    <col style="width: 47%;"/>
+                </colgroup>
+                <tr><td class="md_section" colspan="4">NONCONFORMITIES &amp; OBSERVATIONS</td></tr>
+                <tr>
+                    <th>Major NC</th><td class="text-center"><t t-esc="doc.audit_major_count"/></td>
+                    <th>Minor NC / Observations</th>
+                    <td><t t-esc="doc.audit_minor_count"/> / <t t-esc="doc.audit_ofi_count"/></td>
+                </tr>
+                <tr><th>Clause</th><th>Requirement</th><th>Grading</th><th>Finding / Objective Evidence</th></tr>
+                <t t-foreach="doc.audit_finding_line_ids.sorted(lambda l: ({'major_nc': 0, 'minor_nc': 1, 'ofi': 2}[l.result], l.id))" t-as="line">
+                    <tr>
+                        <td><span t-field="line.code"/></td>
+                        <td><span t-field="line.name"/></td>
+                        <td><span t-field="line.result"/></td>
+                        <td><span t-field="line.evidence"/></td>
+                    </tr>
+                </t>
+                <tr t-if="not doc.audit_finding_line_ids">
+                    <td colspan="4">No nonconformity or observation was raised.</td>
+                </tr>
+            </table>
+
+            <!-- ══════════════ CONCLUSION ══════════════ -->
+            <table class="md_tbl">
+                <colgroup><col style="width: 25%;"/><col style="width: 75%;"/></colgroup>
+                <tr><td class="md_section" colspan="2">AUDIT CONCLUSION</td></tr>
+                <tr>
+                    <td class="md_lbl">Recommendation</td>
+                    <td class="md_conclusion"><span t-field="doc.report_conclusion"/></td>
+                </tr>
+                <tr t-if="doc.report_conclusion_note">
+                    <td class="md_lbl">Justification</td><td><span t-field="doc.report_conclusion_note"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Report Due / Submitted</td>
+                    <td>
+                        <span t-field="doc.report_due_date"/> /
+                        <span t-field="doc.report_submitted_on" t-options="{'widget': 'date'}"/>
+                        <t t-if="doc.report_state == 'submitted'">
+                            (<t t-if="doc.report_on_time">on time</t><t t-else=""><t t-esc="doc.report_days_late"/> day(s) late</t>)
+                        </t>
+                    </td>
+                </tr>
+                <tr t-if="doc.report_late_reason">
+                    <td class="md_lbl">Reason For Late Submission</td><td><span t-field="doc.report_late_reason"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Submitted By</td><td><span t-field="doc.report_submitted_by.name"/></td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_project_audit_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-call="tuv_austria_customization.report_project_audit_report_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_project_audit_report" model="ir.actions.report">
+        <field name="name">Audit Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_project_audit_report</field>
+        <field name="report_file">tuv_austria_customization.report_project_audit_report</field>
+        <field name="print_report_name">'Audit Report - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

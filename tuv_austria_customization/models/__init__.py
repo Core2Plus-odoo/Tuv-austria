@@ -17,6 +17,7 @@ from . import project_atjf
 from . import audit_document
 from . import project_audit_plan
 from . import project_audit_execution
+from . import project_audit_report
 from . import ir_ui_menu
 from . import stock
 from . import ir_actions_report
