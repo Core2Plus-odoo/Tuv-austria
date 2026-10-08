@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Configuration: the clauses of every standard ============ -->
+    <record id="view_tuv_audit_clause_list" model="ir.ui.view">
+        <field name="name">tuv.audit.clause.list</field>
+        <field name="model">tuv.audit.clause</field>
+        <field name="arch" type="xml">
+            <list string="Audit Clauses" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="standard"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_audit_clause_search" model="ir.ui.view">
+        <field name="name">tuv.audit.clause.search</field>
+        <field name="model">tuv.audit.clause</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="standard"/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <filter name="group_standard" string="Standard" context="{'group_by': 'standard'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tuv_audit_clause" model="ir.actions.act_window">
+        <field name="name">Audit Clauses</field>
+        <field name="res_model">tuv.audit.clause</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'search_default_group_standard': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add the clauses of a standard</p>
+            <p>Starting an audit puts every clause of its standard(s) on the audit checklist.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_audit_clause"
+        action="action_tuv_audit_clause"
+        name="Audit Clauses"
+        parent="project.menu_project_config"
+        sequence="31"/>
+
+    <!-- ============ Project: Audit Execution tab ============ -->
+    <record id="edit_project_audit_execution_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.audit.execution.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="audit_state" invisible="1"/>
+                <button name="action_audit_start" type="object"
+                    string="Start Audit" class="btn-primary"
+                    invisible="audit_state != 'not_started' or atjf_state != 'reviewed'"/>
+                <button name="action_audit_complete" type="object"
+                    string="Complete Audit" class="btn-primary"
+                    invisible="audit_state != 'in_progress'"/>
+                <button name="action_audit_reopen" type="object"
+                    string="Reopen Audit"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="audit_state != 'done'"/>
+            </xpath>
+
+            <page name="settings" position="before">
+                <page name="audit_execution" string="Audit Execution"
+                    invisible="atjf_state != 'reviewed' and audit_state == 'not_started'">
+                    <div class="mb-2">
+                        <field name="audit_state" widget="badge" readonly="1"
+                            decoration-muted="audit_state == 'not_started'"
+                            decoration-warning="audit_state == 'in_progress'"
+                            decoration-success="audit_state == 'done'"/>
+                    </div>
+                    <group>
+                        <!-- what was confirmed in the ATJF, read only here -->
+                        <group string="As Per Confirmed ATJF">
+                            <field name="auditor_id" string="Lead Auditor" readonly="1"/>
+                            <field name="md_co_auditor_id" readonly="1"/>
+                            <field name="md_trainee_id" readonly="1"/>
+                            <field name="md_audit_date_st1" readonly="1"/>
+                            <field name="md_audit_date_st2" readonly="1"/>
+                            <field name="atjf_site_address" string="Audit Site"/>
+                        </group>
+                        <group string="Certified Scope">
+                            <field name="atjf_standards" string="Standard(s)"/>
+                            <field name="ea_code_ids" widget="many2many_tags" readonly="1"/>
+                            <field name="audit_scope" readonly="audit_state == 'done'"
+                                required="audit_state == 'in_progress'"
+                                placeholder="the client's certified scope, e.g. Manufacturing of engineering equipment"/>
+                            <field name="audit_started_on"/>
+                            <field name="audit_completed_on"/>
+                        </group>
+                        <group string="Clauses">
+                            <field name="audit_pending_count"/>
+                            <field name="audit_conform_count"/>
+                            <field name="audit_ofi_count"/>
+                        </group>
+                        <group string="Findings">
+                            <field name="audit_minor_count"/>
+                            <field name="audit_major_count"/>
+                            <field name="audit_na_count"/>
+                        </group>
+                    </group>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Audit Checklist - all applicable clauses</h5>
+                        <button name="action_audit_load_clauses" type="object"
+                            string="Load Missing Clauses" class="btn-link"
+                            invisible="audit_state != 'in_progress'"/>
+                    </div>
+                    <field name="audit_line_ids" nolabel="1"
+                        readonly="audit_state != 'in_progress'">
+                        <list editable="bottom" create="0"
+                            decoration-muted="result == 'not_applicable'"
+                            decoration-success="result == 'conform'"
+                            decoration-info="result == 'ofi'"
+                            decoration-warning="result == 'minor_nc'"
+                            decoration-danger="result == 'major_nc'">
+                            <field name="audit_team_ids" column_invisible="1"/>
+                            <field name="standard" readonly="1" optional="show"/>
+                            <field name="code" readonly="1" width="70px"/>
+                            <field name="name" readonly="1"/>
+                            <field name="result" width="190px"/>
+                            <field name="evidence"/>
+                            <field name="auditor_id" options="{'no_create': True}" optional="show"/>
+                            <field name="audited_on" optional="show"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

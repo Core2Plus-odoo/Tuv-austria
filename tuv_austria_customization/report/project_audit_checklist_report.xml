@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The checklist the auditor works through at the client site, in the same
+         table style as the ATJF and the Mandays Calculation. -->
+    <template id="report_project_audit_checklist_body">
+        <div class="page tuv_md">
+            <style>
+                .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 11px; }
+                .tuv_md .md_title { text-align: center; font-size: 17px; font-weight: 800; margin-bottom: 5px; }
+                .tuv_md .md_subtitle { text-align: center; font-size: 12px; margin-bottom: 14px; }
+                .tuv_md table.md_tbl { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 14px; }
+                .tuv_md table.md_tbl td, .tuv_md table.md_tbl th {
+                    border: 1px solid #000000; padding: 4px 6px; vertical-align: top;
+                }
+                .tuv_md table.md_tbl th, .tuv_md table.md_tbl td.md_lbl { background-color: #D9D9D9; font-weight: 700; }
+                .tuv_md table.md_tbl td.md_section { background-color: #D9D9D9; font-weight: 700; text-align: center; }
+                .tuv_md table.md_tbl tr { page-break-inside: avoid; }
+            </style>
+
+            <div class="md_title">Audit Checklist</div>
+            <div class="md_subtitle">
+                <span t-field="doc.name"/> - <span t-field="doc.audit_state"/>
+            </div>
+
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 20%;"/><col style="width: 30%;"/>
+                    <col style="width: 20%;"/><col style="width: 30%;"/>
+                </colgroup>
+                <tr><td class="md_section" colspan="4">AUDIT AS PER CONFIRMED ATJF</td></tr>
+                <tr>
+                    <td class="md_lbl">Client</td><td><span t-field="doc.partner_id.name"/></td>
+                    <td class="md_lbl">Standard(s)</td><td><span t-field="doc.atjf_standards"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Audit Site</td><td><span t-field="doc.atjf_site_address"/></td>
+                    <td class="md_lbl">EA Code</td><td><t t-esc="', '.join(doc.ea_code_ids.mapped('name'))"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Lead Auditor</td><td><span t-field="doc.auditor_id.name"/></td>
+                    <td class="md_lbl">Co-Auditor / Trainee</td>
+                    <td><t t-esc="', '.join((doc.md_co_auditor_id | doc.md_trainee_id).mapped('name'))"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Audit Date St.1</td><td><span t-field="doc.md_audit_date_st1"/></td>
+                    <td class="md_lbl">Audit Date St.2</td><td><span t-field="doc.md_audit_date_st2"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Audited Scope</td><td colspan="3"><span t-field="doc.audit_scope"/></td>
+                </tr>
+            </table>
+
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 8%;"/><col style="width: 32%;"/><col style="width: 16%;"/>
+                    <col style="width: 30%;"/><col style="width: 14%;"/>
+                </colgroup>
+                <tr>
+                    <th>Clause</th><th>Requirement</th><th>Result</th>
+                    <th>Objective Evidence / Remarks</th><th>Audited By / On</th>
+                </tr>
+                <t t-set="current_standard" t-value="False"/>
+                <t t-foreach="doc.audit_line_ids" t-as="line">
+                    <tr t-if="line.standard != current_standard">
+                        <td class="md_section" colspan="5"><span t-field="line.standard"/></td>
+                    </tr>
+                    <t t-set="current_standard" t-value="line.standard"/>
+                    <tr>
+                        <td><span t-field="line.code"/></td>
+                        <td><span t-field="line.name"/></td>
+                        <td><span t-field="line.result"/></td>
+                        <td><span t-field="line.evidence"/></td>
+                        <td>
+                            <span t-field="line.auditor_id.name"/><br/>
+                            <span t-field="line.audited_on"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+
+            <table class="md_tbl">
+                <tr><td class="md_section" colspan="6">SUMMARY</td></tr>
+                <tr>
+                    <th>Conforming</th><th>OFI</th><th>Minor NC</th>
+                    <th>Major NC</th><th>Not Applicable</th><th>Not Audited</th>
+                </tr>
+                <tr style="text-align: center;">
+                    <td><t t-esc="doc.audit_conform_count"/></td>
+                    <td><t t-esc="doc.audit_ofi_count"/></td>
+                    <td><t t-esc="doc.audit_minor_count"/></td>
+                    <td><t t-esc="doc.audit_major_count"/></td>
+                    <td><t t-esc="doc.audit_na_count"/></td>
+                    <td><t t-esc="doc.audit_pending_count"/></td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_project_audit_checklist">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-call="tuv_austria_customization.report_project_audit_checklist_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_project_audit_checklist" model="ir.actions.report">
+        <field name="name">Audit Checklist</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_project_audit_checklist</field>
+        <field name="report_file">tuv_austria_customization.report_project_audit_checklist</field>
+        <field name="print_report_name">'Audit Checklist - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

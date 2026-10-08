@@ -20,4 +20,9 @@ access_tuv_application_annex_product_user,tuv.application.annex.product.user,mod
 access_tuv_audit_document_user,tuv.audit.document.user,model_tuv_audit_document,base.group_user,1,0,0,0
 access_tuv_audit_document_planning,tuv.audit.document.planning,model_tuv_audit_document,tuv_austria_customization.group_planning_team,1,1,1,1
 access_tuv_audit_document_manager,tuv.audit.document.manager,model_tuv_audit_document,base.group_system,1,1,1,1
+access_tuv_audit_clause_user,tuv.audit.clause.user,model_tuv_audit_clause,base.group_user,1,0,0,0
+access_tuv_audit_clause_planning,tuv.audit.clause.planning,model_tuv_audit_clause,tuv_austria_customization.group_planning_team,1,1,1,1
+access_tuv_audit_clause_manager,tuv.audit.clause.manager,model_tuv_audit_clause,base.group_system,1,1,1,1
+access_tuv_audit_checklist_line_project_user,tuv.audit.checklist.line.project.user,model_tuv_audit_checklist_line,project.group_project_user,1,1,1,0
+access_tuv_audit_checklist_line_planning,tuv.audit.checklist.line.planning,model_tuv_audit_checklist_line,tuv_austria_customization.group_planning_team,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1

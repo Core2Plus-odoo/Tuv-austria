@@ -38,6 +38,7 @@ Centralized module for client-specific customizations across:
         'views/project_views.xml',
         'views/project_task_mandays_views.xml',
         'views/audit_document_views.xml',
+        'views/audit_execution_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
@@ -45,6 +46,7 @@ Centralized module for client-specific customizations across:
         'data/project_stages.xml',
         'data/audit_document_data.xml',
         'data/mail_template_audit_plan.xml',
+        'data/audit_clause_data.xml',
         'report/sale_order_application_form_report.xml',
         'report/sale_order_review_form_report.xml',
         'report/sale_order_proposal_report.xml',
@@ -54,6 +56,7 @@ Centralized module for client-specific customizations across:
         'report/sale_order_contract_pnac_report.xml',
         'report/project_task_mandays_report.xml',
         'report/project_atjf_report.xml',
+        'report/project_audit_checklist_report.xml',
     ],
 
     'assets': {
