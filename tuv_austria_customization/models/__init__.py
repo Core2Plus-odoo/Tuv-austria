@@ -14,6 +14,8 @@ from . import project
 from . import project_task_mandays
 from . import project_review
 from . import project_atjf
+from . import audit_document
+from . import project_audit_plan
 from . import ir_ui_menu
 from . import stock
 from . import ir_actions_report

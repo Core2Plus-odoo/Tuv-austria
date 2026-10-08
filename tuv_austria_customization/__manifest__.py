@@ -17,7 +17,7 @@ Centralized module for client-specific customizations across:
     'website': "https://www.core2plus.com",
 
     'category': 'Customizations',
-    'version': '1.2',
+    'version': '1.3',
 
     'depends': ['base', 'account', 'product', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
 
@@ -37,11 +37,14 @@ Centralized module for client-specific customizations across:
         'views/account_move_views.xml',
         'views/project_views.xml',
         'views/project_task_mandays_views.xml',
+        'views/audit_document_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
         'data/ir_actions_report_data.xml',
         'data/project_stages.xml',
+        'data/audit_document_data.xml',
+        'data/mail_template_audit_plan.xml',
         'report/sale_order_application_form_report.xml',
         'report/sale_order_review_form_report.xml',
         'report/sale_order_proposal_report.xml',

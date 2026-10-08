@@ -247,6 +247,10 @@
                     string="ATJF Back to Draft"
                     groups="tuv_austria_customization.group_planning_team,base.group_system"
                     invisible="atjf_state == 'draft'"/>
+                <button name="action_send_audit_plan" type="object"
+                    string="Send Audit Plan to Client"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="atjf_state != 'reviewed'"/>
             </xpath>
 
             <page name="settings" position="before">
@@ -313,7 +317,22 @@
                             <field name="atjf_review_notes"
                                 readonly="atjf_state == 'reviewed'"/>
                         </group>
+                        <group string="Audit Plan To Client">
+                            <field name="partner_id" string="Sent To" readonly="1"
+                                widget="res_partner_many2one" context="{'show_email': True}"/>
+                            <field name="audit_plan_sent_on"/>
+                        </group>
                     </group>
+                    <!-- Sent to the client automatically when the ATJF is approved -->
+                    <separator string="Documents To Be Prepared By The Client"/>
+                    <field name="audit_document_ids" nolabel="1"
+                        options="{'no_create': True}">
+                        <list>
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="certification_standard_ids" widget="many2many_tags"/>
+                        </list>
+                    </field>
                 </page>
             </page>
         </field>

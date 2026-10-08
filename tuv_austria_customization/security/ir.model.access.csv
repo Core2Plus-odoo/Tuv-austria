@@ -17,4 +17,7 @@ access_tuv_application_annex_manager,tuv.application.annex.manager,model_tuv_app
 access_tuv_application_annex_line_user,tuv.application.annex.line.user,model_tuv_application_annex_line,base.group_user,1,1,1,1
 access_tuv_application_annex_line_manager,tuv.application.annex.line.manager,model_tuv_application_annex_line,base.group_system,1,1,1,1
 access_tuv_application_annex_product_user,tuv.application.annex.product.user,model_tuv_application_annex_product,base.group_user,1,1,1,1
+access_tuv_audit_document_user,tuv.audit.document.user,model_tuv_audit_document,base.group_user,1,0,0,0
+access_tuv_audit_document_planning,tuv.audit.document.planning,model_tuv_audit_document,tuv_austria_customization.group_planning_team,1,1,1,1
+access_tuv_audit_document_manager,tuv.audit.document.manager,model_tuv_audit_document,base.group_system,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1
