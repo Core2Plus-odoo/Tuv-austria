@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_client_feedback_list" model="ir.ui.view">
+        <field name="name">tuv.client.feedback.list</field>
+        <field name="model">tuv.client.feedback</field>
+        <field name="arch" type="xml">
+            <list string="Client Feedback" create="0">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="project_id" optional="show"/>
+                <field name="auditor_id" optional="show"/>
+                <field name="standards" optional="hide"/>
+                <field name="rating_auditor" optional="show"/>
+                <field name="rating_audit_quality" optional="show"/>
+                <field name="rating_report" optional="show"/>
+                <field name="rating_service" optional="show"/>
+                <field name="average_score"/>
+                <field name="sent_on" optional="hide"/>
+                <field name="answered_on" optional="show"/>
+                <field name="state" widget="badge" decoration-warning="state == 'sent'"
+                    decoration-success="state == 'answered'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_client_feedback_form" model="ir.ui.view">
+        <field name="name">tuv.client.feedback.form</field>
+        <field name="model">tuv.client.feedback</field>
+        <field name="arch" type="xml">
+            <form string="Client Feedback" create="0">
+                <header>
+                    <button name="action_resend" type="object" string="Send Again" invisible="state != 'sent'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                        <field name="average_score" widget="float" invisible="state != 'answered'"/>
+                        <span invisible="state != 'answered'"> / 5 average</span>
+                    </div>
+                    <group>
+                        <group string="Audit">
+                            <field name="partner_id"/>
+                            <field name="project_id"/>
+                            <field name="auditor_id"/>
+                            <field name="standards"/>
+                            <field name="sent_on"/>
+                            <field name="answered_on"/>
+                            <field name="feedback_url" widget="url" invisible="state != 'sent'"/>
+                        </group>
+                        <group string="Client's Ratings">
+                            <field name="rating_auditor"/>
+                            <field name="rating_audit_quality"/>
+                            <field name="rating_report"/>
+                            <field name="rating_service"/>
+                        </group>
+                    </group>
+                    <separator string="Client Comments"/>
+                    <field name="comments"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tuv_client_feedback_search" model="ir.ui.view">
+        <field name="name">tuv.client.feedback.search</field>
+        <field name="model">tuv.client.feedback</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="auditor_id"/>
+                <filter name="waiting" string="Waiting for the Client" domain="[('state', '=', 'sent')]"/>
+                <filter name="answered" string="Answered" domain="[('state', '=', 'answered')]"/>
+                <filter name="low" string="Low Score (below 3)"
+                    domain="[('state', '=', 'answered'), ('average_score', '&lt;', 3)]"/>
+                <group>
+                    <filter name="group_auditor" string="Lead Auditor" context="{'group_by': 'auditor_id'}"/>
+                    <filter name="group_client" string="Client" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_month" string="Answered (Month)" context="{'group_by': 'answered_on:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tuv_client_feedback" model="ir.actions.act_window">
+        <field name="name">Client Feedback</field>
+        <field name="res_model">tuv.client.feedback</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No client feedback yet</p>
+            <p>The feedback form is e-mailed to the client automatically when the audit is closed
+               (the project reaches Feedback &amp; Continuous Improvement).</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_client_feedback"
+        action="action_tuv_client_feedback"
+        name="Client Feedback"
+        parent="project.menu_main_pm"
+        sequence="19"/>
+
+    <record id="edit_project_feedback_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.feedback.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_feedback" type="object" class="oe_stat_button"
+                    icon="fa-commenting-o" invisible="not feedback_count">
+                    <field name="feedback_count" widget="statinfo" string="Client Feedback"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="project_project_stage_form_feedback_tuv" model="ir.ui.view">
+        <field name="name">project.project.stage.form.feedback.custom.operations</field>
+        <field name="model">project.project.stage</field>
+        <field name="inherit_id" ref="project.project_project_stage_view_form"/>
+        <field name="arch" type="xml">
+            <field name="fold" position="after">
+                <field name="sends_client_feedback"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

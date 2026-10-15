@@ -50,4 +50,7 @@ access_tuv_certificate_dispatch_wizard_manager,tuv.certificate.dispatch.wizard.m
 access_tuv_certificate_register_viewer,tuv.certificate.register.viewer,model_tuv_certificate_register,tuv_austria_customization.group_register_viewer,1,0,0,0
 access_tuv_certificate_register_project_user,tuv.certificate.register.project.user,model_tuv_certificate_register,project.group_project_user,1,0,0,0
 access_tuv_certificate_register_manager,tuv.certificate.register.manager,model_tuv_certificate_register,base.group_system,1,0,0,0
+access_tuv_client_feedback_project_user,tuv.client.feedback.project.user,model_tuv_client_feedback,project.group_project_user,1,0,0,0
+access_tuv_client_feedback_planning,tuv.client.feedback.planning,model_tuv_client_feedback,tuv_austria_customization.group_planning_team,1,1,0,0
+access_tuv_client_feedback_manager,tuv.client.feedback.manager,model_tuv_client_feedback,base.group_system,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="client_feedback_page" name="Client Feedback Form">
+        <t t-call="web.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="container py-5" style="max-width: 760px;">
+                <div class="text-center mb-4">
+                    <h2 class="mb-1" t-out="feedback.project_id.company_id.name"/>
+                    <h4 class="text-muted">Client Feedback</h4>
+                </div>
+
+                <!-- already answered -->
+                <div t-if="feedback.state == 'answered'" class="alert alert-success text-center">
+                    <h4>Thank you for your feedback!</h4>
+                    <p class="mb-0">Your answers for <b t-out="feedback.standards"/> were received on
+                        <span t-field="feedback.answered_on" t-options="{'widget': 'date'}"/>.</p>
+                </div>
+
+                <form t-else="" method="post" t-att-action="'/tuv/feedback/%s' % feedback.access_token">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <p>
+                        Dear <b t-out="feedback.partner_id.name"/>, thank you for choosing us for your
+                        <b t-out="feedback.standards"/> audit. Please rate the following - it takes a minute.
+                    </p>
+                    <div t-if="error" class="alert alert-danger">Please rate all four points.</div>
+
+                    <div t-foreach="questions" t-as="q" class="card mb-3">
+                        <div class="card-body">
+                            <div class="fw-bold mb-2" t-out="q[1]"/>
+                            <div class="d-flex flex-wrap gap-3">
+                                <div t-foreach="ratings" t-as="r" class="form-check">
+                                    <input class="form-check-input" type="radio" required="required"
+                                        t-att-name="q[0]" t-att-id="'%s_%s' % (q[0], r[0])" t-att-value="r[0]"
+                                        t-att-checked="posted.get(q[0]) == r[0] or None"/>
+                                    <label class="form-check-label" t-att-for="'%s_%s' % (q[0], r[0])">
+                                        <t t-out="r[0]"/> - <t t-out="r[1]"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-bold mb-1" for="comments">Comments or suggestions (optional)</label>
+                        <textarea class="form-control" id="comments" name="comments" rows="4"
+                            t-out="posted.get('comments') or ''"/>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+
+</odoo>

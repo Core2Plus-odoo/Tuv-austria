@@ -49,6 +49,8 @@ Centralized module for client-specific customizations across:
         'views/certificate_views.xml',
         'views/certificate_dispatch_views.xml',
         'views/certificate_register_views.xml',
+        'views/client_feedback_views.xml',
+        'views/client_feedback_templates.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
@@ -78,6 +80,7 @@ Centralized module for client-specific customizations across:
         'data/certificate_data.xml',
         'report/certificate_register_report.xml',
         'data/certificate_register_data.xml',
+        'data/client_feedback_data.xml',
     ],
 
     'assets': {
