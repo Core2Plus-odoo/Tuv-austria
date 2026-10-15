@@ -21,6 +21,7 @@ from . import project_audit_report
 from . import project_audit_evidence
 from . import audit_nonconformity
 from . import technical_review
+from . import project_invoice
 from . import ir_ui_menu
 from . import stock
 from . import ir_actions_report

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: the client may reword the mail or reschedule the job -->
+    <data noupdate="1">
+
+        <!-- Sent with the client's own Commercial Invoice layout attached -->
+        <record id="mail_template_commercial_invoice" model="mail.template">
+            <field name="name">TUV: Commercial Invoice to Client</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject">{{ object.company_id.name }} - Commercial Invoice {{ object.name }}</field>
+            <field name="email_from">{{ (object.invoice_user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent automatically with the commercial invoice of a completed audit</field>
+            <field name="report_template_ids" eval="[(6, 0, [ref('tuv_austria_customization.action_report_account_move_commercial_invoice')])]"/>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        Please find attached our commercial invoice
+        <b t-out="object.name or ''">INV/2026/0001</b>
+        for the audit <t t-out="object.tuv_project_id.name or ''">S00001</t>
+        (<t t-out="object.tuv_project_id.atjf_standards or ''">ISO 9001:2015</t>),
+        amounting to
+        <b t-out="format_amount(object.amount_total, object.currency_id) or ''">PKR 100,000</b>.
+    </p>
+    <p t-if="object.invoice_date_due">
+        Payment is due by <b t-out="format_date(object.invoice_date_due) or ''">01/01/2026</b>.
+    </p>
+    <p>
+        Kind regards,<br/>
+        <t t-out="object.company_id.name or ''">TUV Austria</t>
+    </p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <!-- Hourly: any completed audit still without its invoice gets it now, so no
+             job waits more than 24 hours to be invoiced. -->
+        <record id="ir_cron_commercial_invoice" model="ir.cron">
+            <field name="name">TUV: Generate Commercial Invoices</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_generate_commercial_invoices()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>
