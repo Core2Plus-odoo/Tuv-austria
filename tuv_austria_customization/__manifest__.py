@@ -72,6 +72,8 @@ Centralized module for client-specific customizations across:
         'data/commercial_invoice_data.xml',
         'report/sales_tax_invoice_report.xml',
         'data/sales_tax_invoice_data.xml',
+        'data/certificate_data.xml',
+        'report/certificate_report.xml',
     ],
 
     'assets': {

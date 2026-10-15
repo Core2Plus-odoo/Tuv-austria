@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: the certificate counter must never restart -->
+    <data noupdate="1">
+        <!-- Drawn when the certificate is confirmed; no gaps in the register -->
+        <record id="seq_tuv_certificate_number" model="ir.sequence">
+            <field name="name">TUV Certificate Number</field>
+            <field name="code">tuv.certificate.number</field>
+            <field name="prefix">TUV/CERT/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="implementation">no_gap</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

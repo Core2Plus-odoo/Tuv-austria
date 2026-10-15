@@ -104,11 +104,15 @@ class ProjectProject(models.Model):
 
     certificate_ids = fields.One2many('tuv.certificate', 'project_id', string='Certificates')
     certificate_id = fields.Many2one('tuv.certificate', compute='_compute_certificate_id', string='Certificate')
+    certificate_state = fields.Selection(
+        lambda self: self.env['tuv.certificate']._fields['state'].selection,
+        compute='_compute_certificate_id', string='Certificate Progress')
 
     @api.depends('certificate_ids.state')
     def _compute_certificate_id(self):
         for project in self:
             project.certificate_id = project.certificate_ids.filtered(lambda c: c.state != 'cancelled')[:1]
+            project.certificate_state = project.certificate_id.state
 
     # ------------------------------------------------------------------
     # The three conditions

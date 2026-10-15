@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- A certificate is a landscape page of its own: no letterhead, its own frame -->
+    <record id="paperformat_tuv_certificate" model="report.paperformat">
+        <field name="name">A4 Landscape - TUV Certificate</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">8</field>
+        <field name="margin_bottom">8</field>
+        <field name="margin_left">8</field>
+        <field name="margin_right">8</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="report_tuv_certificate_document">
+        <div class="article" t-att-data-oe-model="doc._name" t-att-data-oe-id="doc.id">
+        <div class="page tuv_cert">
+            <style>
+                .tuv_cert { font-family: Arial, Helvetica, sans-serif; color: #1b2b42; }
+                .tuv_cert .frame { border: 6px double #b81d1d; padding: 34px 50px 30px 50px; min-height: 186mm; position: relative; }
+                .tuv_cert .company { text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+                .tuv_cert .title { text-align: center; font-size: 54px; font-weight: 800; color: #b81d1d;
+                                   letter-spacing: 10px; margin: 22px 0 4px 0; }
+                .tuv_cert .type { text-align: center; font-size: 14px; margin-bottom: 26px; text-transform: uppercase; }
+                .tuv_cert .lead { text-align: center; font-size: 15px; margin: 10px 0; }
+                .tuv_cert .holder { text-align: center; font-size: 30px; font-weight: 800; margin: 10px 0 4px 0; }
+                .tuv_cert .address { text-align: center; font-size: 14px; margin-bottom: 14px; }
+                .tuv_cert .standard { text-align: center; font-size: 28px; font-weight: 800; color: #b81d1d; margin: 10px 0; }
+                .tuv_cert .scope { text-align: center; font-size: 16px; font-style: italic; margin: 6px 40px 18px 40px; }
+                .tuv_cert table.facts { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 14px; }
+                .tuv_cert table.facts td { padding: 5px 8px; }
+                .tuv_cert table.facts td.lbl { font-weight: 700; width: 22%; }
+                .tuv_cert .note { font-size: 12px; margin-top: 16px; text-align: center; }
+                .tuv_cert .sign { margin-top: 50px; width: 100%; font-size: 13px; }
+                .tuv_cert .sign td { width: 50%; text-align: center; vertical-align: bottom; }
+                .tuv_cert .sign .line { border-top: 1px solid #1b2b42; width: 60%; margin: 0 auto; padding-top: 3px; }
+                .tuv_cert .draft { position: absolute; top: 40%; left: 0; right: 0; text-align: center;
+                                   font-size: 110px; font-weight: 800; color: rgba(184, 29, 29, 0.15);
+                                   transform: rotate(-20deg); }
+            </style>
+            <t t-set="holder" t-value="doc.partner_id"/>
+            <div class="frame">
+                <div t-if="doc.state != 'prepared'" class="draft">DRAFT</div>
+                <div class="company" t-out="doc.project_id.company_id.name"/>
+                <div class="title">CERTIFICATE</div>
+                <div class="type"><span t-field="doc.certificate_type"/></div>
+
+                <div class="lead">This is to certify that the management system of</div>
+                <div class="holder" t-out="holder.name"/>
+                <div class="address" t-out="doc.site_address"/>
+                <div class="lead">has been audited and found to be in accordance with the requirements of</div>
+                <div class="standard" t-out="doc.standards"/>
+                <div class="lead">for the following scope:</div>
+                <div class="scope" t-out="doc.scope"/>
+
+                <table class="facts">
+                    <tr>
+                        <td class="lbl">Certificate No.</td><td><b t-out="doc.certificate_number or 'to be assigned'"/></td>
+                        <td class="lbl">EA Code</td><td t-out="', '.join(n.strip() for n in doc.ea_code_ids.mapped('name'))"/>
+                    </tr>
+                    <tr>
+                        <td class="lbl">Issue Date</td><td><span t-field="doc.issue_date"/></td>
+                        <td class="lbl">Expiry Date</td><td><b><span t-field="doc.expiry_date"/></b></td>
+                    </tr>
+                    <tr>
+                        <td class="lbl">Initial Certification</td><td><span t-field="doc.cycle_start_date"/></td>
+                        <td class="lbl">Surveillance Due</td>
+                        <td>
+                            <span t-field="doc.surveillance_1_date"/>
+                            <t t-if="doc.surveillance_2_date"> / <span t-field="doc.surveillance_2_date"/></t>
+                        </td>
+                    </tr>
+                </table>
+                <div class="note">
+                    The validity of this certificate is subject to successful annual surveillance audits.
+                    <span t-out="doc.validity_note"/>.
+                </div>
+
+                <table class="sign">
+                    <tr>
+                        <td><div style="height: 40px;"/><div class="line">Lead Auditor - <span t-out="doc.lead_auditor_id.name"/></div></td>
+                        <td><div style="height: 40px;"/><div class="line">Certification Body - Authorised Signatory</div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </div>
+    </template>
+
+    <template id="report_tuv_certificate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="tuv_austria_customization.report_tuv_certificate_document"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_tuv_certificate" model="ir.actions.report">
+        <field name="name">Certificate</field>
+        <field name="model">tuv.certificate</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_tuv_certificate</field>
+        <field name="report_file">tuv_austria_customization.report_tuv_certificate</field>
+        <field name="print_report_name">'Certificate - %s' % ((object.certificate_number or 'DRAFT').replace('/', '-'))</field>
+        <field name="binding_model_id" ref="model_tuv_certificate"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_tuv_certificate"/>
+    </record>
+
+</odoo>
