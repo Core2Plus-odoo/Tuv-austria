@@ -25,7 +25,8 @@ class ClientFeedback(models.Model):
 
     _name = 'tuv.client.feedback'
     _description = 'Client Feedback'
-    _inherit = ['mail.thread']
+    # activities: the Certification Manager gets a to-do to review each answer
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'id desc'
 
     name = fields.Char(string='Reference', required=True, copy=False, readonly=True, default='/')

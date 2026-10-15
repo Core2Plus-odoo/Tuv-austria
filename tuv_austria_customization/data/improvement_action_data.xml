@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_tuv_corrective_action" model="ir.sequence">
+            <field name="name">TUV Corrective Action</field>
+            <field name="code">tuv.corrective.action</field>
+            <field name="prefix">CA/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_tuv_improvement_action" model="ir.sequence">
+            <field name="name">TUV Improvement Action</field>
+            <field name="code">tuv.improvement.action</field>
+            <field name="prefix">IA/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Daily: actions past their due date are flagged once -->
+        <record id="ir_cron_improvement_action_overdue" model="ir.cron">
+            <field name="name">TUV: Flag Overdue Corrective / Improvement Actions</field>
+            <field name="model_id" ref="model_tuv_improvement_action"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_flag_overdue()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

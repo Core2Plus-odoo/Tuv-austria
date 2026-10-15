@@ -125,7 +125,7 @@ class AuditorPerformance(models.Model):
         """Read the job again - feedback, report, review and evidence may have moved on."""
         for rec in self.filtered(lambda r: r.state == 'draft'):
             project = rec.project_id
-            fb = project.feedback_ids.filtered(lambda f: f.state == 'answered')[:1]
+            fb = project.feedback_ids.filtered(lambda f: f.state in ('answered', 'reviewed'))[:1]
             reviews = project.technical_review_ids.filtered(lambda r: r.state in ('approved', 'returned'))
             vals = {
                 'feedback_received': bool(fb),

@@ -52,6 +52,7 @@ Centralized module for client-specific customizations across:
         'views/client_feedback_views.xml',
         'views/client_feedback_templates.xml',
         'views/auditor_performance_views.xml',
+        'views/improvement_action_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
@@ -83,6 +84,7 @@ Centralized module for client-specific customizations across:
         'data/certificate_register_data.xml',
         'data/client_feedback_data.xml',
         'data/auditor_performance_data.xml',
+        'data/improvement_action_data.xml',
     ],
 
     'assets': {

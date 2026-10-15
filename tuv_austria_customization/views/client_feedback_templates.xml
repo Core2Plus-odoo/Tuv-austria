@@ -12,7 +12,7 @@
                 </div>
 
                 <!-- already answered -->
-                <div t-if="feedback.state == 'answered'" class="alert alert-success text-center">
+                <div t-if="feedback.state != 'sent'" class="alert alert-success text-center">
                     <h4>Thank you for your feedback!</h4>
                     <p class="mb-0">Your answers for <b t-out="feedback.standards"/> were received on
                         <span t-field="feedback.answered_on" t-options="{'widget': 'date'}"/>.</p>

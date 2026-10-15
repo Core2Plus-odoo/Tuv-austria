@@ -67,6 +67,19 @@
         <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
     </record>
 
+    <record id="privilege_tuv_certification_manager" model="res.groups.privilege">
+        <field name="name">TUV Austria - Certification Manager</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <!-- Reviews client feedback and owns corrective / improvement actions -->
+    <record id="group_certification_manager" model="res.groups">
+        <field name="name">Certification Manager</field>
+        <field name="privilege_id" ref="privilege_tuv_certification_manager"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
+    </record>
+
     <record id="privilege_tuv_register_viewer" model="res.groups.privilege">
         <field name="name">TUV Austria - Certificate Register</field>
         <field name="category_id" ref="module_category_tuv_austria"/>
