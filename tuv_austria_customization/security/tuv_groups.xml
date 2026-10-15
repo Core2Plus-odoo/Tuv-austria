@@ -40,4 +40,18 @@
         <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
     </record>
 
+    <record id="privilege_tuv_tax_manager" model="res.groups.privilege">
+        <field name="name">TUV Austria - Finance / Tax</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">52</field>
+    </record>
+
+    <!-- Issues the Sales Tax Invoices; fills in the buyer's STRN on the contact. -->
+    <record id="group_tax_manager" model="res.groups">
+        <field name="name">Finance / Tax Manager</field>
+        <field name="privilege_id" ref="privilege_tuv_tax_manager"/>
+        <field name="implied_ids" eval="[(4, ref('account.group_account_invoice')),
+                                         (4, ref('base.group_partner_manager'))]"/>
+    </record>
+
 </odoo>
