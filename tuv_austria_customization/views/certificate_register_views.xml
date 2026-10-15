@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <list string="Certificate Register" create="0" edit="0" delete="0"
                 decoration-muted="status in ('superseded', 'cancelled')"
-                decoration-danger="status == 'expired'" decoration-success="status == 'valid'">
+                decoration-danger="status in ('expired', 'suspended', 'withdrawn')" decoration-success="status == 'valid'">
                 <header>
                     <button name="action_print_register" type="object" string="Print Register"
                         icon="fa-print" display="always"/>
@@ -25,7 +25,7 @@
                 <field name="expiry_date"/>
                 <field name="next_surveillance_date" optional="show"/>
                 <field name="status" widget="badge"
-                    decoration-success="status == 'valid'" decoration-danger="status == 'expired'"
+                    decoration-success="status == 'valid'" decoration-danger="status in ('expired', 'suspended', 'withdrawn')"
                     decoration-muted="status in ('superseded', 'cancelled')"/>
                 <field name="registered_on" optional="hide"/>
             </list>
@@ -41,7 +41,7 @@
                     <div class="oe_title">
                         <h1><field name="name"/></h1>
                         <field name="status" widget="badge"
-                            decoration-success="status == 'valid'" decoration-danger="status == 'expired'"
+                            decoration-success="status == 'valid'" decoration-danger="status in ('expired', 'suspended', 'withdrawn')"
                             decoration-muted="status in ('superseded', 'cancelled')"/>
                     </div>
                     <group>
@@ -93,6 +93,8 @@
                 <filter name="current" string="Current Register" domain="[('is_current', '=', True)]"/>
                 <separator/>
                 <filter name="valid" string="Valid" domain="[('status', '=', 'valid')]"/>
+                <filter name="suspended" string="Suspended" domain="[('status', '=', 'suspended')]"/>
+                <filter name="withdrawn" string="Withdrawn" domain="[('status', '=', 'withdrawn')]"/>
                 <filter name="expired" string="Expired" domain="[('status', '=', 'expired')]"/>
                 <filter name="superseded" string="Superseded" domain="[('status', '=', 'superseded')]"/>
                 <filter name="cancelled" string="Cancelled" domain="[('status', '=', 'cancelled')]"/>

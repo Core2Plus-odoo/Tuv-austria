@@ -5,6 +5,8 @@ from .search_utils import boolean_search_positive, search_values
 
 REGISTER_STATUS = [
     ('valid', 'Valid'),
+    ('suspended', 'Suspended'),
+    ('withdrawn', 'Withdrawn'),
     ('expired', 'Expired'),
     ('superseded', 'Superseded'),
     ('cancelled', 'Cancelled'),
@@ -73,7 +75,7 @@ class CertificateRegister(models.Model):
         for entry in self:
             entry.issue_year = str(entry.issue_date.year) if entry.issue_date else False
 
-    @api.depends('certificate_id.state', 'superseded_by_id', 'expiry_date')
+    @api.depends('certificate_id.state', 'certificate_id.certification_status', 'superseded_by_id', 'expiry_date')
     def _compute_status(self):
         today = fields.Date.context_today(self)
         for entry in self:
@@ -81,6 +83,10 @@ class CertificateRegister(models.Model):
                 entry.status = 'cancelled'
             elif entry.superseded_by_id:
                 entry.status = 'superseded'
+            elif entry.certificate_id.certification_status == 'withdrawn':
+                entry.status = 'withdrawn'
+            elif entry.certificate_id.certification_status == 'suspended':
+                entry.status = 'suspended'
             elif entry.expiry_date and entry.expiry_date < today:
                 entry.status = 'expired'
             else:
@@ -88,13 +94,15 @@ class CertificateRegister(models.Model):
 
     def _search_status(self, operator, value):
         today = fields.Date.context_today(self)
+        live = [('certificate_id.state', '!=', 'cancelled'), ('superseded_by_id', '=', False)]
+        active = live + [('certificate_id.certification_status', '=', 'active')]
         domains = {
             'cancelled': [('certificate_id.state', '=', 'cancelled')],
             'superseded': [('certificate_id.state', '!=', 'cancelled'), ('superseded_by_id', '!=', False)],
-            'expired': [('certificate_id.state', '!=', 'cancelled'), ('superseded_by_id', '=', False),
-                        ('expiry_date', '<', today)],
-            'valid': [('certificate_id.state', '!=', 'cancelled'), ('superseded_by_id', '=', False),
-                      '|', ('expiry_date', '=', False), ('expiry_date', '>=', today)],
+            'withdrawn': live + [('certificate_id.certification_status', '=', 'withdrawn')],
+            'suspended': live + [('certificate_id.certification_status', '=', 'suspended')],
+            'expired': active + [('expiry_date', '<', today)],
+            'valid': active + ['|', ('expiry_date', '=', False), ('expiry_date', '>=', today)],
         }
         ids = set()
         for val in search_values(value):
