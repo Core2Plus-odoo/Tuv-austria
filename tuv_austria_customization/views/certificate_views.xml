@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_certificate_list" model="ir.ui.view">
+        <field name="name">tuv.certificate.list</field>
+        <field name="model">tuv.certificate</field>
+        <field name="arch" type="xml">
+            <list string="Certificates" create="0" decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="project_id"/>
+                <field name="standards"/>
+                <field name="initiated_on"/>
+                <field name="trigger" optional="show"/>
+                <field name="state" widget="badge" decoration-info="state == 'preparation'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_certificate_form" model="ir.ui.view">
+        <field name="name">tuv.certificate.form</field>
+        <field name="model">tuv.certificate</field>
+        <field name="arch" type="xml">
+            <form string="Certificate" create="0">
+                <header>
+                    <button name="action_cancel" type="object" string="Cancel" groups="base.group_system"
+                        invisible="state == 'cancelled'" confirm="Cancel this certificate?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="preparation"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group string="Certificate">
+                            <field name="partner_id"/>
+                            <field name="standards" readonly="state != 'preparation'"/>
+                            <field name="ea_code_ids" widget="many2many_tags" readonly="state != 'preparation'"/>
+                            <field name="scope" readonly="state != 'preparation'"/>
+                            <field name="site_address" readonly="state != 'preparation'"/>
+                        </group>
+                        <group string="Audit">
+                            <field name="project_id"/>
+                            <field name="lead_auditor_id" readonly="1"/>
+                            <field name="audit_date_st1" readonly="1"/>
+                            <field name="audit_date_st2" readonly="1"/>
+                            <field name="report_conclusion"/>
+                        </group>
+                        <group string="Started On (all three conditions met)">
+                            <field name="initiated_on"/>
+                            <field name="initiated_by"/>
+                            <field name="trigger"/>
+                            <field name="technical_review_id"/>
+                            <field name="major_nc_closed"/>
+                            <field name="minor_nc_open"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount_paid"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes" nolabel="1" colspan="2"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tuv_certificate" model="ir.actions.act_window">
+        <field name="name">Certificates</field>
+        <field name="res_model">tuv.certificate</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No certificate in preparation</p>
+            <p>A certificate starts by itself once the audit report is approved, every Major NC
+               is closed and the invoices are 100% paid.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_certificate"
+        action="action_tuv_certificate"
+        name="Certificates"
+        parent="project.menu_main_pm"
+        sequence="17"/>
+
+    <record id="edit_project_certificate_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.certificate.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="certificate_id" invisible="1"/>
+                <button name="action_initiate_certificate" type="object" string="Initiate Certificate"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="audit_state != 'done' or certificate_id"/>
+            </xpath>
+            <div name="button_box" position="inside">
+                <button name="action_view_certificate" type="object" class="oe_stat_button"
+                    icon="fa-certificate" invisible="not certificate_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">In Preparation</span>
+                        <span class="o_stat_text">Certificate</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

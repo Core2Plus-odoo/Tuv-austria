@@ -36,4 +36,7 @@ access_tuv_sales_tax_invoice_invoice_user,tuv.sales.tax.invoice.invoice.user,mod
 access_tuv_sales_tax_invoice_tax_manager,tuv.sales.tax.invoice.tax.manager,model_tuv_sales_tax_invoice,tuv_austria_customization.group_tax_manager,1,1,1,0
 access_tuv_sales_tax_invoice_planning,tuv.sales.tax.invoice.planning,model_tuv_sales_tax_invoice,tuv_austria_customization.group_planning_team,1,0,0,0
 access_tuv_sales_tax_invoice_manager,tuv.sales.tax.invoice.manager,model_tuv_sales_tax_invoice,base.group_system,1,1,1,1
+access_tuv_certificate_project_user,tuv.certificate.project.user,model_tuv_certificate,project.group_project_user,1,0,0,0
+access_tuv_certificate_planning,tuv.certificate.planning,model_tuv_certificate,tuv_austria_customization.group_planning_team,1,1,1,0
+access_tuv_certificate_manager,tuv.certificate.manager,model_tuv_certificate,base.group_system,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1
