@@ -26,4 +26,6 @@ access_tuv_audit_clause_manager,tuv.audit.clause.manager,model_tuv_audit_clause,
 access_tuv_audit_checklist_line_project_user,tuv.audit.checklist.line.project.user,model_tuv_audit_checklist_line,project.group_project_user,1,1,1,0
 access_tuv_audit_checklist_line_planning,tuv.audit.checklist.line.planning,model_tuv_audit_checklist_line,tuv_austria_customization.group_planning_team,1,1,1,1
 access_tuv_audit_evidence_project_user,tuv.audit.evidence.project.user,model_tuv_audit_evidence,project.group_project_user,1,1,1,1
+access_tuv_audit_nonconformity_project_user,tuv.audit.nonconformity.project.user,model_tuv_audit_nonconformity,project.group_project_user,1,1,1,0
+access_tuv_audit_nonconformity_planning,tuv.audit.nonconformity.planning,model_tuv_audit_nonconformity,tuv_austria_customization.group_planning_team,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1

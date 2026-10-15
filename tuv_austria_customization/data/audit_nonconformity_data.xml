@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: an upgrade must not reset the running NC counter or the cron the
+         client may have rescheduled -->
+    <data noupdate="1">
+
+        <record id="seq_tuv_audit_nonconformity" model="ir.sequence">
+            <field name="name">TUV Audit Nonconformity</field>
+            <field name="code">tuv.audit.nonconformity</field>
+            <field name="prefix">NC/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Once a day: every open NC past its closure deadline is flagged once in its
+             chatter and gets an OVERDUE to-do for the project manager. -->
+        <record id="ir_cron_nonconformity_overdue" model="ir.cron">
+            <field name="name">TUV: Flag Overdue Nonconformities</field>
+            <field name="model_id" ref="model_tuv_audit_nonconformity"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_flag_overdue()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

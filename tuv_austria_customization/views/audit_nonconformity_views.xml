@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_audit_nonconformity_list" model="ir.ui.view">
+        <field name="name">tuv.audit.nonconformity.list</field>
+        <field name="model">tuv.audit.nonconformity</field>
+        <field name="arch" type="xml">
+            <list string="Nonconformities" create="0"
+                decoration-danger="is_overdue"
+                decoration-muted="state in ('closed', 'cancelled')">
+                <field name="is_overdue" column_invisible="1"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="project_id" optional="show"/>
+                <field name="clause"/>
+                <field name="requirement" optional="hide"/>
+                <field name="grade" widget="badge"
+                    decoration-danger="grade == 'major_nc'" decoration-warning="grade == 'minor_nc'"/>
+                <field name="raised_on" optional="show"/>
+                <field name="deadline"/>
+                <field name="days_left" optional="show"/>
+                <field name="state" widget="badge"
+                    decoration-info="state == 'open'" decoration-warning="state == 'submitted'"
+                    decoration-success="state == 'closed'"/>
+                <field name="closed_on" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_audit_nonconformity_form" model="ir.ui.view">
+        <field name="name">tuv.audit.nonconformity.form</field>
+        <field name="model">tuv.audit.nonconformity</field>
+        <field name="arch" type="xml">
+            <form string="Nonconformity" create="0">
+                <header>
+                    <button name="action_submit_corrective_action" type="object"
+                        string="Record Corrective Action" class="btn-primary"
+                        invisible="state != 'open'"/>
+                    <button name="action_confirm_closure" type="object"
+                        string="Confirm Closure" class="btn-primary"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"
+                        invisible="state != 'submitted'"/>
+                    <button name="action_reject_corrective_action" type="object"
+                        string="Reject Corrective Action"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"
+                        invisible="state != 'submitted'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,submitted,closed"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Overdue" bg_color="text-bg-danger"
+                        invisible="not is_overdue"/>
+                    <widget name="web_ribbon" title="Closed" bg_color="text-bg-success"
+                        invisible="state != 'closed'"/>
+                    <field name="is_overdue" invisible="1"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                        <field name="grade" widget="badge" readonly="1"
+                            decoration-danger="grade == 'major_nc'" decoration-warning="grade == 'minor_nc'"/>
+                    </div>
+                    <group>
+                        <group string="Nonconformity">
+                            <field name="project_id" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="standard"/>
+                            <field name="clause" readonly="1"/>
+                            <field name="requirement" readonly="1"/>
+                            <field name="auditor_id" readonly="1"/>
+                        </group>
+                        <group string="Closure Deadline">
+                            <field name="raised_on" readonly="1"/>
+                            <field name="deadline"/>
+                            <field name="days_left" invisible="state in ('closed', 'cancelled')"/>
+                            <field name="closed_on"/>
+                            <field name="closed_by"/>
+                            <field name="closed_on_time" invisible="state != 'closed'"/>
+                        </group>
+                    </group>
+                    <separator string="Nonconformity / Objective Evidence"/>
+                    <field name="description" readonly="state != 'open'"/>
+                    <group string="Client's Response" invisible="state == 'cancelled'">
+                        <field name="root_cause" readonly="state != 'open'"/>
+                        <field name="correction" readonly="state != 'open'"/>
+                        <field name="corrective_action" readonly="state != 'open'"/>
+                        <field name="client_evidence_name" invisible="1"/>
+                        <field name="client_evidence" filename="client_evidence_name"
+                            readonly="state != 'open'"/>
+                        <field name="submitted_on"/>
+                    </group>
+                    <group string="Closure Verification" invisible="state in ('open', 'cancelled') and not reject_reason">
+                        <field name="closure_note" readonly="state != 'submitted'"
+                            placeholder="How the corrective action was verified (or why it is not accepted)"/>
+                        <field name="reject_reason" invisible="not reject_reason"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tuv_audit_nonconformity_search" model="ir.ui.view">
+        <field name="name">tuv.audit.nonconformity.search</field>
+        <field name="model">tuv.audit.nonconformity</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="project_id"/>
+                <field name="clause"/>
+                <filter name="not_closed" string="Not Closed" domain="[('state', 'in', ('open', 'submitted'))]"/>
+                <filter name="overdue" string="Overdue" domain="[('is_overdue', '=', True)]"/>
+                <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                <separator/>
+                <filter name="major" string="Major" domain="[('grade', '=', 'major_nc')]"/>
+                <filter name="minor" string="Minor" domain="[('grade', '=', 'minor_nc')]"/>
+                <group>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_partner" string="Client" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_grade" string="Grade" context="{'group_by': 'grade'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tuv_audit_nonconformity" model="ir.actions.act_window">
+        <field name="name">Nonconformities</field>
+        <field name="res_model">tuv.audit.nonconformity</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_not_closed': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No nonconformity to follow</p>
+            <p>They are logged automatically when an audit is completed: one per Major or
+               Minor clause of the checklist, with its closure deadline.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_audit_nonconformity"
+        action="action_tuv_audit_nonconformity"
+        name="Nonconformities"
+        parent="project.menu_main_pm"
+        sequence="15"/>
+
+    <!-- Project: smart button + the open / overdue figures on the Audit Report tab -->
+    <record id="edit_project_nonconformity_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.nonconformity.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_nonconformities" type="object"
+                    class="oe_stat_button" icon="fa-exclamation-triangle"
+                    invisible="not nonconformity_ids">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="nc_open_count"/> open</span>
+                        <span class="o_stat_text">Nonconformities</span>
+                    </div>
+                </button>
+                <field name="nonconformity_ids" invisible="1"/>
+            </div>
+            <xpath expr="//page[@name='audit_report']//field[@name='audit_ofi_count']" position="after">
+                <field name="nc_open_count" string="NCs Still Open"
+                    invisible="audit_state != 'done'"/>
+                <field name="nc_overdue_count" string="NCs Overdue"
+                    decoration-danger="nc_overdue_count > 0"
+                    invisible="audit_state != 'done'"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
