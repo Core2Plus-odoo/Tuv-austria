@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Per job ============ -->
+    <record id="view_tuv_auditor_performance_list" model="ir.ui.view">
+        <field name="name">tuv.auditor.performance.list</field>
+        <field name="model">tuv.auditor.performance</field>
+        <field name="arch" type="xml">
+            <list string="Auditor Performance" create="0"
+                decoration-danger="band == 'improve'" decoration-success="band == 'excellent'">
+                <field name="auditor_id"/>
+                <field name="role"/>
+                <field name="project_id"/>
+                <field name="client_id" optional="show"/>
+                <field name="standards" optional="hide"/>
+                <field name="closed_on"/>
+                <field name="client_rating_auditor" optional="show"/>
+                <field name="report_on_time" optional="show"/>
+                <field name="review_returns" optional="show"/>
+                <field name="internal_rating" optional="show"/>
+                <field name="job_score"/>
+                <field name="band" widget="badge" decoration-success="band == 'excellent'"
+                    decoration-info="band == 'good'" decoration-warning="band == 'satisfactory'"
+                    decoration-danger="band == 'improve'"/>
+                <field name="state" widget="badge" decoration-success="state == 'confirmed'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_auditor_performance_form" model="ir.ui.view">
+        <field name="name">tuv.auditor.performance.form</field>
+        <field name="model">tuv.auditor.performance</field>
+        <field name="arch" type="xml">
+            <form string="Auditor Performance" create="0">
+                <header>
+                    <button name="action_refresh" type="object" string="Refresh From Job" invisible="state != 'draft'"/>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary"
+                        invisible="state != 'draft'"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"/>
+                    <button name="action_reset" type="object" string="Reopen" invisible="state != 'confirmed'"
+                        groups="base.group_system"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                        <h3><field name="job_score"/> / 100 -
+                            <field name="band" widget="badge" decoration-success="band == 'excellent'"
+                                decoration-info="band == 'good'" decoration-warning="band == 'satisfactory'"
+                                decoration-danger="band == 'improve'"/></h3>
+                    </div>
+                    <group>
+                        <group string="Job">
+                            <field name="auditor_id"/>
+                            <field name="role"/>
+                            <field name="project_id"/>
+                            <field name="client_id"/>
+                            <field name="standards"/>
+                            <field name="ea_codes"/>
+                            <field name="man_days"/>
+                            <field name="audit_date"/>
+                            <field name="closed_on"/>
+                        </group>
+                        <group string="Client Feedback (30% + 10%)">
+                            <field name="feedback_received"/>
+                            <field name="client_rating_auditor"/>
+                            <field name="client_rating_overall"/>
+                        </group>
+                        <group string="Report &amp; Review - lead auditor (20% + 20% + 10%)" invisible="role != 'lead'">
+                            <field name="report_submitted"/>
+                            <field name="report_on_time"/>
+                            <field name="report_days_late"/>
+                            <field name="review_rounds"/>
+                            <field name="review_returns"/>
+                            <field name="evidence_total"/>
+                            <field name="evidence_late"/>
+                        </group>
+                        <group string="Findings Raised">
+                            <field name="major_nc"/>
+                            <field name="minor_nc"/>
+                        </group>
+                        <group string="Planning Team Evaluation (10%)">
+                            <field name="internal_rating" readonly="state != 'draft'"/>
+                            <field name="internal_remarks" readonly="state != 'draft'"/>
+                            <field name="confirmed_by"/>
+                            <field name="confirmed_on"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tuv_auditor_performance_search" model="ir.ui.view">
+        <field name="name">tuv.auditor.performance.search</field>
+        <field name="model">tuv.auditor.performance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="auditor_id"/>
+                <field name="project_id"/>
+                <field name="client_id"/>
+                <filter name="draft" string="To Confirm" domain="[('state', '=', 'draft')]"/>
+                <filter name="confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="improve" string="Needs Improvement" domain="[('band', '=', 'improve')]"/>
+                <group>
+                    <filter name="group_auditor" string="Auditor" context="{'group_by': 'auditor_id'}"/>
+                    <filter name="group_year" string="Year" context="{'group_by': 'year'}"/>
+                    <filter name="group_role" string="Role" context="{'group_by': 'role'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_tuv_auditor_performance_pivot" model="ir.ui.view">
+        <field name="name">tuv.auditor.performance.pivot</field>
+        <field name="model">tuv.auditor.performance</field>
+        <field name="arch" type="xml">
+            <pivot string="Auditor Performance">
+                <field name="auditor_id" type="row"/>
+                <field name="year" type="col"/>
+                <field name="job_score" type="measure"/>
+                <field name="client_rating_auditor" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_tuv_auditor_performance_graph" model="ir.ui.view">
+        <field name="name">tuv.auditor.performance.graph</field>
+        <field name="model">tuv.auditor.performance</field>
+        <field name="arch" type="xml">
+            <graph string="Auditor Performance" type="bar">
+                <field name="auditor_id"/>
+                <field name="job_score" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_tuv_auditor_performance" model="ir.actions.act_window">
+        <field name="name">Auditor Performance per Job</field>
+        <field name="res_model">tuv.auditor.performance</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No job closed yet</p>
+            <p>A record is created for every member of the audit team when the job closes
+               (the project reaches Feedback &amp; Continuous Improvement).</p>
+        </field>
+    </record>
+
+    <!-- ============ Per year ============ -->
+    <record id="view_tuv_auditor_review_list" model="ir.ui.view">
+        <field name="name">tuv.auditor.review.list</field>
+        <field name="model">tuv.auditor.review</field>
+        <field name="arch" type="xml">
+            <list string="Annual Auditor Reviews" create="0">
+                <header>
+                    <button name="action_open_generate" type="object"
+                        string="Generate Reviews" display="always"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"/>
+                </header>
+                <field name="year"/>
+                <field name="auditor_id"/>
+                <field name="jobs_count"/>
+                <field name="avg_job_score"/>
+                <field name="avg_client_rating" optional="show"/>
+                <field name="reports_on_time_pct" optional="show"/>
+                <field name="band" widget="badge" decoration-success="band == 'excellent'"
+                    decoration-danger="band == 'improve'"/>
+                <field name="decision"/>
+                <field name="state" widget="badge" decoration-success="state == 'approved'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_auditor_review_form" model="ir.ui.view">
+        <field name="name">tuv.auditor.review.form</field>
+        <field name="model">tuv.auditor.review</field>
+        <field name="arch" type="xml">
+            <form string="Annual Auditor Review" create="0">
+                <header>
+                    <button name="action_refresh" type="object" string="Refresh Figures" invisible="state != 'draft'"/>
+                    <button name="action_approve" type="object" string="Approve Review" class="btn-primary"
+                        invisible="state != 'draft'"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <div class="alert alert-warning" role="alert" invisible="not unconfirmed_count">
+                        <field name="unconfirmed_count" class="fw-bold"/> job record(s) of this year are not
+                        confirmed yet and are not counted.
+                    </div>
+                    <group>
+                        <group string="The Year In Figures">
+                            <field name="jobs_count"/>
+                            <field name="avg_job_score"/>
+                            <field name="band" widget="badge"/>
+                            <field name="avg_client_rating"/>
+                            <field name="reports_on_time_pct"/>
+                            <field name="first_pass_review_pct"/>
+                            <field name="evidence_on_time_pct"/>
+                            <field name="major_nc"/>
+                            <field name="minor_nc"/>
+                        </group>
+                        <group string="Competence Re-evaluation">
+                            <field name="decision" readonly="state != 'draft'"/>
+                            <field name="proposed_ea_code_ids" widget="many2many_tags" readonly="state != 'draft'"/>
+                            <field name="proposed_standard_ids" widget="many2many_tags" readonly="state != 'draft'"/>
+                            <field name="proposed_lead_auditor" readonly="state != 'draft'"/>
+                            <field name="approved_by"/>
+                            <field name="approved_on"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="strengths" readonly="state != 'draft'"/>
+                        <field name="improvements" readonly="state != 'draft'"/>
+                        <field name="training_required" readonly="state != 'draft'"
+                            placeholder="Required unless the competence is simply maintained"/>
+                    </group>
+                    <separator string="Jobs Of The Year"/>
+                    <field name="performance_ids" nolabel="1">
+                        <list>
+                            <field name="project_id"/>
+                            <field name="role"/>
+                            <field name="closed_on"/>
+                            <field name="client_rating_auditor"/>
+                            <field name="job_score"/>
+                            <field name="band" widget="badge"/>
+                            <field name="state" widget="badge"/>
+                        </list>
+                    </field>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tuv_auditor_review" model="ir.actions.act_window">
+        <field name="name">Annual Auditor Reviews</field>
+        <field name="res_model">tuv.auditor.review</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No annual review yet</p>
+            <p>Use "Generate Reviews" - one draft review per auditor who worked that year. They
+               are also generated every January for the year before.</p>
+        </field>
+    </record>
+
+    <record id="view_tuv_auditor_review_generate_form" model="ir.ui.view">
+        <field name="name">tuv.auditor.review.generate.form</field>
+        <field name="model">tuv.auditor.review.generate</field>
+        <field name="arch" type="xml">
+            <form string="Generate Annual Reviews">
+                <group><field name="year"/></group>
+                <footer>
+                    <button name="action_generate" type="object" string="Generate" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tuv_auditor_review_generate" model="ir.actions.act_window">
+        <field name="name">Generate Annual Reviews</field>
+        <field name="res_model">tuv.auditor.review.generate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_tuv_auditor_performance_root" name="Auditor Performance"
+        parent="project.menu_main_pm" sequence="20"/>
+    <menuitem id="menu_tuv_auditor_performance" action="action_tuv_auditor_performance"
+        name="Performance per Job" parent="menu_tuv_auditor_performance_root" sequence="10"/>
+    <menuitem id="menu_tuv_auditor_review" action="action_tuv_auditor_review"
+        name="Annual Reviews" parent="menu_tuv_auditor_performance_root" sequence="20"/>
+
+    <!-- auditor contact: the record of his work -->
+    <record id="view_partner_form_auditor_performance_tuv" model="ir.ui.view">
+        <field name="name">res.partner.form.auditor.performance.custom.operations</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_performance" type="object" class="oe_stat_button" icon="fa-line-chart"
+                    invisible="contact_type != 'auditor' or not performance_count">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="performance_avg_score"/></span>
+                        <span class="o_stat_text">Avg Job Score</span>
+                    </div>
+                </button>
+                <button name="action_view_auditor_reviews" type="object" class="oe_stat_button" icon="fa-id-badge"
+                    invisible="contact_type != 'auditor'">
+                    <span class="o_stat_text">Annual Reviews</span>
+                </button>
+                <field name="performance_count" invisible="1"/>
+            </div>
+        </field>
+    </record>
+
+    <record id="edit_project_auditor_performance_tuv" model="ir.ui.view">
+        <field name="name">project.project.form.auditor.performance.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_auditor_performance" type="object" class="oe_stat_button"
+                    icon="fa-line-chart" invisible="not performance_ids">
+                    <span class="o_stat_text">Auditor Performance</span>
+                </button>
+                <field name="performance_ids" invisible="1"/>
+            </div>
+        </field>
+    </record>
+
+</odoo>

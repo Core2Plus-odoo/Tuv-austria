@@ -29,6 +29,7 @@ from . import certificate_details
 from . import certificate_dispatch
 from . import certificate_register
 from . import client_feedback
+from . import auditor_performance
 from . import ir_ui_menu
 from . import stock
 from . import ir_actions_report

@@ -53,4 +53,11 @@ access_tuv_certificate_register_manager,tuv.certificate.register.manager,model_t
 access_tuv_client_feedback_project_user,tuv.client.feedback.project.user,model_tuv_client_feedback,project.group_project_user,1,0,0,0
 access_tuv_client_feedback_planning,tuv.client.feedback.planning,model_tuv_client_feedback,tuv_austria_customization.group_planning_team,1,1,0,0
 access_tuv_client_feedback_manager,tuv.client.feedback.manager,model_tuv_client_feedback,base.group_system,1,1,1,1
+access_tuv_auditor_performance_project_user,tuv.auditor.performance.project.user,model_tuv_auditor_performance,project.group_project_user,1,0,0,0
+access_tuv_auditor_performance_planning,tuv.auditor.performance.planning,model_tuv_auditor_performance,tuv_austria_customization.group_planning_team,1,1,1,0
+access_tuv_auditor_performance_manager,tuv.auditor.performance.manager,model_tuv_auditor_performance,base.group_system,1,1,1,1
+access_tuv_auditor_review_planning,tuv.auditor.review.planning,model_tuv_auditor_review,tuv_austria_customization.group_planning_team,1,1,1,0
+access_tuv_auditor_review_manager,tuv.auditor.review.manager,model_tuv_auditor_review,base.group_system,1,1,1,1
+access_tuv_auditor_review_generate_planning,tuv.auditor.review.generate.planning,model_tuv_auditor_review_generate,tuv_austria_customization.group_planning_team,1,1,1,1
+access_tuv_auditor_review_generate_manager,tuv.auditor.review.generate.manager,model_tuv_auditor_review_generate,base.group_system,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1
