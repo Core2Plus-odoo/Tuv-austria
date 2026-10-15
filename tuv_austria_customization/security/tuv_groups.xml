@@ -67,4 +67,17 @@
         <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
     </record>
 
+    <record id="privilege_tuv_register_viewer" model="res.groups.privilege">
+        <field name="name">TUV Austria - Certificate Register</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">54</field>
+    </record>
+
+    <!-- Read-only access to the certificate register, e.g. for a PNAC assessor -->
+    <record id="group_register_viewer" model="res.groups">
+        <field name="name">Certificate Register Viewer</field>
+        <field name="privilege_id" ref="privilege_tuv_register_viewer"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
 </odoo>

@@ -27,7 +27,8 @@ class TuvCertificate(models.Model):
         ('surveillance', 'Surveillance'),
         ('recertification', 'Recertification'),
     ], string='Certificate Type', compute='_compute_certificate_type', store=True, readonly=False,
-        required=True, help='Initial: new number, 3 years with annual surveillance. Surveillance: '
+        # precompute: required, so it must be known before the row is inserted
+        required=True, precompute=True, help='Initial: new number, 3 years with annual surveillance. Surveillance: '
                             'same certificate, confirmed for 1 more year. Recertification: new number, '
                             'new 3-year cycle.')
     previous_certificate_id = fields.Many2one(

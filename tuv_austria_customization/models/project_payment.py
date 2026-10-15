@@ -5,6 +5,7 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_is_zero
 
 from .project_invoice import CREDIT_DAYS
+from .search_utils import boolean_search_positive
 
 # The client's own stage names: entering either means the certificate is being issued.
 CERTIFICATE_STAGE_NAMES = ('Certificate Issuance', 'Feedback & Continuous Improvement')
@@ -99,12 +100,7 @@ class ProjectProject(models.Model):
     def _search_payment_overdue(self, operator, value):
         domain = [('payment_status', 'in', ('not_paid', 'partial')),
                   ('payment_due_date', '<', fields.Date.context_today(self))]
-        # a boolean filter arrives as ('in', [True]) in Odoo 19
-        values = value if isinstance(value, (list, tuple, set)) else [value]
-        positive = any(values)
-        if operator in ('!=', 'not in'):
-            positive = not positive
-        return domain if positive else ['!', '&'] + domain
+        return domain if boolean_search_positive(operator, value) else ['!', '&'] + domain
 
     # ------------------------------------------------------------------
     # The certificate gate

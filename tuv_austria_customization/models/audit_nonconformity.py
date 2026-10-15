@@ -3,6 +3,8 @@ from dateutil.relativedelta import relativedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .search_utils import boolean_search_positive
+
 # Months the client has to close a nonconformity, counted from the audit completion.
 CLOSURE_MONTHS = {'major_nc': 3, 'minor_nc': 6}
 NC_GRADE = [('major_nc', 'Major'), ('minor_nc', 'Minor')]
@@ -74,12 +76,7 @@ class AuditNonconformity(models.Model):
     def _search_overdue(self, operator, value):
         today = fields.Date.context_today(self)
         domain = [('state', 'in', ('open', 'submitted')), ('deadline', '<', today)]
-        # Odoo 19 hands a boolean filter over as ('in', [True]) rather than ('=', True)
-        values = value if isinstance(value, (list, tuple, set)) else [value]
-        positive = any(values)
-        if operator in ('!=', 'not in'):
-            positive = not positive
-        return domain if positive else ['!', '&'] + domain
+        return domain if boolean_search_positive(operator, value) else ['!', '&'] + domain
 
     @api.model_create_multi
     def create(self, vals_list):

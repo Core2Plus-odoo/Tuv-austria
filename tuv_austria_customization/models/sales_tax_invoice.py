@@ -4,6 +4,8 @@ from datetime import timedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .search_utils import boolean_search_positive
+
 _logger = logging.getLogger(__name__)
 
 # The Sales Tax Invoice follows the commercial invoice within this many hours.
@@ -93,12 +95,7 @@ class SalesTaxInvoice(models.Model):
 
     def _search_is_overdue(self, operator, value):
         domain = [('state', '=', 'draft'), ('due_on', '<', fields.Datetime.now())]
-        # a boolean filter arrives as ('in', [True]) in Odoo 19
-        values = value if isinstance(value, (list, tuple, set)) else [value]
-        positive = any(values)
-        if operator in ('!=', 'not in'):
-            positive = not positive
-        return domain if positive else ['!', '&'] + domain
+        return domain if boolean_search_positive(operator, value) else ['!', '&'] + domain
 
     @api.model
     def _tax_managers(self):

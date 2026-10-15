@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_certificate_register_document">
+        <t t-call="web.html_container">
+            <div class="article">
+            <div class="page tuv_reg">
+                <style>
+                    .tuv_reg { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 9.5px; }
+                    .tuv_reg .head { text-align: center; margin-bottom: 8px; }
+                    .tuv_reg .head .co { font-size: 13px; font-weight: 700; }
+                    .tuv_reg .head .ti { font-size: 17px; font-weight: 800; margin-top: 2px; }
+                    .tuv_reg .head .su { font-size: 10px; }
+                    .tuv_reg table { width: 100%; border-collapse: collapse; }
+                    .tuv_reg th { background-color: #D9D9D9; font-weight: 700; border: 1px solid #000; padding: 3px; }
+                    .tuv_reg td { border: 1px solid #000; padding: 3px; vertical-align: top; }
+                    .tuv_reg tr { page-break-inside: avoid; }
+                </style>
+                <t t-set="company" t-value="docs.env.company"/>
+                <div class="head">
+                    <div class="co" t-out="company.name"/>
+                    <div class="ti">CERTIFICATE REGISTER</div>
+                    <div class="su">
+                        <t t-out="len(docs)"/> entr<t t-if="len(docs) == 1">y</t><t t-else="">ies</t> -
+                        printed <t t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Certificate No.</th><th>Type</th><th>Client</th><th>Address</th>
+                            <th>NTN</th><th>Standard(s)</th><th>EA Code</th><th>Scope</th>
+                            <th>Issue</th><th>Expiry</th><th>Next Surv.</th><th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs.sorted(lambda e: (e.name, e.id))" t-as="e">
+                            <td t-out="e.name"/>
+                            <td><span t-field="e.certificate_type"/></td>
+                            <td>
+                                <b t-out="e.client_name"/><br/>
+                                <span t-out="e.client_email"/> <span t-out="e.client_phone"/>
+                            </td>
+                            <td t-out="', '.join(p for p in (e.client_address, e.client_city, e.client_country) if p)"/>
+                            <td t-out="e.client_ntn"/>
+                            <td t-out="e.standards"/>
+                            <td t-out="e.ea_codes"/>
+                            <td t-out="e.scope"/>
+                            <td><span t-field="e.issue_date"/></td>
+                            <td><span t-field="e.expiry_date"/></td>
+                            <td><span t-field="e.next_surveillance_date"/></td>
+                            <td><b><span t-field="e.status"/></b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_certificate_register" model="ir.actions.report">
+        <field name="name">Certificate Register</field>
+        <field name="model">tuv.certificate.register</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_certificate_register_document</field>
+        <field name="report_file">tuv_austria_customization.report_certificate_register_document</field>
+        <field name="print_report_name">'Certificate Register'</field>
+        <field name="binding_model_id" ref="model_tuv_certificate_register"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_tuv_certificate"/>
+    </record>
+
+</odoo>
