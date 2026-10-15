@@ -47,6 +47,7 @@ Centralized module for client-specific customizations across:
         'views/sales_tax_invoice_views.xml',
         'views/project_payment_views.xml',
         'views/certificate_views.xml',
+        'views/certificate_dispatch_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
@@ -72,8 +73,8 @@ Centralized module for client-specific customizations across:
         'data/commercial_invoice_data.xml',
         'report/sales_tax_invoice_report.xml',
         'data/sales_tax_invoice_data.xml',
-        'data/certificate_data.xml',
         'report/certificate_report.xml',
+        'data/certificate_data.xml',
     ],
 
     'assets': {

@@ -146,7 +146,9 @@ class TuvCertificate(models.Model):
             blockers = cert.project_id._certificate_blockers()
             if blockers:
                 raise UserError(_('The certificate cannot be confirmed: %s.', '; '.join(blockers)))
-            if cert.certificate_type == 'surveillance':
+            if cert.certificate_number:
+                number = cert.certificate_number    # returned by the approver: keeps its number
+            elif cert.certificate_type == 'surveillance':
                 number = cert.previous_certificate_id.certificate_number
             else:
                 number = self.env['ir.sequence'].next_by_code('tuv.certificate.number')

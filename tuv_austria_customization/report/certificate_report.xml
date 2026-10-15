@@ -44,7 +44,8 @@
             </style>
             <t t-set="holder" t-value="doc.partner_id"/>
             <div class="frame">
-                <div t-if="doc.state != 'prepared'" class="draft">DRAFT</div>
+                <!-- only an approved certificate is a certificate -->
+                <div t-if="doc.state not in ('approved', 'printed', 'dispatched')" class="draft">DRAFT</div>
                 <div class="company" t-out="doc.project_id.company_id.name"/>
                 <div class="title">CERTIFICATE</div>
                 <div class="type"><span t-field="doc.certificate_type"/></div>
@@ -83,7 +84,7 @@
                 <table class="sign">
                     <tr>
                         <td><div style="height: 40px;"/><div class="line">Lead Auditor - <span t-out="doc.lead_auditor_id.name"/></div></td>
-                        <td><div style="height: 40px;"/><div class="line">Certification Body - Authorised Signatory</div></td>
+                        <td><div style="height: 40px;"/><div class="line">Authorised Signatory<t t-if="doc.approved_by"> - <span t-out="doc.approved_by.name"/></t></div></td>
                     </tr>
                 </table>
             </div>

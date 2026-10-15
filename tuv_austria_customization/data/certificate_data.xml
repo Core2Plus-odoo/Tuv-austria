@@ -11,5 +11,34 @@
             <field name="implementation">no_gap</field>
             <field name="company_id" eval="False"/>
         </record>
+
+        <!-- Dispatch by e-mail: the approved certificate as PDF -->
+        <record id="mail_template_certificate_dispatch" model="mail.template">
+            <field name="name">TUV: Certificate to Client</field>
+            <field name="model_id" ref="model_tuv_certificate"/>
+            <field name="subject">{{ object.project_id.company_id.name }} - Certificate {{ object.certificate_number }}</field>
+            <field name="email_from">{{ (object.approved_by.email_formatted or object.project_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent when the certificate is dispatched by e-mail</field>
+            <field name="report_template_ids" eval="[(6, 0, [ref('tuv_austria_customization.action_report_tuv_certificate')])]"/>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        We are pleased to send you your certificate
+        <b t-out="object.certificate_number or ''">TUV/CERT/2026/0001</b>
+        for <b t-out="object.standards or ''">ISO 9001:2015</b>,
+        valid until <b t-out="format_date(object.expiry_date) or ''">01/01/2029</b>
+        subject to the annual surveillance audits.
+    </p>
+    <p t-if="object.next_surveillance_date">
+        Your next surveillance audit is due by <b t-out="format_date(object.next_surveillance_date) or ''">01/01/2027</b>.
+    </p>
+    <p>Kind regards,<br/><t t-out="object.project_id.company_id.name or ''">TUV Austria</t></p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
     </data>
 </odoo>
