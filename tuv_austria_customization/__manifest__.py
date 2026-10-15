@@ -40,6 +40,7 @@ Centralized module for client-specific customizations across:
         'views/audit_document_views.xml',
         'views/audit_execution_views.xml',
         'views/audit_report_views.xml',
+        'views/audit_evidence_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',

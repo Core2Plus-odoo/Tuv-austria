@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="edit_project_audit_evidence_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.audit.evidence.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="audit_evidence" string="Audit Evidence" invisible="audit_state == 'not_started'">
+                    <div class="alert alert-warning mb-2" role="status" invisible="not evidence_missing">
+                        Still missing before the report can be submitted:
+                        <field name="evidence_missing" class="fw-bold"/>
+                    </div>
+                    <div class="alert alert-success mb-2" role="status" invisible="evidence_missing">
+                        All required evidence is uploaded
+                        (<field name="audit_evidence_count" class="fw-bold"/> file(s)).
+                    </div>
+                    <div class="mb-2">
+                        <button name="action_attach_checklist_pdf" type="object"
+                            string="Attach Audit Checklist PDF" class="btn-secondary"
+                            icon="fa-file-pdf-o"
+                            invisible="report_state == 'submitted'"/>
+                    </div>
+                    <field name="audit_evidence_ids" nolabel="1"
+                        readonly="report_state == 'submitted'"
+                        context="{'default_project_id': id}">
+                        <list editable="bottom" default_order="category, id">
+                            <field name="project_id" column_invisible="1"/>
+                            <field name="category" width="200px"/>
+                            <field name="name" placeholder="e.g. Opening meeting attendance, day 1"/>
+                            <field name="file_name" column_invisible="1"/>
+                            <field name="file" widget="binary" filename="file_name"/>
+                            <field name="checklist_line_id" options="{'no_create': True, 'no_open': True}"
+                                optional="show"/>
+                            <field name="uploaded_by" optional="show"/>
+                            <field name="uploaded_on" optional="show"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
