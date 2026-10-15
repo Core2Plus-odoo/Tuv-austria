@@ -45,6 +45,7 @@ Centralized module for client-specific customizations across:
         'views/technical_review_views.xml',
         'views/project_invoice_views.xml',
         'views/sales_tax_invoice_views.xml',
+        'views/project_payment_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',

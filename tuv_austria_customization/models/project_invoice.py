@@ -7,6 +7,9 @@ from odoo.tools import float_compare
 
 _logger = logging.getLogger(__name__)
 
+# Maximum credit the client gets: payment is due this many days after the audit.
+CREDIT_DAYS = 7
+
 # Which contract year and which service product an audit is invoiced with.
 AUDIT_INVOICING = {
     'certification': ('y1', 'Initial Certification Audit'),
@@ -137,6 +140,10 @@ class ProjectProject(models.Model):
                 'company_id': project.company_id.id,
                 'currency_id': order.currency_id.id,
                 'invoice_date': fields.Date.context_today(project),
+                # maximum credit: 7 days from the job execution (the audit completion)
+                'invoice_payment_term_id': False,
+                'invoice_date_due': max(project.audit_completed_on.date() + timedelta(days=CREDIT_DAYS),
+                                        fields.Date.context_today(project)),
                 # the project usually carries the order's name, then once is enough
                 'invoice_origin': order.name if order.name == project.name
                 else '%s / %s' % (order.name, project.name),
