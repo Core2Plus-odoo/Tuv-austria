@@ -65,4 +65,6 @@ access_tuv_improvement_action_project_user,tuv.improvement.action.project.user,m
 access_tuv_improvement_action_cert_manager,tuv.improvement.action.cert.manager,model_tuv_improvement_action,tuv_austria_customization.group_certification_manager,1,1,1,0
 access_tuv_improvement_action_planning,tuv.improvement.action.planning,model_tuv_improvement_action,tuv_austria_customization.group_planning_team,1,1,1,0
 access_tuv_improvement_action_manager,tuv.improvement.action.manager,model_tuv_improvement_action,base.group_system,1,1,1,1
+access_tuv_surveillance_reminder_project_user,tuv.surveillance.reminder.project.user,model_tuv_surveillance_reminder,project.group_project_user,1,0,0,0
+access_tuv_surveillance_reminder_manager,tuv.surveillance.reminder.manager,model_tuv_surveillance_reminder,base.group_system,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1

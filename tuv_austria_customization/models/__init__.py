@@ -31,6 +31,7 @@ from . import certificate_register
 from . import client_feedback
 from . import auditor_performance
 from . import improvement_action
+from . import surveillance_reminder
 from . import ir_ui_menu
 from . import stock
 from . import ir_actions_report

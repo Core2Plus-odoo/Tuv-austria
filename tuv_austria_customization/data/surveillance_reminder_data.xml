@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_surveillance_reminder" model="mail.template">
+            <field name="name">TUV: Audit Due Reminder (3 months)</field>
+            <field name="model_id" ref="model_tuv_surveillance_reminder"/>
+            <field name="subject">{{ object.company_id.name }} - {{ dict(object._fields['audit_kind'].selection).get(object.audit_kind) }} due {{ format_date(object.due_date) }} ({{ object.certificate_number }})</field>
+            <field name="email_from">{{ (object.company_id.ba_team_email and '%s &lt;%s&gt;' % (object.company_id.ba_team_name or object.company_id.name, object.company_id.ba_team_email)) or object.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent automatically 3 months before a surveillance or recertification audit is due</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <t t-set="ba" t-value="object._ba()"/>
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        This is a reminder that your next
+        <b t-out="dict(object._fields['audit_kind'].selection).get(object.audit_kind) or ''">Surveillance Audit</b>
+        is due by <b t-out="format_date(object.due_date) or ''">15/10/2027</b>.
+    </p>
+    <table style="border-collapse: collapse; margin: 10px 0;">
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 4px 10px; background-color: #f2f2f2;">Certificate No.</td>
+            <td style="border: 1px solid #ccc; padding: 4px 10px;" t-out="object.certificate_number or ''">TUV/CERT/2026/0001</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 4px 10px; background-color: #f2f2f2;">Applicable Standard</td>
+            <td style="border: 1px solid #ccc; padding: 4px 10px;" t-out="object.standards or ''">ISO 9001:2015</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 4px 10px; background-color: #f2f2f2;">Audit Due By</td>
+            <td style="border: 1px solid #ccc; padding: 4px 10px;"><b t-out="format_date(object.due_date) or ''">15/10/2027</b></td>
+        </tr>
+    </table>
+    <p t-if="object.audit_kind == 'surveillance'">
+        The annual surveillance audit is required to keep your certificate valid. Please contact us so we
+        can agree the audit dates.
+    </p>
+    <p t-else="">
+        Your certificate expires on this date. A recertification audit has to be completed before then
+        to start a new 3-year cycle. Please contact us so we can agree the audit dates.
+    </p>
+    <p style="margin-top: 14px;"><b t-out="ba[0]">Business Assurance (BA) Team</b></p>
+    <p style="margin: 0;">
+        <t t-if="ba[1]"><t t-out="ba[1]">Contact person</t><br/></t>
+        <t t-if="ba[2]">E-mail: <t t-out="ba[2]">ba@example.com</t><br/></t>
+        <t t-if="ba[3]">Phone: <t t-out="ba[3]">+92 42 0000000</t></t>
+    </p>
+    <p style="margin-top: 14px;">Kind regards,<br/><t t-out="object.company_id.name or ''">TUV Austria</t></p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <!-- Daily: clients whose next audit is due within 3 months -->
+        <record id="ir_cron_surveillance_reminder" model="ir.cron">
+            <field name="name">TUV: Surveillance / Recertification Reminders (3 months)</field>
+            <field name="model_id" ref="model_tuv_surveillance_reminder"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_reminders()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>
