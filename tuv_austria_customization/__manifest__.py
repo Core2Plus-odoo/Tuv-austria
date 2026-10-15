@@ -42,6 +42,7 @@ Centralized module for client-specific customizations across:
         'views/audit_report_views.xml',
         'views/audit_evidence_views.xml',
         'views/audit_nonconformity_views.xml',
+        'views/technical_review_views.xml',
         'views/stock_views.xml',
         'data/ir_sequence_data.xml',
         'data/ir_ui_menu_data.xml',
@@ -51,6 +52,7 @@ Centralized module for client-specific customizations across:
         'data/mail_template_audit_plan.xml',
         'data/audit_clause_data.xml',
         'data/audit_nonconformity_data.xml',
+        'data/technical_review_data.xml',
         'report/sale_order_application_form_report.xml',
         'report/sale_order_review_form_report.xml',
         'report/sale_order_proposal_report.xml',
@@ -62,6 +64,7 @@ Centralized module for client-specific customizations across:
         'report/project_atjf_report.xml',
         'report/project_audit_checklist_report.xml',
         'report/project_audit_report_report.xml',
+        'report/technical_review_report.xml',
     ],
 
     'assets': {

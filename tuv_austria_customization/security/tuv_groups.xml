@@ -23,4 +23,21 @@
                                          (4, ref('project.group_project_stages'))]"/>
     </record>
 
+    <!-- Its own privilege: a planning user may or may not also review reports, and
+         two groups under one privilege are offered as a single choice in Odoo 19. -->
+    <record id="privilege_tuv_technical_review" model="res.groups.privilege">
+        <field name="name">TUV Austria - Technical Review</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">51</field>
+    </record>
+
+    <!-- Reviews the audit report before the certification decision. Competence in
+         the EA code and standard comes from the user's own contact (Approved EA
+         Codes / Certification Standards Competent In). -->
+    <record id="group_technical_reviewer" model="res.groups">
+        <field name="name">Technical Reviewer</field>
+        <field name="privilege_id" ref="privilege_tuv_technical_review"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
+    </record>
+
 </odoo>

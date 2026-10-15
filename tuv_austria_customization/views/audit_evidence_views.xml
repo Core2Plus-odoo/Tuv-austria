@@ -16,6 +16,10 @@
                         All required evidence is uploaded
                         (<field name="audit_evidence_count" class="fw-bold"/> file(s)).
                     </div>
+                    <div class="alert alert-danger mb-2" role="status" invisible="not evidence_late_count">
+                        <field name="evidence_late_count" class="fw-bold"/> file(s) were uploaded
+                        after the audit day - the audit execution is to be uploaded the same day.
+                    </div>
                     <div class="mb-2">
                         <button name="action_attach_checklist_pdf" type="object"
                             string="Attach Audit Checklist PDF" class="btn-secondary"
@@ -35,6 +39,7 @@
                                 optional="show"/>
                             <field name="uploaded_by" optional="show"/>
                             <field name="uploaded_on" optional="show"/>
+                            <field name="uploaded_same_day" widget="boolean" optional="show"/>
                         </list>
                     </field>
                 </page>

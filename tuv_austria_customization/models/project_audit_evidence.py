@@ -32,6 +32,18 @@ class AuditEvidence(models.Model):
     uploaded_by = fields.Many2one(
         'res.users', string='Uploaded By', default=lambda self: self.env.user, readonly=True)
     uploaded_on = fields.Datetime(string='Uploaded On', default=fields.Datetime.now, readonly=True)
+    # The audit execution is to be uploaded the day of the audit: anything uploaded
+    # after the day the audit was completed is flagged for the technical reviewer.
+    uploaded_same_day = fields.Boolean(
+        string='Same Day', compute='_compute_uploaded_same_day', store=True,
+        help='Uploaded on or before the day the audit was completed.')
+
+    @api.depends('uploaded_on', 'project_id.audit_completed_on')
+    def _compute_uploaded_same_day(self):
+        for evidence in self:
+            completed = evidence.project_id.audit_completed_on
+            evidence.uploaded_same_day = (not completed or not evidence.uploaded_on
+                                          or evidence.uploaded_on.date() <= completed.date())
 
     # ------------------------------------------------------------------
     # The audit file is closed once the report is submitted
@@ -74,13 +86,17 @@ class ProjectProject(models.Model):
     audit_evidence_ids = fields.One2many('tuv.audit.evidence', 'project_id', string='Audit Evidence')
     audit_evidence_count = fields.Integer(compute='_compute_audit_evidence_count', string='Evidence')
     evidence_missing = fields.Char(compute='_compute_audit_evidence_count', string='Still Missing')
+    evidence_late_count = fields.Integer(compute='_compute_audit_evidence_count',
+                                         string='Uploaded After The Audit Day')
 
-    @api.depends('audit_evidence_ids.category')
+    @api.depends('audit_evidence_ids.category', 'audit_evidence_ids.uploaded_same_day')
     def _compute_audit_evidence_count(self):
         labels = dict(EVIDENCE_CATEGORY)
         for project in self:
             present = set(project.audit_evidence_ids.mapped('category'))
             project.audit_evidence_count = len(project.audit_evidence_ids)
+            project.evidence_late_count = len(project.audit_evidence_ids.filtered(
+                lambda e: not e.uploaded_same_day))
             project.evidence_missing = ', '.join(
                 labels[c] for c in REQUIRED_CATEGORIES if c not in present) or False
 

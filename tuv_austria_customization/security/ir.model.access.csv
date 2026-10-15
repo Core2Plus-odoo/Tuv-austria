@@ -28,4 +28,8 @@ access_tuv_audit_checklist_line_planning,tuv.audit.checklist.line.planning,model
 access_tuv_audit_evidence_project_user,tuv.audit.evidence.project.user,model_tuv_audit_evidence,project.group_project_user,1,1,1,1
 access_tuv_audit_nonconformity_project_user,tuv.audit.nonconformity.project.user,model_tuv_audit_nonconformity,project.group_project_user,1,1,1,0
 access_tuv_audit_nonconformity_planning,tuv.audit.nonconformity.planning,model_tuv_audit_nonconformity,tuv_austria_customization.group_planning_team,1,1,1,1
+access_tuv_technical_review_project_user,tuv.technical.review.project.user,model_tuv_technical_review,project.group_project_user,1,0,0,0
+access_tuv_technical_review_reviewer,tuv.technical.review.reviewer,model_tuv_technical_review,tuv_austria_customization.group_technical_reviewer,1,1,0,0
+access_tuv_technical_review_planning,tuv.technical.review.planning,model_tuv_technical_review,tuv_austria_customization.group_planning_team,1,1,1,1
+access_sale_order_technical_reviewer,sale.order.technical.reviewer,sale.model_sale_order,tuv_austria_customization.group_technical_reviewer,1,0,0,0
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1

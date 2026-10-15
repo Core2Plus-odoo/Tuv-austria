@@ -30,7 +30,7 @@
                             invisible="report_state != 'submitted' or report_on_time">Late</span>
                     </div>
                     <group>
-                        <group string="Submission">
+                        <group string="Submission" name="audit_report_submission">
                             <field name="auditor_id" string="Prepared By (Lead Auditor)" readonly="1"/>
                             <field name="audit_completed_on" string="Audit Completed On"/>
                             <field name="report_due_date"/>
