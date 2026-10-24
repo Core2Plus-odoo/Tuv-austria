@@ -2,7 +2,7 @@
 <odoo>
     <!-- The auditable clauses (4 to 10) of the four standards the client certifies
          most. noupdate: the client edits or extends them from Planning >
-         Configuration > Audit Clauses, and an upgrade keeps what he set. Clauses
+         Configuration >  Clauses, and an upgrade keeps what he set. Clauses
          print in the order they are listed here. -->
     <data noupdate="1">
 
