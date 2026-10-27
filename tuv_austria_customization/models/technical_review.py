@@ -24,6 +24,9 @@ REVIEW_CHECKS = [
 def reviewer_problems(project, user):
     """Why this user cannot review the report of this project ([] when he can)."""
     problems = []
+    # Administrators may always review, without the competence/independence checks.
+    if user.has_group('base.group_system'):
+        return problems
     if not user.has_group('tuv_austria_customization.group_technical_reviewer'):
         problems.append(_('%s is not a Technical Reviewer', user.name))
         return problems
@@ -177,8 +180,9 @@ class ProjectProject(models.Model):
 
     @api.depends('ea_code_ids', 'atjf_standards', 'audit_team_ids', 'report_submitted_by')
     def _compute_technical_reviewer_candidate_ids(self):
-        group = self.env.ref('tuv_austria_customization.group_technical_reviewer')
-        reviewers = self.env['res.users'].search([('all_group_ids', 'in', group.id)])
+        groups = (self.env.ref('tuv_austria_customization.group_technical_reviewer')
+                  | self.env.ref('base.group_system'))
+        reviewers = self.env['res.users'].search([('all_group_ids', 'in', groups.ids)])
         for project in self:
             project.technical_reviewer_candidate_ids = reviewers.filtered(
                 lambda u: not reviewer_problems(project, u))
