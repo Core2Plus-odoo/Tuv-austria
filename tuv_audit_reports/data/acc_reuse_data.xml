@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Forms of the accreditation bodies built here directly: PNAC's older revisions of the
+         TÜV Austria checklists, PNAC's audit guidelines (reference documents), and the SAAC forms
+         that are the same as the TÜV Austria ones (certificate text 038, ISO 27001 checklist 023):
+         those get a SAAC card on the existing form. -->
+    <data noupdate="1">
+        <record id="checklist_pnac9001_form" model="tuv.audit.plan"><field name="name">PNAC Audit Checklist ISO 9001</field></record>
+        <record id="checklist_pnac14001_form" model="tuv.audit.plan"><field name="name">PNAC Audit Checklist ISO 14001</field></record>
+        <record id="checklist_pnac45001_form" model="tuv.audit.plan"><field name="name">PNAC Audit Checklist ISO 45001</field></record>
+        <record id="checklist_pnaccombined_form" model="tuv.audit.plan"><field name="name">PNAC Audit Checklist Combined QM/EM/HSE/EN</field></record>
+        <record id="doc_pnac_guide_9001_form" model="tuv.audit.plan"><field name="name">Audit Guideline ISO 9001</field></record>
+        <record id="doc_pnac_guide_14001_form" model="tuv.audit.plan"><field name="name">Audit Guideline ISO 14001</field></record>
+        <record id="doc_pnac_guide_45001_form" model="tuv.audit.plan"><field name="name">Audit Guideline ISO 45001</field></record>
+    </data>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_pnac9001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_pnac9001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-010_Audit-Checklist-ISO-9001-EN | Revision: 03/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_pnac14001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_pnac14001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-012_Audit-checklist-ISO-14001-EN | Revision: 01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_pnac45001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_pnac45001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-014_Audit-Checklist-ISO-45001-EN | Revision: 01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_pnaccombined_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_pnaccombined', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-033-Audit-Checklist-combined-QM-EM-HSE-EN-EN | Revision: 02/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_checklist">
+        <value eval="[ref('checklist_pnac9001_form'), ref('checklist_pnac14001_form'),
+                      ref('checklist_pnac45001_form'), ref('checklist_pnaccombined_form')]"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('doc_pnac_guide_9001_form')]"/>
+        <value eval="{'audit_report_key': 'doc_pnac_guide_9001', 'audit_report_uses_info': False, 'form_subtitle': 'Auditing guideline / ISO 9001:2015', 'form_reference': 'FM-TAGMBH-MSZ-011_Audit-Guideline-ISO-9001-EN | Revision: 01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('doc_pnac_guide_14001_form')]"/>
+        <value eval="{'audit_report_key': 'doc_pnac_guide_14001', 'audit_report_uses_info': False, 'form_subtitle': 'Auditing guideline / ISO 14001:2015', 'form_reference': 'FM-TAGMBH-MSZ-013_Audit-Guidline-ISO-14001-EN | Revision: 01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('doc_pnac_guide_45001_form')]"/>
+        <value eval="{'audit_report_key': 'doc_pnac_guide_45001', 'audit_report_uses_info': False, 'form_subtitle': 'Auditing guideline / ISO 45001:2018', 'form_reference': 'FM-TAGMBH-MSZ-015_Audit-Guideline-ISO-45001-EN | Revision: 01/17.10.24'}"/>
+    </function>
+
+    <!-- PNAC cards -->
+    <record id="audit_report_checklist_pnac9001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 9001</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">700</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-010</field>
+        <field name="revision">03/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-010_Audit-Checklist-ISO-9001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_pnac9001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_pnac9001</field>
+    </record>
+    <record id="audit_report_checklist_pnac14001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 14001</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">710</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-012</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-012_Audit-checklist-ISO-14001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_pnac14001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_pnac14001</field>
+    </record>
+    <record id="audit_report_checklist_pnac45001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 45001</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">720</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-014</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-014_Audit-Checklist-ISO-45001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_pnac45001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_pnac45001</field>
+    </record>
+    <record id="audit_report_checklist_pnaccombined" model="tuv.audit.report">
+        <field name="name">Audit Checklist Combined QM/EM/HSE/EN</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">730</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-033</field>
+        <field name="revision">02/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-033-Audit-Checklist-combined-QM-EM-HSE-EN-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_pnaccombined_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_pnaccombined</field>
+    </record>
+    <record id="audit_report_doc_pnac_guide_9001" model="tuv.audit.report">
+        <field name="name">Audit Guideline ISO 9001</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">740</field>
+        <field name="subtitle">Auditing guideline / ISO 9001:2015</field>
+        <field name="code">FM-TAGMBH-MSZ-011</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-011_Audit-Guideline-ISO-9001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.doc_pnac_guide_9001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_document</field>
+        <field name="report_key">doc_pnac_guide_9001</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_doc_pnac_guide_14001" model="tuv.audit.report">
+        <field name="name">Audit Guideline ISO 14001</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">750</field>
+        <field name="subtitle">Auditing guideline / ISO 14001:2015</field>
+        <field name="code">FM-TAGMBH-MSZ-013</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-013_Audit-Guidline-ISO-14001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.doc_pnac_guide_14001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_document</field>
+        <field name="report_key">doc_pnac_guide_14001</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_doc_pnac_guide_45001" model="tuv.audit.report">
+        <field name="name">Audit Guideline ISO 45001</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">760</field>
+        <field name="subtitle">Auditing guideline / ISO 45001:2018</field>
+        <field name="code">FM-TAGMBH-MSZ-015</field>
+        <field name="revision">01/17.10.24</field>
+        <field name="document_name">FM-TAGMBH-MSZ-015_Audit-Guideline-ISO-45001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.doc_pnac_guide_45001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_document</field>
+        <field name="report_key">doc_pnac_guide_45001</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+
+    <!-- SAAC cards on forms identical to the TÜV Austria ones -->
+    <record id="audit_report_saac_certificate_text" model="tuv.audit.report">
+        <field name="name">Certificate Text</field>
+        <field name="accreditation">saac</field>
+        <field name="sequence">800</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-038</field>
+        <field name="revision">02/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-038_Certificate-Text-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.certificate_text_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_certificate_text</field>
+        <field name="report_key">certificate_text</field>
+    </record>
+    <record id="audit_report_saac_checklist_iso27001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 27001</field>
+        <field name="accreditation">saac</field>
+        <field name="sequence">810</field>
+        <field name="subtitle">Information Security Management System (ISO/IEC 27001:2022)</field>
+        <field name="code">FM-TAGMBH-MSZ-023</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-023_Audit-Checklist-ISO-27001-EN.xlsx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso27001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist_isms</field>
+        <field name="report_key">checklist_iso27001</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+
+</odoo>

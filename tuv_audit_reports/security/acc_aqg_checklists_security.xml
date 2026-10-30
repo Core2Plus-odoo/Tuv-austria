@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lines of the AQG audit questionnaires / checklists (models/acc_aqg_checklists.py) -->
+    <record id="access_tuv_form_aqg_line_user" model="ir.model.access">
+        <field name="name">tuv.form.aqg.line.user</field>
+        <field name="model_id" ref="model_tuv_form_aqg_line"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

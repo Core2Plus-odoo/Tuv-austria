@@ -19,6 +19,7 @@ try:
 except ImportError:
     logger.error("ImportError: The PdfImagePlugin could not be imported")
 
+Transformation = None
 try:
     try:
         from PyPDF2 import PdfReader, PdfWriter
@@ -29,8 +30,13 @@ try:
     except ImportError:
         from PyPDF2.utils import PdfReadError
 except ImportError:
-    logger.debug("Can not import PyPDF2")
-    PdfReader = PdfWriter = PdfReadError = None
+    # PyPDF2 is not installed: use pypdf, its successor
+    try:
+        from pypdf import PdfReader, PdfWriter, Transformation
+        from pypdf.errors import PdfReadError
+    except ImportError:
+        logger.debug("Can not import PyPDF2 or pypdf")
+        PdfReader = PdfWriter = PdfReadError = None
 
 
 class Report(models.Model):
@@ -130,6 +136,9 @@ class Report(models.Model):
         if hasattr(target, "mergeScaledPage"):
             # PyPDF2 scales uniformly, so the smaller factor keeps it inside the page
             target.mergeScaledPage(watermark, min(sx, sy))
+        elif Transformation and hasattr(target, "merge_transformed_page"):
+            # pypdf: same uniform scaling
+            target.merge_transformed_page(watermark, Transformation().scale(min(sx, sy)))
         else:
             target.merge_page(watermark)
 

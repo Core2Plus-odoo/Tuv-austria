@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit checklists (FM-TAGMBH-MSZ-010/012/014/016/018/020/025/033): the block under
+         sections 1 and 2. The elements of the selected checklist with the three audit types
+         to tick, and the notes of the auditor(s). The document lists of the Word form print in
+         the PDF. tools/gen_standalone_views.py copies this block to the standalone form. -->
+    <record id="project_block_audit_checklist" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_checklist</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_checklist"
+                    invisible="audit_report_key not in ('checklist_iso9001', 'checklist_iso45001', 'checklist_iso14001', 'checklist_iso50001', 'checklist_iso13485', 'checklist_iso20000', 'checklist_iso37301', 'checklist_combined', 'checklist_pnac9001', 'checklist_pnac14001', 'checklist_pnac45001', 'checklist_pnaccombined')">
+                    <separator string="Process-oriented Audit: Standard Elements per Audit Type"/>
+                    <div class="text-muted small mb-1">
+                        Tick the audit types each element was audited in. "Mandatory for" lists the
+                        audit types the Word form marks in grey: those must be audited every time;
+                        the others are split so that all are assessed at least once over the two
+                        surveillance audits. The list of required documents prints in the PDF.
+                    </div>
+                    <field name="cl_iso9001_line_ids" invisible="audit_report_key != 'checklist_iso9001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_iso45001_line_ids" invisible="audit_report_key != 'checklist_iso45001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_iso14001_line_ids" invisible="audit_report_key != 'checklist_iso14001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_iso50001_line_ids" invisible="audit_report_key != 'checklist_iso50001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_iso13485_line_ids" invisible="audit_report_key != 'checklist_iso13485'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_iso20000_line_ids" invisible="audit_report_key != 'checklist_iso20000'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_iso37301_line_ids" invisible="audit_report_key != 'checklist_iso37301'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_combined_line_ids" invisible="audit_report_key != 'checklist_combined'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="group"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+
+                    <field name="cl_pnac9001_line_ids" invisible="audit_report_key != 'checklist_pnac9001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_pnac14001_line_ids" invisible="audit_report_key != 'checklist_pnac14001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_pnac45001_line_ids" invisible="audit_report_key != 'checklist_pnac45001'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+                    <field name="cl_pnaccombined_line_ids" invisible="audit_report_key != 'checklist_pnaccombined'">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="group"/>
+                            <field name="clause"/>
+                            <field name="mandatory_for"/>
+                            <field name="chk_ca"/>
+                            <field name="chk_sa1"/>
+                            <field name="chk_sa2"/>
+                        </list>
+                    </field>
+
+                    <separator string="Notes of Auditor(s)"/>
+                    <field name="cl_iso9001_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso9001'"/>
+                    <field name="cl_iso45001_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso45001'"/>
+                    <field name="cl_iso14001_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso14001'"/>
+                    <field name="cl_iso50001_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso50001'"/>
+                    <field name="cl_iso13485_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso13485'"/>
+                    <field name="cl_iso20000_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso20000'"/>
+                    <field name="cl_iso37301_notes" nolabel="1" invisible="audit_report_key != 'checklist_iso37301'"/>
+                    <field name="cl_combined_notes" nolabel="1" invisible="audit_report_key != 'checklist_combined'"/>
+                    <field name="cl_pnac9001_notes" nolabel="1" invisible="audit_report_key != 'checklist_pnac9001'"/>
+                    <field name="cl_pnac14001_notes" nolabel="1" invisible="audit_report_key != 'checklist_pnac14001'"/>
+                    <field name="cl_pnac45001_notes" nolabel="1" invisible="audit_report_key != 'checklist_pnac45001'"/>
+                    <field name="cl_pnaccombined_notes" nolabel="1" invisible="audit_report_key != 'checklist_pnaccombined'"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

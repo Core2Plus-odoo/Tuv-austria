@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tuv_audit_report_user,tuv.audit.report.user,model_tuv_audit_report,base.group_user,1,0,0,0
+access_tuv_audit_plan_user,tuv.audit.plan.user,model_tuv_audit_plan,base.group_user,1,1,0,0
+access_tuv_audit_plan_standard_user,tuv.audit.plan.standard.user,model_tuv_audit_plan_standard,base.group_user,1,1,1,1
+access_tuv_audit_plan_team_user,tuv.audit.plan.team.user,model_tuv_audit_plan_team,base.group_user,1,1,1,1
+access_tuv_audit_expert_requirement_user,tuv.audit.expert.requirement.user,model_tuv_audit_expert_requirement,base.group_user,1,1,1,1
+access_tuv_audit_participant_user,tuv.audit.participant.user,model_tuv_audit_participant,base.group_user,1,1,1,1
+access_tuv_form_report_row_user,tuv.form.report.row.user,model_tuv_form_report_row,base.group_user,1,1,1,1
+access_tuv_form_report_finding_user,tuv.form.report.finding.user,model_tuv_form_report_finding,base.group_user,1,1,1,1
+access_tuv_form_isms_line_user,tuv.form.isms.line.user,model_tuv_form_isms_line,base.group_user,1,1,1,1
+access_tuv_form_checklist_line_user,tuv.form.checklist.line.user,model_tuv_form_checklist_line,base.group_user,1,1,1,1
+access_tuv_audit_plan_schedule_user,tuv.audit.plan.schedule.user,model_tuv_audit_plan_schedule,base.group_user,1,1,1,1

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Participation List (FM-TAGMBH-MSZ-005): the block under sections 1 and 2.
+         tools/gen_standalone_views.py copies it to the standalone form. -->
+    <record id="project_block_audit_participation" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_participation</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_participation" invisible="audit_report_key != 'participation_list'">
+                    <separator string="Participation List"/>
+                    <field name="pl_participant_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="company"/>
+                            <field name="function"/>
+                            <field name="closing_meeting" widget="radio" options="{'horizontal': true}"/>
+                            <field name="signature" widget="signature"/>
+                        </list>
+                    </field>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

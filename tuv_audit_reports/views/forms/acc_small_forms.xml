@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Smaller ESYD / PNAC / SAAC forms: the blocks under the Report field.
+         tools/gen_standalone_views.py copies them to the standalone form. -->
+
+    <!-- ESYD certificate text (FM-BA-ZET-MS-All-013-CT-EN) -->
+    <record id="project_block_esyd_certificate_text" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.esyd_certificate_text</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_esyd_certificate_text" invisible="audit_report_key != 'esyd_certificate_text'">
+                    <separator string="Certification Standard – Applicable Standard"/>
+                    <group>
+                        <group>
+                            <field name="ect_std_iso9001"/>
+                            <field name="ect_std_iso22000"/>
+                            <field name="ect_std_iso27001"/>
+                            <field name="ect_std_other_1"/>
+                        </group>
+                        <group>
+                            <field name="ect_std_iso14001"/>
+                            <field name="ect_std_iso45001"/>
+                            <field name="ect_std_iso20000"/>
+                            <field name="ect_std_other_2"/>
+                        </group>
+                    </group>
+
+                    <separator string="Address of Head Office"/>
+                    <field name="ect_head_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="language"/>
+                            <field name="company_text"/>
+                            <field name="scope"/>
+                            <field name="a3"/>
+                            <field name="a4"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="ect_trademark" widget="radio" options="{'horizontal': true}"/>
+                        <field name="ect_legislation" widget="radio" options="{'horizontal': true}"/>
+                        <field name="ect_subcontracted" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+
+                    <separator string="Address of Other Sites (in case of group certification)"/>
+                    <field name="ect_site_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="language"/>
+                            <field name="company_text"/>
+                            <field name="scope"/>
+                            <field name="a3"/>
+                            <field name="a4"/>
+                        </list>
+                    </field>
+                    <p class="text-muted">
+                        (1) The translation in other languages must be an accurate translation of the texts in
+                        the original language; write the text uniformly, without bullets or numbering.
+                        (2) Official name of the company and commercial title, complete translation of the
+                        company's information in other languages, all certified facilities / branches / stores.
+                        (4) GLOBALG.A.P.: cultivated area in hectares next to each crop; CFM: produced tones per
+                        scope; AGRO 2: cultivated area in acres and number of producers. Fill in the certificate
+                        text form in surveillance audits.
+                    </p>
+
+                    <separator string="Place, Date / Signatures and Stamp of Company"/>
+                    <group>
+                        <group>
+                            <field name="ect_place"/>
+                            <field name="ect_date"/>
+                            <field name="ect_lead_auditor_id"/>
+                            <field name="ect_lead_auditor_signature" widget="signature"/>
+                        </group>
+                        <group>
+                            <field name="ect_company_signature" widget="signature"/>
+                            <field name="ect_rep_phone" string="Tel"/>
+                            <field name="ect_rep_email" string="Email" widget="email"/>
+                        </group>
+                    </group>
+
+                    <separator string="IFS Certificates - Additional Information"/>
+                    <group>
+                        <group>
+                            <field name="ect_ifs_coid"/>
+                            <field name="ect_ifs_product_scopes"/>
+                            <field name="ect_ifs_exclusions"/>
+                            <field name="ect_ifs_technology_scopes"/>
+                            <field name="ect_ifs_audit_result"/>
+                            <field name="ect_ifs_audit_dates"/>
+                        </group>
+                        <group>
+                            <field name="ect_ifs_issue_date"/>
+                            <field name="ect_ifs_valid_until"/>
+                            <field name="ect_ifs_next_period"/>
+                            <field name="ect_ifs_outsourcing"/>
+                            <field name="ect_ifs_unannounced"/>
+                        </group>
+                    </group>
+
+                    <separator string="GLOBALG.A.P Certificates - Additional Information"/>
+                    <group>
+                        <group>
+                            <field name="ect_gg_version"/>
+                            <field name="ect_gg_opt1_individual"/>
+                            <field name="ect_gg_opt1_multi_qms"/>
+                            <field name="ect_gg_coc_fruits"/>
+                            <field name="ect_gg_cfm"/>
+                        </group>
+                        <group>
+                            <field name="ect_gg_opt2_group"/>
+                            <field name="ect_gg_opt1_multi_no_qms"/>
+                            <field name="ect_gg_coc_aquaculture"/>
+                            <field name="ect_gg_grasp"/>
+                        </group>
+                    </group>
+                    <separator string="Special Requirements"/>
+                    <field name="ect_ggap_line_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="company_text"/>
+                            <field name="products"/>
+                            <field name="valid" widget="radio" options="{'horizontal': true}"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group string="Chain of Custody - Special Requirements">
+                            <field name="ect_gg_standardization" string="Standardization" widget="radio" options="{'horizontal': true}"/>
+                            <field name="ect_gg_gfsi" string="GFSI Scheme" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group string="GRASP - Special Requirements">
+                            <field name="ect_gg_total_employees" string="Total Number of Employees"/>
+                            <field name="ect_gg_rural_employees" string="Employees on Rural Production"/>
+                            <field name="ect_gg_packaging_employees" string="Employees on Packaging"/>
+                            <field name="ect_gg_local" string="Local"/>
+                            <field name="ect_gg_migrants" string="Migrants"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Annexes">
+                            <field name="ect_gg_annex_members" string="Group Member Producers"/>
+                            <field name="ect_gg_annex_packaging" string="Packaging &amp; Handling Facilities"/>
+                            <field name="ect_gg_annex_sites" string="Production Sites"/>
+                        </group>
+                        <group string="Data Available Online">
+                            <field name="ect_gg_online_group" string="Name, Surname, Address, PO, Group Country" widget="radio" options="{'horizontal': true}"/>
+                            <field name="ect_gg_online_producer" string="Name, Surname, Address, PO, Producer Country" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- PNAC certificate text (TUV/BA/FM/04-2) -->
+    <record id="project_block_pnac_certificate_text" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.pnac_certificate_text</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_pnac_certificate_text" invisible="audit_report_key != 'pnac_certificate_text'">
+                    <separator string="Certification Standard – Applicable Standard"/>
+                    <group>
+                        <group>
+                            <field name="pct_std_iso9001"/>
+                            <field name="pct_std_iso22000"/>
+                            <field name="pct_std_others"/>
+                            <field name="pct_std_others_text" string="Others: Standard"/>
+                        </group>
+                        <group>
+                            <field name="pct_std_iso14001"/>
+                            <field name="pct_std_iso45001"/>
+                            <field name="pct_std_other2"/>
+                            <field name="pct_std_other2_text"/>
+                        </group>
+                    </group>
+
+                    <separator string="Address of Head Office"/>
+                    <field name="pct_head_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="language"/>
+                            <field name="company_text"/>
+                            <field name="scope"/>
+                            <field name="a3"/>
+                            <field name="a4"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="pct_trademark" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pct_legislation" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pct_subcontracted" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+
+                    <separator string="Address of Other Sites (in case of group certification)"/>
+                    <field name="pct_site_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="language"/>
+                            <field name="company_text"/>
+                            <field name="scope"/>
+                            <field name="a3"/>
+                            <field name="a4"/>
+                        </list>
+                    </field>
+                    <p class="text-muted">
+                        (1) The translation in other languages must be an accurate translation of the texts in
+                        the original language; write the text uniformly, without bullets or numbering.
+                        (2) Official name of the company and commercial title, complete translation of the
+                        company's information in other languages, all certified facilities / branches / stores.
+                        (3) Sign and stamp of the legal representative of the company and the name, signature
+                        and date of approval by the Lead Auditor.
+                    </p>
+
+                    <separator string="Place, Date / Signatures and Stamp of Company"/>
+                    <group>
+                        <group>
+                            <field name="pct_place"/>
+                            <field name="pct_date"/>
+                            <field name="pct_lead_auditor_id"/>
+                            <field name="pct_lead_auditor_signature" widget="signature"/>
+                        </group>
+                        <group>
+                            <field name="pct_company_signature" widget="signature"/>
+                            <field name="pct_rep_phone" string="Tel"/>
+                            <field name="pct_rep_email" string="Email" widget="email"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- PNAC client response form (TUV/BA/FM/09-1) -->
+    <record id="project_block_pnac_client_response" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.pnac_client_response</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_pnac_client_response" invisible="audit_report_key != 'pnac_client_response'">
+                    <p class="text-muted">
+                        TUV Austria Bureau of Inspection and Certification (Pvt.) Ltd. values our clients' views
+                        on our services and would be grateful if you would take a few minutes to complete this
+                        document to express your opinion on the performance of our auditors and the value of the
+                        audit. The information you supply will remain confidential and will be used to maintain
+                        and improve the quality of the service to all our clients.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="pcr_client_name"/>
+                            <field name="pcr_audit_dates"/>
+                        </group>
+                        <group>
+                            <field name="pcr_auditor_name"/>
+                            <field name="pcr_standard"/>
+                        </group>
+                    </group>
+                    <separator string="Section 1: Professional Conduct"/>
+                    <p class="text-muted">Please rate the Lead Auditor's performance in the following areas:</p>
+                    <group>
+                        <field name="pcr_rate_behavior" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pcr_rate_communication" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pcr_rate_protocols" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <separator string="Section 2: Audit Execution"/>
+                    <group>
+                        <field name="pcr_rate_knowledge" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pcr_rate_planning" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pcr_rate_objectivity" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pcr_rate_findings" widget="radio" options="{'horizontal': true}"/>
+                        <field name="pcr_rate_time" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <separator string="Section 3: Client Feedback"/>
+                    <group>
+                        <field name="pcr_effective"/>
+                        <field name="pcr_improvement"/>
+                        <field name="pcr_comments"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="pcr_completed_by"/>
+                            <field name="pcr_position"/>
+                        </group>
+                        <group>
+                            <field name="pcr_signature" widget="signature"/>
+                            <field name="pcr_date"/>
+                        </group>
+                    </group>
+                    <p class="text-muted">
+                        Return to: Scheme Manager / Certification &amp; Controlling Manager, TUV Austria Bureau of
+                        Inspection and Certification (Pvt.) Ltd., Tel: +92 (042) 111-284-284, Ext. 110,
+                        Email: qaiser.raza@tuvat.com.pk / maryam.fayyaz@tuvat.com.pk
+                    </p>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- SAAC auditor assignment (FM-BA-ZET-MS-All-007-AAS-EN) -->
+    <record id="project_block_saac_auditor_assignment" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.saac_auditor_assignment</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_saac_auditor_assignment" invisible="audit_report_key != 'saac_auditor_assignment'">
+                    <separator string="Audit Assignment"/>
+                    <group>
+                        <field name="saa_auditor_id"/>
+                        <field name="saa_assignment"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="saa_client"/>
+                            <field name="saa_standards"/>
+                            <field name="saa_certificate_numbers"/>
+                            <field name="saa_accreditation"/>
+                            <field name="saa_audit_type"/>
+                            <field name="saa_decision_release"/>
+                            <field name="saa_audit"/>
+                            <field name="saa_order"/>
+                            <field name="saa_offer"/>
+                        </group>
+                        <group>
+                            <field name="saa_client_address"/>
+                            <field name="saa_client_contact"/>
+                            <field name="saa_client_contact_persons"/>
+                            <field name="saa_client_relationship"/>
+                            <field name="saa_personnel"/>
+                            <field name="saa_duration"/>
+                            <field name="saa_payment"/>
+                            <field name="saa_additional_costs" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="saa_other_info"/>
+                        <field name="saa_possible_scope"/>
+                        <field name="saa_location"/>
+                        <field name="saa_audit_scopes"/>
+                        <field name="saa_client_additional"/>
+                        <field name="saa_audit_team"/>
+                    </group>
+                    <separator string="Important Information"/>
+                    <p class="text-muted">
+                        It is not allowed to issue an invoice to TÜV AUSTRIA without this written assignment.
+                        The Audit Documentation has to be delivered to the Certification Body the latest two weeks
+                        after the Audit conduction. The declaration of impartiality and the GDPR notice of the
+                        Word form are printed on the PDF.
+                    </p>
+                    <group>
+                        <field name="saa_confirmed"/>
+                    </group>
+                    <group string="Contact">
+                        <group>
+                            <field name="saa_contact_user"/>
+                            <field name="saa_contact_phone"/>
+                        </group>
+                        <group>
+                            <field name="saa_contact_email" widget="email"/>
+                            <field name="saa_contact_web"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- SAAC audit program (FM-BA-ZET-MS-All-008-AT-EN) -->
+    <record id="project_block_saac_audit_program" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.saac_audit_program</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_saac_audit_program" invisible="audit_report_key != 'saac_audit_program'">
+                    <separator string="Company"/>
+                    <group>
+                        <field name="sapg_company_name"/>
+                        <field name="sapg_addresses"/>
+                        <field name="sapg_scope"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="sapg_non_applicable"/>
+                            <field name="sapg_ea_nace"/>
+                            <field name="sapg_category"/>
+                            <field name="sapg_employees"/>
+                            <field name="sapg_shift_employees"/>
+                            <field name="sapg_others"/>
+                        </group>
+                        <group>
+                            <field name="sapg_branch_employees"/>
+                            <field name="sapg_standards"/>
+                            <field name="sapg_audit_responsible"/>
+                            <field name="sapg_committee_decision"/>
+                            <field name="sapg_certificate"/>
+                        </group>
+                    </group>
+
+                    <separator string="Audit Columns"/>
+                    <group>
+                        <group string="Stage 1">
+                            <field name="sapg_stage1_employees" string="Total Number of Employees"/>
+                            <field name="sapg_stage1_risk" string="Risk / Complexity Rate"/>
+                            <field name="sapg_stage1_std1" string="Standard 1"/>
+                            <field name="sapg_stage1_std2" string="Standard 2"/>
+                            <field name="sapg_stage1_planned" string="Planned Date"/>
+                            <field name="sapg_stage1_actual" string="Actual Date"/>
+                        </group>
+                        <group string="Stage 2">
+                            <field name="sapg_stage2_employees" string="Number of Employees"/>
+                            <field name="sapg_stage2_risk" string="Risk / Complexity Rate"/>
+                            <field name="sapg_stage2_std1" string="Standard 1"/>
+                            <field name="sapg_stage2_std2" string="Standard 2"/>
+                            <field name="sapg_stage2_planned" string="Planned Date (PT)"/>
+                            <field name="sapg_stage2_actual" string="Actual Date (GT)"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="1. Surveillance">
+                            <field name="sapg_surv1_employees" string="Number of Employees"/>
+                            <field name="sapg_surv1_risk" string="Risk / Complexity Rate"/>
+                            <field name="sapg_surv1_std1" string="Standard 1"/>
+                            <field name="sapg_surv1_std2" string="Standard 2"/>
+                            <field name="sapg_surv1_planned" string="Planned Date (PT)"/>
+                            <field name="sapg_surv1_actual" string="Actual Date (GT)"/>
+                        </group>
+                        <group string="2. Surveillance">
+                            <field name="sapg_surv2_employees" string="Number of Employees"/>
+                            <field name="sapg_surv2_risk" string="Risk / Complexity Rate"/>
+                            <field name="sapg_surv2_std1" string="Standard 1"/>
+                            <field name="sapg_surv2_std2" string="Standard 2"/>
+                            <field name="sapg_surv2_planned" string="Planned Date (PT)"/>
+                            <field name="sapg_surv2_actual" string="Actual Date (GT)"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Recertification">
+                            <field name="sapg_recert_employees" string="Number of Employees"/>
+                            <field name="sapg_recert_risk" string="Risk / Complexity Rate"/>
+                            <field name="sapg_recert_std1" string="Standard 1"/>
+                            <field name="sapg_recert_std2" string="Standard 2"/>
+                            <field name="sapg_recert_planned" string="Planned Date (PT)"/>
+                            <field name="sapg_recert_actual" string="Actual Date (GT)"/>
+                        </group>
+                        <group/>
+                    </group>
+
+                    <separator string="Items to be Examined"/>
+                    <p class="text-muted">
+                        Per audit column: the clause of standard 1 with its box, then a box and a free clause for
+                        standard 2. The last rows are free rows for standard 2 only.
+                    </p>
+                    <field name="sapg_item_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="clause"/>
+                            <field name="stage1_a"/>
+                            <field name="stage1_b"/>
+                            <field name="stage1_b_clause"/>
+                            <field name="stage2_a"/>
+                            <field name="stage2_b"/>
+                            <field name="stage2_b_clause"/>
+                            <field name="surv1_a"/>
+                            <field name="surv1_b"/>
+                            <field name="surv1_b_clause"/>
+                            <field name="surv2_a"/>
+                            <field name="surv2_b"/>
+                            <field name="surv2_b_clause"/>
+                            <field name="recert_a"/>
+                            <field name="recert_b"/>
+                            <field name="recert_b_clause"/>
+                        </list>
+                    </field>
+
+                    <separator string="Changes / Company Performance Data"/>
+                    <field name="sapg_question_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="is_section" column_invisible="True"/>
+                            <field name="name"/>
+                            <field name="stage1" readonly="is_section"/>
+                            <field name="stage2" readonly="is_section"/>
+                            <field name="surv1" readonly="is_section"/>
+                            <field name="surv2" readonly="is_section"/>
+                            <field name="recert" readonly="is_section"/>
+                        </list>
+                    </field>
+
+                    <group>
+                        <group>
+                            <field name="sapg_update_date"/>
+                            <field name="sapg_updated_by"/>
+                            <field name="sapg_signature" widget="signature"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- PNAC technical expert report and SAAC participation list are the TUV Austria forms
+         FM-TAGMBH-MSZ-004 / -005 field for field: their blocks also show for the PNAC / SAAC cards.
+         These inherit the block views themselves (not the tab), so they always apply after them and
+         tools/gen_standalone_views.py leaves them alone; the standalone twins are in
+         data/acc_small_forms_data.xml (loaded after views/standalone_blocks.xml). -->
+    <record id="project_block_pnac_expert_report" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.pnac_expert_report</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.project_block_audit_expert_report"/>
+        <field name="arch" type="xml">
+            <div name="tuv_block_audit_expert_report" position="attributes">
+                <attribute name="invisible">audit_report_key not in ('expert_report', 'pnac_expert_report')</attribute>
+            </div>
+        </field>
+    </record>
+    <record id="project_block_saac_participation_list" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.saac_participation_list</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.project_block_audit_participation"/>
+        <field name="arch" type="xml">
+            <div name="tuv_block_audit_participation" position="attributes">
+                <attribute name="invisible">audit_report_key not in ('participation_list', 'saac_participation_list')</attribute>
+            </div>
+        </field>
+    </record>
+
+</odoo>

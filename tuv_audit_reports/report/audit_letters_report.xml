@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The certification letters FM-BA-ZET-MS-All-016 (revision 00, VKL Public), A4 portrait
+         with the faint TUV "V" behind the text: surveillance audit, suspension, withdrawal. -->
+    <record id="action_report_letter_surveillance" model="ir.actions.report">
+        <field name="name">Surveillance Audit Letter</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_letter_surveillance</field>
+        <field name="report_file">tuv_audit_reports.report_letter_surveillance</field>
+        <field name="print_report_name">'Surveillance Audit - %s' % (object.lt_client_name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+    <record id="action_report_letter_suspension" model="ir.actions.report">
+        <field name="name">Suspension of Certificate Validity</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_letter_suspension</field>
+        <field name="report_file">tuv_audit_reports.report_letter_suspension</field>
+        <field name="print_report_name">'Suspension - %s' % (object.lt_client_name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+    <record id="action_report_letter_withdrawal" model="ir.actions.report">
+        <field name="name">Withdrawal of Certificate Validity</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_letter_withdrawal</field>
+        <field name="report_file">tuv_audit_reports.report_letter_withdrawal</field>
+        <field name="print_report_name">'Withdrawal - %s' % (object.lt_client_name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+
+    <!-- Page frame of a letter (inside web.html_container). Expects: o, form_title, form_code;
+         the body in 0 -->
+    <template id="letter_layout">
+        <t>
+            <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+            <t t-set="form_subtitle" t-value="'Certification'"/>
+            <t t-set="form_revision" t-value="'00'"/>
+            <t t-set="form_vkl" t-value="'Public'"/>
+            <div class="header">
+                <t t-call="tuv_audit_reports.audit_plan_style"/>
+                <table class="tap" style="font-size: 12px;">
+                    <tr>
+                        <td class="center bold" style="font-size: 17px; height: 34px;" t-out="form_title"/>
+                        <td rowspan="2" class="center" style="width: 24%; padding: 2px;">
+                            <img t-att-src="logo" style="max-height: 62px; max-width: 100%;" alt="TUV Austria"/>
+                        </td>
+                    </tr>
+                    <tr><td class="center bold" style="font-size: 11px; height: 24px;">Certification</td></tr>
+                </table>
+            </div>
+            <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                <style>
+                    .lt { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000; line-height: 1.45; }
+                    .lt p { margin: 0 0 6px 0; }
+                    .lt .just { text-align: justify; }
+                    .lt .wm { position: fixed; top: 120px; left: 60px; width: 640px; opacity: 0.9; z-index: -1; }
+                    .lt table.sig { width: 80%; margin: 26px auto 0 auto; border: 0 !important; border-collapse: collapse; }
+                    .lt table.sig td { border: 0 !important; text-align: center; width: 50%; padding: 1px; }
+                    .lt table.grid { width: 100%; border-collapse: collapse; }
+                    .lt table.grid td { border: 1px solid #000; padding: 4px 6px; vertical-align: top; }
+                </style>
+                <div class="lt">
+                    <img class="wm" t-att-src="o._lt_watermark_data_uri()" alt=""/>
+                    <t t-out="0"/>
+                </div>
+            </div>
+            <div class="footer">
+                <t t-call="tuv_audit_reports.audit_plan_style"/>
+                <table class="tap" style="font-size: 9px;">
+                    <tr>
+                        <td class="center" style="width: 26%;" t-out="form_code"/>
+                        <td class="center" style="width: 26%;">Revision: 00</td>
+                        <td class="center" style="width: 26%;">VKL: Public</td>
+                        <td class="center">Page <b class="page"/> of <b class="topage"/></td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <!-- "NAME / SIGNATURE / POSITION/DPT" in two columns -->
+    <template id="letter_signatories">
+        <table class="sig">
+            <tr>
+                <td><t t-out="o.lt_signer1_name or 'NAME'"/></td>
+                <td><t t-out="o.lt_signer2_name or 'NAME'"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <img t-if="o.lt_signer1_signature" t-att-src="image_data_uri(o.lt_signer1_signature)" style="max-height: 40px;" alt="Signature"/>
+                    <t t-else="">SIGNATURE</t>
+                </td>
+                <td>
+                    <img t-if="o.lt_signer2_signature" t-att-src="image_data_uri(o.lt_signer2_signature)" style="max-height: 40px;" alt="Signature"/>
+                    <t t-else="">SIGNATURE</t>
+                </td>
+            </tr>
+            <tr>
+                <td><t t-out="o.lt_signer1_position or 'POSITION/DPT'"/></td>
+                <td><t t-out="o.lt_signer2_position or 'POSITION/DPT'"/></td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- ============ Surveillance audit (FM-BA-ZET-MS-All-016-SRVL-EN) ============ -->
+    <template id="report_letter_surveillance">
+        <t t-call="web.html_container"><t t-foreach="docs" t-as="o">
+            <t t-call="tuv_audit_reports.letter_layout">
+                <t t-set="form_title" t-value="'Surveillance audit'"/>
+                <t t-set="form_code" t-value="&quot;Formular 'FM-BA-ZET-MS-All-016-SRVL-EN'.docx&quot;"/>
+                <p>To<br/>
+                    <t t-out="o.lt_client_name or 'Client Name'"/><br/>
+                    <t t-foreach="(o.lt_client_address or 'Client Address').split('\n')" t-as="n"><t t-out="n"/><br/></t>
+                    <t t-out="o.lt_client_contact or 'Client Contact details'"/></p>
+                <p><b>Attention <t t-out="o.lt_attention or ''"/></b></p>
+                <p style="text-align: right;"><b><t t-out="o.sv_place or 'Place'"/>,
+                    <t t-out="o.sv_date and o.sv_date.strftime('%d/%m/%Y') or '../../…'"/></b></p>
+                <p style="margin-top: 14px;"><b>Subject: Annual Surveillance audit according to <t t-out="o.lt_standard or 'NormCode'"/> Standard.</b></p>
+                <p style="margin-top: 14px;">Dear Mr. / Mrs <t t-out="o.lt_attention or '…..'"/></p>
+                <p class="just">According to the requirements of the international standards, accreditation regulations and contractual obligations, the conduction of an annual surveillance audit of the Management System is required in order to verify its effective implementation and to document its validity. Specifically, the due date to conduct the surveillance audit is defined to be within 12 or 24 months for the 1st and 2nd annual surveillance audit, respectively, after the date of the certification decision. Consequently, the audit process must be completed until <b t-out="o.sv_due_date and o.sv_due_date.strftime('%d.%m.%Y') or 'DueDate'"/></p>
+                <p class="just">Any deviation from the above time frames shall lead to temporary suspension of the validity of your certificate for six (6) months.  The validity of the Certificate will be permanently withdrawn if that time elapses and an initial certification audit will be required.</p>
+                <p>It is also required to inform us for any significant changes in any of the following:</p>
+                <table style="width: 100%; border: none; margin-bottom: 6px;">
+                    <tr><td style="width: 50%; border: none;">-&#160;&#160;Legal status of the company</td><td style="border: none;">-&#160;&#160;Address of the audited site</td></tr>
+                    <tr><td style="border: none;">-&#160;&#160;Organizational status of the company</td><td style="border: none;">-&#160;&#160;Major changes to management system/certified product and processes.</td></tr>
+                </table>
+                <p class="just">In order to verify all the above, please fill in properly the below table an send it by mail to: <u t-out="o.sv_reply_email or '…………….@..........'"/> or fax it to <t t-out="o.sv_reply_fax or '………………..'"/>, attention to “Customer service department”.</p>
+                <table class="grid" style="margin-top: 10px;">
+                    <tr><td style="width: 34%;"><b>Relevant Standard / Offer number</b></td><td colspan="2" t-out="o.sv_offer_ref or ((o.lt_standard or 'NormCode') + '  / Offer id')"/></tr>
+                    <tr><td><b>Suggested week or/and date of audit</b></td><td colspan="2" t-out="o.sv_suggested_date or ''"/></tr>
+                    <tr><td><b>Report any changes:</b></td>
+                        <td colspan="2"><t t-out="'☒' if o.sv_changes == 'no' else '☐'"/> No change&#160;&#160;&#160;
+                            <t t-out="'☒' if o.sv_changes == 'yes' else '☐'"/> Yes, please describe:
+                            <t t-if="o.sv_changes_text"><br/><t t-out="o.sv_changes_text"/></t></td></tr>
+                    <tr><td><b>Name:</b></td><td t-out="o.sv_reply_name or ''"/><td rowspan="2" style="width: 30%;">Signature / Stamp</td></tr>
+                    <tr><td><b>Position:</b></td><td t-out="o.sv_reply_position or ''"/></tr>
+                </table>
+                <p style="margin-top: 12px;">The exact date will be determined after contact with the programming department.</p>
+                <p>Thank you in advance for your cooperation.</p>
+                <p>Sincerely yours,</p>
+                <t t-call="tuv_audit_reports.letter_signatories"/>
+            </t>
+        </t></t>
+    </template>
+
+    <!-- ============ Suspension (FM-BA-ZET-MS-All-016-SUSPL-EN) ============ -->
+    <template id="report_letter_suspension">
+        <t t-call="web.html_container"><t t-foreach="docs" t-as="o">
+            <t t-call="tuv_audit_reports.letter_layout">
+                <t t-set="form_title" t-value="'Suspension of Certificate validity'"/>
+                <t t-set="form_code" t-value="&quot;Formular 'FM-BA-ZET-MS-All-016-SUSPL-EN'.docx&quot;"/>
+                <p>To:  <b t-out="o.lt_client_name or '«Name»'"/></p>
+                <p>From: Management Systems and Products Certification Division</p>
+                <p>Information <t t-out="o.su_information or 'xxxxx'"/></p>
+                <p>Attention:  <b>Mr. / Mrs  <t t-out="o.lt_attention or '«MANAGER_D»'"/></b></p>
+                <p>Phone number:  <t t-out="o.lt_phone or '«Tel»'"/></p>
+                <p>Date: <t t-out="o.su_date and o.su_date.strftime('%d.%m.%Y') or '………….'"/></p>
+                <p style="margin-top: 28px;"><b>Subject: Suspension of Certificate Validity</b></p>
+                <p style="margin-top: 12px;">Dear Mr. / Mrs. <t t-out="o.lt_attention or '«MANAGER_D»'"/></p>
+                <p class="just" style="margin: 0;">Please be advised that due to <t t-out="o.su_reason or 'non-conduction of the annual surveillance'"/> audit of your Management System at the scheduled date, your Certificate (<t t-out="o.lt_standard or '«Norm_name»'"/>, <t t-out="o.lt_registration_no or 'RGN'"/>), is suspended for the period from <t t-out="o.su_period_from and o.su_period_from.strftime('%d.%m.%Y') or '«Audit_start_date»'"/> to <t t-out="o.su_period_to and o.su_period_to.strftime('%d.%m.%Y') or '«Audit_end_date»'"/>. The validity of the Certificate will be permanently withdrawn if the surveillance audit is not completed successfully before the expiration of the above time limit.</p>
+                <p class="just" style="margin: 0;">You are also informed that throughout the Suspension period of your Certificate, you should inform all interested parties of the company and withdraw any use of the certification logo.</p>
+                <p class="just" style="margin: 0;">For prompt arrangement of this issue, please contact the programming department to immediately schedule the audit.</p>
+                <p>Relevant Documents: Certification Regulation (VB-BA-ZET-MS-All-004-CR-EN)</p>
+                <p style="margin-top: 10px;">We remain at your disposal for any further information.</p>
+                <p style="margin-top: 10px;">Sincerely yours</p>
+                <t t-call="tuv_audit_reports.letter_signatories"/>
+            </t>
+        </t></t>
+    </template>
+
+    <!-- ============ Withdrawal (FM-BA-ZET-MS-All-016-WDRL-EN) ============ -->
+    <template id="report_letter_withdrawal">
+        <t t-call="web.html_container"><t t-foreach="docs" t-as="o">
+            <t t-call="tuv_audit_reports.letter_layout">
+                <t t-set="form_title" t-value="'Withdrawal of Certificate validity'"/>
+                <t t-set="form_code" t-value="&quot;Formular 'FM-BA-ZET-MS-All-016-WDRL-EN'.docx&quot;"/>
+                <p>To:  <b t-out="o.lt_client_name or '«Name»'"/></p>
+                <p>From: Management Systems and Products Certification Division</p>
+                <p>Information: <t t-out="o.wd_information or 'xxxxxxxx'"/></p>
+                <p>Attention: <b>mr / mrs  <t t-out="o.lt_attention or '«MANAGER_D»'"/></b></p>
+                <p>Phone number:  <t t-out="o.lt_phone or '«Tel»'"/></p>
+                <p>Date: <t t-out="o.wd_date and o.wd_date.strftime('%d.%m.%Y') or '………………..'"/></p>
+                <p style="margin-top: 28px;"><b>Subject: Withdrawal of Certificate Validity</b></p>
+                <p style="margin-top: 12px;">Dear Mr. / Mrs. <t t-out="o.lt_attention or '«MANAGER_D»'"/></p>
+                <p class="just" style="margin: 0;">Please be advised that due to non-conduction of the annual surveillance audit of your Management System at the scheduled date, your Certificate (<t t-out="o.lt_standard or 'Standard'"/>, <t t-out="o.lt_registration_no or 'RGN'"/>), is permanently withdrawn from <t t-out="o.wd_withdrawn_from and o.wd_withdrawn_from.strftime('%d.%m.%Y') or '......'"/></p>
+                <p class="just" style="margin: 0;">You are also informed that from the above date, you should inform all interested parties of the company that the validity of your Certificate has been withdrawn and also retract any use of the certification logo.</p>
+                <p class="just" style="margin: 0;">We request that you return the original certificates to the address <t t-out="o.wd_return_address or '……………….'"/> Phone number: <t t-out="o.wd_return_phone or '……………'"/> and destroy any copy of them.</p>
+                <p>Relevant Documents: Certification Regulation (VB-BA-ZET-MS-All-004-CR-EN)</p>
+                <p style="margin-top: 10px;">We remain at your disposal for any further information.</p>
+                <p style="margin-top: 10px;">Sincerely yours,</p>
+                <t t-call="tuv_audit_reports.letter_signatories"/>
+            </t>
+        </t></t>
+    </template>
+
+</odoo>

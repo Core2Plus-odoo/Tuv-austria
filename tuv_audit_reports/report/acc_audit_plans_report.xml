@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit plans of the accreditation bodies ESYD, PNAC and SAAC (models/acc_audit_plans.py).
+         Shared look and blocks: report/common_templates.xml.
+         The ESYD and PNAC Word forms have a portrait first page and landscape pages after it;
+         a PDF has one orientation, so they print landscape throughout. -->
+    <record id="action_report_esyd_audit_plan" model="ir.actions.report">
+        <field name="name">ESYD Audit Plan</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_esyd_audit_plan</field>
+        <field name="report_file">tuv_audit_reports.report_esyd_audit_plan</field>
+        <field name="print_report_name">'ESYD Audit Plan - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_pnac_audit_plan" model="ir.actions.report">
+        <field name="name">PNAC Audit Plan</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_pnac_audit_plan</field>
+        <field name="report_file">tuv_audit_reports.report_pnac_audit_plan</field>
+        <field name="print_report_name">'PNAC Audit Plan - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_saac_audit_plan" model="ir.actions.report">
+        <field name="name">SAAC Audit Plan</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_saac_audit_plan</field>
+        <field name="report_file">tuv_audit_reports.report_saac_audit_plan</field>
+        <field name="print_report_name">'SAAC Audit Plan - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_saac_audit_plan_27001" model="ir.actions.report">
+        <field name="name">SAAC Audit Plan ISO 27001</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_saac_audit_plan_27001</field>
+        <field name="report_file">tuv_audit_reports.report_saac_audit_plan_27001</field>
+        <field name="print_report_name">'SAAC Audit Plan ISO 27001 - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <!-- ===================== Shared blocks of these plans ===================== -->
+
+    <!-- PNAC header: title and logo, no subtitle row. Expects: logo, form_title -->
+    <template id="acc_header_title_only">
+        <t t-call="tuv_audit_reports.audit_plan_style"/>
+        <table class="tap">
+            <tr>
+                <td class="center" style="font-size: 20px; font-weight: bold; height: 74px;" t-out="form_title"/>
+                <td class="center" style="width: 14%; padding: 2px;">
+                    <img t-att-src="logo" style="max-height: 80px; max-width: 100%;" alt="TUV Austria"/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- PNAC footer: a line of text, page 1 with its own revision text. The footer is drawn
+         once per page with ?sitepage=N in its URL; without script every page shows the second text. -->
+    <template id="acc_footer_pnac">
+        <div class="tap-small" style="text-align: right; padding-right: 60px; font-size: 12px;">
+            <span class="acc_footer_first" style="display: none;">TUV/BA/FM/04-1, Rev 00, Issue 01, Dated 15/06/2025</span>
+            <span class="acc_footer_other">TUV/BA/FM/04-1, Rev 10, Dated 15/06/2025</span>
+        </div>
+        <script>
+            (function () {
+                var match = /[?&amp;]sitepage=(\d+)/.exec(document.location.search);
+                if (match &amp;&amp; match[1] === '1') {
+                    document.querySelectorAll('.acc_footer_first').forEach(function (el) { el.style.display = 'inline'; });
+                    document.querySelectorAll('.acc_footer_other').forEach(function (el) { el.style.display = 'none'; });
+                }
+            })();
+        </script>
+    </template>
+
+    <!-- Declaration of independence; Expects: personal (PNAC wording "professional &amp; personal"),
+         comma (", they" after "Finally") -->
+    <template id="acc_declaration_independence">
+        <div class="tap-small">
+            <p style="margin: 0 0 4px 0; font-weight: bold;">Declaration of independence</p>
+            <p style="margin: 0 0 10px 0; text-align: justify;">All the members of the audit team have signed the
+                declaration of independence, in which they are committed that there is no professional
+                <t t-if="personal">&amp; personal </t>relationship of any kind and have not provided any kind of
+                advisory service or any kind of service (internal audits, design / development of management
+                system) for the company being audited, or another company legally associated with this company,
+                during the last two (2) years, at least. Also, they are committed that they will not develop any
+                kind of cooperation and / or advisory service, during the next two (2) years after the audit.
+                Finally<t t-if="comma">,</t> they are committed that there is no conflict of interest with the
+                company being audited due to previous or current relationship. If any of the above is not
+                fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.</p>
+        </div>
+    </template>
+
+    <!-- ESYD / PNAC audit schedule. Expects: rows (lines, False for a blank row), observations -->
+    <template id="acc_eap_schedule">
+        <table class="tap">
+            <colgroup>
+                <col style="width: 10%;"/><col style="width: 13%;"/><col style="width: 14%;"/>
+                <col style="width: 32%;"/><col/>
+            </colgroup>
+            <tr>
+                <td class="head">Date / Time<sup>1</sup></td>
+                <td class="head" style="font-size: 13px;">Department /<br/>organisational unit</td>
+                <td class="head" style="font-size: 13px;">Representative<br/><span style="font-weight: normal;">(person in charge<sup>2 3 4</sup>)</span></td>
+                <td class="head">Processes</td>
+                <td class="head">Auditors</td>
+            </tr>
+            <t t-foreach="rows" t-as="line">
+                <tr t-if="line">
+                    <t t-set="when" t-value="line.date and line.date.strftime('%d.%m.%Y') or ''"/>
+                    <t t-set="hours" t-value="o._ap_time_range(line)"/>
+                    <td class="center" style="height: 24px;">
+                        <t t-out="when"/><t t-if="when and hours"><br/></t><t t-out="hours"/>
+                    </td>
+                    <td t-out="line.department or ''"/>
+                    <td t-out="line.representative or ''"/>
+                    <td>
+                        <t t-foreach="(line.processes or '').split('\n')" t-as="p"><t t-out="p"/><br t-if="not p_last"/></t>
+                    </td>
+                    <td t-out="line.auditors or ''"/>
+                </tr>
+                <tr t-else="">
+                    <td style="height: 24px;"/><td/><td/><td/><td/>
+                </tr>
+            </t>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Observations</td>
+                <td colspan="4">
+                    <t t-foreach="(observations or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- "Place / Date - Lead Auditor - Co-auditor(s) - Signature" of the ESYD / PNAC plans.
+         Expects: place, sign_date, lead_name, auditor_names, lead_signature, auditor_signature -->
+    <template id="acc_eap_signatures">
+        <table class="tap">
+            <tr>
+                <td class="lbl center" style="width: 11%; height: 28px;">Place / Date</td>
+                <td colspan="3">
+                    <t t-out="place or ''"/>
+                    <t t-if="place and sign_date"> / </t>
+                    <t t-if="sign_date" t-out="sign_date.strftime('%d.%m.%Y')"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Lead Auditor</td>
+                <td style="width: 37%;" t-out="lead_name or ''"/>
+                <td class="lbl center" style="width: 13%;">Co – auditor (-s)</td>
+                <td t-out="auditor_names or ''"/>
+            </tr>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Signature</td>
+                <td>
+                    <img t-if="lead_signature" t-att-src="image_data_uri(lead_signature)"
+                        style="max-height: 40px;" alt="Signature"/>
+                </td>
+                <td class="lbl center">Signature</td>
+                <td>
+                    <img t-if="auditor_signature" t-att-src="image_data_uri(auditor_signature)"
+                        style="max-height: 40px;" alt="Signature"/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Footnotes of the ESYD / PNAC schedule -->
+    <template id="acc_eap_footnotes">
+        <div class="tap-small" style="margin: 10px 0 14px 8px; line-height: 1.15;">
+            Changes of the audit action are possible<br/>
+            <sup>2</sup> Is to be appointed by the company<br/>
+            <sup>3</sup> for ISO 45001: 1) management legally responsible for occupational health and safety.
+            2) personnel responsible for monitoring employees´ health (e.g. doctors and nurses) 3) employees´
+            representative(s) with responsibility for occupational health and safety 4) managers and permanent
+            and temporary employees 5) managers and employees performing activities related to prevention of
+            occupational health and safety risks 6) contractors´ management and employees.<br/>
+            <sup>4</sup> for ISO 45001: Justification in case of absence of defined people shall be recorded.
+        </div>
+    </template>
+
+    <!-- "Significant issues impacting on the audit program" box. Expects: issues, bold -->
+    <template id="acc_significant_issues">
+        <table class="tap">
+            <tr><td class="head">Significant issues impacting on the audit program</td></tr>
+            <tr>
+                <td t-att-class="'top bold' if bold else 'top'" style="height: 90px;">
+                    <t t-foreach="(issues or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- "Participants List (to be filled during the audit)" of the ESYD / PNAC plans.
+         Expects: rows (participants, False for a blank row), opening_date, closing_date, observations -->
+    <template id="acc_eap_participants">
+        <table class="tap">
+            <colgroup>
+                <col style="width: 17%;"/><col style="width: 8%;"/><col style="width: 6%;"/>
+                <col style="width: 9%;"/><col style="width: 6%;"/><col style="width: 9%;"/><col/>
+            </colgroup>
+            <tr><td colspan="7" class="head">Participants List (to be filled during the audit)</td></tr>
+            <tr>
+                <td rowspan="2" class="head">Name</td>
+                <td rowspan="2" class="head">Position</td>
+                <td colspan="2" class="head">Opening meeting</td>
+                <td colspan="2" class="head">Closing meeting</td>
+                <td rowspan="2" class="head">Signature</td>
+            </tr>
+            <tr>
+                <td class="head">Date</td>
+                <td class="center bold" t-out="opening_date and opening_date.strftime('%d.%m.%Y') or ''"/>
+                <td class="head">Date</td>
+                <td class="center bold" t-out="closing_date and closing_date.strftime('%d.%m.%Y') or ''"/>
+            </tr>
+            <t t-foreach="rows" t-as="p">
+                <tr t-if="p">
+                    <td style="height: 26px;" t-out="p.name"/>
+                    <td t-out="p.position or ''"/>
+                    <td colspan="2" class="center" t-out="'☒' if p.opening_meeting else '☐'"/>
+                    <td colspan="2" class="center" t-out="'☒' if p.closing_meeting else '☐'"/>
+                    <td class="center" style="padding: 1px;">
+                        <img t-if="p.signature" t-att-src="image_data_uri(p.signature)"
+                            style="max-height: 30px;" alt="Signature"/>
+                    </td>
+                </tr>
+                <tr t-else="">
+                    <td style="height: 26px;"/><td/>
+                    <td colspan="2" class="center">☐</td>
+                    <td colspan="2" class="center">☐</td>
+                    <td/>
+                </tr>
+            </t>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Observations</td>
+                <td colspan="5">
+                    <t t-foreach="(observations or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                </td>
+                <td/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Lead auditor / auditor names of the ESYD / PNAC team rows -->
+    <template id="acc_team_names">
+        <t t-foreach="members" t-as="m">
+            <span t-out="m.partner_id.name"/><t t-if="m.role not in ('auditor', 'expert')"> (<span t-field="m.role"/>)</t><t t-if="not m_last">, </t>
+        </t>
+    </template>
+
+    <!-- Sections 1 and 2 of the SAAC plans: the TUV sections with the audit objectives row.
+         Expects: o, scope_label, scope_placeholder (grey text when the field is empty) -->
+    <template id="acc_saac_sections">
+        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:5]"/>
+        <t t-set="team" t-value="o.ap_team_line_ids"/>
+        <table class="tap">
+            <colgroup>
+                <col style="width: 16%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+                <col style="width: 16.8%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+            </colgroup>
+            <tr><td colspan="6" class="bar">1.  Company information</td></tr>
+            <tr>
+                <td colspan="2" class="lbl">Company name</td>
+                <td colspan="4"><span t-out="o.ap_partner_id.name or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="lbl">Address</td>
+                <td colspan="4"><span t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="lbl">Other audited sites</td>
+                <td colspan="4"><span t-out="o.ap_other_sites or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="lbl">Company representative</td>
+                <td colspan="2"><span t-out="o.ap_representative or ''"/></td>
+                <td class="lbl">E-mail</td>
+                <td><span t-out="o.ap_representative_email or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="lbl" style="height: 40px;" t-out="scope_label"/>
+                <td colspan="4">
+                    <span t-if="o.ap_certificate_scope" t-out="o.ap_certificate_scope"/>
+                    <span t-elif="scope_placeholder" t-out="scope_placeholder"/>
+                </td>
+            </tr>
+        </table>
+        <table class="tap">
+            <colgroup>
+                <col style="width: 16%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+                <col style="width: 16.8%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+            </colgroup>
+            <tr><td colspan="6" class="bar">2. Audit information</td></tr>
+            <tr>
+                <td class="lbl">Audit date</td>
+                <td><b>Stage 1:</b>
+                    <span t-if="o.ap_audit_date_stage1" t-out="o.ap_audit_date_stage1.strftime('%d.%m.%Y')"/></td>
+                <td><b>Stage 2:</b>
+                    <span t-if="o.ap_audit_date_stage2" t-out="o.ap_audit_date_stage2.strftime('%d.%m.%Y')"/></td>
+                <td colspan="2"><b>until:</b>
+                    <span t-if="o.ap_audit_date_until" t-out="o.ap_audit_date_until.strftime('%d.%m.%Y')"/></td>
+                <td><b>Remote:</b> <span t-field="o.ap_remote"/></td>
+            </tr>
+            <tr>
+                <td><b>Audit method:</b><br/>
+                    <span t-if="o.ap_audit_method in ('others', 'self_definition') and o.ap_audit_method_other"
+                        t-out="o.ap_audit_method_other"/>
+                    <span t-else="" t-field="o.ap_audit_method"/></td>
+                <td><b>No. of employees:</b> <span t-out="o.ap_employee_count or ''"/></td>
+                <td colspan="3"><b>No. of employees in scope:</b> <span t-out="o.ap_employee_scope_count or ''"/></td>
+                <td><b>Audit duration:</b>
+                    <span t-out="('%g h' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="lbl">Audit standard(s)</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td class="sub">Standard <t t-out="i + 1"/>:</td>
+                </t>
+            </tr>
+            <tr>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Audit type<br/>per standard</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><b>Audit type:</b><br/>
+                        <t t-if="i &lt; len(std_lines)">
+                            <span t-if="std_lines[i].audit_type in ('others', 'self_definition') and std_lines[i].audit_type_other"
+                                t-out="std_lines[i].audit_type_other"/>
+                            <span t-else="" t-field="std_lines[i].audit_type"/>
+                        </t>
+                    </td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Registration no.</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><span t-if="i &lt; len(std_lines)" t-out="std_lines[i].registration_no or ''"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Audit Objectives</td>
+                <td colspan="5" style="font-size: 12px; font-family: 'Times New Roman', serif;">
+                    The audit objectives are the following:
+                    <ol style="margin: 2px 0 2px 0; padding-left: 26px;">
+                        <li>Determination of the conformity of the client’s management system, or parts of it, with audit criteria within the scope of the Management System.</li>
+                        <li>Determination of the ability of the management system to ensure the client organization meets applicable statutory, regulatory, and contractual requirements.</li>
+                        <li>Determination of the effectiveness of the management system to ensure the client organization can reasonably expect to achieve its specified objectives.</li>
+                        <li>As applicable, identification of areas for potential improvement of the management system.</li>
+                        <li>Review of any management system’s changes.</li>
+                        <li>Validation that the management system was effectively applied in the previous period (valid for surveillance or recertification audits) and to verify its readiness for the coming period.</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td class="lbl">Scope</td>
+                <td>
+                    <span t-out="'☒' if o.ap_scope_change == 'no_changes' else '☐'"/> No changes<br/>
+                    <span t-out="'☒' if o.ap_scope_change == 'adjustment' else '☐'"/> Adjustment required
+                </td>
+                <td><b>EAC scope:</b> <span t-field="o.ap_eac_scope"/></td>
+                <td><b>NACE code</b> (only for EMAS): <span t-out="o.ap_nace_code or ''"/></td>
+                <td colspan="2"><b>Category (ISO 22003/ISO 13485/ISO 50003):</b>
+                    <span t-out="o.ap_category or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="sub">Lead Auditor</td>
+                <td colspan="2" class="sub">Auditor</td>
+                <td colspan="2" class="sub">Expert</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 22px;"><span t-out="o.ap_lead_auditor_id.name or ''"/></td>
+                <td colspan="2">
+                    <t t-call="tuv_audit_reports.acc_team_names">
+                        <t t-set="members" t-value="team.filtered(lambda l: l.role != 'expert')"/>
+                    </t>
+                </td>
+                <td colspan="2">
+                    <t t-call="tuv_audit_reports.acc_team_names">
+                        <t t-set="members" t-value="team.filtered(lambda l: l.role == 'expert')"/>
+                    </t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Rows of the SAAC schedules (see _sap_schedule_blocks). Expects: rows -->
+    <template id="acc_sap_schedule_rows">
+        <t t-foreach="rows" t-as="line">
+            <t t-set="parts" t-value="[p.strip() for p in (line.content or '').split('\n') if p.strip()]"/>
+            <t t-set="first" t-value="o._sap_schedule_title(line)"/>
+            <t t-set="when" t-value="line.date and line.date.strftime('%d.%m.%Y') or ''"/>
+            <t t-set="hours" t-value="o._ap_time_range(line)"/>
+            <tr t-if="line.is_section">
+                <td class="center bold light">
+                    <t t-out="when or 'dd.mm.yyyy'"/><t t-if="hours"><br/><t t-out="hours"/></t>
+                </td>
+                <td class="center light">
+                    <t t-if="first.startswith('Location address')">
+                        <b>Location address</b> <t t-out="first[len('Location address'):]"/>
+                    </t>
+                    <t t-else=""><b t-out="' '.join(parts)"/></t>
+                </td>
+                <td class="light" t-out="line.participants or ''"/>
+                <td class="light" t-out="line.auditors or ''"/>
+            </tr>
+            <tr t-else="">
+                <td class="center" style="height: 24px;">
+                    <t t-out="when"/><t t-if="when and hours"><br/></t><t t-out="hours"/>
+                </td>
+                <td t-if="len(parts) == 1 and (first == 'Break' or first.startswith('End of audit'))"
+                    class="center bold" t-out="first"/>
+                <td t-else="" style="font-size: 13px;">
+                    <t t-foreach="o._sap_schedule_blocks(line)" t-as="block">
+                        <ul t-if="block[0] == 'ul'">
+                            <li t-foreach="block[1]" t-as="item" t-att-style="item[1] and ('color: ' + item[1] + ';')" t-out="item[0]"/>
+                        </ul>
+                        <div t-elif="block[0] == 'note'" class="center bold">
+                            <t t-foreach="block[1]" t-as="n">
+                                <span style="background: #FFFF00;">
+                                    <t t-if="n.endswith(' RED')"><t t-out="n[:-3]"/><span style="color: #FF0000;">RED</span></t>
+                                    <t t-else="" t-out="n"/>
+                                </span><br t-if="not n_last"/>
+                            </t>
+                        </div>
+                        <div t-else="" class="bold" t-att-style="block[2] and ('color: ' + block[2] + ';')">
+                            <span t-if="block[3]" style="background: #FFFF00;" t-out="block[3]"/>
+                            <t t-out="block[1]"/>
+                        </div>
+                    </t>
+                </td>
+                <td t-out="line.participants or ''"/>
+                <td t-out="line.auditors or ''"/>
+            </tr>
+        </t>
+    </template>
+
+    <!-- Footnotes under the SAAC signatures -->
+    <template id="acc_sap_footnotes">
+        <div class="tap-small" style="margin: 10px 0 24px 8px; line-height: 1.15;">
+            Changes of the audit action are possible<br/>
+            <sup>2</sup> Is to be appointed by the company<br/>
+            <sup>3</sup> for ISO 45001: 1) management legally responsible for occupational health and safety.
+            2) personnel responsible for monitoring employees’ health (e.g., doctors and nurses) 3) employees’
+            representative(s) with responsibility for occupational health and safety 4) managers and permanent
+            and temporary employees 5) managers and employees performing activities related to prevention of
+            occupational health and safety risks 6) contractors’ management and employees.<br/>
+            <sup>4</sup> The participants in the closing meeting must always be updated here in the event of a
+            change or listed separately in the audit report.<br/>
+            &#160;&#160;&#160;for ISO 45001: A justification must be provided if certain people are unable to
+            attend the closing meeting.
+        </div>
+    </template>
+
+    <!-- ===================== ESYD audit plan (4 pages) ===================== -->
+    <template id="report_esyd_audit_plan">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit Plan'"/>
+                <t t-set="form_subtitle" t-value="'Certification'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-008-AP-EN'"/>
+                <t t-set="form_revision" t-value="'00'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+                <t t-set="std_lines" t-value="o.ap_standard_line_ids"/>
+                <t t-set="auditors" t-value="o.ap_team_line_ids.filtered(lambda l: l.role != 'expert')"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+
+                    <!-- ================= Page 1: sections 1 and 2 ================= -->
+                    <table class="tap" style="font-size: 14px;">
+                        <colgroup>
+                            <col style="width: 22%;"/><col style="width: 16%;"/><col style="width: 15%;"/>
+                            <col style="width: 15%;"/><col style="width: 16%;"/><col/>
+                        </colgroup>
+                        <tr><td colspan="6" class="bar">1.  Company Information</td></tr>
+                        <tr>
+                            <td class="lbl">Company name</td>
+                            <td colspan="5" t-out="o.ap_partner_id.name or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Adress</td>
+                            <td colspan="5" t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl" style="height: 30px;">Other audited sites</td>
+                            <td colspan="5" t-out="o.ap_other_sites or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl" style="height: 30px;">Company representative</td>
+                            <td colspan="5" t-out="o.ap_representative or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl" style="height: 40px;">Company description, business activities</td>
+                            <td colspan="5" t-out="o.ap_certificate_scope or ''"/>
+                        </tr>
+
+                        <tr><td colspan="6" class="bar">2. Audit Information</td></tr>
+                        <tr>
+                            <td class="lbl">Audit date</td>
+                            <td><b>Stage 1:</b> <t t-if="o.ap_audit_date_stage1" t-out="o.ap_audit_date_stage1.strftime('%d.%m.%Y')"/></td>
+                            <td colspan="2"><b>Stage 2:</b> <t t-if="o.ap_audit_date_stage2" t-out="o.ap_audit_date_stage2.strftime('%d.%m.%Y')"/></td>
+                            <td colspan="2">until: <t t-if="o.ap_audit_date_until" t-out="o.ap_audit_date_until.strftime('%d.%m.%Y')"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Audit type:</b><br/><t t-out="o._eap_audit_types()"/></td>
+                            <td><b>Audit Methode:</b><br/>
+                                <span t-if="o.ap_audit_method in ('others', 'self_definition') and o.ap_audit_method_other"
+                                    t-out="o.ap_audit_method_other"/>
+                                <span t-else="" t-field="o.ap_audit_method"/></td>
+                            <td colspan="2"><b>Number of employees relevant for the Scope:</b>
+                                <t t-out="o.ap_employee_scope_count or ''"/></td>
+                            <td><b>Audit duration:</b>
+                                <t t-out="('%g h' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="lbl">Audit Standard(s)</td>
+                            <td class="sub">Standard 1:</td>
+                            <td class="sub">Standard 2:</td>
+                            <td class="sub">Standard 3:</td>
+                            <td colspan="2" class="sub">Standard 4 (further):</td>
+                        </tr>
+                        <tr>
+                            <t t-foreach="range(3)" t-as="i">
+                                <td style="height: 24px;"><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                            </t>
+                            <td colspan="2">
+                                <t t-foreach="std_lines[3:]" t-as="s"><span t-field="s.standard"/><t t-if="not s_last">, </t></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Registration no.:</td>
+                            <t t-foreach="range(3)" t-as="i">
+                                <td><t t-if="i &lt; len(std_lines)" t-out="std_lines[i].registration_no or ''"/></td>
+                            </t>
+                            <td colspan="2">
+                                <t t-out="', '.join(r for r in std_lines[3:].mapped('registration_no') if r)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Scope of application</td>
+                            <td>
+                                <t t-out="'☒' if o.ap_scope_change == 'no_changes' else '☐'"/> No Changes<br/>
+                                <t t-out="'☒' if o.ap_scope_change == 'adjustment' else '☐'"/> Adjustment required
+                            </td>
+                            <td><b>EAC Scope:</b><br/><span t-field="o.ap_eac_scope"/></td>
+                            <td><b>NACE Code:</b><br/><t t-out="o.ap_nace_code or ''"/></td>
+                            <td colspan="2"><b>Category (ISO 22003):</b><br/><t t-out="o.ap_category or ''"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="sub">Lead Auditor</td>
+                            <td colspan="2" class="sub">Auditor</td>
+                            <td colspan="2" class="sub">Auditor</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 22px;" t-out="o.ap_lead_auditor_id.name or ''"/>
+                            <td colspan="2">
+                                <t t-call="tuv_audit_reports.acc_team_names">
+                                    <t t-set="members" t-value="auditors[:1]"/>
+                                </t>
+                            </td>
+                            <td colspan="2">
+                                <t t-call="tuv_audit_reports.acc_team_names">
+                                    <t t-set="members" t-value="auditors[1:]"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- ================= Page 2: schedule, signatures ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_declaration_independence"/>
+                    <t t-call="tuv_audit_reports.acc_eap_schedule">
+                        <t t-set="rows" t-value="o._eap_schedule_rows()"/>
+                        <t t-set="observations" t-value="o.eap_schedule_observations"/>
+                    </t>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.acc_eap_signatures">
+                        <t t-set="place" t-value="o.eap_sign_place"/>
+                        <t t-set="sign_date" t-value="o.eap_sign_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.eap_lead_auditor_signature"/>
+                        <t t-set="auditor_signature" t-value="o.eap_auditor_signature"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_eap_footnotes"/>
+                    <t t-call="tuv_audit_reports.acc_significant_issues">
+                        <t t-set="issues" t-value="o.eap_significant_issues"/>
+                    </t>
+
+                    <!-- ================= Last page: participants list ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_eap_participants">
+                        <t t-set="rows" t-value="o._eap_participant_rows()"/>
+                        <t t-set="opening_date" t-value="o.eap_opening_date"/>
+                        <t t-set="closing_date" t-value="o.eap_closing_date"/>
+                        <t t-set="observations" t-value="o.eap_participant_observations"/>
+                    </t>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ===================== PNAC audit plan (4 pages) ===================== -->
+    <template id="report_pnac_audit_plan">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit Plan'"/>
+                <t t-set="std_lines" t-value="o.ap_standard_line_ids"/>
+                <t t-set="team" t-value="o.ap_team_line_ids"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.acc_header_title_only"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+
+                    <!-- ================= Page 1: sections 1 and 2 ================= -->
+                    <!-- compact cells: the whole table must stay on page 1 as in Word -->
+                    <style>.pap-p1 td { padding-top: 2px; padding-bottom: 2px; }</style>
+                    <table class="tap pap-p1" style="font-size: 12px;">
+                        <colgroup>
+                            <col style="width: 21%;"/><col style="width: 17%;"/><col style="width: 15%;"/>
+                            <col style="width: 15%;"/><col style="width: 16%;"/><col/>
+                        </colgroup>
+                        <tr><td colspan="6" class="bar">1.  Company Information</td></tr>
+                        <tr>
+                            <td class="lbl">Company Name</td>
+                            <td colspan="5" t-out="o.ap_partner_id.name or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Address</td>
+                            <td colspan="5" t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Other Audited Sites</td>
+                            <td colspan="5" t-out="o.ap_other_sites or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Company Representative</td>
+                            <td colspan="5" t-out="o.ap_representative or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="lbl" style="height: 40px;">Company Description, Business Activities</td>
+                            <td colspan="5">
+                                <t t-foreach="(o.pap_company_description or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="6" class="bar">2. Audit Information</td></tr>
+                        <tr>
+                            <td class="lbl">Audit Date</td>
+                            <td><b>Stage 01:</b> <t t-if="o.ap_audit_date_stage1" t-out="o.ap_audit_date_stage1.strftime('%d.%m.%Y')"/></td>
+                            <td colspan="2"><b>Stage 2:</b> <t t-if="o.ap_audit_date_stage2" t-out="o.ap_audit_date_stage2.strftime('%d.%m.%Y')"/></td>
+                            <td colspan="2">until: <t t-if="o.ap_audit_date_until" t-out="o.ap_audit_date_until.strftime('%d.%m.%Y')"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Audit type:</b><br/><t t-out="o._eap_audit_types()"/></td>
+                            <td><b>Audit Methode:</b><br/>
+                                <span t-if="o.ap_audit_method in ('others', 'self_definition') and o.ap_audit_method_other"
+                                    t-out="o.ap_audit_method_other"/>
+                                <span t-else="" t-field="o.ap_audit_method"/></td>
+                            <td colspan="2"><b>Number of employees relevant for the Scope:</b>
+                                <t t-out="o.ap_employee_scope_count or ''"/></td>
+                            <td><b>Audit duration:</b>
+                                <t t-out="('%g h' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lbl" style="height: 30px;">Certification Scope</td>
+                            <td colspan="5">
+                                <t t-foreach="(o.ap_certificate_scope or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Audit objectives(focus)</td>
+                            <td colspan="2">
+                                <t t-foreach="(o.pap_audit_objectives or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                            </td>
+                            <td class="lbl center">Audit Criteria</td>
+                            <td colspan="2" style="font-size: 12px; text-align: justify;">
+                                <ul style="margin: 0; padding-left: 16px;">
+                                    <t t-foreach="(o.pap_audit_criteria or '').split('\n')" t-as="n">
+                                        <li t-if="n.strip()" t-out="n.strip()"/>
+                                    </t>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="lbl">Audit Standard(s)</td>
+                            <td class="sub">Standard 1:</td>
+                            <td class="sub">Standard 2:</td>
+                            <td class="sub">Standard 3:</td>
+                            <td colspan="2" class="sub">Standard 4 (further):</td>
+                        </tr>
+                        <tr>
+                            <t t-foreach="range(3)" t-as="i">
+                                <td style="height: 22px;"><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                            </t>
+                            <td colspan="2">
+                                <t t-foreach="std_lines[3:]" t-as="s"><span t-field="s.standard"/><t t-if="not s_last">, </t></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Registration no.:</td>
+                            <t t-foreach="range(3)" t-as="i">
+                                <td><t t-if="i &lt; len(std_lines)" t-out="std_lines[i].registration_no or ''"/></td>
+                            </t>
+                            <td colspan="2">
+                                <t t-out="', '.join(r for r in std_lines[3:].mapped('registration_no') if r)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Scope of application</td>
+                            <td>
+                                <t t-out="'☒' if o.ap_scope_change == 'no_changes' else '☐'"/> No Changes<br/>
+                                <t t-out="'☒' if o.ap_scope_change == 'adjustment' else '☐'"/> Adjustment Required
+                            </td>
+                            <td><b>IAF Code:</b><br/><t t-out="o.pap_iaf_code or ''"/></td>
+                            <td><b>Risk Category:</b><br/><t t-out="o.pap_risk_category or ''"/></td>
+                            <td colspan="2"><b>Category (ISO 22003):</b><br/><t t-out="o.ap_category or ''"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="sub">Lead Auditor</td>
+                            <td colspan="2" class="sub">Co-Auditor (s)</td>
+                            <td colspan="2" class="sub">Technical Expert</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 24px;" t-out="o.ap_lead_auditor_id.name or ''"/>
+                            <td colspan="2">
+                                <t t-call="tuv_audit_reports.acc_team_names">
+                                    <t t-set="members" t-value="team.filtered(lambda l: l.role != 'expert')"/>
+                                </t>
+                            </td>
+                            <td colspan="2">
+                                <t t-call="tuv_audit_reports.acc_team_names">
+                                    <t t-set="members" t-value="team.filtered(lambda l: l.role == 'expert')"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- ================= Page 2: schedule, signatures ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_declaration_independence">
+                        <t t-set="personal" t-value="True"/>
+                        <t t-set="comma" t-value="True"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_eap_schedule">
+                        <t t-set="rows" t-value="o._pap_schedule_rows()"/>
+                        <t t-set="observations" t-value="o.pap_schedule_observations"/>
+                    </t>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.acc_eap_signatures">
+                        <t t-set="place" t-value="o.pap_sign_place"/>
+                        <t t-set="sign_date" t-value="o.pap_sign_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.pap_lead_auditor_signature"/>
+                        <t t-set="auditor_signature" t-value="o.pap_auditor_signature"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_eap_footnotes"/>
+                    <t t-call="tuv_audit_reports.acc_significant_issues">
+                        <t t-set="issues" t-value="o.pap_significant_issues"/>
+                    </t>
+
+                    <!-- ================= Last page: participants list ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_eap_participants">
+                        <t t-set="rows" t-value="o._pap_participant_rows()"/>
+                        <t t-set="opening_date" t-value="o.pap_opening_date"/>
+                        <t t-set="closing_date" t-value="o.pap_closing_date"/>
+                        <t t-set="observations" t-value="o.pap_participant_observations"/>
+                    </t>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.acc_footer_pnac"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ===================== SAAC audit plan ===================== -->
+    <template id="report_saac_audit_plan">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit plan'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-008-AP-Audit_plan_EN'"/>
+                <t t-set="form_revision" t-value="'04/26.07.2024'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+
+                    <t t-call="tuv_audit_reports.acc_saac_sections">
+                        <t t-set="scope_label" t-value="'Company description, business activities'"/>
+                        <t t-set="scope_placeholder" t-value="'e.g., Scope of certification'"/>
+                    </t>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_declaration_independence"/>
+                    <table class="tap">
+                        <t t-call="tuv_audit_reports.report_audit_plan_schedule_head"/>
+                        <t t-call="tuv_audit_reports.acc_sap_schedule_rows">
+                            <t t-set="rows" t-value="o.sap_schedule_line_ids"/>
+                        </t>
+                    </table>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_plan_signatures">
+                        <t t-set="place" t-value="o.sap_sign_place"/>
+                        <t t-set="sign_date" t-value="o.sap_sign_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.sap_lead_auditor_signature"/>
+                        <t t-set="auditor_signature" t-value="o.sap_auditor_signature"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_sap_footnotes"/>
+                    <t t-call="tuv_audit_reports.acc_significant_issues">
+                        <t t-set="issues" t-value="o.sap_significant_issues"/>
+                        <t t-set="bold" t-value="True"/>
+                    </t>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ===================== SAAC audit plan ISO 27001 ===================== -->
+    <template id="report_saac_audit_plan_27001">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit plan'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-008a-AP-Audit_plan_27001_EN'"/>
+                <t t-set="form_revision" t-value="'04/16.01.2024'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>.tap thead { display: table-header-group; }</style>
+
+                    <t t-call="tuv_audit_reports.acc_saac_sections">
+                        <t t-set="scope_label" t-value="'Scope of certification'"/>
+                    </t>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_declaration_independence"/>
+                    <table class="tap">
+                        <thead>
+                            <t t-call="tuv_audit_reports.report_audit_plan_schedule_head"/>
+                        </thead>
+                        <tbody>
+                            <t t-call="tuv_audit_reports.acc_sap_schedule_rows">
+                                <t t-set="rows" t-value="o.sapi_schedule_line_ids"/>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_plan_signatures">
+                        <t t-set="place" t-value="o.sapi_sign_place"/>
+                        <t t-set="sign_date" t-value="o.sapi_sign_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.sapi_lead_auditor_signature"/>
+                        <t t-set="auditor_signature" t-value="o.sapi_auditor_signature"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_sap_footnotes"/>
+                    <t t-call="tuv_audit_reports.acc_significant_issues">
+                        <t t-set="issues" t-value="o.sapi_significant_issues"/>
+                        <t t-set="bold" t-value="True"/>
+                    </t>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

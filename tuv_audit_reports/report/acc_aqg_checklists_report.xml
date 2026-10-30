@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The AQG audit questionnaires / checklists of ESYD, PNAC and SAAC
+         (FM-BA-ZET-MS-All-008-AQG-*, FM-BA-ZET-MS-All-009b-AQG-*). One template for all: the form is
+         the one selected on the record (audit_report_key). The body comes from
+         data/checklists/<key>.json (tools/aqg_forms.py) and is drawn cell by cell, paragraph by
+         paragraph, with what was filled in printed where the Word form has its fields.
+         Two actions only because a report has one paper format: the ISO 27001 questionnaire
+         is portrait, the others are (mostly) landscape in Word. -->
+    <record id="action_report_aqg_landscape" model="ir.actions.report">
+        <field name="name">Audit Questionnaire</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_aqg_checklist</field>
+        <field name="report_file">tuv_audit_reports.report_aqg_checklist</field>
+        <field name="print_report_name">'%s - %s' % (object.audit_report_id.name or 'Audit Questionnaire', object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_aqg_portrait" model="ir.actions.report">
+        <field name="name">Audit Questionnaire (portrait)</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_aqg_checklist</field>
+        <field name="report_file">tuv_audit_reports.report_aqg_checklist</field>
+        <field name="print_report_name">'%s - %s' % (object.audit_report_id.name or 'Audit Questionnaire', object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+
+    <!-- One Word paragraph: tick boxes and text. Expects: p -->
+    <template id="aqg_para">
+        <div class="aqg-p" t-att-style="p.get('st')">
+            <t t-foreach="p['parts']" t-as="part">
+                <span t-if="part[0] is not None" class="aqg-box" t-out="'☒' if part[0] else '☐'"/>
+                <t t-foreach="part[1].split('\n')" t-as="txt"><t t-out="txt"/><br t-if="not txt_last"/></t>
+            </t>
+        </div>
+    </template>
+
+    <!-- A table nested in a cell (list of required mandatory documents). Expects: tbl -->
+    <template id="aqg_inner_table">
+        <table class="aqg aqg-in">
+            <colgroup>
+                <col t-foreach="tbl['widths']" t-as="w" t-att-style="'width: ' + str(w) + '%;'"/>
+            </colgroup>
+            <tr t-foreach="tbl['rows']" t-as="row">
+                <td t-foreach="row['cells']" t-as="c" t-att-colspan="c.get('cs')" t-att-rowspan="c.get('rs')"
+                    t-att-style="c.get('st')">
+                    <t t-foreach="c['ps']" t-as="p"><t t-if="'parts' in p" t-call="tuv_audit_reports.aqg_para"/></t>
+                    <t t-if="not c['ps']">&#160;</t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- A row of a body table; a cell holds paragraphs and nested tables. Expects: row -->
+    <template id="aqg_row">
+        <tr>
+            <td t-foreach="row['cells']" t-as="c" t-att-colspan="c.get('cs')" t-att-rowspan="c.get('rs')"
+                t-att-style="c.get('st')">
+                <t t-foreach="c['ps']" t-as="p">
+                    <t t-if="p.get('tbl')" t-call="tuv_audit_reports.aqg_inner_table">
+                        <t t-set="tbl" t-value="p['tbl']"/>
+                    </t>
+                    <t t-else="" t-call="tuv_audit_reports.aqg_para"/>
+                </t>
+                <t t-if="not c['ps']">&#160;</t>
+            </td>
+        </tr>
+    </template>
+
+    <!-- A table of the Word body. Expects: tbl; its first tbl['head'] rows repeat on each page -->
+    <template id="aqg_table">
+        <table class="aqg">
+            <colgroup>
+                <col t-foreach="tbl['widths']" t-as="w" t-att-style="'width: ' + str(w) + '%;'"/>
+            </colgroup>
+            <thead t-if="tbl['head']">
+                <t t-foreach="tbl['rows'][:tbl['head']]" t-as="row"><t t-call="tuv_audit_reports.aqg_row"/></t>
+            </thead>
+            <tbody>
+                <t t-foreach="tbl['rows'][tbl['head']:]" t-as="row"><t t-call="tuv_audit_reports.aqg_row"/></t>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="report_aqg_checklist">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="pl" t-value="o._aqg_payload()"/>
+                <t t-set="meta" t-value="pl['meta']"/>
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="meta['title']"/>
+                <t t-set="form_subtitle" t-value="meta['subtitle']"/>
+                <t t-set="form_code" t-value="meta['code']"/>
+                <t t-set="form_revision" t-value="meta['revision']"/>
+                <t t-set="form_vkl" t-value="meta['vkl']"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <!-- sizes in pt, as in Word; single lines, as these forms have -->
+                    <style>
+                        .aqg { width: 100%; border-collapse: collapse; table-layout: fixed;
+                               font-family: Arial, Helvetica, sans-serif; color: #000; margin: 0 0 8pt 0; }
+                        .aqg td { border: 1px solid #000; padding: 1pt 3pt; word-wrap: break-word; }
+                        .aqg tr { page-break-inside: avoid; }
+                        .aqg thead { display: table-header-group; }
+                        .aqg-in { margin: 0; }
+                        .aqg td { color: #000; }
+                        .aqg-p, .aqg-check { font-family: Arial, Helvetica, sans-serif;
+                                             line-height: 1.15; margin: 0; }
+                        .aqg-box { font-size: 1.15em; margin-right: 2pt; }
+                        .aqg-check { margin: 4pt 0 4pt 24pt; }
+                    </style>
+                    <div t-att-style="'font-size: ' + str(meta['sz'] / 2.0) + 'pt;'">
+                        <t t-foreach="pl['blocks']" t-as="block">
+                            <div t-if="block['type'] == 'pagebreak'" style="page-break-before: always;"/>
+                            <t t-elif="block['type'] == 'table'" t-call="tuv_audit_reports.aqg_table">
+                                <t t-set="tbl" t-value="block"/>
+                            </t>
+                            <t t-elif="block['type'] == 'ps'">
+                                <t t-foreach="block['ps']" t-as="p"><t t-call="tuv_audit_reports.aqg_para"/></t>
+                            </t>
+                            <t t-elif="block['type'] == 'checks'">
+                                <div t-foreach="block['items']" t-as="item" class="aqg-check">✔ <t t-out="item"/></div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

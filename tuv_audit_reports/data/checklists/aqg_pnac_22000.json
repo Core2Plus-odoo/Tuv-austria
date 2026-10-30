@@ -1,0 +1,4619 @@
+{
+"key": "aqg_pnac_22000",
+"meta": {
+"title": "Audit-Questionnaire / ISO 22000:2018",
+"subtitle": "TÜV AUSTRIA Group",
+"code": "FM-BA-ZET-MS-All-008-AQG-22000-EN_CHECKLIST",
+"revision": "01_15.02.2024",
+"vkl": "Internal",
+"landscape": true,
+"sz": 20
+},
+"lines": [
+{
+"list": "legal",
+"label": "Licenses and Approvals from National Authorities:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Mandatory Legislation, standards, regulations, Ministerial Decisions etc.:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Fire Safety Certificate:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Approval of Environmental Terms:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Safety Engineer:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Occupational Doctor:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Understanding the organization and its context",
+"section": "4 Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Understanding the needs and expectations of interested parties",
+"section": "4 Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Determining the scope of the food safety management system",
+"section": "4 Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Leadership and commitment",
+"section": "5 Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Policy",
+"section": "5 Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Organizational roles, responsibilities and authorities",
+"section": "5 Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Actions to address risks and opportunities",
+"section": "6 Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Objectives of the food safety management system and planning to achieve them",
+"section": "6 Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Planning of changes",
+"section": "6 Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Resources",
+"section": "7 Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Competence",
+"section": "7 Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Awareness",
+"section": "7 Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Communication",
+"section": "7 Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Documented Information",
+"section": "7 Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Operational planning and control",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Prerequisite programmes (PRPs)",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Traceability system",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Emergency preparedness and response",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Hazard control",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Updating the information specifying the PRPs and the hazard control plan",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Control of monitoring and measuring",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Verification related to PRPs and the hazard control plan",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Control of product and process nonconformities",
+"section": "8 Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Monitoring, measurement, analysis and evaluation",
+"section": "9 Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Internal Audit",
+"section": "9 Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Management review",
+"section": "9 Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Nonconformity and corrective action",
+"section": "10 Improvement",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Continual improvement",
+"section": "10 Improvement",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+}
+],
+"blocks": [
+{
+"type": "table",
+"widths": [
+14.43,
+0.27,
+4.76,
+7.42,
+1.97,
+5.85,
+0.75,
+0.51,
+4.5,
+2.54,
+11.03,
+3.12,
+0.27,
+0.27,
+13.51,
+0.27,
+5.86,
+1.35,
+1.06,
+5.88,
+14.36
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 18.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"1. Company Information"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 21
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company name"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 17,
+"ap": "partner"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Address"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 17,
+"ap": "address"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Other audited sites"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 17,
+"ap": "sites"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company representative"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 17,
+"ap": "representative"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company description, business activities"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 17.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 17,
+"ap": "scope"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 18.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"2. Audit Information"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 21
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit date(s)"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 3,
+"ap": "pdate:1"
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 5,
+"ap": "pstage:1"
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 2,
+"ap": "pdate:2"
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4,
+"ap": "pstage:2"
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4,
+"ap": "pdate:3"
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"ap": "pstage:3"
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit Method:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "method"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Number of employees relevant for the Scope:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "employees_scope"
+}
+],
+"cs": 6
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit duration:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "duration"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit language:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "language"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 34pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Use of remote activities \n(describe):"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "remote"
+}
+],
+"cs": 3
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit Standard(s)"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"rs": 2
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 1:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 5
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 2:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 5
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 3:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 6
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 4 (further):"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 5,
+"ap": "std:1"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 5,
+"ap": "std:2"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 6,
+"ap": "std:3"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 4,
+"ap": "std:4"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 5,
+"ap": "stdtype:1"
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 5,
+"ap": "stdtype:2"
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 6,
+"ap": "stdtype:3"
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 4,
+"ap": "stdtype:4"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Registration no.:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 5,
+"ap": "stdreg:1"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 5,
+"ap": "stdreg:2"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 6,
+"ap": "stdreg:3"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 4,
+"ap": "stdreg:4"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 40.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Scope of"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"application"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle; height: 40.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 20,
+"ap": "scope"
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 38.5pt;",
+"ps": [
+{
+"parts": [
+[
+{
+"ap": "scope_nochange"
+},
+"No Changes"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"ap": "scope_adjust"
+},
+"Adjustment required"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 6
+},
+{
+"st": "vertical-align: middle; height: 38.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"EAC Scope:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "eac"
+}
+],
+"cs": 7
+},
+{
+"st": "vertical-align: middle; height: 38.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"NACE Code:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "nace"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 38.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Category:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "category"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Lead Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 3
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 6
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 6
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Other (specify)"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 6
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 3,
+"ap": "lead"
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 6,
+"ap": "team:0:2"
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 6,
+"ap": "team:1:2"
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 6,
+"ap": "other"
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"3. Audit Objectives"
+]
+],
+"st": "font-size: 11pt; font-weight: bold;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"The audit objectives are the following:"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+null,
+"1. Determination of the conformity of the client’s management system, or parts of it, with audit criteria within the scope of the Management System."
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+null,
+"2. Determination of the ability of the management system to ensure the client organization meets applicable statutory, regulatory, and contractual requirements."
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+null,
+"3. Determination of the effectiveness of the management system to ensure the client organization can reasonably expect to achieve its specified objectives."
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+null,
+"4. As applicable, identification of areas for potential improvement of the management system."
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+null,
+"5. Review of any management system’s changes."
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+null,
+"6. Validation that the management system was effectively applied in the previous period (valid for surveillance or recertification audits) and to verify its readiness for the coming period."
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+null,
+"The audit was carried out according to the relevant applicable procedure for Management Systems Certification and the relevant Regulation for Certification of TÜV AUSTRIA. The basic information documenting the results of the audit are included into this audit questionnaire, and in total, into the report, the copies of documents and other evidence obtained during the audit."
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"CHARACTERIZATION OF FINDINGS"
+]
+],
+"st": "font-size: 7pt; font-weight: bold;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"1: Full Compliance"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"2: Observation, the effectiveness of the corrective action is evaluated during the next audit"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"3: Minor Non-Conformity(-ies): reviewed and accepted the client’s plan for correction and corrective action"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4: Major Non-Conformity(-ies): Correction through submission of Documents"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5: Major Non-Conformity(-ies): Correction through Re-audit"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"OFI: Opportunities for Improvement: No further action is required by the client"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"NA: Not Applicable or/and is Excluded"
+]
+],
+"st": "font-size: 7pt;"
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+47.6,
+52.4
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4. Legislative Requirements:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Licenses and Approvals from National Authorities:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+0,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory Legislation, standards, regulations, Ministerial Decisions etc.:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+1,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Fire Safety Certificate:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+2,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Approval of Environmental Terms:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+3,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Safety Engineer:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+4,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Occupational Doctor:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+5,
+"text_1"
+]
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+35.9,
+64.1
+],
+"head": 1,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #CC0000; color: #FFFFFF; vertical-align: middle; height: 15.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard requirements"
+]
+],
+"st": "font-size: 11pt; font-weight: bold; color: #FFFFFF;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4 Context of the organization"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+6,
+"box_1"
+]
+},
+"Understanding the organization and its context"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"List of required mandatory documents:"
+]
+],
+"st": "font-size: 11pt; font-weight: bold;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+7,
+"box_1"
+]
+},
+"Understanding the needs and expectations of interested parties"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+8,
+"box_1"
+]
+},
+"Determining the scope of the food safety management system"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"5 Leadership"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+9,
+"box_1"
+]
+},
+"Leadership and commitment"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-01"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"4.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"4.3"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"4.4"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Manual, Company profile, company description, company statute etc."
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+10,
+"box_1"
+]
+},
+"Policy"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+11,
+"box_1"
+]
+},
+"Organizational roles, responsibilities"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"and authorities"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-02"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"5.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"FS policy (Code, issue date, name of signatory person)"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6 Planning"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+12,
+"box_1"
+]
+},
+"Actions to address risks and opportunities"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-03"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.3.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"5.3.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Organisational chart and/or JDs"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+13,
+"box_1"
+]
+},
+"Objectives of the food safety management system and planning to achieve them"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-04"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.3.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Appointment of FS Team Leader and Members"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+14,
+"box_1"
+]
+},
+"Planning of changes"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7 Support"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+15,
+"box_1"
+]
+},
+"Resources"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-05"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"6.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"6.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Determination of business risk management, planning and objectives"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+16,
+"box_1"
+]
+},
+"Competence"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+17,
+"box_1"
+]
+},
+"Awareness"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+18,
+"box_1"
+]
+},
+"Communication"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+19,
+"box_1"
+]
+},
+"Documented Information"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8 Operation"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+20,
+"box_1"
+]
+},
+"Operational planning and control"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+21,
+"box_1"
+]
+},
+"Prerequisite programmes (PRPs)"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-06"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.1.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.1.3"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.1.4"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.1.5"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.1.6"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Facilities (equipment, maintenance), measurements (lists, recording examples, etc), personnel (training records etc), subcontractors, third part services"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+22,
+"box_1"
+]
+},
+"Traceability system"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+23,
+"box_1"
+]
+},
+"Emergency preparedness and response"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+24,
+"box_1"
+]
+},
+"Hazard control"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+25,
+"box_1"
+]
+},
+"Updating the information specifying the PRPs and the hazard control plan"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-07"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.4.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.4.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"7.4.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Brief description of applicable procedure or/and utilised means of communication"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+26,
+"box_1"
+]
+},
+"Control of monitoring and measuring"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-08"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.5"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Documented procedure or/and brief description of applicable process for documented information control."
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+27,
+"box_1"
+]
+},
+"Verification related to PRPs and the hazard control plan"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+28,
+"box_1"
+]
+},
+"Control of product and process nonconformities"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-09"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Documented procedure(s) and records describing PRPs"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9 Performance evaluation"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-10"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Traceability record and implementation of vertical approach of the audit."
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+29,
+"box_1"
+]
+},
+"Monitoring, measurement, analysis and"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-11"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.4"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Emergency and preparedness plan"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+"evaluation"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+30,
+"box_1"
+]
+},
+"Internal Audit"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+31,
+"box_1"
+]
+},
+"Management review"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"10 Improvement"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+32,
+"box_1"
+]
+},
+"Nonconformity and corrective action"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+33,
+"box_1"
+]
+},
+"Continual improvement"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-12"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.5.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.5.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.5.3"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.5.4"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.6"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.7"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"i. Documented HACCP study (including Hazard analysis)"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"ii. Hazard Control Plan:"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"CCP/OPRP | Process step | Control measure | Record | Corrective action"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"iii.  Specifications (raw material, packaging material, final products)"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"iv.  Calibrations"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-13"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.5.1.5"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Documented flow diagram and on-site verification"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-14"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.8.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Verification plan documented procedure or brief description. Examples of actions."
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-15"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.9.5"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"a) Withdraw/recall documented procedure"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"b) Real cases incident record (if happened)"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"c) Test recall record"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-16"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Analysis and evaluation of KPIs"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-17"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"a) Internal audit procedure"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"b) Internal audit frequency"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"c) Record of the last internal audit"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-18"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.3"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"10.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"a) Frequency of management review"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"b) Date and participants of the last management review"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-19"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.9.1"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.9.2"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.9.3 8.9.4"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"10.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Records of Corrective actions, release and handling of products, non-conforming/unsafe products"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+9.81,
+8.18,
+82.01
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-20"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"10.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Documented updates of the food safety management system"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #CC0000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor Notes"
+]
+],
+"st": "font-size: 11pt; font-weight: bold; color: #FFFFFF; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 394.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 11pt;"
+}
+],
+"f": "notes"
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #FF0000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"List of improvement hints"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "checks",
+"f": "hints"
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #FF0000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"List of positive Findings"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "checks",
+"f": "findings"
+}
+]
+}

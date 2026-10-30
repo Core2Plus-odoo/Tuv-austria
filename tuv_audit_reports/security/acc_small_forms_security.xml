@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Line models of the smaller ESYD / PNAC / SAAC forms -->
+    <record id="access_tuv_form_ect_address_user" model="ir.model.access">
+        <field name="name">tuv.form.ect.address.user</field>
+        <field name="model_id" ref="model_tuv_form_ect_address"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_pct_address_user" model="ir.model.access">
+        <field name="name">tuv.form.pct.address.user</field>
+        <field name="model_id" ref="model_tuv_form_pct_address"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_ect_ggap_line_user" model="ir.model.access">
+        <field name="name">tuv.form.ect.ggap.line.user</field>
+        <field name="model_id" ref="model_tuv_form_ect_ggap_line"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_sapg_item_user" model="ir.model.access">
+        <field name="name">tuv.form.sapg.item.user</field>
+        <field name="model_id" ref="model_tuv_form_sapg_item"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_sapg_question_user" model="ir.model.access">
+        <field name="name">tuv.form.sapg.question.user</field>
+        <field name="model_id" ref="model_tuv_form_sapg_question"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,866 @@
+{
+ "key": "pnac_guide_14001",
+ "meta": {
+  "title": "Auditing guideline / ISO 14001:2015",
+  "subtitle": "Certification of Management Systems",
+  "code": "FM-TAGMBH-MSZ-013_Audit-Guidline-ISO-14001-EN",
+  "revision": "01/17.10.2024",
+  "vkl": "Internal"
+ },
+ "blocks": [
+  {
+   "type": "p",
+   "t": "A. Terms and Definition",
+   "b": true
+  },
+  {
+   "type": "table",
+   "widths": [
+    22.31,
+    77.69
+   ],
+   "rows": [
+    [
+     {
+      "t": "Conformity",
+      "b": true
+     },
+     {
+      "t": "fulfilment of a requirement"
+     }
+    ],
+    [
+     {
+      "t": "control measure",
+      "b": true
+     },
+     {
+      "t": "action or activity that is essential to prevent a significant Environmental hazard or reduce it to an acceptable level"
+     }
+    ],
+    [
+     {
+      "t": "corrective action",
+      "b": true
+     },
+     {
+      "t": "action to eliminate the cause of a nonconformity and to prevent recurrence"
+     }
+    ],
+    [
+     {
+      "t": "continual improvement",
+      "b": true
+     },
+     {
+      "t": "recurring activity to enhance performance"
+     }
+    ],
+    [
+     {
+      "t": "indicator",
+      "b": true
+     },
+     {
+      "t": "measurable representation of the condition or status of operations, management or conditions"
+     }
+    ],
+    [
+     {
+      "t": "documented information",
+      "b": true
+     },
+     {
+      "t": "information required to be controlled and maintained by an organization and the medium on which it is contained"
+     }
+    ],
+    [
+     {
+      "t": "environmental performance",
+      "b": true
+     },
+     {
+      "t": "performance related to the management of environmental aspects"
+     }
+    ],
+    [
+     {
+      "t": "interested party",
+      "b": true
+     },
+     {
+      "t": "person or organization that can affect, be affected by, or perceive itself to be affected by a decision or activity"
+     }
+    ],
+    [
+     {
+      "t": "management system",
+      "b": true
+     },
+     {
+      "t": "set of interrelated or interacting elements of an organization to establish policies and objectives and processes to achieve those objectives"
+     }
+    ],
+    [
+     {
+      "t": "Nonconformity",
+      "b": true
+     },
+     {
+      "t": "non-fulfilment of a requirement"
+     }
+    ],
+    [
+     {
+      "t": "environment",
+      "b": true
+     },
+     {
+      "t": "surroundings in which an organization (3.1.4) operates, including air, water, land, natural resources, flora, fauna, humans and their interrelationships"
+     }
+    ],
+    [
+     {
+      "t": "environmental aspect",
+      "b": true
+     },
+     {
+      "t": "element of an organization’s activities or products or services that interacts or can interact with the environment"
+     }
+    ],
+    [
+     {
+      "t": "environmental impact",
+      "b": true
+     },
+     {
+      "t": "change to the environment, whether adverse or beneficial, wholly or partially resulting from an organization’s environmental aspects"
+     }
+    ],
+    [
+     {
+      "t": "environmental objective",
+      "b": true
+     },
+     {
+      "t": "objective set by the organization  consistent with its environmental policy"
+     }
+    ],
+    [
+     {
+      "t": "compliance obligations (preferred term)"
+     },
+     {
+      "t": "legal requirements and other requirements (admitted term)\nlegal requirements  that an organization  has to comply with and other requirements that an organization has to or chooses to comply with"
+     }
+    ],
+    [
+     {
+      "t": "risk",
+      "b": true
+     },
+     {
+      "t": "effect of uncertainty"
+     }
+    ],
+    [
+     {
+      "t": "life cycle",
+      "b": true
+     },
+     {
+      "t": "consecutive and interlinked stages of a product (or service) system, from raw material acquisition or generation from natural resources to final disposal"
+     }
+    ],
+    [
+     {
+      "t": "outsource",
+      "b": true
+     },
+     {
+      "t": "make an arrangement where an external organization performs part of an organization’s function or process"
+     }
+    ],
+    [
+     {
+      "t": "traceability",
+      "b": true
+     },
+     {
+      "t": "ability to follow the history, application, movement and location of an object through specified stage(s) of production, processing and distribution"
+     }
+    ],
+    [
+     {
+      "t": "Column (A):",
+      "b": true
+     },
+     {
+      "t": "The minimum indicative issues, aspects, practices or procedures applied in relation to a relative clause of the standard"
+     }
+    ],
+    [
+     {
+      "t": "Column (B):",
+      "b": true
+     },
+     {
+      "t": "Indicative objective evidences that have to be retained and evaluated by the auditor during the audit."
+     }
+    ],
+    [
+     {
+      "t": "MDE-xx\nMinimum Documented Evidence",
+      "b": true
+     },
+     {
+      "t": "The detailed information that the auditor has to record in the questionnaire in order to provide the sufficient verifiable evidences for the technical review and to support the certification decision"
+     }
+    ],
+    [
+     {
+      "t": "MDI-xx\nMaintained Documented Information",
+      "b": true
+     },
+     {
+      "t": "A “document” or “documented procedures”, “quality manual” or “quality plan” that is connected with a specific requirement of the Standard"
+     }
+    ],
+    [
+     {
+      "t": "RDI-xx\nRetained Documented Information",
+      "b": true
+     },
+     {
+      "t": "A “record” to denote documents needed to provide evidence of conformity with requirement of the Standard."
+     }
+    ],
+    [
+     {
+      "t": "Vertical audit",
+      "b": true
+     },
+     {
+      "t": "The “Vertical Audit” approach is an audit of a specific production or service traceable run and assessing several clauses and aspects of the standard through traceability (ie. Production elements, HACCP/OPRP plan, training of personnel, maintenance, calibration etc) related to the chosen run. The auditor is choosing a production run and is looking at all of the records associated with that run."
+     }
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "A. Purpose and Scope",
+   "b": true
+  },
+  {
+   "type": "p",
+   "t": "The purpose of the guideline is to:"
+  },
+  {
+   "type": "p",
+   "t": "• To set the minimum audit requirements for the standard"
+  },
+  {
+   "type": "p",
+   "t": "• To provide guidance to the auditors in order to perform the audit in detail and to the appropriate depth"
+  },
+  {
+   "type": "p",
+   "t": "• To determine the minimum recording requirements in respect to needed verifiable evidence for certification decision"
+  },
+  {
+   "type": "p",
+   "t": "C. Guidance and clarifications",
+   "b": true
+  },
+  {
+   "type": "p",
+   "t": "• The mentioned data and information in columns A and B below are the minimum and the main topics to be assessed during the audit. The points are not exhaustive and other or part of them have to be assessed during the audit."
+  },
+  {
+   "type": "p",
+   "t": "• Reference of objective evidence (MDExx) can be very brief and can refer only to traceable documents, names or information."
+  },
+  {
+   "type": "p",
+   "t": "• For all fields that are checked, means that the auditor has seen the adequate information and/or data and are satisfied"
+  },
+  {
+   "type": "p",
+   "t": "• In Table 1 all requires Retained and Maintained Documented Information (RDI & MDI) are listed to facilitate the auditor to have direct view the relevant requirement of the standard"
+  },
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    32.9,
+    37.0,
+    30.1
+   ],
+   "rows": [
+    [
+     {
+      "t": "Clauses ISO 14001:2015",
+      "b": true
+     },
+     {
+      "t": "**(A)\n**Evaluation Points\n(Evaluation through interviews, on site audit or/and documents)",
+      "al": "c"
+     },
+     {
+      "t": "(B)\nInformation, Data, Evidences",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "4 Context of the organization",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**4.1 Understanding the organization and its context\nThe organization shall determine external and internal issues that are relevant to its purpose and that affect its ability to achieve the intended outcomes of its environmental management system. Such\nissues shall include environmental conditions being affected by or capable of affecting the organization EMS"
+     },
+     {
+      "t": "• Identification and determination of the context\n• Determination of external and internal issues.\n• External and internal issues are relevant to company’s purpose.\n• Relation and influence of them to the EMS"
+     },
+     {
+      "t": "**MDE-01\nData and information that determine the context / environment of the company and are related with environmental sector:\n• Licenses and Approvals from National Authorities (registration number, date of issue)\n• Legislation and regulatory requirements\n• Authorities\n• Local Community\n• Customers\n• Markets\n• Subcontractors\n• Consumers organizations\n• Other"
+     }
+    ],
+    [
+     {
+      "t": "**4.2 Understanding the needs and expectations of interested parties\nThe organization shall determine:\na) the interested parties that are relevant to the environmental management system;\nb) the relevant needs and expectations (i.e. requirements) of these interested parties;\nc) which of these needs and expectations become its compliance obligations EMS"
+     },
+     {
+      "t": "• Determination of relevant interested parties to company’s EMS\n• Determination specific requirements for each interest party.\n• Monitoring of changing needs and expectations of interested parties.\n• Review information about company’s interested parties"
+     },
+     {
+      "t": "**MDE-01\n• Data that determine interested parties:\n• interested parties who are relevant to environmental management system (e.g. stakeholders, authorities, suppliers, clients, consumers, local authorities & community, personnel etc.)\n• information about company’s interested parties in general\n• Environmental requirements of interested parties:\n• certifications\n• procedures\n• contracts\n• Environmental law\n• consumers’ rights\n• ethical issues"
+     }
+    ],
+    [
+     {
+      "t": "**4.3 Determining the scope of the environmental management system\nThe organization shall determine the boundaries and applicability of the environmental management\nsystem to establish its scope.\nWhen determining this scope, the organization shall consider:\na) the external and internal issues referred to in 4.1;\nb) the compliance obligations referred to in 4.2;\nc) its organizational units, functions and physical boundaries;\nd) its activities, products and services;\ne) its authority and ability to exercise control and influence\nOnce the scope is defined, all activities, products and services of the organization within that scope need to be included in the environmental management system.\nThe scope shall be maintained as documented information and be available to interested parties"
+     },
+     {
+      "t": "**MDI-01\n• Documented description of the scope (eg. manual, documented procedure, procedures etc.)\n• The scope must be approved/issued/validated by authorized person or/and team\n• General information of the company"
+     },
+     {
+      "t": "**MDE-01\nDocumented scope of EMS, Environmental objectives, documented procedures, records:\n• Products\n• Services\n• Activities\n• Processes\n• Production sites\n• Number of personnel\n• Number of shifts\n• Operation license\n• Detailed description or/and definition of scope\n• The scope must be relevant and within the legitimate activities of the company"
+     }
+    ],
+    [
+     {
+      "t": "**4.4 Environmental management system\nTo achieve the intended outcomes, including enhancing its environmental performance, the organization\nshall establish, implement, maintain and continually improve an environmental management system,\nincluding the processes needed and their interactions, in accordance with the requirements of this International Standard.\nThe organization shall consider the knowledge gained in 4.1 and 4.2 when establishing and maintaining\nthe environmental management system"
+     },
+     {
+      "t": "• How does the company establish, implement and maintain EMS?\n• How does the company improve and update the EMS?\n• Is the EMS clearly legible, unambiguous, sufficiently detailed and understandable to all staff?\n• EMS structure, planning and provided resources"
+     },
+     {
+      "t": "**MDE-01\n• The EMS and Description of:\n• The EMS contents and structure\n• Processes and procedure\n• documents (name, form code, version)\n• List of documents\n• Working instructions\n• Legislation list\n• EMS Manual"
+     }
+    ],
+    [
+     {
+      "t": "5 Leadership",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**5.1 Leadership and commitment\nTop management shall demonstrate leadership and commitment with respect to the environmental\nmanagement system by:\na) taking accountability for the effectiveness of the environmental management system;\nb) ensuring that the environmental policy and environmental objectives are established and are compatible with the strategic direction and the context of the organization;\nc) ensuring the integration of the environmental management system requirements into the organization’s business processes;\nd) ensuring that the resources needed for the environmental management system are available;\ne) communicating the importance of effective environmental management and of conforming to the environmental management system requirements;\nf) ensuring that the environmental management system achieves its intended outcomes;\ng) directing and supporting persons to contribute to the effectiveness of the environmental management system;\nh) promoting continual improvement;\ni) supporting other relevant management roles to demonstrate their leadership as it applies to their areas of responsibility."
+     },
+     {
+      "t": "Leadership principles, activities and practices ie. Patterns, mechanisms, organizational governance, procedures etc."
+     },
+     {
+      "t": "**MDE-02\n• Available resources\n• Staff involvement\n• communication tools and/or practices (mail, posts, company’s site etc.)\n• Environmental objectives\n• Involvement of top management in the following issues:\n• Results evaluation processes and/or mechanisms\n• Organizational structure and roles, responsibilities, and authorizations"
+     }
+    ],
+    [
+     {
+      "t": "**5.2 Environmental Policy\nTop management shall establish, implement and maintain an environmental policy that, within the defined scope of its environmental management system:\na) is appropriate to the purpose and context of the organization, including the nature, scale and environmental impacts of its activities, products and services;\nb) provides a framework for setting environmental objectives;\nc) includes a commitment to the protection of the environment, including prevention of pollution and other specific commitment(s) relevant to the context of the organization;\nd) includes a commitment to fulfil its compliance obligations;\ne) includes a commitment to continual improvement of the environmental management system to\nenhance environmental performance.\nThe environmental policy shall:\n— be maintained as documented information;\n— be communicated within the organization;\n— be available to interested parties."
+     },
+     {
+      "t": "• Is Environmental policy appropriate to the purpose and context of the organization, including the nature, scale and environmental impacts of its activities, products and services?\n• Does Environmental policy provide  a framework for setting environmental objectives?\n• Does Environmental policy include commitment?\n• Awareness of policy’s principles and statements\n• Communication of policy\n• Involvement and participation at all levels of the organization\n• Compatibility with legislation clients and the Top Management’s vision and objectives\n**MDI-02\n• Elements and contents of Environmental policy\n• Awareness of interested parties of the Environmental policy\n• Understanding of Environmental policy"
+     },
+     {
+      "t": "**MDE-02\n• Documented Environmental Policy (edition, date, signature) and be approved/issued/validated by authorized person or/and team communication tools and/or practices (mail, posts, company’s site e.t.c)\n• Means of expressed policy’s elements and contents eg. document, announcement, procedure etc.\n• Validation and update process of the policy’s elements"
+     }
+    ],
+    [
+     {
+      "t": "**5.3 Organizational roles, responsibilities and authorities\nTop management shall ensure that the responsibilities and authorities for relevant roles are assigned and communicated within the organization.\nTop management shall assign the responsibility and authority for:\na) ensuring that the environmental management system conforms to the requirements of this International Standard;\nb) reporting on the performance of the environmental management system, including environmental performance, to top management"
+     },
+     {
+      "t": "• Assignment of Environmental roles, responsibilities, and authorities\n• EMS roles, responsibilities, and authorities communication and notification"
+     },
+     {
+      "t": "**MDE-03\n• Company’s organization Chart\n• Job description for appropriate positions – (Name, Position, Responsibility)"
+     }
+    ],
+    [
+     {
+      "t": "6 Planning",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**6.1 General\nThe organization shall establish, implement and maintain the process(es) needed to meet the requirements in 6.1.1 to 6.1.4.\nWhen planning for the environmental management system, the organization shall consider:\na) the issues referred to in 4.1;\nb) the requirements referred to in 4.2;\nc) the scope of its environmental management system;  and determine the risks and opportunities, related to its environmental aspects (see 6.1.2), compliance obligations (see 6.1.3) and other issues and requirements, identified in 4.1 and 4.2, that need to be addressed to:\n— give assurance that the environmental management system can achieve its intended outcomes;\n— prevent or reduce undesired effects, including the potential for external environmental conditions to affect the organization;\n— achieve continual improvement.\nWithin the scope of the environmental management system, the organization shall determine potential emergency situations, including those that can have an environmental impact\nThe organization shall maintain documented information of its:\n— risks and opportunities that need to be addressed;\n— process(es) needed in 6.1.1 to 6.1.4, to the extent necessary to have confidence they are carried out as planned"
+     },
+     {
+      "t": "• give assurance that the environmental management system can achieve its intended outcomes;\n• prevent or reduce undesired effects, including the potential for external environmental conditions to affect the organ-ization;\n• achieve continual improvement.\n• Identify potential emergency situations, including those that can have an environmental impact\n**MDI-03\n• risks and opportunities that need to be addressed;\n• process(es) needed in 6.1.1 to 6.1.4, to the extent necessary to have confidence they are carried out as planned"
+     },
+     {
+      "t": "**MDE-04\n• Recording the risks and opportunities\n• Addressed risks and opportunities that could influence the overall performance of company’s EMS or disrupt its operation.\n• How the company handle risks and opportunities that could affect the performance of your organization’s EMS or disrupt its operation"
+     }
+    ],
+    [
+     {
+      "t": "**6.1.2 Environmental aspects\nWithin the defined scope of the environmental management system, the organization shall determine the environmental aspects of its activities, products and services that it can control and those that it can influence, and their associated environmental impacts, considering a life cycle perspective.\nWhen determining environmental aspects, the organization shall take into account:\na) change, including planned or new developments, and new or modified activities, products and services;\nb) abnormal conditions and reasonably foreseeable emergency situations.\nThe organization shall determine those aspects that have or can have a significant environmental impact, i.e. significant environmental aspects, by using established criteria.\nThe organization shall communicate its significant environmental aspects among the various levels and functions of the organization, as appropriate.\nThe organization shall maintain documented information of its:\n— environmental aspects and associated environmental impacts;\n— criteria used to determine its significant environmental aspects;\n— significant environmental aspects."
+     },
+     {
+      "t": "**MDI-04\n• environmental aspects and associated environmental impacts;\n• criteria used to determine its significant environmental aspects;\n• significant environmental aspects."
+     },
+     {
+      "t": "**MDE-05\n• Determine the environmental aspects of its activities and their associated environmental impacts, considering a life cycle perspective.\n• Communication of its significant environmental aspects\n• criteria used to determine its significant environmental aspects;"
+     }
+    ],
+    [
+     {
+      "t": "6.1.3 Compliance obligations\nThe organization shall:\na) determine and have access to the compliance obligations related to its environmental aspects;\nb) determine how these compliance obligations apply to the organization;\nc) take these compliance obligations into account when establishing, implementing, maintaining and continually improving its environmental management system.\nThe organization shall maintain documented information of its compliance obligations.\nNOTE Compliance obligations can result in risks and opportunities to the organization"
+     },
+     {
+      "t": "**MDI-05\n• Compliance Obligations\n• criteria used to determine its significant environmental aspects;\nEnvironmental Legislation\nA) Licenses of the Organization:\n• Environmental License (Environmental Terms and Commitments)\n• Fire Safety Certificate (retreading fire extinguishers, fire emergency plan according to ISO 23601:2009 Check the access to fire brigades)\n• Digital Waste Registry\n• Building Energy Efficiency Certificate (BEEC)\n• SEVESO Study\n• ePRTR\n• REACH Registration, Evaluation, Authorization and Restriction of Chemical substances\n• ADR (International Carriage of Dangerous Goods by Road)\n• Explosion Protection Study (ATEX)\n• Certification of lifting equipment, compressing equipment, compressed air vessels\n• License for the usage of water drills\n• Solid / hazardous waste management license\n• Technical Engineer (Book,\n• Other\nB) the Licenses /Diplomas of the equipment and vehicle operators:\n• Clark\n• Welding\n• Other"
+     },
+     {
+      "t": "**MDE-06\n• Determine compliance obligations related to its environmental aspects\n• Identify how they apply to the organization\n• take these compliance obligations into account when establishing, implementing, maintaining and continually improving the EMS\n• legislation requirements\n• customer requirements\n• scientific literature\n• historical and known hazards associated with specific\n• codes of practice"
+     }
+    ],
+    [
+     {
+      "t": "6.1.4 Planning action\nThe organization shall plan:\na) to take actions to address its:\n1) significant environmental aspects;\n2) compliance obligations;\n3) risks and opportunities identified in \nb) how to:\n1) integrate and implement the actions into its environmental management system processes, or other business processes;\n2) evaluate the effectiveness of these actions \nWhen planning these actions, the organization shall consider its technological options and its financial, operational and business requirements"
+     },
+     {},
+     {
+      "t": "**MDE-07\n• Action Plan to address significant environmental aspects, compliance obligations and risks and opportunities\n• Evaluation of the effectiveness of the action plan\n• Consideration of its technological options and its financial, operational and business requirements"
+     }
+    ],
+    [
+     {
+      "t": "**6.2 Environmental objectives and planning to achieve them\n6.2.1 The organization shall establish environmental objectives at relevant functions and levels, taking into\naccount the organization’s significant environmental aspects and associated compliance obligations, and considering its risks and opportunities.\nThe environmental objectives shall be:\na) consistent with the environmental policy;\nb) measurable (if practicable);\nc) monitored;\nd) communicated;\ne) updated as appropriate.\nThe organization shall maintain documented information on the environmental objectives."
+     },
+     {
+      "t": "**MDI-06\n• Environmental Objectives"
+     },
+     {
+      "t": "**MDE-08\n• EMS objectives (examples)\n• Consistence with Environmental Policy\n• monitoring records\n• Communication tools or/and practices\n• Updating"
+     }
+    ],
+    [
+     {
+      "t": "**6.2.2 Planning actions to achieve environmental objectives\nWhen planning how to achieve its environmental objectives, the organization shall determine:\na) what will be done;\nb) what resources will be required;\nc) who will be responsible;\nd) when it will be completed;\ne) how the results will be evaluated, including indicators for monitoring progress toward achievement of its measurable environmental objectives (see 9.1.1).\nThe organization shall consider how actions to achieve its environmental objectives can be integrated into the organization’s business processes"
+     },
+     {},
+     {
+      "t": "**MDE-08\n• Action plan (Action, Adequacy of provided resources, Responsibilities, Timeframe)\n• Evaluation Plan and review of objectives"
+     }
+    ],
+    [
+     {
+      "t": "7 Support",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**7.1 Resources\nThe organization shall determine and provide the resources needed for the establishment, implementation, maintenance and continual improvement of the environmental management system."
+     },
+     {
+      "t": "• Identification of the resources that needed to establish, implement and maintain its EMS"
+     },
+     {
+      "t": "• EMS manual\n• Resource planning (including external providers)"
+     }
+    ],
+    [
+     {
+      "t": "**7.2 Competence\nThe organization shall:\na) determine the necessary competence of person(s) doing work under its control that affects its environmental performance and its ability to fulfil its compliance obligations;\nb) ensure that these persons are competent on the basis of appropriate education, training or experience;\nc) determine training needs associated with its environmental aspects and its environmental management system;\nd) where applicable, take actions to acquire the necessary competence, and evaluate the effectiveness\nof the actions taken.\nNOTE Applicable actions can include, for example, the provision of training to, the mentoring of, or the reassignment of currently employed persons; or the hiring or contracting of competent persons.\nThe organization shall retain appropriate documented information as evidence of competence."
+     },
+     {
+      "t": "**RDI-1\n• Job descriptions\n• Company’s Environmental competence requirements\n• Knowledge and competence requirements of those who could influence  Environmental  performance (education, experience, skills, etc)\n• Hiring and recruitment procedures\n• Personnel evaluation process\n• Training assessment (tests, evaluation of education understanding)\n• Training planning"
+     },
+     {
+      "t": "**MDE-08\n• Job descriptions, CV, appropriate education, training or experience.\n• CVs or/and personnel files\n• Personnel evaluation records\n• Recruitment evaluation records\n• Training needs\n• Training records\n• Training schedule"
+     }
+    ],
+    [
+     {
+      "t": "**7.3 Awareness\nThe organization shall ensure that persons doing work under the organization’s control are aware of:\na) the environmental policy;\nb) the significant environmental aspects and related actual or potential environmental impacts associated with their work;\nc) their contribution to the effectiveness of the environmental management system, including the benefits of enhanced environmental performance;\nd) the implications of not conforming with the environmental management system requirements, including not fulfilling the organization’s compliance obligations."
+     },
+     {
+      "t": "• Staff awareness degree about Environmental policy, the Environmental aspects and potential impacts, the  benefits of enhanced environmental performance and  the implications of not conforming with the EMS (interviews and job monitoring)"
+     },
+     {
+      "t": "**MDE-09\n• Interview and information sharing evidences\n• Training content and effectiveness\n• Improvement notes\n• Are all relevant persons aware of how they can actively support EMS"
+     }
+    ],
+    [
+     {
+      "t": "**7.4 Communication\n**7.4.1 General\nThe organization shall establish, implement and maintain the process(es) needed for internal and\nexternal communications relevant to the environmental management system, including:\na) on what it will communicate;\nb) when to communicate;\nc) with whom to communicate;\nd) how to communicate.\nWhen establishing its communication process(es), the organization shall:\n— take into account its compliance obligations;\n— ensure that environmental information communicated is consistent with information generated\nwithin the environmental management system, and is reliable.\nThe organization shall respond to relevant communications on its environmental management system.\nThe organization shall retain documented information as evidence of its communications, as appropriate."
+     },
+     {
+      "t": "• Interested parties\n• Communication system/tools\n• Responsibilities and authorities about communication\n• Frequency of communication\n• Communication issues\n**RDI-02\n• Determined external involved and interested parties\n• Provided means of communication (corporate email accounts, skype accounts etc.)\n• Authorities classification"
+     },
+     {
+      "t": "**MDE-09\n• Established communication means\n• Awareness of involved personnel\n• Records of communication"
+     }
+    ],
+    [
+     {
+      "t": "**7.4.2 Internal Communication\nThe organization shall:\na) internally communicate information relevant to the environmental management system among the various levels and functions of the organization, including changes to the environmental management system, as appropriate;\nb) ensure its communication process(es) enable(s) persons doing work under the organization’s control to contribute to continual improvement"
+     },
+     {
+      "t": "• Communication procedures and rules\n• Communication network\n• Authorisations for communications\n• Communication tools (mail, memos, meetings etc.)\n• Management review"
+     },
+     {
+      "t": "**MDE-09\n• Availability of information to all involved parties within the organisation\n• Participation of all involved parties to the applied communication network eg. email accounts\n• Is the communication effective?\n• Does the internal communication contribute to continual improvement of the EMS ?"
+     }
+    ],
+    [
+     {
+      "t": "**7.4.3 External communication\nThe organization shall externally communicate information relevant to the environmental management system, as established by the organization’s communication process(es) and as required by its compliance obligations"
+     },
+     {},
+     {
+      "t": "**MDE-09\n• Availability of information relevant to the environmental management system  to all external Interested parties"
+     }
+    ],
+    [
+     {
+      "t": "**7.5 Documented information\n**7.5.1 General\nThe organization’s environmental management system shall include:\na) documented information required by this International Standard;\nb) documented information determined by the organization as being necessary for the effectiveness of the environmental management system.\nNOTE The extent of documented information for an environmental management system can differ from one\norganization to another due to:\n— the size of organization and its type of activities, processes, products and services;\n— the need to demonstrate fulfilment of its compliance obligations;\n— the complexity of processes and their interactions;\n— the competence of persons doing work under the organization’s control"
+     },
+     {
+      "t": "• Documented system content and structure\n• Applied procedures for controlling of documented information"
+     },
+     {
+      "t": "**MDE-10\n• List of documents and records   including internal and external documents\n• Adequacy of documented information"
+     }
+    ],
+    [
+     {
+      "t": "**7.5.2 Creating and updating\nWhen creating and updating documented information, the organization shall ensure appropriate:\na) identification and description (e.g. a title, date, author, or reference number);\nb) format (e.g. language, software version, graphics) and media (e.g. paper, electronic);\nc) review and approval for suitability and adequacy."
+     },
+     {
+      "t": "• Applied procedures of documentation control\n• Means of updating documents and records"
+     },
+     {
+      "t": "**MDE-10\n• Changes in records and documents (Identification, format and review)"
+     }
+    ],
+    [
+     {
+      "t": "**7.5.3 Control of documented information\nDocumented information required by the environmental management system and by this International\nStandard shall be controlled to ensure:\na) it is available and suitable for use, where and when it is needed;\nb) it is adequately protected (e.g. from loss of confidentiality, improper use, or loss of integrity).\nFor the control of documented information, the organization shall address the following activities\nas applicable:\n— distribution, access, retrieval and use;\n— storage and preservation, including preservation of legibility;\n— control of changes (e.g. version control);\n— retention and disposition.\nDocumented information of external origin determined by the organization to be necessary for the planning and operation of the environmental management system shall be identified, as appropriate, and controlled.\nNOTE Access can imply a decision regarding the permission to view the documented information only, or\nthe permission and authority to view and change the documented information"
+     },
+     {
+      "t": "• Documented procedure determining distribution, storage, control of changes, retention and disposition of documented information\n• Means of controlling documents and records\n• Conditions and rules of controlling information (retained and maintained)\n• Protection measures taken\n• Responsibilities and authorities for controlling of documented information"
+     },
+     {
+      "t": "**MDE-10\n• Suitability and accessibility to information\n• Retrieval and protection measures applied\n• Confidentiality and integrity assurance of information\n• Distribution and availability of documents\n• Validity of used documents\n• Responsible persons\n• Changed documents\n• Protection of documents\n• Retention time of recorded formation"
+     }
+    ],
+    [
+     {
+      "t": "8 Operation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**8 Operation\n**8.1 Operational planning and control\nThe organization shall establish, implement, control and maintain the processes needed to meet environmental management system requirements, and to implement the actions identified in 6.1 and 6.2, by:\n— establishing operating criteria for the process(es);\n— implementing control of the process(es), in accordance with the operating criteria.\nNOTE Controls can include engineering controls and procedures. Controls can be implemented following a hierarchy (e.g. elimination, substitution, administrative) and can be used individually or in combination.\nThe organization shall control planned changes and review the consequences of unintended changes, taking action to mitigate any adverse effects, as necessary.\nThe organization shall ensure that outsourced processes are controlled or influenced. The type and extent of control or influence to be applied to the process(es) shall be defined within the environmental management system.\nConsistent with a life cycle perspective, the organization shall:\na) establish controls, as appropriate, to ensure that its environmental requirement(s) is (are) addressed\nin the design and development process for the product or service, considering each life cycle stage;\nb) determine its environmental requirement(s) for the procurement of products and services, as appropriate;\nc) communicate its relevant environmental requirement(s) to external providers, including contractors;\nd) consider the need to provide information about potential significant environmental impacts associated with the transportation or delivery, use, end-of-life treatment and final disposal of its products and services.\nThe organization shall maintain documented information to the extent necessary to have confidence that the processes have been carried out as planned."
+     },
+     {
+      "t": "**MDI-07\n• Environmental Objectives\n• Description/plan of production or/and handling of products or services\n• Operating\n• Process control parameters\n• Environmental requirements for processes\n• Control of planned or unintended changes\n• Control of outsourced processes (subcontractors etc)\n• Life Cycle Perspective"
+     },
+     {
+      "t": "**MDE-11\n• Mutual agreements of specified requirements ie. Contracts, mutual agreed Environmental specifications etc.\n• Monitoring and control data and information ie. Compliance degree, on site audits etc.\n• Records, databases etc. concerning subcontractors,  supplier’s performance or/and compliance"
+     }
+    ],
+    [
+     {
+      "t": "**8.2 Emergency preparedness and response\nThe organization shall establish, implement and maintain the process(es) needed to prepare for and respond to potential emergency situations identified in 6.1.1.\nThe organization shall:\na) prepare to respond by planning actions to prevent or mitigate adverse environmental impacts from emergency situations;\nb) respond to actual emergency situations;\nc) take action to prevent or mitigate the consequences of emergency situations, appropriate to the magnitude of the emergency and the potential environmental impact;\nd) periodically test the planned response actions, where practicable;\ne) periodically review and revise the process(es) and planned response actions, in particular after the occurrence of emergency situations or tests;\nf) provide relevant information and training related to emergency preparedness and response, as  appropriate, to relevant interested parties, including persons working under its control.\nThe organization shall maintain documented information to the extent necessary to have confidence  that the process(es) is (are) carried out as planned."
+     },
+     {
+      "t": "**MDI-08\n• Emergency plan\n• Awareness and staff training\n• Responsibilities and authorities\n• Preventive actions\n• Drills"
+     },
+     {
+      "t": "**MDE12\n• Identify  emergency situations;\n• List of situations and incidents that could have an Environmental impact\n• Emergency procedure\n• Records of emergency response activities\n• Emergency drills (date, duration, brief description of actions etc)\n• Records of internal and external communication\n• emergency contact list\n• potential Environmental incidents and emergencies and actions taken for each case (examples)"
+     }
+    ],
+    [
+     {
+      "t": "9 Performance evaluation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**9 Performance evaluation\n**9.1 Monitoring, measurement, analysis and evaluation\n**9.1.1 General\nThe organization shall monitor, measure, analyse and evaluate its environmental performance.\nThe organization shall determine:\na) what needs to be monitored and measured;\nb) the methods for monitoring, measurement, analysis and evaluation, as applicable, to ensure\nvalid results;\nc) the criteria against which the organization will evaluate its environmental performance, and\nappropriate indicators;\nd) when the monitoring and measuring shall be performed;\ne) when the results from monitoring and measurement shall be analysed and evaluated.\nThe organization shall ensure that calibrated or verified monitoring and measurement equipment is\nused and maintained, as appropriate.\nThe organization shall evaluate its environmental performance and the effectiveness of the environmental management system.\nThe organization shall communicate relevant environmental performance information both internally and externally, as identified in its communication process(es) and as required by its compliance obligations.\nThe organization shall retain appropriate documented information as evidence of the monitoring, measurement, analysis and evaluation results."
+     },
+     {
+      "t": "**RDI-03\n• Planning for effectiveness monitoring and evaluation actions, processes and means\n• Determination of significant data and information regarding performance evaluation of the EMS\n• Responsibilities and authorities\n• Record keeping\n• Equipment, utilities and infrastructure provisions\n• Condition of the established of infrastructure, utilities and equipment\n• Supporting services and existing elements"
+     },
+     {
+      "t": "**MDE-13\n• KPI’s\n• Data analysis\n• Data basis and gathering\n• Responsible person(s) for data processing and utilising\n• Communication and awareness to top management"
+     }
+    ],
+    [
+     {
+      "t": "**9.1.2 Evaluation of compliance\nThe organization shall establish, implement and maintain the process(es) needed to evaluate fulfilment of its compliance obligations.\nThe organization shall:\na) determine the frequency that compliance will be evaluated;\nb) evaluate compliance and take action if needed;\nc) maintain knowledge and understanding of its compliance status\nThe organization shall retain documented information as evidence of the compliance evaluation result(s)"
+     },
+     {
+      "t": "**RDI-04\n• understanding of its compliance status"
+     },
+     {
+      "t": "**MDE-14\n• Legislation requirements\n• Determination of the frequency that compliance will be evaluated;\n• Other requirements (customer, scientific literature etc)"
+     }
+    ],
+    [
+     {
+      "t": "**9.2 Internal audit\n**9.2.1 General\nThe organization shall conduct internal audits at planned intervals to provide information on whetherthe environmental management system:\na) conforms to:\n1) the organization’s own requirements for its environmental management system;\n2) the requirements of this International Standard;\nb) is effectively implemented and maintained."
+     },
+     {
+      "t": "• Internal audit process\n• Internal audit planning\n• Record keeping"
+     },
+     {
+      "t": "**MDE-15\n• Internal audit documented procedure"
+     }
+    ],
+    [
+     {
+      "t": "**9.2.2 Internal audit programme\nThe organization shall establish, implement and maintain (an) internal audit programme(s), including\nthe frequency, methods, responsibilities, planning requirements and reporting of its internal audits.\nWhen establishing the internal audit programme, the organization shall take into consideration the\nenvironmental importance of the processes concerned, changes affecting the organization and the results of previous audits.\nThe organization shall:\na) define the audit criteria and scope for each audit;\nb) select auditors and conduct audits to ensure objectivity and the impartiality of the audit process;\nc) ensure that the results of the audits are reported to relevant management.\nThe organization shall retain documented information as evidence of the implementation of the audit\nprogramme and the audit results"
+     },
+     {
+      "t": "**RDI-05\n• Internal audit process\n• Internal audit planning\n• Internal audit results"
+     },
+     {
+      "t": "**MDE-15\n• Internal audit program/schedule\n• Audit criteria\n• Internal Audit team\n• Audit report\n• Internal audit results reported to top Management"
+     }
+    ],
+    [
+     {
+      "t": "**9.3 Management review\nTop management shall review the organization’s environmental management system, at planned intervals, to ensure its continuing suitability, adequacy and effectiveness.\nThe management review shall include consideration of:\na) the status of actions from previous management reviews;\nb) changes in:\n1) external and internal issues that are relevant to the environmental management system;\n2) the needs and expectations of interested parties, including compliance obligations;\n3) its significant environmental aspects;\n4) risks and opportunities;\nc) the extent to which environmental objectives have been achievedd) information on the organization’s environmental performance, including trends in:\n1) nonconformities and corrective actions;\n2) monitoring and measurement results;\n3) fulfilment of its compliance obligations;\n4) audit results;\ne) adequacy of resources;\nf) relevant communication(s) from interested parties, including complaints;\ng) opportunities for continual improvement.\nThe outputs of the management review shall include:\n— conclusions on the continuing suitability, adequacy and effectiveness of the environmental management system;\n— decisions related to continual improvement opportunities;\n— decisions related to any need for changes to the environmental management system, including resources;\n— actions, if needed, when environmental objectives have not been achieved;\n— opportunities to improve integration of the environmental management system with other business processes, if needed;\n— any implications for the strategic direction of the organization.\nThe organization shall retain documented information as evidence of the results of management reviews."
+     },
+     {
+      "t": "**RDI-06\n• Decision making\n• Connection of EMS objectives with decided action plan\n• Validation by the senior management\n• Management review planning\n• Management review scheduling\n• Management review structure and objectives\n• Management review structure\n• Data and information used as inputs for the management review\n• Reporting and presenting and connecting management review inputs with EMS objectives and KPIs"
+     },
+     {
+      "t": "**MDE-16\n• Management review procedure\n• Management review elements, objectives and planning\n• Participants of management review\n• Date and place of realisation of the management review\n• Management review meeting minutes\n• Management review report\n**Input\n• status of actions from previous management reviews;\n• changes in:\n• external and internal issues\n• the needs and expectations of interested parties,;\n• significant environmental aspects;\n• risks and opportunities;\n• extent to which environmental objectives have been achieved\n• information on the organization’s environmental performance,\n• adequacy of resources;\n• relevant communication(s) from interested parties, including complaints;\n• opportunities for continual improvement.\n**Output\n— conclusions on the continuing suitability, adequacy and effectiveness of the environmental management system;\n— decisions related to continual improvement opportunities;\n— decisions related to any need for changes to the environmental management system, including resources;\n— actions, if needed, when environmental objectives have not been achieved;\n— opportunities to improve integration of the environmental management system with other business processes, if needed;\n— any implications for the strategic direction of the organization."
+     }
+    ],
+    [
+     {
+      "t": "10 Improvement",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**10.1 General\nThe organization shall determine opportunities for improvement (see 9.1, 9.2 and 9.3) and implement necessary actions to achieve the intended outcomes of its environmental management system."
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**10.2 Nonconformity and corrective action\nWhen a nonconformity occurs, the organization shall:\na) react to the nonconformity and, as applicable:\n1) take action to control and correct it;\n2) deal with the consequences, including mitigating adverse environmental impacts;\nb) evaluate the need for action to eliminate the causes of the nonconformity, in order that it does not recur or occur elsewhere, by:\n1) reviewing the nonconformity;\n2) determining the causes of the nonconformity;\n3) determining if similar nonconformities exist, or could potentially occur;\nc) implement any action needed\nd) review the effectiveness of any corrective action taken;\ne) make changes to the environmental management system, if necessary.\nCorrective actions shall be appropriate to the significance of the effects of the nonconformities encountered, including the environmental impact(s).\nThe organization shall retain documented information as evidence of:\n— the nature of the nonconformities and any subsequent actions taken;\n— the results of any corrective action."
+     },
+     {
+      "t": "**RDI-07\n• Nature of NC and Actions taken\n• Results of Corrective actions"
+     },
+     {
+      "t": "**MDE-17\n• Improvement action plans (control, correct and deal with the  consequences)\n• Documentation of recording nonconformities including customer complaints\n• Records of root cause analysis and determination of corrective actions\n• Improvement records\n• Recording of nonconformities\n• Improvement process\n• Root cause analysis process"
+     }
+    ],
+    [
+     {
+      "t": "10.1.2 The organization shall retain documented information as evidence of:\na) the nature of the nonconformities and any subsequent actions taken;\nb) the results of any corrective action."
+     },
+     {
+      "t": "**RDI-07\n• Nature of NC and Actions taken\n• Results of Corrective actions"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "**10.3 Continual improvement\nThe organization shall continually improve the suitability, adequacy and effectiveness of the environmental management system to enhance environmental performance."
+     },
+     {},
+     {
+      "t": "**MDE-17\n• Improvement action plans (control, correct and deal with the  consequences)\n• Continual improvement"
+     }
+    ]
+   ]
+  },
+  {
+   "type": "table",
+   "widths": [
+    15.32,
+    37.6,
+    13.67,
+    33.41
+   ],
+   "rows": [
+    [
+     {
+      "cs": 4,
+      "t": "TABLE 1: LIST OF MDIs & RDIs",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "List of\nMaintained Documented Information (MDI)",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "List of\nRetained Documented Information (RDI)",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "MDI-01"
+     },
+     {
+      "t": "4.3 Determining the scope of the environmental management system"
+     },
+     {
+      "t": "RDI-01"
+     },
+     {
+      "t": "7.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-02"
+     },
+     {
+      "t": "5.2  Environmental policy"
+     },
+     {
+      "t": "RDI-02"
+     },
+     {
+      "t": "7.4.1"
+     }
+    ],
+    [
+     {
+      "t": "MDI-03"
+     },
+     {
+      "t": "6.1.1   Actions to address risks and opportunities"
+     },
+     {
+      "t": "RDI-03"
+     },
+     {
+      "t": "9.1.1"
+     }
+    ],
+    [
+     {
+      "t": "MDI-04"
+     },
+     {
+      "t": "6.1.2   Environmental aspects"
+     },
+     {
+      "t": "RDI-04"
+     },
+     {
+      "t": "9.1.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-05"
+     },
+     {
+      "t": "6.1.3   Compliance obligations"
+     },
+     {
+      "t": "RDI-05"
+     },
+     {
+      "t": "9.2.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-06"
+     },
+     {
+      "t": "6.2.1  Environmental objectives"
+     },
+     {
+      "t": "RDI-06"
+     },
+     {
+      "t": "9.3"
+     }
+    ],
+    [
+     {
+      "t": "MDI-07"
+     },
+     {
+      "t": "8.1   Operational planning and control"
+     },
+     {
+      "t": "RDI-07"
+     },
+     {
+      "t": "10.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-08"
+     },
+     {
+      "t": "8.2  Emergency preparedness and response"
+     },
+     {},
+     {}
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The predefined forms. noupdate: what the users filled in is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="audit_plan_form" model="tuv.audit.plan">
+            <field name="name">Audit Plan</field>
+        </record>
+        <record id="audit_plan_isms_form" model="tuv.audit.plan">
+            <field name="name">Audit Plan ISMS</field>
+        </record>
+    </data>
+
+    <!-- What identifies each predefined form, kept up to date on every upgrade -->
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('audit_plan_form')]"/>
+        <value eval="{
+            'form_subtitle': 'Management systems certification',
+            'form_reference': 'FM-TAGMBH-MSZ-001_Auditplan-EN | Revision: 08/22.01.2026',
+            'audit_report_key': 'audit_plan',
+            'audit_report_uses_info': True,
+        }"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('audit_plan_isms_form')]"/>
+        <value eval="{
+            'form_subtitle': 'Management systems certification',
+            'form_reference': 'FM-TAGMBH-MSZ-002_Auditplan-ISMS-EN | Revision: 07/20.05.2025',
+            'audit_report_key': 'audit_plan_isms',
+            'audit_report_uses_info': True,
+        }"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_isms_schedule">
+        <value eval="[ref('audit_plan_isms_form')]"/>
+    </function>
+
+    <!-- One card per form on the Reports screen -->
+    <record id="audit_report_audit_plan" model="tuv.audit.report">
+        <field name="name">Audit Plan</field>
+        <field name="sequence">10</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">FM-TAGMBH-MSZ-001</field>
+        <field name="revision">08/22.01.2026</field>
+        <field name="document_name">FM-TAGMBH-MSZ-001_Auditplan-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.audit_plan_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_plan</field>
+        <field name="report_key">audit_plan</field>
+    </record>
+
+    <record id="audit_report_audit_plan_isms" model="tuv.audit.report">
+        <field name="name">Audit Plan ISMS</field>
+        <field name="sequence">20</field>
+        <field name="subtitle">Management systems certification (ISO 27001 / 27701)</field>
+        <field name="code">FM-TAGMBH-MSZ-002</field>
+        <field name="revision">07/20.05.2025</field>
+        <field name="document_name">FM-TAGMBH-MSZ-002_Auditplan-ISMS-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.audit_plan_isms_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_plan_isms</field>
+        <field name="report_key">audit_plan_isms</field>
+    </record>
+
+</odoo>

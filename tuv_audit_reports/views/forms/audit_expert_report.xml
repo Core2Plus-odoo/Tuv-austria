@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Expert Report (FM-TAGMBH-MSZ-004): the block under sections 1 and 2.
+         tools/gen_standalone_views.py copies it to the standalone form. -->
+    <record id="project_block_audit_expert_report" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_expert_report</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_expert_report" invisible="audit_report_key != 'expert_report'">
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional relationship of any kind
+                        and have not provided any kind of advisory service or any kind of service (internal
+                        audits, design / development of management system) for the company being audited,
+                        or another company legally associated with this company, during the last two (2)
+                        years, at least. Also, they are committed that they will not develop any kind of
+                        cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally, they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <separator string="The technical assessment of the QM system provided the following result"/>
+                    <field name="er_requirement_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="result" widget="radio" options="{'horizontal': true}"/>
+                            <field name="comments"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="er_supplementary"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="er_place"/>
+                            <field name="er_date"/>
+                        </group>
+                        <group>
+                            <field name="er_expert_id"/>
+                            <field name="er_expert_signature" widget="signature"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

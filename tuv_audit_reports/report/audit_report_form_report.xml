@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit report, form FM-TAGMBH-MSZ-003 (revision 12/22.01.2026). Sections 1 and 2,
+         3. audit objectives, 4. detailed result (stage 1, deviations, audit conclusions,
+         inspected requirements, positive findings, findings / nonconformities),
+         5. recommendation, disclaimer, 6. distribution list. -->
+    <record id="action_report_audit_report_form" model="ir.actions.report">
+        <field name="name">Audit Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_report_form</field>
+        <field name="report_file">tuv_audit_reports.report_audit_report_form</field>
+        <field name="print_report_name">'Audit Report - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <!-- Signature block under the deviation and finding lists -->
+    <template id="report_audit_report_form_signoff">
+        <tr>
+            <td t-att-colspan="left_span" class="center bold" style="height: 22px;">Place, date: <t t-out="place_date or ''"/></td>
+            <td t-att-colspan="right_span" class="center bold" style="background: #DEEAF6;">Completion of corrective action<br/>Place, date: <t t-out="completion or ''"/></td>
+        </tr>
+        <tr>
+            <td t-att-colspan="lead_span" class="center bold">Lead auditor</td>
+            <td t-att-colspan="rep_span" class="center bold">Company representative</td>
+            <td t-att-colspan="rep2_span" class="center bold" style="background: #DEEAF6;">Company representative</td>
+            <td t-att-colspan="lead2_span" class="center bold" style="background: #FBE4E4;">Lead auditor</td>
+        </tr>
+        <tr>
+            <td t-att-colspan="lead_span" class="center" style="height: 26px;" t-out="o.ap_lead_auditor_id.name or '(Name)'"/>
+            <td t-att-colspan="rep_span" class="center" t-out="o.ap_representative or '(Name)'"/>
+            <td t-att-colspan="rep2_span" class="center" style="background: #DEEAF6;" t-out="o.ap_representative or '(Name)'"/>
+            <td t-att-colspan="lead2_span" class="center" style="background: #FBE4E4;" t-out="o.ap_lead_auditor_id.name or '(Name)'"/>
+        </tr>
+    </template>
+
+    <template id="report_audit_report_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit report'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-TAGMBH-MSZ-003_Audit-Report-EN'"/>
+                <t t-set="form_revision" t-value="'12/22.01.2026'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+                <t t-set="ratings" t-value="dict(o.ar_row_ids._fields['rating'].selection)"/>
+                <t t-set="std_lines" t-value="o.ap_standard_line_ids[:5]"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>
+                        .ar { font-size: 12px; }
+                        .ar td { padding: 2px 5px; }
+                        .ar .dark { background: #808080; color: #fff; font-weight: bold; }
+                        .ar .blue { background: #DEEAF6; }
+                        .ar .pink { background: #FBE4E4; }
+                        .ar-text { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000; }
+                        .ar-text ol { margin: 4px 0 6px 0; padding-left: 26px; }
+                        .tap thead { display: table-header-group; }
+                    </style>
+
+                    <!-- ================= 1. and 2. ================= -->
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="scope_label" t-value="'Scope of certification'"/>
+                        <t t-set="duration_label" t-value="'acc. plan'"/>
+                        <t t-set="category_label" t-value="'Category (ISO 22003/ISO 13485):'"/>
+                    </t>
+
+                    <!-- ================= 3. Audit objectives ================= -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar-text">
+                        <tr><td class="bar">3. Audit objectives</td></tr>
+                        <tr><td style="font-size: 13px;">
+                            The audit objectives are the following:
+                            <ol>
+                                <li>Determination of the conformity of the client’s management system, or parts of it, with audit criteria within the scope of the Management System.</li>
+                                <li>Determination of the ability of the management system to ensure the client organization meets applicable statutory, regulatory, and contractual requirements.</li>
+                                <li>Determination of the effectiveness of the management system to ensure the client organization can reasonably expect to achieve its specified objectives.</li>
+                                <li>As applicable, identification of areas for potential improvement of the management system.</li>
+                                <li>Review of any management system’s changes.</li>
+                                <li>Validation that the management system was effectively applied in the previous period (valid for surveillance or recertification audits) and to verify its readiness for the coming period.</li>
+                            </ol>
+                            The audit was carried out according to the relevant applicable procedure for Management Systems Certification and the relevant Regulation for Certification of TÜV AUSTRIA. The basic information documenting the results of the audit are included into this report, and in total, into the audit questionnaire, the copies of documents and other evidence obtained during the audit.
+                        </td></tr>
+                        <tr><td style="font-size: 12px;">
+                            *) RATING of audit findings:
+                            <ol style="list-style: none; padding-left: 14px;">
+                                <li>1:&#160;&#160;&#160;&#160;Fully compliant</li>
+                                <li>2:&#160;&#160;&#160;&#160;Opportunity for improvement</li>
+                                <li>3:&#160;&#160;&#160;&#160;Minor nonconformity: Effectiveness of client’s corrective action is reviewed during the next audit</li>
+                                <li>4:&#160;&#160;&#160;&#160;Major nonconformity: Correction through submission of documents</li>
+                                <li>5:&#160;&#160;&#160;&#160;Major nonconformity: Correction through Re-audit</li>
+                                <li>NA: Not applicable or/and excluded</li>
+                            </ol>
+                        </td></tr>
+                    </table>
+
+                    <!-- ================= 4. Detailed result: stage 1 ================= -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar">
+                        <tr><td class="bar">4. Detailed result of the audit</td></tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <table class="tap ar">
+                        <tr>
+                            <td class="lbl" style="width: 16%; height: 40px;">Result of Audit stage 1</td>
+                            <td><t t-foreach="(o.ar_stage1_result or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                        </tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <table class="tap ar">
+                        <colgroup>
+                            <col style="width: 16%;"/><col style="width: 9%;"/>
+                            <col/><col/><col/><col/><col/>
+                        </colgroup>
+                        <tr>
+                            <td colspan="2" rowspan="2" class="lbl">Requirement</td>
+                            <t t-foreach="range(5)" t-as="i"><td class="sub">Standard <t t-out="i + 1"/>:</td></t>
+                        </tr>
+                        <tr>
+                            <t t-foreach="range(5)" t-as="i">
+                                <td><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                            </t>
+                        </tr>
+                        <tr t-foreach="o._ar_rows('stage1')" t-as="row">
+                            <td class="lbl" style="height: 30px;"><t t-foreach="(row.label or '').split('\n')" t-as="n"><t t-if="n_first" t-out="n"/><span t-else="" style="font-size: 9px; font-weight: normal;"><br/><t t-out="n"/></span></t></td>
+                            <td style="font-size: 10px;">Rating / Evidence / Comment</td>
+                            <td t-out="row.std1 or ''"/><td t-out="row.std2 or ''"/><td t-out="row.std3 or ''"/>
+                            <td t-out="row.std4 or ''"/><td t-out="row.std5 or ''"/>
+                        </tr>
+                    </table>
+
+                    <!-- deviations of stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar">
+                        <colgroup>
+                            <col style="width: 4%;"/><col style="width: 26%;"/><col style="width: 9%;"/><col style="width: 9%;"/>
+                            <col style="width: 20%;"/><col style="width: 20%;"/><col/>
+                        </colgroup>
+                        <tr>
+                            <td colspan="5" class="center bold" style="height: 26px;">LIST OF DEVIATIONS FOR STAGE 1</td>
+                            <td colspan="2" class="center bold">Time allowed to close deviations until maximum 6 months after the completion of stage 1</td>
+                        </tr>
+                        <tr class="center bold" style="font-size: 10px;">
+                            <td class="lbl center">No.</td><td class="lbl center">Description of finding</td>
+                            <td class="lbl center">Relevant standard</td><td class="lbl center">Clause of the standard</td>
+                            <td class="center blue">Corrective action</td><td class="center pink">Correction evidence</td>
+                            <td class="center pink">Rating of corrective action</td>
+                        </tr>
+                        <t t-set="devs" t-value="list(o.ar_deviation_ids)"/>
+                        <tr t-foreach="devs + [False] * max(0, 7 - len(devs))" t-as="d" style="height: 22px;">
+                            <td t-out="d and d.number or ''"/><td t-out="d and d.description or ''"/>
+                            <td t-out="d and d.standard or ''"/><td t-out="d and d.clause or ''"/>
+                            <td class="blue" t-out="d and d.corrective_action or ''"/>
+                            <td class="pink" t-out="d and d.evidence or ''"/>
+                            <td class="pink" t-out="d and d.rating and ratings.get(d.rating) or ''"/>
+                        </tr>
+                        <t t-call="tuv_audit_reports.report_audit_report_form_signoff">
+                            <t t-set="place_date" t-value="o.ar_dev_place_date"/>
+                            <t t-set="completion" t-value="o.ar_dev_completion_place_date"/>
+                            <t t-set="left_span" t-value="4"/><t t-set="right_span" t-value="3"/>
+                            <t t-set="lead_span" t-value="2"/><t t-set="rep_span" t-value="2"/>
+                            <t t-set="rep2_span" t-value="2"/><t t-set="lead2_span" t-value="1"/>
+                        </t>
+                    </table>
+
+                    <!-- ================= Audit conclusions ================= -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar">
+                        <colgroup><col style="width: 78%;"/><col style="width: 9%;"/><col/></colgroup>
+                        <thead>
+                            <tr>
+                                <td class="light bold" style="font-size: 14px; height: 24px;">Audit conclusions</td>
+                                <td class="light bold center">Audited</td>
+                                <td class="light bold center">Rating *)</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o._ar_rows('conclusions')" t-as="row">
+                                <tr t-if="row.kind == 'head'"><td colspan="3" class="dark" t-out="row.label"/></tr>
+                                <tr t-elif="row.kind == 'item'">
+                                    <td class="grey" t-out="row.label"/>
+                                    <td class="grey center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                                    <td class="grey center" t-out="row.rating and row.rating.upper() or ''"/>
+                                </tr>
+                                <tr t-elif="row.kind == 'comment'">
+                                    <td colspan="3" style="height: 22px;"><b t-out="row.label"/>
+                                        <t t-foreach="(row.comment or '').split('\n')" t-as="n"> <t t-out="n"/><br t-if="not n_last"/></t></td>
+                                </tr>
+                                <tr t-elif="row.kind == 'sub' and row.label.startswith('Locations')">
+                                    <td class="grey bold" t-out="row.label"/>
+                                    <td class="grey bold center">Audited</td>
+                                    <td class="grey bold center">Remote</td>
+                                </tr>
+                                <tr t-elif="row.kind == 'sub'"><td colspan="3" class="grey bold" t-out="row.label"/></tr>
+                                <tr t-elif="row.kind == 'location'">
+                                    <td class="grey"><b t-out="row.label.split(':')[0] + ':'"/> <t t-out="row.comment or 'Address'"/></td>
+                                    <td class="center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                                    <td class="center tap-box" t-out="'☒' if row.remote else '☐'"/>
+                                </tr>
+                                <tr t-else="">
+                                    <td colspan="3">
+                                        <t t-if="row.comment and row.label.startswith(('The statement of applicability', 'The following measures'))">
+                                            <t t-foreach="row.comment.split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-foreach="(row.label or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                                            <t t-if="row.comment"> <b>-</b> <t t-out="row.comment"/></t>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <!-- ================= Inspected requirements ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-foreach="[('iso27001', True, True), ('iso27701', True, True), ('sikat', False, True), ('iso20000', True, False), ('iso22301', True, False)]" t-as="spec">
+                        <t t-set="rows" t-value="o._ar_rows(spec[0])"/>
+                        <table class="tap ar" style="margin-bottom: 14px;">
+                            <colgroup>
+                                <t t-if="spec[2]"><col style="width: 82%;"/><col style="width: 6%;"/><col style="width: 6%;"/><col/></t>
+                                <t t-else=""><col style="width: 88%;"/><col/></t>
+                            </colgroup>
+                            <tr t-if="spec[1]"><td t-att-colspan="4 if spec[2] else 2" class="dark">Inspected requirements of the standard according to the audit plan</td></tr>
+                            <t t-foreach="rows" t-as="row">
+                                <tr t-if="row.kind == 'head' and spec[2]">
+                                    <td t-att-class="'bold' if spec[1] else 'dark'" t-out="row.label"/>
+                                    <td t-att-class="'bold center' if spec[1] else 'dark center'">CA / R</td>
+                                    <td t-att-class="'bold center' if spec[1] else 'dark center'">1. SA</td>
+                                    <td t-att-class="'bold center' if spec[1] else 'dark center'">2. SA</td>
+                                </tr>
+                                <tr t-elif="row.kind == 'head'">
+                                    <td class="bold" t-out="row.label"/><td class="bold center">Audited</td>
+                                </tr>
+                                <tr t-elif="spec[2]">
+                                    <td t-out="row.label"/>
+                                    <td class="center tap-box" t-out="'☒' if row.ca else '☐'"/>
+                                    <td class="center tap-box" t-out="'☒' if row.sa1 else '☐'"/>
+                                    <td class="center tap-box" t-out="'☒' if row.sa2 else '☐'"/>
+                                </tr>
+                                <tr t-else="">
+                                    <td t-out="row.label"/>
+                                    <td class="center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+
+                    <!-- ================= Positive findings ================= -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar">
+                        <tr><td colspan="2" class="lbl center" style="height: 24px;">LIST OF POSITIVE FINDINGS</td></tr>
+                        <tr><td class="lbl center" style="width: 7%;">No.</td><td class="lbl center">Description</td></tr>
+                        <t t-set="pos" t-value="list(o.ar_positive_ids)"/>
+                        <tr t-foreach="pos + [False] * max(0, 3 - len(pos))" t-as="f" style="height: 22px;">
+                            <td t-out="f and f.number or ''"/><td t-out="f and f.description or ''"/>
+                        </tr>
+                    </table>
+
+                    <!-- ================= Findings / nonconformities ================= -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar" style="font-size: 10px;">
+                        <colgroup>
+                            <col style="width: 4%;"/><col style="width: 6%;"/><col style="width: 6%;"/><col style="width: 22%;"/>
+                            <col style="width: 5%;"/><col style="width: 17%;"/><col style="width: 7%;"/><col style="width: 15%;"/><col/>
+                        </colgroup>
+                        <tr><td colspan="9" class="lbl center" style="font-size: 12px; height: 22px;">LIST OF FINDINGS / NONCONFORMITIES</td></tr>
+                        <tr class="center bold">
+                            <td class="lbl center">No.</td><td class="lbl center">Relevant standard</td><td class="lbl center">Clause of the standard</td>
+                            <td class="lbl center">Description of finding</td><td class="lbl center">Rating *)</td>
+                            <td class="center blue">Root cause and corrective action</td>
+                            <td class="center blue">Completion of corrective action until:</td>
+                            <td class="center pink">Correction evidence for nonconformities</td>
+                            <td class="center pink">Evaluation/Verification of corrective action</td>
+                        </tr>
+                        <tr><td colspan="9" style="font-size: 9px;">*) Rating: 1 = Fully compliant; 2 = Opportunity for improvement; 3 = Minor nonconformity; 4/5 = Major nonconformity; NA = not applicable or/and excluded</td></tr>
+                        <tr><td colspan="9" class="lbl center">NONCONFORMITIES from the last audit</td></tr>
+                        <t t-foreach="[('last', list(o.ar_nc_last_ids), 1), ('this', list(o.ar_nc_this_ids), 6)]" t-as="part">
+                            <tr t-if="part[0] == 'this'"><td colspan="9" class="lbl center">LIST OF FINDINGS / NONCONFORMITIES from this audit</td></tr>
+                            <tr t-foreach="part[1] + [False] * max(0, part[2] - len(part[1]))" t-as="f" style="height: 22px;">
+                                <td t-out="f and f.number or ''"/><td t-out="f and f.standard or ''"/><td t-out="f and f.clause or ''"/>
+                                <td t-out="f and f.description or ''"/>
+                                <td class="center" t-out="f and f.rating and f.rating.upper() or ''"/>
+                                <td class="blue" t-out="f and f.corrective_action or ''"/>
+                                <td class="blue center" t-out="f and f.completion_date and f.completion_date.strftime('%d.%m.%Y') or ''"/>
+                                <td class="pink" t-out="f and f.evidence or ''"/>
+                                <td class="pink" t-out="f and f.verification or ''"/>
+                            </tr>
+                        </t>
+                        <t t-call="tuv_audit_reports.report_audit_report_form_signoff">
+                            <t t-set="place_date" t-value="o.ar_nc_place_date"/>
+                            <t t-set="completion" t-value="o.ar_nc_completion_place_date"/>
+                            <t t-set="left_span" t-value="5"/><t t-set="right_span" t-value="4"/>
+                            <t t-set="lead_span" t-value="3"/><t t-set="rep_span" t-value="2"/>
+                            <t t-set="rep2_span" t-value="2"/><t t-set="lead2_span" t-value="2"/>
+                        </t>
+                    </table>
+
+                    <!-- ================= 5. Recommendation ================= -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap ar">
+                        <colgroup>
+                            <col style="width: 14%;"/><col style="width: 4%;"/><col style="width: 30%;"/>
+                            <col style="width: 4%;"/><col style="width: 4%;"/><col/>
+                        </colgroup>
+                        <tr><td colspan="6" class="bar">5. Recommendation of the audit team</td></tr>
+                        <tr>
+                            <td colspan="2" class="bold">The certification scope is appropriate</td>
+                            <td class="bold">Yes <t t-out="'☒' if o.ar_scope_appropriate == 'yes' else '☐'"/></td>
+                            <td colspan="3" class="bold">No <t t-out="'☒' if o.ar_scope_appropriate == 'no' else '☐'"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bold">The audit objectives have been fulfilled</td>
+                            <td class="bold">Yes <t t-out="'☒' if o.ar_objectives_fulfilled == 'yes' else '☐'"/></td>
+                            <td colspan="3" class="bold">No <t t-out="'☒' if o.ar_objectives_fulfilled == 'no' else '☐'"/></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Standard(s)</td>
+                            <td colspan="5" class="bold">Audit team suggestion</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="center" t-out="o.ar_rec_standards or '……………'"/>
+                            <td class="center" t-out="'☒' if o.ar_rec_suggestion == 'issue' else '☐'"/>
+                            <td>Issue of the certificate</td>
+                            <td rowspan="3" class="center bold" style="font-size: 10px;">AFTER</td>
+                            <td class="center" t-out="'☒' if o.ar_rec_after == 'no_action' else '☐'"/>
+                            <td>no other action</td>
+                        </tr>
+                        <tr>
+                            <td class="center" t-out="'☒' if o.ar_rec_suggestion == 'maintenance' else '☐'"/>
+                            <td>Maintenance of certificate</td>
+                            <td class="center" t-out="'☒' if o.ar_rec_after == 'documents' else '☐'"/>
+                            <td>Correction of nonconformities with the submission of documents</td>
+                        </tr>
+                        <tr>
+                            <td class="center" t-out="'☒' if o.ar_rec_suggestion == 'renewal' else '☐'"/>
+                            <td>Renewal of certificate</td>
+                            <td class="center" t-out="'☒' if o.ar_rec_after == 'reaudit' else '☐'"/>
+                            <td>Correction of nonconformities with the Re-audit</td>
+                        </tr>
+                        <tr>
+                            <td class="center" t-out="'☒' if o.ar_rec_suggestion == 'withdrawal' else '☐'"/>
+                            <td>Withdrawal of certificate</td>
+                            <td colspan="3"/>
+                        </tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.form_plan_signatures">
+                        <t t-set="place" t-value="o.ar_place"/>
+                        <t t-set="sign_date" t-value="o.ar_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.ar_lead_signature"/>
+                        <t t-set="auditor_signature" t-value="o.ar_auditor_signature"/>
+                    </t>
+
+                    <!-- ================= Disclaimer, 6. Distribution list ================= -->
+                    <div style="page-break-before: always;"/>
+                    <div class="ar-text" style="font-size: 12px; text-align: justify;">
+                        <p><b>Other Information / Disclaimer:</b></p>
+                        <p style="margin: 0;">During the validity of the certificate, the certified company is obliged to inform the certification body about relevant changes in the management system and its documentation.</p>
+                        <p style="margin: 0;">It should be noted that the audit is conducted based on sampling of available information, which may result in nonconformities in addition to those documented during the audit.</p>
+                        <p style="margin: 0;">The result of the audit does not relieve the audited company of its responsibility for the control of the existing management system and for the maintenance and conformity with the requirements of the standard(s) for which the certificate(s) has/have been issued.</p>
+                        <p>The certification body or the auditor shall under no circumstances replace the control carried out by the competent national authorities.</p>
+                        <p>*) The audit involves assessing the performance of the management system in ensuring that the company fundamentally meets the applicable legal, regulatory, and contractual requirements. This evaluation is based on samples viewed and is not an assessment of compliance with legal requirements. The responsibility for enforcement and assessment of compliance with the relevant laws and regulations remains with the company in all cases.</p>
+                    </div>
+                    <table class="tap" style="margin-top: 18px;"><tr><td class="bar">6.  Distribution list</td></tr></table>
+                    <ul class="ar-text" style="margin-top: 10px;">
+                        <li>Client</li>
+                        <li>Certification body of TÜV AUSTRIA</li>
+                        <li>Audit team</li>
+                    </ul>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

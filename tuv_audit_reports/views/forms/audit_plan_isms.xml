@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit Plan ISMS (FM-TAGMBH-MSZ-002): the block under sections 1 and 2.
+         tools/gen_standalone_views.py copies it to the standalone form. -->
+    <record id="project_block_audit_plan_isms" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_plan_isms</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_plan_isms" invisible="audit_report_key != 'audit_plan_isms'">
+                    <div class="alert alert-warning py-1" role="alert">
+                        ATTENTION: This audit plan requires the newest ISMS Audit-Checklist! (up from 20.05.2025)
+                    </div>
+
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional relationship of any kind
+                        and have not provided any kind of advisory service or any kind of service (internal
+                        audits, design / development of management system) for the company being audited,
+                        or another company legally associated with this company, during the last two (2)
+                        years, at least. Also, they are committed that they will not develop any kind of
+                        cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally, they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <separator string="Audit Schedule"/>
+                    <div class="text-muted small mb-1">
+                        In "Audit content": first line bold, a line starting with "- " is a bullet,
+                        "[blue]" / "[red]" before a line prints it as a coloured heading.
+                    </div>
+                    <field name="ip_schedule_line_ids">
+                        <list editable="bottom" decoration-bf="is_section" decoration-info="is_section">
+                            <field name="sequence" widget="handle"/>
+                            <field name="schedule_kind" column_invisible="1"/>
+                            <field name="is_section" optional="show"/>
+                            <field name="date"/>
+                            <field name="time_from" widget="float_time"/>
+                            <field name="time_to" widget="float_time"/>
+                            <field name="content"/>
+                            <field name="participants"/>
+                            <field name="auditors"/>
+                        </list>
+                    </field>
+                    <div class="text-muted small">
+                        <p>Changes of the audit action are possible.</p>
+                        <p>Participants are to be appointed by the company.</p>
+                        <p>The participants in the closing meeting must always be updated here in the event
+                            of a change or listed separately in the audit report. For ISO 45001: a
+                            justification must be provided if certain people are unable to attend the
+                            closing meeting.</p>
+                    </div>
+
+                    <separator string="Signatures"/>
+                    <group>
+                        <group>
+                            <field name="ip_sign_place"/>
+                            <field name="ip_sign_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="ip_lead_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="ip_auditor_signature" widget="signature" string="Signature(s)"/>
+                        </group>
+                    </group>
+
+                    <separator string="Significant Issues Impacting on the Audit Program"/>
+                    <field name="ip_significant_issues"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

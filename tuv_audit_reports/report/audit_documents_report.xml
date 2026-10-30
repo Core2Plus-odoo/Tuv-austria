@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Reference documents (PNAC audit guidelines ISO 9001 / 14001 / 45001, A4 portrait):
+         the whole Word document, drawn from data/checklists/<key>.json. -->
+    <record id="paperformat_tuv_document" model="report.paperformat">
+        <field name="name">TUV Document (A4 portrait)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">34</field>
+        <field name="margin_bottom">18</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">28</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_audit_document" model="ir.actions.report">
+        <field name="name">Audit Guideline</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_document</field>
+        <field name="report_file">tuv_audit_reports.report_audit_document</field>
+        <field name="print_report_name">object.audit_report_id.name or 'Audit Guideline'</field>
+        <field name="paperformat_id" ref="paperformat_tuv_document"/>
+    </record>
+
+    <template id="report_audit_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="doc" t-value="o._doc_payload()"/>
+                <t t-set="meta" t-value="doc['meta']"/>
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="meta['title']"/>
+                <t t-set="form_subtitle" t-value="meta['subtitle']"/>
+                <t t-set="form_code" t-value="meta['code']"/>
+                <t t-set="form_revision" t-value="meta['revision']"/>
+                <t t-set="form_vkl" t-value="meta['vkl']"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <table class="tap" style="font-size: 12px;">
+                        <tr>
+                            <td class="center bold" style="font-size: 16px; height: 30px;" t-out="form_title"/>
+                            <td rowspan="2" class="center" style="width: 22%; padding: 2px;">
+                                <img t-att-src="logo" style="max-height: 56px; max-width: 100%;" alt="TUV Austria"/>
+                            </td>
+                        </tr>
+                        <tr><td class="center bold" style="font-size: 11px; height: 22px;" t-out="form_subtitle"/></tr>
+                    </table>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>
+                        .tap-grid { font-size: 11px; table-layout: fixed; }
+                        .tap-grid td { padding: 3px 5px; word-wrap: break-word; vertical-align: top; }
+                        .tap-text { font-size: 12px; }
+                    </style>
+                    <t t-call="tuv_audit_reports.form_docx_blocks">
+                        <t t-set="blocks" t-value="doc['blocks']"/>
+                        <t t-set="ticks" t-value="False"/>
+                        <t t-set="mandatory" t-value="False"/>
+                    </t>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <table class="tap" style="font-size: 9px;">
+                        <tr>
+                            <td class="center" style="width: 46%;" t-out="form_code"/>
+                            <td class="center" style="width: 22%;">Revision: <t t-out="form_revision"/></td>
+                            <td class="center" style="width: 14%;">VKL: <t t-out="form_vkl"/></td>
+                            <td class="center">Page <b class="page"/> of <b class="topage"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

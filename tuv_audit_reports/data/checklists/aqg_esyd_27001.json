@@ -1,0 +1,13339 @@
+{
+"key": "aqg_esyd_27001",
+"meta": {
+"title": "Audit-Questionnaire / ISO 27001:2022",
+"subtitle": "TÜV AUSTRIA Group",
+"code": "FM-BA-ZET-MS-All-008-AQG-27001-EN_CHECKLIST",
+"revision": "01_01.06.2023",
+"vkl": "Internal",
+"landscape": false,
+"sz": 20
+},
+"lines": [
+{
+"list": "objective",
+"label": "Verification of the conformity of the customer's management system or parts thereof with audit criteria within the framework of the management system",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "objective",
+"label": "Verification of the ability of the management system to ensure that the client organisation complies with applicable legal, regulatory and contractual requirements",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "objective",
+"label": "Verification of the effectiveness of the management system to ensure that the client organisation can expect to achieve its defined objectives",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "objective",
+"label": "Where appropriate, identify areas for possible improvement of the management system",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "objective",
+"label": "Ensuring the ongoing development of the management system",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "objective",
+"label": "Review of changes to a management system",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "objective",
+"label": "Validation of the effectiveness of the application of the management system in the previous period (valid for surveillance or recertification audits) and verification of its operational readiness for the coming period",
+"section": "Audit Objective",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Licenses and Approvals from National Authorities:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Mandatory Legislation, standards, regulations, Ministerial Decisions etc.:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Fire Safety Certificate:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Approval of Environmental Terms:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Safety Engineer:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "legal",
+"label": "Occupational Doctor:",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Context of the organization",
+"section": "Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Understanding the organization and its context",
+"section": "Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Understanding the needs and expectations of interested parties",
+"section": "Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Determining the scope of ISMS",
+"section": "Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Information Security Management System (ISMS)",
+"section": "Context of the organization",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Leadership",
+"section": "Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Leadership and commitment",
+"section": "Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Policy",
+"section": "Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Organizational roles, responsibilities, and authorities",
+"section": "Leadership",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Planning",
+"section": "Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Actions to risks and opportunities",
+"section": "Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Statement of Applicability (SOA)",
+"section": "Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Information security objectives and planning to achieve them",
+"section": "Planning",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Support",
+"section": "Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Resources",
+"section": "Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Competence",
+"section": "Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Awareness",
+"section": "Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Communication",
+"section": "Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Documented Information",
+"section": "Support",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Operation",
+"section": "Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Operational planning and control",
+"section": "Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Information security Risk Assessment",
+"section": "Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Information security Risk Treatment",
+"section": "Operation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Performance evaluation",
+"section": "Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Monitoring, measurement, analysis and evaluation",
+"section": "Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Internal Audit",
+"section": "Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Management review",
+"section": "Performance evaluation",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Improvement",
+"section": "Improvement",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Continual improvement",
+"section": "Improvement",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "Nonconformity and corrective action",
+"section": "Improvement",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "5. Organizational controls",
+"section": "5. Organizational controls",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "6.  People controls",
+"section": "6.  People controls",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "7.  Physical controls",
+"section": "7.  Physical controls",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "clause",
+"label": "8.  Technological controls",
+"section": "8.  Technological controls",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 4 §4.1 §4.2 §4.3 §4.4",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 5 §5.1 §5.2 §5.3",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 6 §6.1 §6.2 §6.3",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 7 §7.1 §7.2 §7.3 §7.4 §7.5",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 8 §8.1 §8.2 §8.3",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 9 §9.1 §9.2 §9.3",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "Clauses 4 - 10",
+"ref": "Clause 10 §10.1 §10.2",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.1 Policies for information security",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.2 Information security roles and responsibilities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.3 Segregation of duties",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.4 Management responsibilities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.5 Contact with authorities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.6 Contact with special interest groups",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.7 Threat intelligence",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.8 Information security in project management",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.9 Inventory of information and other associated assets",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.10 Acceptable use of information and other associated assets",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.11 Return of assets",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.12 Classification of information",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.13 Labelling of information",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.14 Information transfer",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.15 Access control",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.16 Identity management",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.17 Authentication information",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.18 Access rights",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.19 Information security in supplier relationships",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.20 Addressing information security within supplier agreements",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.21 Managing information security in the information and communication technology (ICT) supply chain",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.22 Monitoring, review and change management of supplier services",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.23 Information security for use of cloud services",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.24 Information security incident management planning and preparation",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.25 Assessment and decision on information security events",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.26 Response to information security incidents",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.27 Learning from information security incidents",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.28 Collection of evidence",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.29 Information security during disruption",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.30 ICT readiness for business continuity",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.31 Legal, statutory, regulatory and contractual requirements",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.32 Intellectual property rights",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.33 Protection of records",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.34 Privacy and protection of personal identifiable information (PII)",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.35 Independent review of information security",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.36 Compliance with policies, rules and standards for information security",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "5. Organizational controls",
+"ref": "5.37 Documented operating procedures",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.1 Screening",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.2 Terms and conditions of employment",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.3 Information security awareness, education and training",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.4 Disciplinary process",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.5 Responsibilities after termination or change of employment",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.6 Confidentiality or non-disclosure agreements",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.7 Remote working",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "6.  People controls",
+"ref": "6.8 Information security event reporting",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.1 Physical security perimeters",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.2 Physical entry",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.3 Securing offices, rooms and facilities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.4 Physical security monitoring",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.5 Protecting against physical and environmental threats",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.6 Working in secure areas",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.7 Clear desk and clear screen",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.8 Equipment siting and protection",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.9 Security of assets off-premises",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.10 Storage media",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.11 Supporting utilities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.12 Cabling security",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.13 Equipment maintenance",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "7.14 Secure disposal or re-use of equipment",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.1 User end point devices",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.2 Privileged access rights",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.3 Information access restriction",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.4 Access to source code",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.5 Secure authentication",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.6 Capacity management",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.7 Protection against malware",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.8 Management of technical vulnerabilities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.9 Configuration management",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.10 Information deletion",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.11 Data masking",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.12 Data leakage prevention",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.13 Information backup",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.14 Redundancy of information processing facilities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.15 Logging",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.16 Monitoring activities",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.17 Clock synchronization",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.18 Use of privileged utility programs",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.19 Installation of software on operational systems",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.20 Networks security",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.21 Security of network services",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.22 Segregation of networks",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.23 Web filtering",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.24 Use of cryptography",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.25 Secure development life cycle",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.26 Application security requirements",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.27 Secure system architecture and engineering principles",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.28 Secure coding",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.29 Security testing in development and acceptance",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.30 Outsourced development",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.31 Separation of development, test and production environments",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.32 Change management",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.33 Test information",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "evidence",
+"label": "",
+"section": "7.  Physical controls",
+"ref": "8.34 Protection of information systems during audit testing",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+false,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+}
+],
+"blocks": [
+{
+"type": "table",
+"widths": [
+15.22,
+3.75,
+8.83,
+3.21,
+5.74,
+5.64,
+9.79,
+2.35,
+9.09,
+8.0,
+9.33,
+19.04
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"1. Company Information"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 12
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 36.9pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company name"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 36.9pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 8,
+"ap": "partner"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Address"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 8,
+"ap": "address"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 45.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Other audited sites"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 45.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 8,
+"ap": "sites"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 36.9pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company representative"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 36.9pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 8,
+"ap": "representative"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 76.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company description,"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"business activities"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 76.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 8,
+"ap": "scope"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 25.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"2. Audit Information"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 12
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit date"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Stage 1:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "stage1"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Stage 2:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "stage2"
+}
+],
+"cs": 3
+},
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 3
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Surveillance:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "surveillance"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Recertification:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "recertification"
+}
+],
+"cs": 6
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;",
+"ap": "audit_type"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit method:"
+]
+],
+"st": "font-size: 9pt;",
+"ap": "method"
+}
+],
+"cs": 3
+},
+{
+"st": "vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Number of employees relevant for the Scope:"
+]
+],
+"st": "font-size: 9pt;",
+"ap": "employees_scope"
+}
+],
+"cs": 4
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit Standard(s)"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 2,
+"rs": 2
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 1:"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 3
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 2:"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 3
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 3:"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 2
+},
+{
+"st": "background: #BFBFBF; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Other (specify):"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 26.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 3,
+"ap": "std:1"
+},
+{
+"st": "vertical-align: middle; height: 26.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 3,
+"ap": "std:2"
+},
+{
+"st": "vertical-align: middle; height: 26.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 2,
+"ap": "std:3"
+},
+{
+"st": "vertical-align: middle; height: 26.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 2,
+"ap": "std:4+"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 181.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit Objective"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 181.8pt;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+0,
+"box_1"
+]
+},
+"Verification of the conformity of the customer's management system or parts thereof with audit criteria within the framework of the management system"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+{
+"in": [
+1,
+"box_1"
+]
+},
+"Verification of the ability of the management system to ensure that the client organisation complies with applicable legal, regulatory and contractual requirements"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+{
+"in": [
+2,
+"box_1"
+]
+},
+"Verification of the effectiveness of the management system to ensure that the client organisation can expect to achieve its defined objectives"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+{
+"in": [
+3,
+"box_1"
+]
+},
+"Where appropriate, identify areas for possible improvement of the management system"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+{
+"in": [
+4,
+"box_1"
+]
+},
+"Ensuring the ongoing development of the management system"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+{
+"in": [
+5,
+"box_1"
+]
+},
+"Review of changes to a management system"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+},
+{
+"parts": [
+[
+{
+"in": [
+6,
+"box_1"
+]
+},
+"Validation of the effectiveness of the application of the management system in the previous period (valid for surveillance or recertification audits) and verification of its operational readiness for the coming period"
+]
+],
+"st": "font-size: 9pt; text-align: justify;"
+}
+],
+"cs": 10
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Scope of application"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 2,
+"rs": 2
+},
+{
+"st": "vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 10,
+"ap": "scope"
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+{
+"ap": "scope_nochange"
+},
+"No Changes   "
+],
+[
+{
+"ap": "scope_adjust"
+},
+"Adjustment required"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 5
+},
+{
+"st": "vertical-align: middle; height: 42.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"EAC Scope:"
+]
+],
+"st": "font-size: 9pt;",
+"ap": "eac"
+},
+{
+"parts": [
+[
+null,
+"NACE CODE:"
+]
+],
+"st": "font-size: 9pt;",
+"ap": "nace"
+},
+{
+"parts": [
+[
+null,
+"Category (per Standard):"
+]
+],
+"st": "font-size: 9pt;",
+"ap": "category"
+},
+{
+"parts": [
+[
+null,
+"Other:"
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"cs": 5
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 28.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Lead Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 3
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 28.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 28.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 28.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 3,
+"ap": "lead"
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 4,
+"ap": "team:0:3"
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"cs": 4,
+"ap": "team:1:3"
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt; color: #808080;"
+}
+],
+"ap": "team:2:3"
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+38.69,
+61.31
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"3. Legislative Requirements:"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Licenses and Approvals from National Authorities:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+7,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory Legislation, standards, regulations, Ministerial Decisions etc.:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+8,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Fire Safety Certificate:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+9,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Approval of Environmental Terms:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+10,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Safety Engineer:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+11,
+"text_1"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Occupational Doctor:"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 17.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"in": [
+12,
+"text_1"
+]
+}
+]
+}
+]
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+31.56,
+68.44
+],
+"head": 1,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #CC0000; color: #FFFFFF; vertical-align: middle; height: 15.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard requirements"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+],
+[
+{
+"in": [
+13,
+"box_1"
+]
+},
+" Context of the organization"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+14,
+"box_1"
+]
+},
+"Understanding the organization and"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clauses 4 - 10"
+]
+],
+"st": "font-weight: bold; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+"its context"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; text-align: center;"
+}
+]
+},
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Status"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; text-align: center;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+15,
+"box_1"
+]
+},
+"Understanding the needs and expectations of interested parties"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+16,
+"box_1"
+]
+},
+"Determining the scope of ISMS"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+17,
+"box_1"
+]
+},
+"Information Security Management System (ISMS)"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 4"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§4.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§4.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§4.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§4.4"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§4.3 – Scope of the ISMS"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+47,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+18,
+"box_1"
+]
+},
+"Leadership"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+19,
+"box_1"
+]
+},
+"Leadership and commitment"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+20,
+"box_1"
+]
+},
+"Policy"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+21,
+"box_1"
+]
+},
+"Organizational roles, responsibilities, and authorities"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 5"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§5.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§5.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§5.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§5.2 – Information security policy"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+48,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+22,
+"box_1"
+]
+},
+"Planning"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+23,
+"box_1"
+]
+},
+"Actions to risks and opportunities"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+24,
+"box_1"
+]
+},
+"Statement of Applicability (SOA)"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+25,
+"box_1"
+]
+},
+"Information security objectives and planning to achieve them"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+26,
+"box_1"
+]
+},
+"Support"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+27,
+"box_1"
+]
+},
+"Resources"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 6"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.1.2 – Information security risk assessment process"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.1.3 – Information security risk treatment process"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.1.3 – Statement of Applicability (SOA)"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§6.2 – Information security objectives"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+49,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+28,
+"box_1"
+]
+},
+"Competence"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+29,
+"box_1"
+]
+},
+"Awareness"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+30,
+"box_1"
+]
+},
+"Communication"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+31,
+"box_1"
+]
+},
+"Documented Information"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+32,
+"box_1"
+]
+},
+"Operation"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+33,
+"box_1"
+]
+},
+"Operational planning and control"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 7"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.4"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.5"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.2 – Evidence of competence"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§7.5.3 – Documented information that is necessary for the ISMS"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+50,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+34,
+"box_1"
+]
+},
+"Information security Risk Assessment"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+35,
+"box_1"
+]
+},
+"Information security Risk Treatment"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+36,
+"box_1"
+]
+},
+"Performance evaluation"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+37,
+"box_1"
+]
+},
+"Monitoring, measurement, analysis and evaluation"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+38,
+"box_1"
+]
+},
+"Internal Audit"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 8"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§8.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§8.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§8.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§8.2 – Results of information security Risk Assessments"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§8.3 – Results of information security Risk Treatment"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+51,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+39,
+"box_1"
+]
+},
+"Management review"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+40,
+"box_1"
+]
+},
+"Improvement"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+41,
+"box_1"
+]
+},
+"Continual improvement"
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+{
+"in": [
+42,
+"box_1"
+]
+},
+"Nonconformity and corrective action"
+]
+],
+"st": "font-size: 9pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 9"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§9.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§9.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§9.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§9.1 – Evidence of results of monitoring and measurement"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§9.2 – Evidence of the implementation of the audit programme(s) and the audit results"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§9.3 – Results of management reviews"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+52,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Clause 10"
+]
+],
+"st": "font-size: 9pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§10.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§10.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Mandatory documents:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§10.2 – Evidence of the nature of the nonconformities and any subsequent actions taken"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"§10.2 – Evidence of the results of any corrective action"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+53,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+null,
+"ANNEX A"
+]
+],
+"st": "font-weight: bold; color: #FF0000;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"ANNEX A"
+]
+],
+"st": "font-weight: bold; text-align: center;"
+}
+]
+}
+],
+"pb": true
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+43,
+"box_1"
+]
+},
+"5. Organizational controls"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+44,
+"box_1"
+]
+},
+"6.  People controls"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Controls"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; text-align: center;"
+}
+]
+},
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Status"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; text-align: center;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": [
+{
+"parts": [
+[
+{
+"in": [
+45,
+"box_1"
+]
+},
+"7.  Physical controls"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+},
+{
+"parts": [
+[
+{
+"in": [
+46,
+"box_1"
+]
+},
+"8.  Technological controls"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FF0000;"
+}
+]
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+},
+{
+"parts": [
+[
+null,
+"5. Organizational controls"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; text-align: center;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"cs": 2
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Policies for information security"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+54,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security roles and responsibilities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+55,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Segregation of duties"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+56,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.4"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Management responsibilities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+57,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.5"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Contact with authorities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+58,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.6"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Contact with special interest groups"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+59,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.7"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Threat intelligence"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+60,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.8"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security in project management"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+61,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.9"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Inventory of information and other associated assets"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+62,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.10"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Acceptable use of information and other associated assets"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+63,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.11"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Return of assets"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+64,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.12"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Classification of information"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+65,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.13"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Labelling of information"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+66,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.14"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information transfer"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+67,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.15"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Access control"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+68,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.16"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Identity management"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+69,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.17"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Authentication information"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+70,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.18"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Access rights"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+71,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.19"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security in supplier relationships"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+72,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.20"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Addressing information security within supplier agreements"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+73,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.21"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Managing information security in the information and communication technology (ICT) supply chain"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+74,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.22"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Monitoring, review and change management of supplier services"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+75,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.23"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security for use of cloud services"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+76,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.24"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security incident management planning and preparation"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+77,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.25"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Assessment and decision on information security events"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+78,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.26"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Response to information security incidents"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+79,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.27"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Learning from information security incidents"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+80,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.28"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Collection of evidence"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+81,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.29"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security during disruption"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+82,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.30"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"ICT readiness for business continuity"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+83,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.31"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Legal, statutory, regulatory and contractual requirements"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+84,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.32"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Intellectual property rights"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+85,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.33"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Protection of records"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+86,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.34"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Privacy and protection of personal identifiable information (PII)"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+87,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.35"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Independent review of information security"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+88,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.36"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Compliance with policies, rules and standards for information security"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+89,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.37"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Documented operating procedures"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+90,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+},
+{
+"parts": [
+[
+null,
+"6.  People controls"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; text-align: center;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"cs": 2
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Screening"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+91,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Terms and conditions of employment"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+92,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security awareness, education and training"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+93,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.4"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Disciplinary process"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+94,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.5"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Responsibilities after termination or change of employment"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+95,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.6"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Confidentiality or non-disclosure agreements"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+96,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.7"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Remote working"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+97,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.8"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information security event reporting"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+98,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+},
+{
+"parts": [
+[
+null,
+"7.  Physical controls"
+]
+],
+"st": "font-size: 8pt; font-weight: bold; text-align: center;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"cs": 2
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Physical security perimeters"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+99,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Physical entry"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+100,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Securing offices, rooms and facilities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+101,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.4"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Physical security monitoring"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+102,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.5"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Protecting against physical and environmental threats"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+103,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.6"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Working in secure areas"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+104,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.7"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Clear desk and clear screen"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+105,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.8"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Equipment siting and protection"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+106,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.9"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Security of assets off-premises"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+107,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.10"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Storage media"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+108,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.11"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Supporting utilities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+109,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.12"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Cabling security"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+110,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.13"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Equipment maintenance"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+111,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.14"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Secure disposal or re-use of equipment"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+112,
+"text_1"
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"8.  Technological controls"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.1"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"User end point devices"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+113,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.2"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Privileged access rights"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+114,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.3"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information access restriction"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+115,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.4"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Access to source code"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+116,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.5"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Secure authentication"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+117,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.6"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Capacity management"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+118,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.7"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Protection against malware"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+119,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.8"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Management of technical vulnerabilities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+120,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.9"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Configuration management"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+121,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.10"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information deletion"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+122,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.11"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Data masking"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+123,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.12"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Data leakage prevention"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+124,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.13"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Information backup"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+125,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.14"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Redundancy of information processing facilities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+126,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.15"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Logging"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+127,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.16"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Monitoring activities"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+128,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.17"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Clock synchronization"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+129,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.18"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Use of privileged utility programs"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+130,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.19"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Installation of software on operational systems"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+131,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.20"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Networks security"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+132,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.21"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Security of network services"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+133,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.22"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Segregation of networks"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+134,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.23"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Web filtering"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+135,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.24"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Use of cryptography"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+136,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.25"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Secure development life cycle"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+137,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.26"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Application security requirements"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+138,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.27"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Secure system architecture and engineering principles"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+139,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.28"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Secure coding"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+140,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.29"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Security testing in development and acceptance"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+141,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.30"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Outsourced development"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+142,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.31"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Separation of development, test and production environments"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+143,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.32"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Change management"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+144,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none; border-bottom: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.33"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Test information"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+145,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; border-top: none;",
+"ps": []
+},
+{
+"st": "vertical-align: top; padding: 0;",
+"ps": [
+{
+"tbl": {
+"type": "table",
+"widths": [
+30.0,
+70.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.34"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Protection of information systems during audit testing"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Objective evidences:"
+]
+],
+"st": "font-size: 8pt; font-weight: bold;",
+"in": [
+146,
+"text_1"
+]
+}
+]
+}
+]
+}
+]
+}
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #CC0000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor Notes"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 497.9pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+},
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 9pt;"
+}
+],
+"f": "notes"
+}
+]
+}
+]
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #FF0000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"List of improvement hints"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "checks",
+"f": "hints"
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #FF0000; color: #FFFFFF; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"List of positive Findings"
+]
+],
+"st": "font-size: 9pt; font-weight: bold; color: #FFFFFF;"
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "checks",
+"f": "findings"
+}
+]
+}

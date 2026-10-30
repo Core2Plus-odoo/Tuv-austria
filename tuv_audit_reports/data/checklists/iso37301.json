@@ -1,0 +1,1719 @@
+{
+ "key": "iso37301",
+ "meta": {
+  "show_email": false,
+  "scope_label": "Company description, business activities",
+  "duration_label": "value",
+  "category_label": "Category (ISO 22003/ISO 13485):",
+  "title": "Audit checklist ISO 37301",
+  "subtitle": "Certification of Management Systems",
+  "code": "FM-TAGMBH-MSZ-025_Audit-Checklist-ISO-37301-EN",
+  "revision": "01/17.10.2024",
+  "vkl": "Internal"
+ },
+ "elements": [
+  {
+   "group": "",
+   "clause": "4.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "4.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "4.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "4.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "4.5",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "4.6",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "9.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "9.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "9.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "10.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "10.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  }
+ ],
+ "blocks": [
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    5.57,
+    3.82,
+    3.83,
+    3.83,
+    6.69,
+    6.69,
+    69.57
+   ],
+   "rows": [
+    [
+     {
+      "cs": 7,
+      "bg": "red",
+      "t": "Process-oriented audit",
+      "b": true
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "t": "Required standard elements per audit type¹",
+      "b": true
+     },
+     {
+      "cs": 3,
+      "t": "List of required mandatory documents²",
+      "b": true,
+      "rs": 2
+     }
+    ],
+    [
+     {},
+     {
+      "t": "CA/\nRA"
+     },
+     {
+      "t": "1. SA",
+      "al": "c"
+     },
+     {
+      "t": "2. SA"
+     }
+    ],
+    [
+     {
+      "t": "4.1"
+     },
+     {
+      "box": [
+       0,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       0,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       0,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.1"
+     },
+     {
+      "t": "Understanding the organization and its context"
+     }
+    ],
+    [
+     {
+      "t": "4.2"
+     },
+     {
+      "box": [
+       1,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       1,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       1,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.2"
+     },
+     {
+      "t": "Understanding the needs and expectations of interested parties"
+     }
+    ],
+    [
+     {
+      "t": "4.3"
+     },
+     {
+      "box": [
+       2,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       2,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       2,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-01"
+     },
+     {
+      "t": "4.3"
+     },
+     {
+      "t": "Determining the scope of the compliance management system"
+     }
+    ],
+    [
+     {
+      "t": "4.4"
+     },
+     {
+      "box": [
+       3,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       3,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       3,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-08"
+     },
+     {
+      "t": "4.4"
+     },
+     {
+      "t": "Compliance management system"
+     }
+    ],
+    [
+     {
+      "t": "4.5"
+     },
+     {
+      "box": [
+       4,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.5"
+     },
+     {
+      "t": "Compliance obligations"
+     }
+    ],
+    [
+     {
+      "t": "4.6"
+     },
+     {
+      "box": [
+       5,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       5,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       5,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.6"
+     },
+     {
+      "t": "Compliance risk assessment"
+     }
+    ],
+    [
+     {
+      "t": "5.1",
+      "rs": 4
+     },
+     {
+      "box": [
+       6,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       6,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       6,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.1"
+     },
+     {
+      "t": "Leadership and commitment"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.1.1"
+     },
+     {
+      "t": "Governing body and top management"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.1.2"
+     },
+     {
+      "t": "Compliance culture"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.1.3"
+     },
+     {
+      "t": "Compliance governance"
+     }
+    ],
+    [
+     {
+      "t": "5.2"
+     },
+     {
+      "box": [
+       7,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       7,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       7,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-02"
+     },
+     {
+      "t": "5.2"
+     },
+     {
+      "t": "Compliance policy"
+     }
+    ],
+    [
+     {
+      "t": "5.3",
+      "rs": 5
+     },
+     {
+      "box": [
+       8,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       8,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       8,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.3"
+     },
+     {
+      "t": "Roles, responsibilities and authorities"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.3.1"
+     },
+     {
+      "t": "Governing body and top management"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.3.2"
+     },
+     {
+      "t": "Compliance function"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.3.3"
+     },
+     {
+      "t": "Management"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.3.4"
+     },
+     {
+      "t": "Personnel"
+     }
+    ],
+    [
+     {
+      "t": "6.1"
+     },
+     {
+      "box": [
+       9,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.1"
+     },
+     {
+      "t": "Actions to address risks and opportunities"
+     }
+    ],
+    [
+     {
+      "t": "6.2"
+     },
+     {
+      "box": [
+       10,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-03"
+     },
+     {
+      "t": "6.2"
+     },
+     {
+      "t": "Compliance objectives and planning to achieve them"
+     }
+    ],
+    [
+     {
+      "t": "6.3"
+     },
+     {
+      "box": [
+       11,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       11,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       11,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-04"
+     },
+     {
+      "t": "6.3"
+     },
+     {
+      "t": "Planning of changes"
+     }
+    ],
+    [
+     {
+      "t": "7.1"
+     },
+     {
+      "box": [
+       12,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       12,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       12,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.1"
+     },
+     {
+      "t": "Resources"
+     }
+    ],
+    [
+     {
+      "t": "7.2",
+      "rs": 4
+     },
+     {
+      "box": [
+       13,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       13,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       13,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-17"
+     },
+     {
+      "t": "7.2"
+     },
+     {
+      "t": "Competence"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.2.1"
+     },
+     {
+      "t": "General"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.2.2"
+     },
+     {
+      "t": "Employment process"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.2.3"
+     },
+     {
+      "t": "Training"
+     }
+    ],
+    [
+     {
+      "t": "7.3"
+     },
+     {
+      "box": [
+       14,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       14,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       14,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3"
+     },
+     {
+      "t": "Awareness"
+     }
+    ],
+    [
+     {
+      "t": "7.4"
+     },
+     {
+      "box": [
+       15,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.4"
+     },
+     {
+      "t": "Communication"
+     }
+    ],
+    [
+     {
+      "t": "7.5",
+      "rs": 3
+     },
+     {
+      "box": [
+       16,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       16,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       16,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.1"
+     },
+     {
+      "t": "General"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.2"
+     },
+     {
+      "t": "Creating and updating documented information"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.3"
+     },
+     {
+      "t": "Control of documented information"
+     }
+    ],
+    [
+     {
+      "t": "8.1"
+     },
+     {
+      "box": [
+       17,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       17,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       17,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-18"
+     },
+     {
+      "t": "8.1"
+     },
+     {
+      "t": "Operational planning and control"
+     }
+    ],
+    [
+     {
+      "t": "8.2"
+     },
+     {
+      "box": [
+       18,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       18,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       18,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.2"
+     },
+     {
+      "t": "Establishing controls and procedures"
+     }
+    ],
+    [
+     {
+      "t": "8.3"
+     },
+     {
+      "box": [
+       19,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       19,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       19,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.3"
+     },
+     {
+      "t": "Raising concerns"
+     }
+    ],
+    [
+     {
+      "t": "8.4"
+     },
+     {
+      "box": [
+       20,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.4"
+     },
+     {
+      "t": "Investigation processes"
+     }
+    ],
+    [
+     {
+      "t": "9.1",
+      "rs": 6
+     },
+     {
+      "box": [
+       21,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       21,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       21,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.1"
+     },
+     {
+      "t": "Monitoring, measurement, analysis and evaluation"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.1.1"
+     },
+     {
+      "t": "General"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.1.2"
+     },
+     {
+      "t": "Sources of feedback on compliance performance"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.1.3"
+     },
+     {
+      "t": "Development of indicators"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.1.4"
+     },
+     {
+      "t": "Compliance reporting"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "t": "MDE-28"
+     },
+     {
+      "t": "9.1.5"
+     },
+     {
+      "t": "Record-keeping"
+     }
+    ],
+    [
+     {
+      "t": "9.2",
+      "rs": 3
+     },
+     {
+      "box": [
+       22,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       22,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       22,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.2"
+     },
+     {
+      "t": "Internal audit"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.2.1"
+     },
+     {
+      "t": "General"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "t": "MDE-29\nMDE-30"
+     },
+     {
+      "t": "9.2.2"
+     },
+     {
+      "t": "Internal audit programme"
+     }
+    ],
+    [
+     {
+      "t": "9.3",
+      "rs": 4
+     },
+     {
+      "box": [
+       23,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       23,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       23,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.3"
+     },
+     {
+      "t": "Management review"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.3.1"
+     },
+     {
+      "t": "General"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {},
+     {
+      "t": "9.3.2"
+     },
+     {
+      "t": "Management review inputs"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "bg": "grey",
+      "box": "static",
+      "al": "c"
+     },
+     {
+      "t": "MDE-31"
+     },
+     {
+      "t": "9.3.3"
+     },
+     {
+      "t": "Management review results"
+     }
+    ],
+    [
+     {
+      "t": "10.1"
+     },
+     {
+      "box": [
+       24,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       24,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       24,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-32"
+     },
+     {
+      "t": "10.1"
+     },
+     {
+      "t": "Continual improvement"
+     }
+    ],
+    [
+     {
+      "t": "10.2"
+     },
+     {
+      "box": [
+       25,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       25,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       25,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "MDE-33"
+     },
+     {
+      "t": "10.2"
+     },
+     {
+      "t": "Nonconformity and corrective action"
+     }
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "1. All fields marked in grey are mandatory and must be audited for each audit type. The other standard requirements are divided so that all these standard requirements are evaluated at least once in the sum of the two surveillance audits."
+  },
+  {
+   "type": "p",
+   "t": "2. Mandatory documents must be document with date and revision and, if applicable, the audited process."
+  }
+ ],
+ "notes_title": "Auditor Notice"
+}

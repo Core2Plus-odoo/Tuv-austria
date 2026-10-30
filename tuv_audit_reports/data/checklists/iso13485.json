@@ -1,0 +1,1726 @@
+{
+ "key": "iso13485",
+ "meta": {
+  "show_email": false,
+  "scope_label": false,
+  "duration_label": "acc. plan",
+  "category_label": "Category (ISO 22003/ISO 13485/ISO 50003):",
+  "title": "Audit-Checklist ISO 13485",
+  "subtitle": "Certification of Managementsystems",
+  "code": "FM-TAGMBH-MSZ-018_Audit-Checklist-13485-EN",
+  "revision": "01/17.10.2024",
+  "vkl": "Internal"
+ },
+ "elements": [
+  {
+   "group": "",
+   "clause": "4.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "4.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.5",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "5.6",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "6.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "7.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "",
+   "clause": "8.5",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  }
+ ],
+ "blocks": [
+  {
+   "type": "table",
+   "widths": [
+    4.78,
+    3.85,
+    3.85,
+    3.85,
+    8.66,
+    5.77,
+    34.63,
+    34.63
+   ],
+   "rows": [
+    [
+     {
+      "cs": 8,
+      "bg": "red",
+      "t": "Process-oriented audit",
+      "b": true
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "t": "Required Standard-\nElement per audit type¹",
+      "b": true
+     },
+     {
+      "cs": 3,
+      "t": "List of required/mandatory documents²",
+      "b": true,
+      "rs": 2
+     },
+     {
+      "t": "List of required/mandatory records/verification documents",
+      "b": true,
+      "rs": 2
+     }
+    ],
+    [
+     {},
+     {
+      "t": "CA/\nRA"
+     },
+     {
+      "t": "1. SA",
+      "al": "c"
+     },
+     {
+      "t": "2. SA"
+     }
+    ],
+    [
+     {
+      "t": "4.1"
+     },
+     {
+      "box": [
+       0,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       0,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       0,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "Clause 4"
+     },
+     {
+      "t": "4.1.1"
+     },
+     {
+      "t": "Documentation of the role(s) assumed by the organization"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "4.2"
+     },
+     {
+      "box": [
+       1,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       1,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       1,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.1.5"
+     },
+     {
+      "t": "Written quality agreements with suppliers"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "5.1"
+     },
+     {
+      "box": [
+       2,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       2,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       2,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.1.6"
+     },
+     {
+      "t": "Procedure for validating the use of computer software"
+     },
+     {
+      "t": "Records on software validation activities"
+     }
+    ],
+    [
+     {
+      "t": "5.2"
+     },
+     {
+      "box": [
+       3,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       3,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       3,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.2.1"
+     },
+     {
+      "t": "Quality Manual"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "5.3"
+     },
+     {
+      "box": [
+       4,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.2.1"
+     },
+     {
+      "t": "Quality policy"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "5.4"
+     },
+     {
+      "box": [
+       5,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       5,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       5,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.2.3"
+     },
+     {},
+     {
+      "t": "Medical device file"
+     }
+    ],
+    [
+     {
+      "t": "5.5"
+     },
+     {
+      "box": [
+       6,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       6,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       6,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.2.4"
+     },
+     {
+      "t": "Procedure for document control"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "5.6"
+     },
+     {
+      "box": [
+       7,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       7,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       7,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "4.2.5"
+     },
+     {
+      "t": "Procedure for controlling the records"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "6.1"
+     },
+     {
+      "box": [
+       8,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       8,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       8,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "Clause 5"
+     },
+     {
+      "t": "5.5.1"
+     },
+     {
+      "t": "Responsibilities and authorities"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "6.2"
+     },
+     {
+      "box": [
+       9,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "5.6.1"
+     },
+     {
+      "t": "Procedure for the management review"
+     },
+     {
+      "t": "Management review records"
+     }
+    ],
+    [
+     {
+      "t": "6.3"
+     },
+     {
+      "box": [
+       10,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "Clause 6"
+     },
+     {
+      "t": "6.2"
+     },
+     {
+      "t": "Processes for competence, training and awareness-raising"
+     },
+     {
+      "t": "Records of education, training, skills and experience"
+     }
+    ],
+    [
+     {
+      "t": "6.4"
+     },
+     {
+      "box": [
+       11,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       11,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       11,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.3"
+     },
+     {
+      "t": "Infrastructure requirements"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "7.1"
+     },
+     {
+      "box": [
+       12,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       12,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       12,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.3"
+     },
+     {
+      "t": "Requirements for maintenance activities"
+     },
+     {
+      "t": "Records of maintenance activities"
+     }
+    ],
+    [
+     {
+      "t": "7.2"
+     },
+     {
+      "box": [
+       13,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       13,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       13,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.4.1"
+     },
+     {
+      "t": "Requirements for the working environment"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "7.3"
+     },
+     {
+      "box": [
+       14,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       14,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       14,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.4.1"
+     },
+     {
+      "t": "Procedures for monitoring and controlling the working environment"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "7.4"
+     },
+     {
+      "box": [
+       15,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.4.1"
+     },
+     {
+      "t": "Health, cleanliness and work clothing requirements for staff"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "7.5"
+     },
+     {
+      "box": [
+       16,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       16,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       16,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.4.2"
+     },
+     {
+      "t": "Regulations for the control of contaminated or potentially contaminated products"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "8.1"
+     },
+     {
+      "box": [
+       17,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       17,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       17,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "6.4.2"
+     },
+     {
+      "t": "Requirements for the control of contamination of sterile medical devices"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "8.2"
+     },
+     {
+      "box": [
+       18,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       18,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       18,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "t": "Clause 7"
+     },
+     {
+      "t": "7.1"
+     },
+     {
+      "t": "Risk management processes during product realization"
+     },
+     {
+      "t": "Records of risk management activities\nResults of product realization planning"
+     }
+    ],
+    [
+     {
+      "t": "8.3"
+     },
+     {
+      "box": [
+       19,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       19,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       19,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.2.2"
+     },
+     {},
+     {
+      "t": "Records of the results and measures resulting from the verification of the requirements for the product\nRecords of changes to product requirements"
+     }
+    ],
+    [
+     {
+      "t": "8.4"
+     },
+     {
+      "box": [
+       20,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.2.3"
+     },
+     {
+      "t": "Regulations for communication with customers"
+     },
+     {}
+    ],
+    [
+     {
+      "t": "8.5"
+     },
+     {
+      "box": [
+       21,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       21,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       21,
+       2
+      ],
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.1"
+     },
+     {
+      "t": "Procedure for development"
+     },
+     {}
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.2"
+     },
+     {},
+     {
+      "t": "Records for development planning"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.3"
+     },
+     {},
+     {
+      "t": "Development inputs"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.4"
+     },
+     {},
+     {
+      "t": "Development results"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.5"
+     },
+     {},
+     {
+      "t": "Development evaluation records"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.6"
+     },
+     {},
+     {
+      "t": "Development verification records"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.7"
+     },
+     {},
+     {
+      "t": "Planning the development validation\nRecords of the results and completion of the development validation"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.8"
+     },
+     {},
+     {
+      "t": "Results and findings of the development transfer"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.9"
+     },
+     {},
+     {
+      "t": "Records of development changes"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.3.10"
+     },
+     {},
+     {
+      "t": "Development files"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.4.1"
+     },
+     {
+      "t": "Procedure for procurement"
+     },
+     {
+      "t": "Records of the results of the evaluation, selection, monitoring and re-evaluation of suppliers"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.4.3"
+     },
+     {},
+     {
+      "t": "Records for the verification of procured products"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.1"
+     },
+     {
+      "t": "Procedures and methods for production control"
+     },
+     {
+      "t": "Record of each medical device or batch of medical devices"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.2"
+     },
+     {
+      "t": "Requirements for the purity of the product"
+     },
+     {}
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.3"
+     },
+     {
+      "t": "Requirements for the installation of medical devices and acceptance criteria for inspecting the installation"
+     },
+     {
+      "t": "Records of the installation of medical devices and verification of the installation"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.4"
+     },
+     {
+      "t": "Procedures for the maintenance of medical devices"
+     },
+     {
+      "t": "Records of maintenance of medical products"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.5"
+     },
+     {},
+     {
+      "t": "Records of the parameters of the sterilization process"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.6"
+     },
+     {
+      "t": "Procedure for the validation of processes"
+     },
+     {
+      "t": "Records of the results and completion of the validation"
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.7"
+     },
+     {
+      "t": "Procedure for the validation of sterilization processes"
+     },
+     {
+      "t": "Records of the results and completion of the validation of sterilization processes"
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.8"
+     },
+     {
+      "t": "Procedure for identifying the product"
+     },
+     {}
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.9.1"
+     },
+     {
+      "t": "Traceability procedures"
+     },
+     {}
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.9.2"
+     },
+     {},
+     {
+      "t": "Traceability records\nRecords of the name and address of the consignee of the package"
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.10"
+     },
+     {},
+     {
+      "t": "Report to the customer about changes to their property"
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.5.11"
+     },
+     {
+      "t": "Process for product preservation"
+     },
+     {}
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "7.6"
+     },
+     {
+      "t": "Procedure for monitoring and measuring equipment"
+     },
+     {
+      "t": "Records of the results of calibration and verification of monitoring and measuring equipment"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "t": "Clause 8"
+     },
+     {
+      "t": "8.2.1"
+     },
+     {
+      "t": "Procedure for recording customer feedback"
+     },
+     {
+      "t": "Records of customer feedback"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.2.2"
+     },
+     {
+      "t": "Procedure for handling complaints"
+     },
+     {
+      "t": "Records of complaints"
+     }
+    ],
+    [
+     {
+      "cs": 4
+     },
+     {},
+     {
+      "t": "8.2.3"
+     },
+     {},
+     {
+      "t": "Records of reporting to regulatory authorities"
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "rs": 5
+     },
+     {},
+     {
+      "t": "8.2.4"
+     },
+     {
+      "t": "Internal audit procedures"
+     },
+     {
+      "t": "Internal audit plan\nInternal audit report"
+     }
+    ],
+    [
+     {},
+     {
+      "t": "8.2.6"
+     },
+     {},
+     {
+      "t": "Proof of conformity of the products with the acceptance criteria\nIdentity of the person authorizing the release of the device\nIdentity of the personnel carrying out the inspection or testing of implantable medical devices"
+     }
+    ],
+    [
+     {},
+     {
+      "t": "8.3.1"
+     },
+     {
+      "t": "Procedure for controlling non-compliant products"
+     },
+     {
+      "t": "Non-compliance protocol"
+     }
+    ],
+    [
+     {},
+     {
+      "t": "8.3.2"
+     },
+     {},
+     {
+      "t": "Records of product acceptance by approval and the identity of the person who issued the approval"
+     }
+    ],
+    [
+     {},
+     {
+      "t": "8.3.3"
+     },
+     {
+      "t": "Procedure for issuing recommendations for measures"
+     },
+     {
+      "t": "Records of measures in connection with the issuing of recommendations for measures"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.3.4"
+     },
+     {
+      "t": "Procedure for reworking"
+     },
+     {
+      "t": "Evidence for rework"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.4"
+     },
+     {
+      "t": "Procedure for data analysis"
+     },
+     {
+      "t": "Records with results of the data analysis"
+     }
+    ],
+    [
+     {},
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.5.2"
+     },
+     {
+      "t": "Procedure for corrective measures"
+     },
+     {
+      "t": "Evidence for corrective measures"
+     }
+    ],
+    [
+     {
+      "cs": 4,
+      "al": "c"
+     },
+     {},
+     {
+      "t": "8.5.3"
+     },
+     {
+      "t": "Procedure for preventive measures"
+     },
+     {
+      "t": "Evidence for preventive measures"
+     }
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "1. All fields marked in grey are mandatory fields and must be audited for each audit type. The other standard requirements are split up so that all these standard requirements are assessed at least once in the sum of the two surveillance audits."
+  },
+  {
+   "type": "p",
+   "t": "2. Mandatory documents are to be documented with date and revision status and audited process if applicable."
+  }
+ ],
+ "notes_title": "Notes of auditor(s)"
+}

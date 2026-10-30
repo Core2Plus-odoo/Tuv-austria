@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- AQG audit questionnaires / checklists (ESYD, PNAC, SAAC): the blocks under sections 1
+         and 2 (sections 1 and 2 are the shared ap_* fields). The fixed texts of the Word forms
+         (mandatory document lists, audit objectives of PNAC...) print in the PDF.
+         tools/gen_standalone_views.py copies these blocks to the standalone form. -->
+
+    <!-- ESYD - Audit Questionnaire ISO 27001:2022 -->
+    <record id="project_block_aqg_esyd_27001" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.aqg_esyd_27001</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_aqg_esyd_27001" invisible="audit_report_key != 'aqg_esyd_27001'">
+                    <separator string="Audit Objective"/>
+                    <field name="aqg_esyd_27001_objective_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="box_1" string="Ticked" widget="boolean_toggle"/>
+                            <field name="label" string="Audit Objective"/>
+                        </list>
+                    </field>
+                    <separator string="3. Legislative Requirements"/>
+                    <field name="aqg_esyd_27001_legal_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="text_1" string="Entry"/>
+                        </list>
+                    </field>
+                    <separator string="Standard Requirements Audited"/>
+                    <field name="aqg_esyd_27001_clause_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" limit="100">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="section"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="box_1" string="Audited"/>
+                        </list>
+                    </field>
+                    <separator string="Clauses 4 - 10 and Annex A: Objective Evidences"/>
+                    <div class="text-muted small mb-1">
+                        The mandatory documents of each clause print in the PDF, the objective
+                        evidences under them.
+                    </div>
+                    <field name="aqg_esyd_27001_evidence_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" limit="120">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="section"/>
+                            <field name="ref" string="Clause / Control"/>
+                            <field name="text_1" string="Objective Evidences"/>
+                        </list>
+                    </field>
+                    <separator string="Auditor Notes"/>
+                    <field name="aqg_esyd_27001_notes" nolabel="1"/>
+                    <separator string="List of Improvement Hints"/>
+                    <div class="text-muted small mb-1">One hint per line.</div>
+                    <field name="aqg_esyd_27001_hints" nolabel="1"/>
+                    <separator string="List of Positive Findings"/>
+                    <div class="text-muted small mb-1">One finding per line.</div>
+                    <field name="aqg_esyd_27001_findings" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ESYD - Combined Audit Questionnaire ISO 9001, ISO 14001 and ISO 45001 -->
+    <record id="project_block_aqg_esyd_9001_14001_45001" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.aqg_esyd_9001_14001_45001</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_aqg_esyd_9001_14001_45001" invisible="audit_report_key != 'aqg_esyd_9001_14001_45001'">
+                    <separator string="Audit Objective"/>
+                    <field name="aqg_esyd_9001_14001_45001_objective_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="box_1" string="Ticked" widget="boolean_toggle"/>
+                            <field name="label" string="Audit Objective"/>
+                        </list>
+                    </field>
+                    <separator string="3. Legislative Requirements"/>
+                    <field name="aqg_esyd_9001_14001_45001_legal_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="text_1" string="Entry"/>
+                        </list>
+                    </field>
+                    <separator string="Standard Requirements Audited"/>
+                    <field name="aqg_esyd_9001_14001_45001_clause_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" limit="100">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="section"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="box_1" string="Audited"/>
+                        </list>
+                    </field>
+                    <separator string="List of Required Mandatory Documents"/>
+                    <div class="text-muted small mb-1">
+                        The evidence recorded per standard (MDE / MDI / RDI). The Word form's
+                        examples are filled in: overwrite them with what was audited.
+                    </div>
+                    <field name="aqg_esyd_9001_14001_45001_evidence_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="ref" string="MDE / MDI / RDI"/>
+                            <field name="text_1" string="ISO 9001:2015"/>
+                            <field name="text_2" string="ISO 14001:2015"/>
+                            <field name="text_3" string="ISO 45001:2018"/>
+                        </list>
+                    </field>
+                    <separator string="Auditor Notes"/>
+                    <field name="aqg_esyd_9001_14001_45001_notes" nolabel="1"/>
+                    <separator string="List of Improvement Hints"/>
+                    <div class="text-muted small mb-1">One hint per line.</div>
+                    <field name="aqg_esyd_9001_14001_45001_hints" nolabel="1"/>
+                    <separator string="List of Positive Findings"/>
+                    <div class="text-muted small mb-1">One finding per line.</div>
+                    <field name="aqg_esyd_9001_14001_45001_findings" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ESYD - Combined Audit Questionnaire ISO 9001 and ISO 14001 -->
+    <record id="project_block_aqg_esyd_9001_14001" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.aqg_esyd_9001_14001</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_aqg_esyd_9001_14001" invisible="audit_report_key != 'aqg_esyd_9001_14001'">
+                    <separator string="Audit Objective"/>
+                    <field name="aqg_esyd_9001_14001_objective_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="box_1" string="Ticked" widget="boolean_toggle"/>
+                            <field name="label" string="Audit Objective"/>
+                        </list>
+                    </field>
+                    <separator string="3. Legislative Requirements"/>
+                    <field name="aqg_esyd_9001_14001_legal_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="text_1" string="Entry"/>
+                        </list>
+                    </field>
+                    <separator string="Standard Requirements Audited"/>
+                    <field name="aqg_esyd_9001_14001_clause_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" limit="100">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="section"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="box_1" string="Audited"/>
+                        </list>
+                    </field>
+                    <separator string="List of Required Mandatory Documents"/>
+                    <div class="text-muted small mb-1">
+                        The evidence recorded per standard (MDE). The Word form's examples are
+                        filled in: overwrite them with what was audited.
+                    </div>
+                    <field name="aqg_esyd_9001_14001_evidence_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="ref" string="MDE"/>
+                            <field name="text_1" string="ISO 9001:2015"/>
+                            <field name="text_2" string="ISO 14001:2015"/>
+                        </list>
+                    </field>
+                    <separator string="Auditor Notes"/>
+                    <field name="aqg_esyd_9001_14001_notes" nolabel="1"/>
+                    <separator string="List of Improvement Hints"/>
+                    <div class="text-muted small mb-1">One hint per line.</div>
+                    <field name="aqg_esyd_9001_14001_hints" nolabel="1"/>
+                    <separator string="List of Positive Findings"/>
+                    <div class="text-muted small mb-1">One finding per line.</div>
+                    <field name="aqg_esyd_9001_14001_findings" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ESYD and PNAC - Combined Audit Questionnaire ISO 9001 and ISO 22000 (one form, two cards) -->
+    <record id="project_block_aqg_9001_22000" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.aqg_9001_22000</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_aqg_9001_22000" invisible="audit_report_key != 'aqg_9001_22000'">
+                    <separator string="Audit Objective"/>
+                    <field name="aqg_9001_22000_objective_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="box_1" string="Ticked" widget="boolean_toggle"/>
+                            <field name="label" string="Audit Objective"/>
+                        </list>
+                    </field>
+                    <separator string="3. Legislative Requirements"/>
+                    <field name="aqg_9001_22000_legal_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="text_1" string="Entry"/>
+                        </list>
+                    </field>
+                    <separator string="Standard Requirements Audited"/>
+                    <field name="aqg_9001_22000_clause_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" limit="100">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="section"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="box_1" string="Audited"/>
+                        </list>
+                    </field>
+                    <separator string="List of Required Mandatory Documents"/>
+                    <div class="text-muted small mb-1">
+                        The evidence recorded per standard (MDE). The Word form's examples are
+                        filled in: overwrite them with what was audited.
+                    </div>
+                    <field name="aqg_9001_22000_evidence_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="ref" string="MDE"/>
+                            <field name="text_1" string="ISO 9001:2015"/>
+                            <field name="text_2" string="ISO 22000:2018"/>
+                        </list>
+                    </field>
+                    <separator string="Auditor Notes"/>
+                    <field name="aqg_9001_22000_notes" nolabel="1"/>
+                    <separator string="List of Improvement Hints"/>
+                    <div class="text-muted small mb-1">One hint per line.</div>
+                    <field name="aqg_9001_22000_hints" nolabel="1"/>
+                    <separator string="List of Positive Findings"/>
+                    <div class="text-muted small mb-1">One finding per line.</div>
+                    <field name="aqg_9001_22000_findings" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- PNAC - Audit Questionnaire ISO 22000:2018 -->
+    <record id="project_block_aqg_pnac_22000" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.aqg_pnac_22000</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_aqg_pnac_22000" invisible="audit_report_key != 'aqg_pnac_22000'">
+                    <p class="text-muted">
+                        "3. Audit Objectives" (with the characterization of findings) and the list of
+                        required mandatory documents are fixed texts of the form; they print in the PDF.
+                    </p>
+                    <separator string="4. Legislative Requirements"/>
+                    <field name="aqg_pnac_22000_legal_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="text_1" string="Entry"/>
+                        </list>
+                    </field>
+                    <separator string="Standard Requirements Audited"/>
+                    <field name="aqg_pnac_22000_clause_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" limit="100">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="section"/>
+                            <field name="label" string="Requirement"/>
+                            <field name="box_1" string="Audited"/>
+                        </list>
+                    </field>
+                    <separator string="Auditor Notes"/>
+                    <field name="aqg_pnac_22000_notes" nolabel="1"/>
+                    <separator string="List of Improvement Hints"/>
+                    <div class="text-muted small mb-1">One hint per line.</div>
+                    <field name="aqg_pnac_22000_hints" nolabel="1"/>
+                    <separator string="List of Positive Findings"/>
+                    <div class="text-muted small mb-1">One finding per line.</div>
+                    <field name="aqg_pnac_22000_findings" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- SAAC - Audit checklist ISO 9001 (FM-BA-ZET-MS-All-009b-AQG) -->
+    <record id="project_block_aqg_saac_9001" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.aqg_saac_9001</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_aqg_saac_9001" invisible="audit_report_key != 'aqg_saac_9001'">
+                    <separator string="Process-oriented Audit: Standard Elements per Audit Type"/>
+                    <div class="text-muted small mb-1">
+                        Tick the audit types each element was audited in. "Mandatory for" lists the
+                        audit types the Word form marks in grey: those must be audited every time;
+                        the others are split so that all are assessed at least once over the two
+                        surveillance audits. The list of required documents prints in the PDF.
+                    </div>
+                    <field name="aqg_saac_9001_element_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="label" string="Element"/>
+                            <field name="mandatory_for"/>
+                            <field name="box_1" string="CA/RA"/>
+                            <field name="box_2" string="1. SA"/>
+                            <field name="box_3" string="2. SA"/>
+                        </list>
+                    </field>
+                    <separator string="Notes of Auditor(s)"/>
+                    <field name="aqg_saac_9001_notes" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The audit checklists (FM-TAGMBH-MSZ-010/012/014/016/018/020/025/033). One report for all:
+         the checklist is the one selected on the record (audit_report_key). The tables come from
+         data/checklists/<key>.json (tools/docx_forms.py), drawn cell by cell as in the Word form;
+         tick boxes show the auditor's ticks, grey where the clause is mandatory for that audit type. -->
+    <record id="action_report_audit_checklist" model="ir.actions.report">
+        <field name="name">Audit Checklist</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_checklist</field>
+        <field name="report_file">tuv_audit_reports.report_audit_checklist</field>
+        <field name="print_report_name">'%s - %s' % (object.audit_report_id.name or 'Audit Checklist', object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <!-- A block list (tables, paragraphs, page breaks) converted from a Word form.
+         Expects: blocks; optional ticks / mandatory (lists indexed by element) -->
+    <template id="form_docx_blocks">
+        <t t-foreach="blocks" t-as="block">
+            <div t-if="block['type'] == 'pagebreak'" style="page-break-before: always;"/>
+            <p t-elif="block['type'] == 'p'" t-att-class="'tap-text' + (' fw-bold' if block.get('b') else '')"
+                style="margin: 6px 0;">
+                <t t-foreach="block['t'].split('\n')" t-as="txt"><t t-out="txt"/><br t-if="not txt_last"/></t>
+            </p>
+            <table t-elif="block['type'] == 'table'" class="tap tap-grid">
+                <colgroup>
+                    <col t-foreach="block['widths']" t-as="w" t-att-style="'width: ' + str(w) + '%;'"/>
+                </colgroup>
+                <t t-foreach="block['rows']" t-as="row">
+                    <tr t-if="row">
+                        <t t-foreach="row" t-as="c">
+                            <t t-set="box" t-value="c.get('box')"/>
+                            <t t-set="mand" t-value="isinstance(box, list) and mandatory and mandatory[box[0]][box[1]]"/>
+                            <t t-set="cls" t-value="' '.join(filter(None, [
+                                'bar' if c.get('bg') == 'red' else '',
+                                'grey' if c.get('bg') == 'grey' or mand else '',
+                                'bold' if c.get('b') else '',
+                                'center' if c.get('al') == 'c' or box else '',
+                                'top' if c.get('rs') else '']))"/>
+                            <td t-att-colspan="c.get('cs')" t-att-rowspan="c.get('rs')" t-att-class="cls">
+                                <t t-if="box">
+                                    <span class="tap-box" t-out="'☒' if (isinstance(box, list) and ticks and ticks[box[0]][box[1]]) or (box == 'static' and c.get('checked')) else '☐'"/>
+                                </t>
+                                <t t-if="c.get('t')">
+                                    <!-- "**" marks the bold lines of a partly bold cell (documents) -->
+                                    <t t-foreach="c['t'].split('\n')" t-as="txt"><b t-if="txt.startswith('**')" t-out="txt[2:]"/><t t-else="" t-out="txt"/><br t-if="not txt_last"/></t>
+                                </t>
+                                <!-- keep empty spacer rows at text height, as in Word -->
+                                <t t-if="not box and not c.get('t')">&#160;</t>
+                            </td>
+                        </t>
+                    </tr>
+                </t>
+            </table>
+        </t>
+    </template>
+
+    <template id="report_audit_checklist">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="pl" t-value="o._cl_payload()"/>
+                <t t-set="meta" t-value="pl['meta']"/>
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="meta['title']"/>
+                <t t-set="form_subtitle" t-value="meta['subtitle']"/>
+                <t t-set="form_code" t-value="meta['code']"/>
+                <t t-set="form_revision" t-value="meta['revision']"/>
+                <t t-set="form_vkl" t-value="meta['vkl']"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>
+                        .tap-grid { font-size: 12px; table-layout: fixed; }
+                        .tap-grid td { padding: 2px 4px; word-wrap: break-word; }
+                        .tap-grid .tap-box { font-size: 14px; }
+                    </style>
+
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="show_email" t-value="meta.get('show_email')"/>
+                        <t t-set="scope_label" t-value="meta.get('scope_label')"/>
+                        <t t-set="duration_label" t-value="meta.get('duration_label')"/>
+                        <t t-set="category_label" t-value="meta.get('category_label')"/>
+                    </t>
+
+                    <t t-if="pl['blocks'] and pl['blocks'][0]['type'] != 'pagebreak'">
+                        <div style="page-break-before: always;"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.form_docx_blocks">
+                        <t t-set="blocks" t-value="pl['blocks']"/>
+                        <t t-set="ticks" t-value="pl['ticks']"/>
+                        <t t-set="mandatory" t-value="pl['mandatory']"/>
+                    </t>
+
+                    <!-- Notes of auditor(s) -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap">
+                        <tr><td class="bar" t-out="pl['notes_title']"/></tr>
+                        <tr>
+                            <td class="top" style="height: 420px; font-size: 14px;">
+                                <t t-foreach="pl['notes'].split('\n')" t-as="n"><t t-out="n"/><br/></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

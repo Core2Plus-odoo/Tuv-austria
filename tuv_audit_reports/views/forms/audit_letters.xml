@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Certification letters (FM-BA-ZET-MS-All-016 SRVL / SUSPL / WDRL): no sections 1 and 2;
+         the recipient and signatories they share, then the selected letter's own fields.
+         tools/gen_standalone_views.py copies it to the standalone form. -->
+    <record id="project_block_audit_letters" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_letters</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_letters"
+                    invisible="audit_report_key not in ('letter_surveillance', 'letter_suspension', 'letter_withdrawal')">
+                    <separator string="Recipient"/>
+                    <group>
+                        <group>
+                            <field name="lt_client_name"/>
+                            <field name="lt_client_address"/>
+                            <field name="lt_client_contact"/>
+                        </group>
+                        <group>
+                            <field name="lt_attention"/>
+                            <field name="lt_phone"/>
+                            <field name="lt_standard"/>
+                            <field name="lt_registration_no"/>
+                        </group>
+                    </group>
+
+                    <!-- Surveillance audit -->
+                    <div invisible="audit_report_key != 'letter_surveillance'">
+                        <separator string="Annual Surveillance Audit"/>
+                        <group>
+                            <group>
+                                <field name="sv_place"/>
+                                <field name="sv_date"/>
+                                <field name="sv_due_date"/>
+                            </group>
+                            <group>
+                                <field name="sv_reply_email"/>
+                                <field name="sv_reply_fax"/>
+                            </group>
+                        </group>
+                        <group string="Client Reply (table of the letter)">
+                            <group>
+                                <field name="sv_offer_ref"/>
+                                <field name="sv_suggested_date"/>
+                                <field name="sv_changes" widget="radio" options="{'horizontal': true}"/>
+                                <field name="sv_changes_text" invisible="sv_changes != 'yes'"/>
+                            </group>
+                            <group>
+                                <field name="sv_reply_name"/>
+                                <field name="sv_reply_position"/>
+                            </group>
+                        </group>
+                    </div>
+
+                    <!-- Suspension -->
+                    <div invisible="audit_report_key != 'letter_suspension'">
+                        <separator string="Suspension of Certificate Validity"/>
+                        <group>
+                            <group>
+                                <field name="su_information"/>
+                                <field name="su_date"/>
+                                <field name="su_reason"/>
+                            </group>
+                            <group>
+                                <field name="su_period_from"/>
+                                <field name="su_period_to"/>
+                            </group>
+                        </group>
+                    </div>
+
+                    <!-- Withdrawal -->
+                    <div invisible="audit_report_key != 'letter_withdrawal'">
+                        <separator string="Withdrawal of Certificate Validity"/>
+                        <group>
+                            <group>
+                                <field name="wd_information"/>
+                                <field name="wd_date"/>
+                                <field name="wd_withdrawn_from"/>
+                            </group>
+                            <group>
+                                <field name="wd_return_address"/>
+                                <field name="wd_return_phone"/>
+                            </group>
+                        </group>
+                    </div>
+
+                    <separator string="Signatories"/>
+                    <group>
+                        <group>
+                            <field name="lt_signer1_name"/>
+                            <field name="lt_signer1_position"/>
+                            <field name="lt_signer1_signature" widget="signature"/>
+                        </group>
+                        <group>
+                            <field name="lt_signer2_name"/>
+                            <field name="lt_signer2_position"/>
+                            <field name="lt_signer2_signature" widget="signature"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

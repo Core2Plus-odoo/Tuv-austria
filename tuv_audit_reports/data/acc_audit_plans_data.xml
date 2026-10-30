@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Predefined forms and Reports cards of the ESYD, PNAC and SAAC audit plans.
+         noupdate: what the users filled in on the predefined forms is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="esyd_audit_plan_form" model="tuv.audit.plan"><field name="name">ESYD Audit Plan</field></record>
+        <record id="pnac_audit_plan_form" model="tuv.audit.plan"><field name="name">PNAC Audit Plan</field></record>
+        <record id="saac_audit_plan_form" model="tuv.audit.plan"><field name="name">SAAC Audit Plan</field></record>
+        <record id="saac_audit_plan_27001_form" model="tuv.audit.plan"><field name="name">SAAC Audit Plan ISO 27001</field></record>
+    </data>
+
+    <!-- What identifies each predefined form, kept up to date on every upgrade -->
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('esyd_audit_plan_form')]"/>
+        <value eval="{'audit_report_key': 'esyd_audit_plan', 'audit_report_uses_info': True, 'form_subtitle': 'Certification', 'form_reference': 'FM-BA-ZET-MS-All-008-AP-EN | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('pnac_audit_plan_form')]"/>
+        <value eval="{'audit_report_key': 'pnac_audit_plan', 'audit_report_uses_info': True, 'form_subtitle': 'Audit Plan (PNAC)', 'form_reference': 'TUV/BA/FM/04-1 | Rev 10, Dated 15/06/2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('saac_audit_plan_form')]"/>
+        <value eval="{'audit_report_key': 'saac_audit_plan', 'audit_report_uses_info': True, 'form_subtitle': 'Management systems certification', 'form_reference': 'FM-BA-ZET-MS-All-008-AP-Audit_plan_EN | Revision: 04/26.07.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_saac_schedule">
+        <value eval="[ref('saac_audit_plan_form')]"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('saac_audit_plan_27001_form')]"/>
+        <value eval="{'audit_report_key': 'saac_audit_plan_27001', 'audit_report_uses_info': True, 'form_subtitle': 'Management systems certification (ISO 27001 / 27701)', 'form_reference': 'FM-BA-ZET-MS-All-008a-AP-Audit_plan_27001_EN | Revision: 04/16.01.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_saac_27001_schedule">
+        <value eval="[ref('saac_audit_plan_27001_form')]"/>
+    </function>
+
+    <!-- One card per form on the Reports screen -->
+    <record id="audit_report_esyd_audit_plan" model="tuv.audit.report">
+        <field name="name">Audit Plan</field>
+        <field name="sequence">300</field>
+        <field name="accreditation">esyd</field>
+        <field name="subtitle">Certification</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AP-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AP-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.esyd_audit_plan_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_esyd_audit_plan</field>
+        <field name="report_key">esyd_audit_plan</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+    <record id="audit_report_pnac_audit_plan" model="tuv.audit.report">
+        <field name="name">Audit Plan</field>
+        <field name="sequence">310</field>
+        <field name="accreditation">pnac</field>
+        <field name="subtitle">Audit Plan</field>
+        <field name="code">TUV/BA/FM/04-1</field>
+        <field name="revision">10 / 15.06.2025</field>
+        <field name="document_name">1. Audit Plan.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.pnac_audit_plan_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_pnac_audit_plan</field>
+        <field name="report_key">pnac_audit_plan</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+    <record id="audit_report_saac_audit_plan" model="tuv.audit.report">
+        <field name="name">Audit Plan</field>
+        <field name="sequence">320</field>
+        <field name="accreditation">saac</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AP</field>
+        <field name="revision">04/26.07.2024</field>
+        <field name="document_name">ENG-Form 'FM-BA-ZET-MS-All-008-AP-Audit_plan_EN' [English].docx</field>
+        <field name="record_xmlid">tuv_audit_reports.saac_audit_plan_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_saac_audit_plan</field>
+        <field name="report_key">saac_audit_plan</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+    <record id="audit_report_saac_audit_plan_27001" model="tuv.audit.report">
+        <field name="name">Audit Plan ISO 27001</field>
+        <field name="sequence">330</field>
+        <field name="accreditation">saac</field>
+        <field name="subtitle">Management systems certification (ISO 27001 / 27701)</field>
+        <field name="code">FM-BA-ZET-MS-All-008a-AP</field>
+        <field name="revision">04/16.01.2024</field>
+        <field name="document_name">ENG-Form 'FM-BA-ZET-MS-All-008a-AP-Audit_plan_27001_EN' [English].docx</field>
+        <field name="record_xmlid">tuv_audit_reports.saac_audit_plan_27001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_saac_audit_plan_27001</field>
+        <field name="report_key">saac_audit_plan_27001</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,256 @@
+{
+ "form": "pnac",
+ "document": "2. Audit Report.docx",
+ "rows": [
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "Α. Management System\n(Justification of any exclusion for ISO 9001)"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "Β. Management Review"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "C. Internal Audit"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "D. Legislative Requirements\n(License of Operation, Authorizations etc.)"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "Ε. Infrastructure, Basic requirements, HACCP/oPRP plans"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "F. Scope of Activity"
+  },
+  {
+   "section": "conclusions",
+   "label": "Mandatory Requirements",
+   "kind": "head"
+  },
+  {
+   "section": "conclusions",
+   "label": "Compliance to all the requirements of the relevant management system standard (or other normative document related to the management system)",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Monitoring of the performance, measurement, reports, and reviews in comparison to the main goals and objectives (related to the expected outcomes that are resulted from the requirements of the applicable management systems standards)",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Management system performance in relation to statutory / regulatory / contractual requirements",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Management system performance in relation to include climate change in their analysis of the business context (section 4.1), as well as the question of whether interested parties have requirements related to climate change (section 4.2)",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Monitoring of Processes",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Internal Audit and Management Review",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Upper management responsibility for the stated policies",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Management System Effectiveness",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "The corrective actions from the previous audit (action list) were reviewed and their effectiveness was verified",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Complaint Management and Handling",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Changes Review",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Use of the Logo and/or any reference to the certification",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "",
+   "kind": "blank"
+  },
+  {
+   "section": "conclusions",
+   "label": "Environmental Specific Requirements according to ISO 14001",
+   "kind": "head"
+  },
+  {
+   "section": "conclusions",
+   "label": "Layout and site adequacy:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Environmental aspects (i.e., wastewater, air pollution, energy consumption etc.):",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Storage, transport and dangerous goods, special working materials:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Production area(s):",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Emergency precautions (fire and explosion protection, media leakage, etc.):",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Construction site(s):",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "EMS requirements:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Occupational Health and Safety Specific Requirements according to ISO 45001",
+   "kind": "head"
+  },
+  {
+   "section": "conclusions",
+   "label": "Risk identification and assessment:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Preventive measures:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Accidents and incidents:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Precautions for emergency preparedness:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Audited project or site:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Food Safety-Specific Requirements according to ISO 22000",
+   "kind": "head"
+  },
+  {
+   "section": "conclusions",
+   "label": "Traceability system:",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Hazard prevention and control plan (HACCP plan):",
+   "kind": "text"
+  },
+  {
+   "section": "conclusions",
+   "label": "Verification in relation to PRPs:",
+   "kind": "text"
+  }
+ ]
+}

@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit reports of the accreditation bodies ESYD, PNAC and SAAC: the blocks under
+         sections 1 and 2, in the order of each form. tools/gen_standalone_views.py copies
+         them to the standalone form. -->
+
+    <!-- ================= ESYD: FM-BA-ZET-MS-All-008-AR-EN ================= -->
+    <record id="project_block_esyd_audit_report" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.esyd_audit_report</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_esyd_audit_report" invisible="audit_report_key != 'esyd_audit_report'">
+                    <separator string="Further Company and Audit Information"/>
+                    <group>
+                        <group>
+                            <field name="ear_company_description"/>
+                        </group>
+                        <group>
+                            <field name="ap_audit_language"/>
+                            <field name="ear_remote_activities"/>
+                        </group>
+                    </group>
+                    <div class="text-muted small mb-2">
+                        3. Audit objectives and the characterization of findings print as in the form:
+                        1 full compliance, 2 opportunity for improvement, 3 minor NC (plan for correction accepted),
+                        4 major NC (documents), 5 major NC (re-audit), NA not applicable / excluded.
+                    </div>
+
+                    <separator string="4. Detailed Results of the Audit - Stage 1"/>
+                    <group>
+                        <field name="ear_stage1_result" placeholder="Statement on the summary result of stage 1"/>
+                    </group>
+                    <field name="ear_stage1_row_ids">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="label" string="Requirement (evaluation grade 1 or 2)" width="260px"/>
+                            <field name="std1"/>
+                            <field name="std2"/>
+                            <field name="std3"/>
+                            <field name="std4"/>
+                        </list>
+                    </field>
+                    <label for="ear_deviation_ids" string="List of Deviations for Stage 1 (close within 6 months)" class="fw-bold"/>
+                    <field name="ear_deviation_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number" string="s/n"/>
+                            <field name="description" string="Findings Description"/>
+                            <field name="standard"/>
+                            <field name="clause"/>
+                            <field name="corrective_action" string="Corrective Action"/>
+                            <field name="evidence"/>
+                            <field name="verification" string="Evaluation of Corrective Action"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="ear_dev_place_date"/>
+                        </group>
+                        <group>
+                            <field name="ear_dev_rep_place_date"/>
+                            <field name="ear_dev_lead_place_date"/>
+                        </group>
+                    </group>
+
+                    <separator string="Stage 2 or Surveillance: Audit Conclusions"/>
+                    <group>
+                        <field name="ear_audit_stage" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <field name="ear_conclusion_row_ids">
+                        <list editable="bottom" create="0" delete="0" limit="200"
+                            decoration-bf="kind == 'item'" decoration-muted="kind == 'comment'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Minimum Mandatory Requirements" width="420px"/>
+                            <field name="audited" invisible="kind != 'item'"/>
+                            <field name="rating" string="Result" invisible="kind != 'item'"/>
+                            <field name="comment" string="Conclusion / Comment" invisible="kind != 'comment'"/>
+                        </list>
+                    </field>
+
+                    <separator string="5. Recommendation of the Audit Team"/>
+                    <group>
+                        <group>
+                            <field name="ear_scope_appropriate" widget="radio" options="{'horizontal': true}"/>
+                            <field name="ear_objectives_fulfilled" widget="radio" options="{'horizontal': true}"/>
+                            <field name="ear_findings_raised" widget="radio" options="{'horizontal': true}"/>
+                            <field name="ear_rec_standards"/>
+                        </group>
+                        <group>
+                            <field name="ear_rec_suggestion" widget="radio"/>
+                            <field name="ear_rec_after" widget="radio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="ear_place_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="ear_lead_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="ear_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                    </group>
+                    <group string="Client Acceptance">
+                        <group>
+                            <field name="ear_client_name"/>
+                            <field name="ear_next_audit" placeholder="Month and year"/>
+                        </group>
+                        <group>
+                            <field name="ear_client_signature" widget="signature"/>
+                        </group>
+                    </group>
+
+                    <separator string="Annex I: List of Findings (from the NC register)"/>
+                    <field name="ear_finding_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number" string="s/n"/>
+                            <field name="standard"/>
+                            <field name="clause"/>
+                            <field name="description"/>
+                            <field name="rating" string="Characterization"/>
+                            <field name="corrective_action"/>
+                            <field name="completion_date"/>
+                            <field name="evidence"/>
+                            <field name="verification"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="ear_nc_place_date"/>
+                        </group>
+                        <group>
+                            <field name="ear_nc_rep_place_date"/>
+                            <field name="ear_nc_lead_place_date"/>
+                        </group>
+                    </group>
+                    <p class="text-muted">
+                        Annex II "Special aspects considered in respect to the standards" prints as in the form.
+                    </p>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ================= PNAC: TUV/BA/FM/04-4 ================= -->
+    <record id="project_block_pnac_audit_report" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.pnac_audit_report</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_pnac_audit_report" invisible="audit_report_key != 'pnac_audit_report'">
+                    <group>
+                        <group>
+                            <field name="par_complexity"/>
+                        </group>
+                    </group>
+                    <div class="text-muted small mb-2">
+                        3. Audit objectives and 4. audit criteria print as in the form. Rating: 1 fully compliant,
+                        2 opportunity for improvement / observation, 3 minor NC (documents, effectiveness reviewed
+                        at the next audit), 4 major NC (re-audit), NA not applicable / excluded.
+                    </div>
+
+                    <separator string="4. Detailed Result of the Audit - Stage 1"/>
+                    <group>
+                        <field name="par_stage1_result" placeholder="Statement on the summary result of stage 1"/>
+                    </group>
+                    <field name="par_stage1_row_ids">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="label" string="Requirement" width="260px"/>
+                            <field name="std1"/>
+                            <field name="std2"/>
+                            <field name="std3"/>
+                            <field name="std4"/>
+                        </list>
+                    </field>
+                    <label for="par_deviation_ids" string="List of Deviations for Stage 1 (close within 6 months)" class="fw-bold"/>
+                    <field name="par_deviation_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number"/>
+                            <field name="description"/>
+                            <field name="standard"/>
+                            <field name="clause"/>
+                            <field name="corrective_action" string="Corrective Action"/>
+                            <field name="evidence"/>
+                            <field name="rating" string="Rating of Corrective Action"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="par_dev_place_date"/>
+                        </group>
+                        <group>
+                            <field name="par_dev_rep_place_date"/>
+                            <field name="par_dev_lead_place_date"/>
+                        </group>
+                    </group>
+
+                    <separator string="Audit Conclusions"/>
+                    <field name="par_conclusion_row_ids">
+                        <list editable="bottom" create="0" delete="0" limit="200"
+                            decoration-bf="kind == 'head'" decoration-muted="kind in ('head', 'blank')">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" width="420px"/>
+                            <field name="audited" invisible="kind != 'item'"/>
+                            <field name="rating" invisible="kind != 'item'"/>
+                            <field name="comment" string="Conclusion / Comment / Evidence"
+                                invisible="kind not in ('comment', 'text')"/>
+                        </list>
+                    </field>
+
+                    <separator string="List of Positive Findings"/>
+                    <field name="par_positive_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number"/>
+                            <field name="description" string="Description"/>
+                        </list>
+                    </field>
+
+                    <separator string="List of Findings / Nonconformities (from the NC register)"/>
+                    <field name="par_finding_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number"/>
+                            <field name="standard"/>
+                            <field name="clause"/>
+                            <field name="description"/>
+                            <field name="rating"/>
+                            <field name="corrective_action"/>
+                            <field name="completion_date"/>
+                            <field name="evidence"/>
+                            <field name="verification"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="par_nc_place_date"/>
+                        </group>
+                        <group>
+                            <field name="par_nc_rep_place_date"/>
+                            <field name="par_nc_lead_place_date"/>
+                        </group>
+                    </group>
+
+                    <separator string="5. Recommendation of the Audit Team"/>
+                    <group>
+                        <group>
+                            <field name="par_scope_appropriate" widget="radio" options="{'horizontal': true}"/>
+                            <field name="par_objectives_fulfilled" widget="radio" options="{'horizontal': true}"/>
+                            <field name="par_rec_standards"/>
+                        </group>
+                        <group>
+                            <field name="par_rec_suggestion" widget="radio"/>
+                            <field name="par_rec_after" widget="radio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="par_place_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="par_lead_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="par_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                    </group>
+                    <group string="Client Acceptance">
+                        <group>
+                            <field name="par_client_name"/>
+                            <field name="par_next_audit" placeholder="Month and year"/>
+                        </group>
+                        <group>
+                            <field name="par_client_signature" widget="signature"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ================= SAAC: FM-BA-ZET-MS-All-010a-AR (IMS) ================= -->
+    <record id="project_block_saac_audit_report" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.saac_audit_report</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_saac_audit_report" invisible="audit_report_key != 'saac_audit_report'">
+                    <div class="text-muted small mb-2">
+                        3. Audit objectives and the rating scale print as in the form. Rating: 1 fully compliant,
+                        2 opportunity for improvement, 3 minor NC, 4 major NC (documents), 5 major NC (re-audit), NA.
+                    </div>
+
+                    <separator string="4. Detailed Result of the Audit - Stage 1"/>
+                    <group>
+                        <field name="sar_stage1_result" placeholder="Statement on the summary result of stage 1"/>
+                    </group>
+                    <field name="sar_stage1_row_ids">
+                        <list editable="bottom" create="0" delete="0">
+                            <field name="label" string="Requirement" width="220px"/>
+                            <field name="std1"/>
+                            <field name="std2"/>
+                            <field name="std3"/>
+                            <field name="std4"/>
+                            <field name="std5"/>
+                        </list>
+                    </field>
+                    <label for="sar_deviation_ids" string="List of Deviations for Stage 1 (close within 6 months)" class="fw-bold"/>
+                    <field name="sar_deviation_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number"/>
+                            <field name="description"/>
+                            <field name="standard"/>
+                            <field name="clause"/>
+                            <field name="corrective_action" string="Corrective Action"/>
+                            <field name="evidence"/>
+                            <field name="rating" string="Rating of Corrective Action"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="sar_dev_place_date"/>
+                        </group>
+                        <group>
+                            <field name="sar_dev_rep_place_date"/>
+                            <field name="sar_dev_lead_place_date"/>
+                        </group>
+                    </group>
+
+                    <separator string="Audit Conclusions"/>
+                    <field name="sar_conclusion_row_ids">
+                        <list editable="bottom" create="0" delete="0" limit="200"
+                            decoration-bf="kind in ('head', 'sub')" decoration-muted="kind in ('head', 'sub')">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" width="420px"/>
+                            <field name="audited" invisible="kind != 'item'"/>
+                            <field name="rating" invisible="kind != 'item'"/>
+                            <field name="comment" string="Conclusion / Comment / Evidence"
+                                invisible="kind not in ('comment', 'text')"/>
+                        </list>
+                    </field>
+                    <label for="sar_isms_row_ids" string="Information security specific requirements according to ISO 27001" class="fw-bold"/>
+                    <field name="sar_isms_row_ids">
+                        <list editable="bottom" create="0" delete="0"
+                            decoration-bf="kind in ('head', 'sub')" decoration-muted="kind in ('head', 'sub')">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" width="420px"/>
+                            <field name="audited" invisible="kind != 'location'"/>
+                            <field name="comment" string="Address / Entry / Conclusion"
+                                invisible="kind not in ('location', 'text', 'comment')"/>
+                        </list>
+                    </field>
+
+                    <separator string="Inspected Requirements of the Standard According to the Audit Plan"/>
+                    <field name="sar_iso27001_2013_row_ids">
+                        <list editable="bottom" create="0" delete="0" decoration-bf="kind == 'head'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Annex A of ISO 27001:2013"/>
+                            <field name="ca" invisible="kind == 'head'"/>
+                            <field name="sa1" invisible="kind == 'head'"/>
+                            <field name="sa2" invisible="kind == 'head'"/>
+                        </list>
+                    </field>
+                    <field name="sar_iso27001_row_ids">
+                        <list editable="bottom" create="0" delete="0" decoration-bf="kind == 'head'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Annex A of ISO 27001:2022"/>
+                            <field name="ca" invisible="kind == 'head'"/>
+                            <field name="sa1" invisible="kind == 'head'"/>
+                            <field name="sa2" invisible="kind == 'head'"/>
+                        </list>
+                    </field>
+                    <field name="sar_iso27701_row_ids">
+                        <list editable="bottom" create="0" delete="0" decoration-bf="kind == 'head'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Annex A and Annex B of ISO 27701:2019"/>
+                            <field name="ca" invisible="kind == 'head'"/>
+                            <field name="sa1" invisible="kind == 'head'"/>
+                            <field name="sa2" invisible="kind == 'head'"/>
+                        </list>
+                    </field>
+                    <field name="sar_sikat_row_ids">
+                        <list editable="bottom" create="0" delete="0" decoration-bf="kind == 'head'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Critical processes, systems, and applications (IT-SiKat)"/>
+                            <field name="ca" invisible="kind == 'head'"/>
+                            <field name="sa1" invisible="kind == 'head'"/>
+                            <field name="sa2" invisible="kind == 'head'"/>
+                        </list>
+                    </field>
+                    <field name="sar_iso20000_row_ids">
+                        <list editable="bottom" create="0" delete="0" decoration-bf="kind == 'head'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Process oriented audit according to ISO 20000-1"/>
+                            <field name="audited" invisible="kind == 'head'"/>
+                        </list>
+                    </field>
+                    <field name="sar_iso22301_row_ids">
+                        <list editable="bottom" create="0" delete="0" decoration-bf="kind == 'head'">
+                            <field name="kind" column_invisible="1"/>
+                            <field name="label" string="Process oriented audit according to ISO 22301"/>
+                            <field name="audited" invisible="kind == 'head'"/>
+                        </list>
+                    </field>
+
+                    <separator string="List of Positive Findings"/>
+                    <field name="sar_positive_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number"/>
+                            <field name="description" string="Description"/>
+                        </list>
+                    </field>
+
+                    <separator string="List of Findings / Nonconformities (from the NC register)"/>
+                    <field name="sar_finding_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="form" column_invisible="1"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="number"/>
+                            <field name="standard"/>
+                            <field name="clause"/>
+                            <field name="description"/>
+                            <field name="rating"/>
+                            <field name="corrective_action"/>
+                            <field name="completion_date"/>
+                            <field name="evidence"/>
+                            <field name="verification"/>
+                        </list>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="sar_nc_place_date"/>
+                        </group>
+                        <group>
+                            <field name="sar_nc_rep_place_date"/>
+                            <field name="sar_nc_lead_place_date"/>
+                        </group>
+                    </group>
+
+                    <separator string="5. Recommendation of the Audit Team"/>
+                    <group>
+                        <group>
+                            <field name="sar_scope_appropriate" widget="radio" options="{'horizontal': true}"/>
+                            <field name="sar_objectives_fulfilled" widget="radio" options="{'horizontal': true}"/>
+                            <field name="sar_rec_standards"/>
+                        </group>
+                        <group>
+                            <field name="sar_rec_suggestion" widget="radio"/>
+                            <field name="sar_rec_after" widget="radio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="sar_place_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="sar_lead_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="sar_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,1512 @@
+{
+ "key": "pnac_guide_9001",
+ "meta": {
+  "title": "Auditing guideline / ISO 9001:2015",
+  "subtitle": "Certification of Management Systems",
+  "code": "FM-TAGMBH-MSZ-011_Audit-Guideline-ISO-9001-EN",
+  "revision": "01/17.10.2024",
+  "vkl": "Internal"
+ },
+ "blocks": [
+  {
+   "type": "p",
+   "t": "A. Terms and Definition",
+   "b": true
+  },
+  {
+   "type": "table",
+   "widths": [
+    13.67,
+    86.33
+   ],
+   "rows": [
+    [
+     {
+      "t": "Conformity",
+      "b": true
+     },
+     {
+      "t": "Fulfilment of a requirement"
+     }
+    ],
+    [
+     {
+      "t": "Evidence",
+      "b": true
+     },
+     {
+      "t": "Evidence includes records, factual statements, and other verifiable information that is related to the criteria being used. Criteria include policies, requirements, and other documented information."
+     }
+    ],
+    [
+     {
+      "t": "Customer",
+      "b": true
+     },
+     {
+      "t": "A customer is anyone who receives products or services (outputs) from a supplier. Customers can be either people or organizations and can be either external or internal to the supplier organization."
+     }
+    ],
+    [
+     {
+      "t": "Interested party",
+      "b": true
+     },
+     {
+      "t": "An interested party is anyone who can affect, be affected by, or believe that they are affected by a decision or activity. An interested party is a person, group, or organization that has an interest or a stake in a decision or activity."
+     }
+    ],
+    [
+     {
+      "t": "Management",
+      "b": true
+     },
+     {
+      "t": "Refers to all the activities that are used to coordinate, direct, and control organizations. These activities include developing policies, setting objectives, and establishing processes to achieve these objectives. In this context, the term management does not refer to people. It refers to what managers do"
+     }
+    ],
+    [
+     {
+      "t": "Provider"
+     },
+     {
+      "t": "A provider is a person or an organization that supplies or provides products or services. Providers can be either internal or external to the organization. Internal providers supply products or services to people within their own organization while external providers supply products or services to other organizations."
+     }
+    ],
+    [
+     {
+      "t": "Quality management system",
+      "b": true
+     },
+     {
+      "t": "A quality management system (QMS) is a set of interrelated or interacting elements that organizations use to formulate quality policies and quality objectives and to establish the processes that are needed to ensure that policies are followed and objectives are achieved. These elements include structures, programs, practices, procedures, plans, rules, roles, responsibilities, relationships, contracts, agreements, documents, records, methods, tools, techniques, technologies, and resources."
+     }
+    ],
+    [
+     {
+      "t": "Nonconformity",
+      "b": true
+     },
+     {
+      "t": "non-fulfilment of a requirement"
+     }
+    ],
+    [
+     {
+      "t": "documented information",
+      "b": true
+     },
+     {
+      "t": "information required to be controlled and maintained by an organization and the medium on which it is contained"
+     }
+    ],
+    [
+     {
+      "t": "Outsource",
+      "b": true
+     },
+     {
+      "t": "make an arrangement where an external organization performs part of an organization’s function or process"
+     }
+    ],
+    [
+     {
+      "t": "risk",
+      "b": true
+     },
+     {
+      "t": "effect of uncertainty"
+     }
+    ],
+    [
+     {
+      "t": "traceability",
+      "b": true
+     },
+     {
+      "t": "ability to follow the history, application, movement and location of an object through specified stage(s) of production, processing and distribution"
+     }
+    ],
+    [
+     {
+      "t": "Column (A):",
+      "b": true
+     },
+     {
+      "t": "The minimum indicative issues, aspects, practices or procedures applied in relation to a relative clause of the standard"
+     }
+    ],
+    [
+     {
+      "t": "Column (B):",
+      "b": true
+     },
+     {
+      "t": "Indicative objective evidences that have to be retained and evaluated by the auditor during the audit."
+     }
+    ],
+    [
+     {
+      "t": "MDE-xx\nMinimum Documented Evidence",
+      "b": true
+     },
+     {
+      "t": "The detailed information that the auditor has to record in the questionnaire in order to provide the sufficient verifiable evidences for the technical review and to support the certification decision"
+     }
+    ],
+    [
+     {
+      "t": "MDI-xx\nMaintained Documented Information",
+      "b": true
+     },
+     {
+      "t": "A “document” or “documented procedures”, “quality manual” or “quality plan” that is connected with a specific requirement of the Standard"
+     }
+    ],
+    [
+     {
+      "t": "RDI-xx\nRetained Documented Information",
+      "b": true
+     },
+     {
+      "t": "A “record” to denote documents needed to provide evidence of conformity with requirement of the Standard."
+     }
+    ],
+    [
+     {},
+     {}
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "A. Purpose and Scope",
+   "b": true
+  },
+  {
+   "type": "p",
+   "t": "The purpose of the guideline is to:"
+  },
+  {
+   "type": "p",
+   "t": "• To set the minimum audit requirements for the standard"
+  },
+  {
+   "type": "p",
+   "t": "• To provide guidance to the auditors in order to perform the audit in detail and to the appropriate depth"
+  },
+  {
+   "type": "p",
+   "t": "• To determine the minimum recording requirements in respect to needed verifiable evidence for certification decision"
+  },
+  {
+   "type": "p",
+   "t": "C. Guidance and clarifications",
+   "b": true
+  },
+  {
+   "type": "p",
+   "t": "• The mentioned data and information in columns A and B below are the minimum and the main topics to be assessed during the audit. The points are not exhaustive and other or part of them have to be assessed during the audit."
+  },
+  {
+   "type": "p",
+   "t": "• Reference of objective evidence (MDExx) can be very brief and can refer only to traceable documents, names or information."
+  },
+  {
+   "type": "p",
+   "t": "• For all fields that are checked, means that the auditor has seen the adequate information and/or data and are satisfied"
+  },
+  {
+   "type": "p",
+   "t": "• In Table 1 all requires Retained and Maintained Documented Information (RDI & MDI) are listed to facilitate the auditor to have direct view the relevant requirement of the standard"
+  },
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    31.59,
+    35.52,
+    32.89
+   ],
+   "rows": [
+    [
+     {
+      "t": "Clauses ISO 9001/2015",
+      "b": true
+     },
+     {
+      "t": "**(A)\n**Evaluation Points\n(Evaluation through interviews, on site audit or/and documents)",
+      "al": "c"
+     },
+     {
+      "t": "(B)\nInformation, Data, Evidences",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "4 Context of the organization",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**4.1 Understanding the organization and its context\nThe organization shall determine external and internal issues that are relevant to its purpose\nand its strategic direction and that affect its ability to achieve the intended result(s) of its quality management system.\nThe organization shall monitor and review information about these external and internal issues.\nNOTE 1 Issues can include positive and negative factors or conditions for consideration.\nNOTE 2 Understanding the external context can be facilitated by considering issues arising from legal,\ntechnological, competitive, market, cultural, social and economic environments, whether international, national,\nregional or local.\nNOTE 3 Understanding the internal context can be facilitated by considering issues related to values, culture,\nknowledge and performance of the organization."
+     },
+     {
+      "t": "• Identification and determination of the context\n• Determination of external and internal factors that are relevant with the company\n• External and internal issues are relevant to company’s purpose.\n• Relation and influence of them to the QMS"
+     },
+     {
+      "t": "**MDE-01\nData and information that determine the context / environment of the company:\n• Licenses and Approvals from National Authorities (registration number, date of issue)\n• Legislation and regulatory requirements\n• Authorities\n• Local Community\n• Customers\n• Markets\n• Subcontractors\n• Consumers organizations\n• Other"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**4.2 Understanding the needs and expectations of interested parties\nDue to their effect or potential effect on the organization’s ability to consistently provide products and\nservices that meet customer and applicable statutory and regulatory requirements, the organization\nshall determine:\na) the interested parties that are relevant to the quality management system;\nb) the requirements of these interested parties that are relevant to the quality management system.\nThe organization shall monitor and review information about these interested parties and their\nrelevant requirements."
+     },
+     {
+      "t": "• Determination of relevant interested parties to company’s QMS.\n• Determination specific requirements for each interest party.\n• Description of the needs and expectations of interested parties\n• Monitoring of changing needs and expectations of interested parties.\n• Review information about company’s interested parties"
+     },
+     {
+      "t": "**MDE-01\n• Data that determine interested parties:\n• interested parties who are relevant to QMS (e.g. stakeholders, authorities, suppliers, clients, consumers, local authorities & community, personnel etc.)\n• information about company’s interested parties in general\n• requirements of interested parties:\n• certifications\n• procedures\n• contracts\n• consumers’ rights\nethical issues"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**4.3 Determining the scope of the quality management system\nThe organization shall determine the boundaries and applicability of the quality management system\nto establish its scope.\nWhen determining this scope, the organization shall consider:\na) the external and internal issues referred to in 4.1;\nb) the requirements of relevant interested parties referred to in 4.2;\nc) the products and services of the organization.\nThe organization shall apply all the requirements of this International Standard if they are applicable\nwithin the determined scope of its quality management system.\nThe scope of the organization’s quality management system shall be available and be maintained as documented information. The scope shall state the types of products and services covered, and provide\njustification for any requirement of this International Standard that the organization determines is not\napplicable to the scope of its quality management system.\nConformity to this International Standard may only be claimed if the requirements determined as not\nbeing applicable do not affect the organization’s ability or responsibility to ensure the conformity of its\nproducts and services and the enhancement of customer satisfaction."
+     },
+     {
+      "t": "**MDI-01\n• Documented description of the scope (eg. manual, documented procedure, procedures etc.)\n• The scope must be approved/issued/validated by authorized person or/and team\n• General information of the company\n• Documented Justification in the case that exist exceptions of ISO 9001 requirements"
+     },
+     {
+      "t": "**MDE-01\nDocumented scope of QMS, quality objectives, documented procedures, records:\n• Products\n• Services\n• Activities\n• Processes\n• Production sites\n• Number of personnel\n• Number of shifts\n• Operation license\n• Detailed description or/and definition of scope\nThe scope must be relevant and within the legitimate activities of the company"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "4.4 Quality management system and its processes",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "4.4.1 The organization shall establish, implement, maintain and continually improve a quality management system, including the processes needed and their interactions, in accordance with the requirements of this International Standard.\nThe organization shall determine the processes needed for the quality management system and their\napplication throughout the organization, and shall:\na) determine the inputs required and the outputs expected from these processes;\nb) determine the sequence and interaction of these processes;\nc) determine and apply the criteria and methods (including monitoring, measurements and related\nperformance indicators) needed to ensure the effective operation and control of these processes;\nd) determine the resources needed for these processes and ensure their availability;\ne) assign the responsibilities and authorities for these processes;\nf) address the risks and opportunities as determined in accordance with the requirements of 6.1;\ng) evaluate these processes and implement any changes needed to ensure that these processes achieve\ntheir intended results;\nh) improve the processes and the quality management system."
+     },
+     {
+      "t": "• Description of the interaction between the processes (refer to the relevant documentation and file)\n• Description of the connection between the processes\n• Analyze the processes in terms of risks and opportunities and identify relevant actions\n• Determine the criteria and methods (\nneeded to ensure the effective operation            and control of these processes\n• Determine the resources needed\n• Record the requirements for the effective operation of the processes\nQMS structure, planning and provided resources"
+     },
+     {
+      "t": "**MDE-01\n• Description of:\n• The QMS contents and structure\n• Processes and procedure"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "4.4.2 To the extent necessary, the organization shall:\na) maintain documented information to support the operation of its processes;\nb) retain documented information to have confidence that the processes are being carried out as planned."
+     },
+     {
+      "t": "**RDI-01\n**MDI-02\n• Record the relevant processes and the documented information."
+     },
+     {
+      "t": "**MDE-01\nThe QMS and Description of:\n• documents (name, form code, version)\n• protection and retention time of the records\n• List of documents\n• Working instructions\n• Legislation list\n• Responsible for Maintaining information (name, position, responsibilities)\n• QMS Manual"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "5 Leadership",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "5.1 Leadership and commitment",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**5.1.1 General\nTop management shall demonstrate leadership and commitment with respect to the quality\nmanagement system by:\na) taking accountability for the effectiveness of the quality management system;\nb) ensuring that the quality policy and quality objectives are established for the quality management\nsystem and are compatible with the context and strategic direction of the organization;\nc) ensuring the integration of the quality management system requirements into the organization’s\nbusiness processes;\nd) promoting the use of the process approach and risk-based thinking;\ne) ensuring that the resources needed for the quality management system are available;\nf) communicating the importance of effective quality management and of conforming to the quality\nmanagement system requirements;\ng) ensuring that the quality management system achieves its intended results;\nh) engaging, directing and supporting persons to contribute to the effectiveness of the quality\nmanagement system;\ni) promoting improvement;\nj) supporting other relevant management roles to demonstrate their leadership as it applies to their\nareas of responsibility.\nNOTE Reference to “business” in this International Standard can be interpreted broadly to mean those\nactivities that are core to the purposes of the organization’s existence, whether the organization is public, private,\nfor profit or not for profit."
+     },
+     {
+      "t": "• Leadership principles, activities and practices ie. Patterns, mechanisms, organizational governance, procedures etc.\n• Quality Policy and objectives"
+     },
+     {
+      "t": "**MDE-02\n• Documented Quality policy\n• Available resources\n• Staff involvement\n• communication tools and/or practices (mail, posts, company’s site etc.)\n• Quality objectives\n• Organizational and operational objectives\n• Results evaluation processes and/or mechanisms\n• Organizational structure and roles, responsibilities, and authorizations"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**5.1.2 Customer focus\nTop management shall demonstrate leadership and commitment with respect to customer focus by\nensuring that:\na) customer and applicable statutory and regulatory requirements are determined, understood and\nconsistently met;\nb) the risks and opportunities that can affect conformity of products and services and the ability to\nenhance customer satisfaction are determined and addressed;\nc) the focus on enhancing customer satisfaction is maintained."
+     },
+     {
+      "t": "• Procedure for handling customer complaints\n• Evaluation and analysis of customer complaints\n• Indicators for measuring customer satisfaction"
+     },
+     {
+      "t": "**MDE-08\n• legislation requirements\n• Customer complaints (cause, result, corrective action etc)\n• Customer Satisfaction\n• Review of client application"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**5.2.1 Establishing the quality policy\nTop management shall establish, implement and maintain a quality policy that:\na) is appropriate to the purpose and context of the organization and supports its strategic direction;\nb) provides a framework for setting quality objectives;\nc) includes a commitment to satisfy applicable requirements;\nd) includes a commitment to continual improvement of the quality management system."
+     },
+     {
+      "t": "• Documented Communication of policy\n• Awareness of policy’s principles and statements\n• Elements and contents covered in the policy\n• Involvement and participation at all levels of the organization\n• Compatibility with legislation clients and the Top Management’s vision and objectives"
+     },
+     {
+      "t": "**MDE-02\n• QMS\n• Documented Quality policy\n• Means of expressed policy’s elements and contents e.g. document, announcement, procedure etc.\n• Approval and issue activities of the policy\n• Validation and update process of the policy’s elements"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**5.2.2 Communicating the quality policy\nThe quality policy shall:\na) be available and be maintained as documented information;\nb) be communicated, understood and applied within the organization;\nc) be available to relevant interested parties, as appropriate."
+     },
+     {
+      "t": "**MDI-03\n• Elements and contents of quality policy\n• Notification and awareness activities of the quality policy\n• Awareness of interested parties of quality policy\n• Understanding of quality policy\n• Availability of quality policy"
+     },
+     {
+      "t": "**MDE-02\n• Documented Quality Policy\n• Documented Quality Policy (edition, date, signature) and be approved/issued/validated by authorized person or/and team\n• communication tools and/or practices (mail, posts, company’s site etc.)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**5.3 Organizational roles, responsibilities and authorities\nTop management shall ensure that the responsibilities and authorities for relevant roles are assigned,\ncommunicated and understood within the organization.\nTop management shall assign the responsibility and authority for:\na) ensuring that the quality management system conforms to the requirements of this\nInternational Standard;\nb) ensuring that the processes are delivering their intended outputs;\nc) reporting on the performance of the quality management system and on opportunities for\nimprovement (see 10.1), in particular to top management;\nd) ensuring the promotion of customer focus throughout the organization;\ne) ensuring that the integrity of the quality management system is maintained when changes to the quality management system are planned and implemented."
+     },
+     {
+      "t": "• Assignment of roles, responsibilities, and authorities\n• QMS roles, responsibilities, and authorities communication and notification\n• Consistency of roles with QMS requirements and policy objectives\n• Reporting System"
+     },
+     {
+      "t": "**MDE-03\n• Company’s organization Chart (Name, form code, Version)\n• Job description for appropriate positions – (Name, Position, Responsibility)\n• Reporting of quality team and approved/issued/validated by authorized person or/and team\n• Communication channels between quality team/personnel and Top Management\n• Appointment or/and assignment of the Quality Team (responsibilities and authorities)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6 Planning",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6.1 Actions to address risks and opportunities",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6.1.1 When planning for the quality management system, the organization shall consider the issues\nreferred to in 4.1 and the requirements referred to in 4.2 and determine the risks and opportunities that\nneed to be addressed to:\na) give assurance that the quality management system can achieve its intended result(s);\nb) enhance desirable effects;\nc) prevent, or reduce, undesired effects;\nd) achieve improvement."
+     },
+     {
+      "t": "• Planning of the QMS and consistency with organisational objectives"
+     },
+     {
+      "t": "**MDE-04\n• QMS manual\n• Recording the risks and opportunities\n• Addressed risks and opportunities that could influence the overall performance of company’s QMS or disrupt its operation.\n• achievement of objectives"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6.1.2 The organization shall plan:\na) actions to address these risks and opportunities;\nb) how to:\n1) integrate and implement the actions into its quality management system processes (see 4.4);\n2) evaluate the effectiveness of these actions.\nActions taken to address risks and opportunities shall be proportionate to the potential impact on the\nconformity of products and services.\nNOTE 1 Options to address risks can include avoiding risk, taking risk in order to pursue an opportunity,\neliminating the risk source, changing the likelihood or consequences, sharing the risk, or retaining risk by\ninformed decision.\nNOTE 2 Opportunities can lead to the adoption of new practices, launching new products, opening new\nmarkets, addressing new customers, building partnerships, using new technology and other desirable and viable possibilities to address the organization’s or its customers’ needs."
+     },
+     {
+      "t": "• Integration and implementation of risks and opportunities into its processes\n• Evaluation of the effectiveness of the action plan\n• actions to address risks and opportunities that could influence QMS.\n• actions that are appropriate and proportionate to the impact on requirements"
+     },
+     {
+      "t": "**MDE-04\n• Description of risks and opportunities\n• Action Plan to handle risks and opportunities\n• Potential Impact on quality from plan action\n• Procedure of handling risks and opportunities that could affect the performance of organization’s QMS or disrupt its operation\n• Documented plan of managing and addressing risks and opportunities"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6.2 Quality objectives and planning to achieve them",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6.2.1 The organization shall establish quality objectives at relevant functions, levels and processes\nneeded for the quality management system.\nThe quality objectives shall:\na) be consistent with the quality policy;\nb) be measurable;\nc) take into account applicable requirements;\nd) be relevant to conformity of products and services and to enhancement of customer satisfaction;\ne) be monitored;\nf) be communicated;\ng) be updated as appropriate.\nThe organization shall maintain documented information on the quality objectives."
+     },
+     {
+      "t": "**MDI-04\n• Quality objectives Process\n• Consistency of objectives of the QMS with quality policy\n• Communication of quality objectives\n• Frequency of quality objectives review"
+     },
+     {
+      "t": "**MDE-04\n• QMS objectives (examples)\n• criteria for setting objectives\n• monitoring records\n• Communication tools or/and practices"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "6.2.2 When planning how to achieve its quality objectives, the organization shall determine:\na) what will be done;\nb) what resources will be required;\nc) who will be responsible;\nd) when it will be completed;\ne) how the results will be evaluated."
+     },
+     {
+      "t": "• Monitoring and achievement of objectives\n• Adequacy of provided resources\n• Evaluation and review of objectives\n• Actions if set objectives are not achieved"
+     },
+     {
+      "t": "**MDE-04\n• Quality objectives\n• Effectiveness of objectives\n• Action and Evaluation plan (responsible person, timetable etc)\n• Responsible personnel (Name, Position, Responsibility)\n• Evaluation Frequency"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**6.3 Planning of changes\nWhen the organization determines the need for changes to the quality management system, the changes\nshall be carried out in a planned manner (see 4.4).\nThe organization shall consider:\na) the purpose of the changes and their potential consequences;\nb) the integrity of the quality management system;\nc) the availability of resources;\nd) the allocation or reallocation of responsibilities and authorities."
+     },
+     {
+      "t": "• purpose of the changes\n• Integrity assurance of the QMS in case of changes\n• Resource provision in case of changes\n• Systematic approach/process for changes (procedure, documentation, assessment, responsibilities, authorities)\n• Responsible personnel (Name, Position, Responsibility)"
+     },
+     {
+      "t": "**MDE-04\n• Records for any changes (real cases)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7 Support",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7.1 Resources",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.1 General\nThe organization shall determine and provide the resources needed for the establishment,\nimplementation, maintenance and continual improvement of the quality management system.\nThe organization shall consider:\na) the capabilities of, and constraints on, existing internal resources;\nb) what needs to be obtained from external providers."
+     },
+     {
+      "t": "• Identification of the resources that needed to establish, implement and maintain its QMS"
+     },
+     {
+      "t": "**MDE-05\n• QMS manual\n• Resource planning (including external providers)\n• External providers\n• Suppliers (materials, equipment, etc.)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.2 People\nThe organization shall determine and provide the persons necessary for the effective implementation\nof its quality management system and for the operation and control of its processes."
+     },
+     {
+      "t": "• Personnel characteristics and needs and planning\n• Competencies and qualifications\n• Role and responsibilities\n• Job Description (examples and files)"
+     },
+     {
+      "t": "**MDE-05\n• Training needs\n• Training records\n• Job descriptions, CV, work experience, Deputies etc."
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.3 Infrastructure\nThe organization shall determine, provide and maintain the infrastructure necessary for the operation\nof its processes and to achieve conformity of products and services.\nNOTE Infrastructure can include:\na) buildings and associated utilities;\nb) equipment, including hardware and software;\nc) transportation resources;\nd) information and communication technology."
+     },
+     {
+      "t": "• Equipment, utilities and infrastructure provisions\n• Condition of the established of infrastructure, utilities and equipment\n• Supporting services and existing elements"
+     },
+     {
+      "t": "**MDE-05\n• List of equipment\n• Maintenance records\n• Equipment adequacy"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.4 Environment for the operation of processes\nThe organization shall determine, provide and maintain the environment necessary for the operation\nof its processes and to achieve conformity of products and services.\nNOTE A suitable environment can be a combination of human and physical factors, such as:\na) social (e.g. non-discriminatory, calm, non-confrontational);\nb) psychological (e.g. stress-reducing, burnout prevention, emotionally protective);\nc) physical (e.g. temperature, heat, humidity, light, airflow, hygiene, noise).\nThese factors can differ substantially depending on the products and services provided."
+     },
+     {
+      "t": "• Occupational risk assessment\n• Safety engineer\n• Occupational doctor\n• Code of good behaviour\n• Working hours\n• Work shifts\n• Work environment (temperature, heat, humidity, light, air flow, hygiene, noise, etc)\n• Cleaning Infrastructure"
+     },
+     {
+      "t": "**MDE-05\n• Occupational risk assessment (last update, records)\n• Safety engineer (engineer registration number, date, comments/findings, safety book etc)\n• Occupational doctor (date, comments/findings, etc)\n• Brief description and records"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7.1.5 Monitoring and measuring resources",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.5.1 General\nThe organization shall determine and provide the resources needed to ensure valid and reliable\nresults when monitoring or measuring is used to verify the conformity of products and services to\nrequirements.\nThe organization shall ensure that the resources provided:\na) are suitable for the specific type of monitoring and measurement activities being undertaken;\nb) are maintained to ensure their continuing fitness for their purpose.\nThe organization shall retain appropriate documented information as evidence of fitness for purpose of\nthe monitoring and measurement resources."
+     },
+     {
+      "t": "• Calibration procedure\n• Measuring equipment\n• Equipment register/list\n• Calibration plan\n• Record keeping"
+     },
+     {
+      "t": "**MDE-06\n• List of measuring equipment\n• List of measuring equipment for calibration or/and internal calibration (identification code and calibration due date)\n• Calibration certificates\n• Calibration procedure (frequency, method etc)\n• Work instruction for internal calibration\n• Records of internal calibration (date, calibration method, authorized person)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.5.2 Measurement traceability\nWhen measurement traceability is a requirement, or is considered by the organization to be an essential\npart of providing confidence in the validity of measurement results, measuring equipment shall be:\na) calibrated or verified, or both, at specified intervals, or prior to use, against measurement standards\ntraceable to international or national measurement standards; when no such standards exist, the\nbasis used for calibration or verification shall be retained as documented information;\nb) identified in order to determine their status;\nc) safeguarded from adjustments, damage or deterioration that would invalidate the calibration\nstatus and subsequent measurement results.\nThe organization shall determine if the validity of previous measurement results has been adversely\naffected when measuring equipment is found to be unfit for its intended purpose, and shall take appropriate action as necessary."
+     },
+     {
+      "t": "**RDI-02\n• Calibration method\n• Corrective actions in case of invalid measurements\n• Equipment shall be protected from damages, deteriorations or misuse"
+     },
+     {
+      "t": "**MDE-06\n• Calibration procedure (internal and external calibration) (frequency, method etc)\n• Measuring equipment protection\n• Software validation\n• Responsibilities for testing the equipment\n• Calibration equipment maintenance\n• Corrective actions"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.1.6 Organizational knowledge\nThe organization shall determine the knowledge necessary for the operation of its processes and to\nachieve conformity of products and services.\nThis knowledge shall be maintained and be made available to the extent necessary.\nWhen addressing changing needs and trends, the organization shall consider its current knowledge\nand determine how to acquire or access any necessary additional knowledge and required updates.\nNOTE 1 Organizational knowledge is knowledge specific to the organization; it is generally gained by\nexperience. It is information that is used and shared to achieve the organization’s objectives.\nNOTE 2 Organizational knowledge can be based on:\na) internal sources (e.g. intellectual property; knowledge gained from experience; lessons learned from\nfailures and successful projects; capturing and sharing undocumented knowledge and experience; the results of\nimprovements in processes, products and services);\nb) external sources ( e.g. standards; academia; conferences; gathering knowledge rom customers o r\nexternal providers)."
+     },
+     {
+      "t": "• Legislation\n• Bibliography or/and scientific articles\n• Knowledge from past experience and company common practices\n• Responsibilities"
+     },
+     {
+      "t": "**MDE-05\n• Legislation list (last update)\n• Internal Communication of legislation, bibliography etc.\n• Trainings relevant with the organizational knowledge (legislation etc)\n• Responsibilities about legislation updates etc"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.2 Competence\nThe organization shall:\na) determine the necessary competence of person(s) doing work under its control that affects the\nperformance and effectiveness of the quality management system;\nb) ensure that these persons are competent on the basis of appropriate education, training, or\nexperience;\nc) where applicable, take actions to acquire the necessary competence, and evaluate the effectiveness\nof the actions taken;\nd) retain appropriate documented information as evidence of competence.\nNOTE Applicable actions can include, for example, the provision of training to, the mentoring of, or the reassignment of currently employed persons; or the hiring or contracting of competent persons."
+     },
+     {
+      "t": "**RDI-03\n• Job descriptions\n• Knowledge and competence requirements (education, experience, skills, etc)\n• Hiring and recruitment procedures\n• Personnel evaluation process\n• Training assessment (tests, evaluation of education understanding)\n• Training planning"
+     },
+     {
+      "t": "**MDE-05\n• Job descriptions\n• CVs or/and personnel files\n• Personnel evaluation records\n• Recruitment evaluation records\n• Training records\n• Training schedule"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.3 Awareness\nThe organization shall ensure that persons doing work under the organization’s control are aware of:\na) the quality policy;\nb) relevant quality objectives;\nc) their contribution to the effectiveness of the quality management system, including the benefits of\nimproved performance;\nd) the implications of not conforming with the quality management system requirements."
+     },
+     {
+      "t": "• Staff awareness degree about quality policy and quality objectives\n• Communications tools (mail, meeting etc)\n• Training content and effectiveness\n• Report incidents of not conformities\n• interviews with the personnel"
+     },
+     {
+      "t": "**MDE-05\n• Interview and information sharing evidences\n• Training\n• Improvement notes\n• Annual evaluation of personnel"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.4 Communication\nThe organization shall determine the internal and external communications relevant to the quality\nmanagement system, including:\na) on what it will communicate;\nb) when to communicate;\nc) with whom to communicate;\nd) how to communicate;\ne) who communicates."
+     },
+     {
+      "t": "• Interested parties (external and internal)\n• QMS Manual\n• Communication system/tools (internal and external)\n• Responsibilities and authorities about communication\n• Frequency of communication\n• Internal and external communication issues"
+     },
+     {
+      "t": "**MDE-05\n• Established communication means\n• Awareness of involved personnel\n• Records of external and internal communication"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7.5 Documented information",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.5.1 General\nThe organization’s quality management system shall include:\na) documented information required by this International Standard;\nb) documented information determined by the organization as being necessary for the effectiveness\nof the quality management system.\nNOTE The extent of documented information for a quality management system can differ from one\norganization to another due to:\n— the size of organization and its type of activities, processes, products and services;\n— the complexity of processes and their interactions;\n— the competence of persons."
+     },
+     {
+      "t": "• Documented system content and structure\n• Applied procedures for controlling of documented information"
+     },
+     {
+      "t": "**MDE-07\n• QMS manual\n• Adequacy of documented information\n• List of documents and files"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**7.5.2 Creating and updating\nWhen creating and updating documented information, the organization shall ensure appropriate:\na) identification and description (e.g. a title, date, author, or reference number);\nb) format (e.g. language, software version, graphics) and media (e.g. paper, electronic);\nc) review and approval for suitability and adequacy."
+     },
+     {
+      "t": "• Applied procedures of documentation control\n• Determination of responsibilities and authorities\n• Means of controlling documents and records"
+     },
+     {
+      "t": "**MDE-07\n• List of documents in use including external documents\n• Identification of documents and records\n• Changes in records and documents\n• Availability and retention time of records"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7.5.3 Control of documented information",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7.5.3.1 Documented information required by the quality management system and by this International\nStandard shall be controlled to ensure:\na) it is available and suitable for use, where and when it is needed;\nb) it is adequately protected (e.g. from loss of confidentiality, improper use, or loss of integrity)."
+     },
+     {
+      "t": "• Conditions and rules of controlling information (retained and maintained)\n• Retention and retrieval rules of them"
+     },
+     {
+      "t": "**MDE-07\n• Suitability and accessibility to information\n• Retrieval and protection measures applied\n• Confidentiality and integrity assurance of information"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "7.5.3.2 For the control of documented information, the organization shall address the following\nactivities, as applicable:\na) distribution, access, retrieval and use;\nb) storage and preservation, including preservation of legibility;\nc) control of changes (e.g. version control);\nd) retention and disposition.\nDocumented information of external origin determined by the organization to be necessary for the\nplanning and operation of the quality management system shall be identified as appropriate, and\nbe controlled.\nDocumented information retained as evidence of conformity shall be protected from unintended\nalterations.\nNOTE Access can imply a decision regarding the permission to view the documented information only, or\nthe permission and authority to view and change the documented information."
+     },
+     {
+      "t": "**RDI-04\n• Documented procedure determining distribution, storage, control of changes, retention and disposition of documented information\n• Protection measures taken\n• External origin information control measures\n• Responsibilities and authorities for controlling of documented information"
+     },
+     {
+      "t": "**MDE-07\n• Distribution and availability of documents\n• Validity of used documents\n• Responsible persons\n• Changes of documents\n• Protection of documents\n• Retention time of records"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8 Operation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.1 Operational planning and control\nThe organization shall plan, implement and control the processes (see 4.4) needed to meet the\nrequirements for the provision of products and services, and to implement the actions determined in\nClause 6, by:\na) determining the requirements for the products and services;\nb) establishing criteria for:\n1) the processes;\n2) the acceptance of products and services;\nc) determining the resources needed to achieve conformity to the product and service requirements;\nd) implementing control of the processes in accordance with the criteria;\ne) determining, maintaining and retaining documented information to the extent necessary:\n1) to have confidence that the processes have been carried out as planned;\n2) to demonstrate the conformity of products and services to their requirements.\nThe output of this planning shall be suitable for the organization’s operations.\nThe organization shall control planned changes and review the consequences of unintended changes,\ntaking action to mitigate any adverse effects, as necessary.\nThe organization shall ensure that outsourced processes are controlled (see 8.4)."
+     },
+     {
+      "t": "**RDI-05\n**MDI-05\n• Description/plan of production or/and handling of products or services\n• Process control parameters\n• List of Outsourced processes\n• Technical Specifications of raw materials\n• Technical Specifications Final Products / Services\n• Acceptance limits\n• Legislation\n• Customer Requirements"
+     },
+     {
+      "t": "**MDE-07\n• Technical Specifications Final Products / Services\n• Process plan\n• Control plan\n• Registration of outsourced services or/and processes\n• outsourced processes or/and subcontracted\n• audits to subcontractors"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.2 Requirements for products and services",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.2.1 Customer communication\nCommunication with customers shall include:\na) providing information relating to products and services;\nb) handling enquiries, contracts or orders, including changes;\nc) obtaining customer feedback relating to products and services, including customer complaints;\nd) handling or controlling customer property;\ne) establishing specific requirements for contingency actions, when relevant."
+     },
+     {
+      "t": "• List of products and services\n• communication tools (mail, letters, meetings etc.)\n• Customer complaints\n• Customer requirements\n• Agreements and/or contracts"
+     },
+     {
+      "t": "**MDE-08\n• Customer requirements\n• Documentation of customer complaints\n• Customer complaints procedure\n• Order procedure\n• Customer Satisfaction (evaluation form, results etc.)\n• requirements for contingency actions"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.2.2 Determining the requirements for products and services\nWhen determining the requirements for the products and services to be offered to customers, the\norganization shall ensure that:\na) the requirements for the products and services are defined, including:\n1) any applicable statutory and regulatory requirements;\n2) those considered necessary by the organization;\nb) the organization can meet the claims for the products and services it offers."
+     },
+     {
+      "t": "• Legislation requirements\n• Product and/or service requirements"
+     },
+     {
+      "t": "**MDE-09\n• List of legislation\n• Product or/and service specifications"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.2.3 Review of the requirements for products and services",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.2.3.1 The organization shall ensure that it has the ability to meet the requirements for products and services to be offered to customers. The organization shall conduct a review before committing to supply\nproducts and services to a customer, to include:\na) requirements specified by the customer, including the requirements for delivery and postdelivery activities;\nb) requirements not stated by the customer, but necessary for the specified or intended use, when\nknown;\nc) requirements specified by the organization;\nd) statutory and regulatory requirements applicable to the products and services;\ne) contract or order requirements differing from those previously expressed.d) statutory and regulatory requirements applicable to the products and services;\nThe organization shall ensure that contract or order requirements differing from those previously\ndefined are resolved.\nThe customer’s requirements shall be confirmed by the organization before acceptance, when the\ncustomer does not provide a documented statement of their requirements.\nNOTE In some situations, such as internet sales, a formal review is impractical for each order. Instead, thereview can cover relevant product information, such as catalogues."
+     },
+     {
+      "t": "• Product/services requirements\n• Customer requirements\n• contract and order requirements\n• actions in case of changes (example)\n• Confirmation of customer’s requirements in case that customer does not provide a documented statement"
+     },
+     {
+      "t": "**MDE-09\n• Order procedure\n• Review of procedure\n• Review of the requirements for products"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.2.3.2 The organization shall retain documented information, as applicable:\na) on the results of the review;\nb) on any new requirements for the products and services."
+     },
+     {
+      "t": "**RDI-06\n• information of reviews describing new or changed requirements to products and services"
+     },
+     {
+      "t": "**MDE-09\n• Documented information of reviews describing new or changed requirements to products and services\n• Responsible person"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.2.4 Changes to requirements for products and services\nThe organization shall ensure that relevant documented information is amended, and that relevant persons are made aware of the changed requirements, when the requirements for products and services are changed."
+     },
+     {
+      "t": "• Procedure for changes"
+     },
+     {
+      "t": "**MDE-09\n• Documented information of amended reviews\n• Awareness of involved personnel"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.3 Design and development of products and services",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.3.1 General\nThe organization shall establish, implement and maintain a design and development process that is appropriate to ensure the subsequent provision of products and services."
+     },
+     {
+      "t": "• Records regarding the Design and development of products and services"
+     },
+     {
+      "t": "**MDE-09\n• QMS Manual\n• Design and development process"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.3.2 Design and development planning\nIn determining the stages and controls for design and development, the organization shall consider:\na) the nature, duration and complexity of the design and development activities;\nb) the required process stages, including applicable design and development reviews;\nc) the required design and development verification and validation activities;\nd) the responsibilities and authorities involved in the design and development process;\ne) the internal and external resource needs for the design and development of products and services;\nf) the need to control interfaces between persons involved in the design and development process;\ng) the need for involvement of customers and users in the design and development process;\nh) the requirements for subsequent provision of products and services;\ni) the level of control expected for the design and development process by customers and other\nrelevant interested parties;\nj) the documented information needed to demonstrate that design and development requirements\nhave been met."
+     },
+     {
+      "t": "• QMS Manual\n• Design and development process\n• documented information that design and development requirements have been met"
+     },
+     {
+      "t": "**MDE-09\n• Design and development planning example\n• New Product Design and Development Plan (real cases)-example"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.3.3 Design and development inputs\nThe organization shall determine the requirements essential for the specific types of products and\nservices to be designed and developed. The organization shall consider:\n• functional and performance requirements;\nb) information derived from previous similar design and development activities;\nc) statutory and regulatory requirements;\nd) standards or codes of practice that the organization has committed to implement;\ne) potential consequences of failure due to the nature of the products and services.\nInputs shall be adequate for design and development purposes, complete and unambiguous.\nConflicting design and development inputs shall be resolved.\nThe organization shall retain documented information on design and development inputs."
+     },
+     {
+      "t": "**RDI-07\n• Legislation requirements\n• Inputs for design and development products or services\n• Product and service requirements\n• Internal and external resources needed for the design and development of products and services\n• Functional & performance requirements\n• control of the design and development process"
+     },
+     {
+      "t": "**MDE-09\n• Inputs for design and development products or services\n• Documentation of the design inputs including the"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.3.4 Design and development controls\nThe organization shall apply controls to the design and development process to ensure that:\na) the results to be achieved are defined;\nb) reviews are conducted to evaluate the ability of the results of design and development to meet\nrequirements;\nc) verification activities are conducted to ensure that the design and development outputs meet the\ninput requirements;\nd) validation activities are conducted to ensure that the resulting products and services meet the\nrequirements for the specified application or intended use;\ne) any necessary actions are taken on problems determined during the reviews, or verification and\nvalidation activities;\nf) documented information of these activities is retained.\nNOTE Design and development reviews, verification and validation have distinct purposes. They can be\nconducted separately or in any combination, as is suitable for the products and services of the organization."
+     },
+     {
+      "t": "**RDI-08\n• Technical Design Requirements (product or process)\n• Audit results\n• verification results\n• validation results\n• Methods for testing, auditing,\n• verification, validating"
+     },
+     {
+      "t": "**MDE-09\n• Control records (example)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.3.5 Design and development outputs\nThe organization shall ensure that design and development outputs:\na) meet the input requirements;\nb) are adequate for the subsequent processes for the provision of products and services;\nc) include or reference monitoring and measuring requirements, as appropriate, and acceptance criteria;\nd) specify the characteristics of the products and services that are essential for their intended purpose\nand their safe and proper provision.\nThe organization shall retain documented information on design and development outputs."
+     },
+     {
+      "t": "**RDI-09\n• Design and development process\n• Final Specifications of the Product / Service\n• Quality control program for the acceptance of the product or service\n• acceptance criteria"
+     },
+     {
+      "t": "**MDE-09\n• Design and development process\n• Documented information from the design and development process"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.3.6 Design and development changes\nThe organization shall identify, review and control changes made during, or subsequent to, the design\nand development of products and services, to the extent necessary to ensure that there is no adverse\nimpact on conformity to requirements.\nThe organization shall retain documented information on:\na) design and development changes;\nb) the results of reviews;\nc) the authorization of the changes;\nd) the actions taken to prevent adverse impacts."
+     },
+     {
+      "t": "**RDI-10\n• Design and development process\n• Product and service requirements\n• acceptance criteria\n• review of changes\n• control of changes"
+     },
+     {
+      "t": "**MDE-09\n• Documented information for design and development changes\n• Responsible personnel"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.4 Control of externally provided processes, products and services",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.4.1 General\nThe organization shall ensure that externally provided processes, products and services conform to\nrequirements.\nThe organization shall determine the controls to be applied to externally provided processes, products\nand services when:\na) products and services from external providers are intended for incorporation into the organization’s\nown products and services;\nb) products and services are provided directly to the customer(s) by external providers on behalf of\nthe organization;\nc) a process, or part of a process, is provided by an external provider as a result of a decision by the organization.\nThe organization shall determine and apply criteria for the evaluation, selection, monitoring of\nperformance, and re-evaluation of external providers, based on their ability to provide processes or\nproducts and services in accordance with requirements. The organization shall retain documented information of these activities and any necessary actions arising from the evaluations."
+     },
+     {
+      "t": "**RDI-11\n• Determined external resources/elements (products and services)\n• Requirements for the external providers\n• Documents how externally products or services are developed and managed\n• Selection, approval and management of determined external elements\n• Responsibilities and authorisations for managing outsourced products and services"
+     },
+     {
+      "t": "**MDE-10\n• Register of external providers\n• Procedure of selection, approval and maintenance of external providers\n• Internal communication evidence of external products and services requirements and characteristics"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.4.2 Type and extent of control\nThe organization shall ensure that externally provided processes, products and services do not\nadversely affect the organization’s ability to consistently deliver conforming products and services to\nits customers.\nThe organization shall:\na) ensure that externally provided processes remain within the control of its quality management\nsystem;\nb) define both the controls that it intends to apply to an external provider and those it intends to apply\nto the resulting output;\nc) take into consideration:\n1) the potential impact of the externally provided processes, products and services on the\norganization’s ability to consistently meet customer and applicable statutory and regulatory\nrequirements;\n2) the effectiveness of the controls applied by the external provider;\nd) determine the verification, or other activities, necessary to ensure that the externally provided\nprocesses, products and services meet requirements."
+     },
+     {
+      "t": "• criteria to control external products and services\n• criteria for the evaluation and re-evaluation of external providers\n• audits to providers\n• Agreed requirements and specifications with providers (delivery time etc)\n• Evidences gathering and evaluation related to external providers’ efficiency and performance\n• Responsibilities and authorities for supplier’s evaluation"
+     },
+     {
+      "t": "**MDE-10\n• Mutual agreements of specified requirements\n• Records, databases etc. concerning supplier’s performance or/and compliance\n• Monitoring and control data and information e.g. Compliance degree, on site audits etc."
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.4.3 Information for external providers\nThe organization shall ensure the adequacy of requirements prior to their communication to the\nexternal provider.\nThe organization shall communicate to external providers its requirements for:\na) the processes, products and services to be provided;\nb) the approval of:\n1) products and services;\n2) methods, processes and equipment;\n3) the release of products and services;\nc) competence, including any required qualification of persons;\nd) the external providers’ interactions with the organization;\ne) control and monitoring of the external providers’ performance to be applied by the organization;\nf) verification or validation activities that the organization, or its customer, intends to perform at the external providers’ premises."
+     },
+     {
+      "t": "• Requirements for external providers\n• communication tools (mail, meetings etc)\n• Communication issues\n• Communication rules"
+     },
+     {
+      "t": "**MDE-10\n• Communication records\n• external communication evidence of external providers requirements\n• Communication of audit results\n• Competencies and qualifications of external providers"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.5 Production and service provision",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.5.1 Control of production and service provision\nThe organization shall implement production and service provision under controlled conditions.\nControlled conditions shall include, as applicable:\na) the availability of documented information that defines:\n1) the characteristics of the products to be produced, the services to be provided, or the activities\nto be performed;\n2) the results to be achieved;\nb) the availability and use of suitable monitoring and measuring resources;\nc) the implementation of monitoring and measurement activities at appropriate stages to verify that\ncriteria for control of processes or outputs, and acceptance criteria for products and services,\nhave been met;\nd) the use of suitable infrastructure and environment for the operation of processes;\ne) the appointment of competent persons, including any required qualification;\nf) the validation, and periodic revalidation, of the ability to achieve planned results of the processes\nfor production and service provision, where the resulting output cannot be verified by subsequent\nmonitoring or measurement;\ng) the implementation of actions to prevent human error;\nh) the implementation of release, delivery and post-delivery activities."
+     },
+     {
+      "t": "• Product/services Specifications\n• Production Plan\n• Process planning\n• Control Plan\n• Customer requirements\n• Safety measures to prevent mistakes taking place\n• Training and competence of the personnel\n• Available Resources\n• Acceptance criteria"
+     },
+     {
+      "t": "**MDE-08\n• Documented information defining characteristics of the products and services\n• Documented information about process"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.5.2 Identification and traceability\nThe organization shall use suitable means to identify outputs when it is necessary to ensure the\nconformity of products and services.\nThe organization shall identify the status of outputs with respect to monitoring and measurement\nrequirements throughout production and service provision.\nThe organization shall control the unique identification of the outputs when traceability is a\nrequirement, and shall retain the documented information necessary to enable traceability."
+     },
+     {
+      "t": "**RDI-12\n• Traceability plan, procedures and means\n• Traceability range of applicability\n• description of the traceability system\n• Responsibilities and authorities\n• Control and verification plan"
+     },
+     {
+      "t": "**MDE-06\n• Documented information of traceability\n• Brief description of the traceability system\n• Traceability and identification techniques and procedures\n• Traceability test (unique number, lot numbers of raw materials and products, expiry date, quantities, stock quantities, recipients, invoices, duration of test, etc)"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.5.3 Property belonging to customers or external providers\nThe organization shall exercise care with property belonging to customers or external providers while\nit is under the organization’s control or being used by the organization.\nThe organization shall identify, verify, protect and safeguard customers’ or external providers’ property\nprovided for use or incorporation into the products and services.\nWhen the property of a customer or external provider is lost, damaged or otherwise found to be\nunsuitable for use, the organization shall report this to the customer or external provider and retain documented information on what has occurred.\nNOTE A customer’s or external provider’s property can include materials, components, tools and equipment,\npremises, intellectual property and personal data."
+     },
+     {
+      "t": "**RDI-13\n• List of customer’s and/or external provider’s property\n• means used to report incorrectly use, lost, damages etc.\n• security and monitoring procedure"
+     },
+     {
+      "t": "**MDE-08\n• maintenance and storage records\n• control and verification plan\n• List of customer’s and/or external provider’s property"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.5.4 Preservation\nThe organization shall preserve the outputs during production and service provision, to the extent\nnecessary to ensure conformity to requirements.\nNOTE Preservation can include identification, handling, contamination control, packaging, storage,\ntransmission or transportation, and protection."
+     },
+     {
+      "t": "• Product or/and service Instructions\n• Technical Specifications\n• Storage conditions and instructions\n• Transportation conditions and instructions\n• Security priocedure"
+     },
+     {
+      "t": "**MDE-08\n• Product or/and service specifications\n• Storage conditions and instructions\n• Transportation conditions and instructions"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.5.5 Post-delivery activities\nThe organization shall meet requirements for post-delivery activities associated with the products\nand services.\nIn determining the extent of post-delivery activities that are required, the organization shall consider:\na) statutory and regulatory requirements;\nb) the potential undesired consequences associated with its products and services;\nc) the nature, use and intended lifetime of its products and services;\nd) customer requirements;\ne) customer feedback.\nNOTE Post-delivery activities can include actions under warranty provisions, contractual obligations such\nas maintenance services, and supplementary services such as recycling or final disposal."
+     },
+     {
+      "t": "• Legislation and regulatory requirements\n• Customer requirements\n• Agreed delivery requirements\n• Methods of delivery\n• Control actions\n• Customer Feedback\n• Relative customer complaints\n• Product or service information (Nature, use and intended lifetime)\n• information about handling and use\n• suitability of the product"
+     },
+     {
+      "t": "**MDE-08\n• Product or service information (Nature, use and intended lifetime)\n• Legislation and regulatory requirements"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.5.6 Control of changes\nThe organization shall review and control changes for production or service provision, to the extent\nnecessary to ensure continuing conformity with requirements.\nThe organization shall retain documented information describing the results of the review of changes,\nthe person(s) authorizing the change, and any necessary actions arising from the review."
+     },
+     {
+      "t": "**RDI-14\n• Integrity assurance of the QMS in case of changes\n• control of unplanned changes\n• Responsibilities and authorities\n• Information about the review and control of changes"
+     },
+     {
+      "t": "**MDE-09\n• Documented information describing results of review of changes, personnel and actions."
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**8.6 Release of products and services\nThe organization shall implement planned arrangements, at appropriate stages, to verify that the\nproduct and service requirements have been met.\nThe release of products and services to the customer shall not proceed until the planned arrangements\nhave been satisfactorily completed, unless otherwise approved by a relevant authority and, as\napplicable, by the customer. The organization shall retain documented information on the release of products and services. The\ndocumented information shall include:\na) evidence of conformity with the acceptance criteria;\nb) traceability to the person(s) authorizing the release."
+     },
+     {
+      "t": "**RDI-15\n• Release criteria\n• Quality control criteria\n• Responsibilities and authorities\n• Record keeping\n• traceability"
+     },
+     {
+      "t": "**MDE-09\n• Procedure for product release\n• Records of releasing products\n• Specified person(s) for release (decision maker)\n• Control records"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.7 Control of nonconforming outputs",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.7.1 The organization shall ensure that outputs that do not conform to their requirements are\nidentified and controlled to prevent their unintended use or delivery.\nThe organization shall take appropriate action based on the nature of the nonconformity and its effect\non the conformity of products and services. This shall also apply to nonconforming products and\nservices detected after delivery of products, during or after the provision of services.\nThe organization shall deal with nonconforming outputs in one or more of the following ways:\na) correction;\nb) segregation, containment, return or suspension of provision of products and services;\nc) informing the customer;\nd) obtaining authorization for acceptance under concession.\nConformity to the requirements shall be verified when nonconforming outputs are corrected."
+     },
+     {
+      "t": "• Action criteria for nonconforming products\n• Identification and positioning of nonconforming products\n• Responsibilities and authorities\n• Record keeping\n• Corrective actions"
+     },
+     {
+      "t": "**MDE-09\n• Procedure for nonconforming product\n• Procedure for corrections\n• Records of corrections\n• validation that the corrective action has been implemented and is effective\n• Persons involved and/or authorised for handling of them"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "8.7.2 The organization shall retain documented information that:\na) describes the nonconformity;\nb) describes the actions taken;\nc) describes any concessions obtained;\nd) identifies the authority deciding the action in respect of the nonconformity."
+     },
+     {
+      "t": "**RDI-16\n• Procedure for nonconforming product\n• Record keeping\n• Corrective actions\n• Responsibilities and authorities"
+     },
+     {
+      "t": "**MDE-09\n• Procedure for nonconforming product\n• Records for real cases and example"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "9 Performance evaluation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "9.1 Monitoring, measurement, analysis and evaluation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**9.1.1 General\nThe organization shall determine:\na) what needs to be monitored and measured;\nb) the methods for monitoring, measurement, analysis and evaluation needed to ensure valid results;\nc) when the monitoring and measuring shall be performed;\nd) when the results from monitoring and measurement shall be analysed and evaluated.\nThe organization shall evaluate the performance and the effectiveness of the quality management system.\nThe organization shall retain appropriate documented information as evidence of the results."
+     },
+     {
+      "t": "**RDI-17\n• Planning for effectiveness monitoring and evaluation actions, processes and means\n• Determination of significant data and information regarding performance evaluation of the QMS\n• Record keeping\n• Frequency of review"
+     },
+     {
+      "t": "**MDE-11\n• KPI’s\n• Data analysis\n• Data basis and gathering\n• Communication and awareness to top management"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**9.1.2 Customer satisfaction\nThe organization shall monitor customers’ perceptions of the degree to which their needs and\nexpectations have been fulfilled. The organization shall determine the methods for obtaining,\nmonitoring and reviewing this information.\nNOTE Examples of monitoring customer perceptions can include customer surveys, customer feedback\non delivered products and services, meetings with customers, market-share analysis, compliments, warranty claims and dealer reports."
+     },
+     {
+      "t": "• Customer requirements\n• Customer complaints\n• Customer surveys or/and questionnaires\n• Record Keeping\n• monitoring method"
+     },
+     {
+      "t": "• Customer satisfaction surveys or/and questionnaires\n• Management Review"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**9.1.3 Analysis and evaluation\nThe organization shall analyse and evaluate appropriate data and information arising from monitoring\nand measurement.\nThe results of analysis shall be used to evaluate:\na) conformity of products and services;\nb) the degree of customer satisfaction;\nc) the performance and effectiveness of the quality management system;\nd) if planning has been implemented effectively;\ne) the effectiveness of actions taken to address risks and opportunities;\nf) the performance of external providers;\ng) the need for improvements to the quality management system.\nNOTE Methods to analyse data can include statistical techniques."
+     },
+     {
+      "t": "• Reporting system\n• Data and information analyses\n• Communication channels to top management\n• Customer surveys or/and questionnaires\n• Evaluation of external providers"
+     },
+     {
+      "t": "**MDE-11\n• Analytical reports\n• Management reviews\n• Improvement"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "9.2 Internal audit",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "9.2.1 The organization shall conduct internal audits at planned intervals to provide information on\nwhether the quality management system:\na) conforms to:\n1) the organization’s own requirements for its quality management system;\n2) the requirements of this International Standard;\nb) is effectively implemented and maintained."
+     },
+     {
+      "t": "• Internal audit process\n• Internal audit planning\n• Record keeping"
+     },
+     {
+      "t": "**MDE-12\n• Internal audit documented procedure"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "9.2.2 The organization shall:\na) plan, establish, implement and maintain an audit programme(s) including the frequency, methods,\nresponsibilities, planning requirements and reporting, which shall take into consideration the\nimportance of the processes concerned, changes affecting the organization, and the results of\nprevious audits;\nb) define the audit criteria and scope for each audit;\nc) select auditors and conduct audits to ensure objectivity and the impartiality of the audit process;\nd) ensure that the results of the audits are reported to relevant management;\ne) take appropriate correction and corrective actions without undue delay;\nf) retain documented information as evidence of the implementation of the audit programme and the\naudit results.\nNOTE See ISO 19011 for guidance."
+     },
+     {
+      "t": "**RDI-18\n• Internal audit process\n• Internal audit planning\n• Record keeping\n• Internal audit team"
+     },
+     {
+      "t": "**MDE-12\n• Internal audit program/schedule\n• Audit criteria\n• Audit team training\n• Audit report\n• Reports of non – conformities\n• Subsequent improvement action plans"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "9.3 Management review",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**9.3.1 General\nTop management shall review the organization’s quality management system, at planned intervals, to ensure its continuing suitability, adequacy, effectiveness and alignment with the strategic direction of the organization."
+     },
+     {
+      "t": "• Management review planning\n• Management review scheduling\n• Management review structure and objectives"
+     },
+     {
+      "t": "**MDE-13\n• Management review procedure\n• Management review elements, objectives and planning"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**9.3.2 Management review inputs\nThe management review shall be planned and carried out taking into consideration:\na) the status of actions from previous management reviews;\nb) changes in external and internal issues that are relevant to the quality management system;\nc) information on the performance and effectiveness of the quality management system, including\ntrends in:\n1) customer satisfaction and feedback from relevant interested parties;\n2) the extent to which quality objectives have been met;\n3) process performance and conformity of products and services;\n4) nonconformities and corrective actions;\n5) monitoring and measurement results;\n6) audit results;\n7) the performance of external providers;\nd) the adequacy of resources;\ne) the effectiveness of actions taken to address risks and opportunities (see 6.1);\nf) opportunities for improvement."
+     },
+     {
+      "t": "• Management review structure\n• Data and information used as inputs for the management review\n• Reporting and presenting and connecting management review inputs with QMS objectives and KPIs"
+     },
+     {
+      "t": "**MDE-13\n• Management review input report\n• Data and information used as input of the management review\n• Participants of management review\n• Date and place of realisation of the management"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**9.3.3 Management review outputs\nThe outputs of the management review shall include decisions and actions related to:\na) opportunities for improvement.\nb) any need for changes to the quality management system;\nc) resource needs.\nThe organization shall retain documented information as evidence of the results of management reviews."
+     },
+     {
+      "t": "**RDI-19\n• Decision making\n• Connection of QMS objectives with decided action plan\n• Validation by the senior management"
+     },
+     {
+      "t": "**MDE-13\n• Management review meeting minutes\n• Management review report\n• Decisions approved and signed by the senior management"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "10 Improvement",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**10.1 General\nThe organization shall determine and select opportunities for improvement and implement any\nnecessary actions to meet customer requirements and enhance customer satisfaction.\nThese shall include:\na) improving products and services to meet requirements as well as to address future needs and\nexpectations;\nb) correcting, preventing or reducing undesired effects;\nc) improving the performance and effectiveness of the quality management system.\nNOTE Examples of improvement can include correction, corrective action, continual improvement,\nbreakthrough change, innovation and re-organization."
+     },
+     {
+      "t": "• Improvement process\n• Improvement actions\n• Customer satisfaction"
+     },
+     {
+      "t": "**MDE-14\n• Improvement action plans"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "10.2 Nonconformity and corrective action",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "10.2.1 When a nonconformity occurs, including any arising from complaints, the organization shall:\na) react to the nonconformity and, as applicable:\n1) take action to control and correct it;\n2) deal with the consequences;\nb) evaluate the need for action to eliminate the cause(s) of the nonconformity, in order that it does not\nrecur or occur elsewhere, by:\n1) reviewing and analysing the nonconformity;\n2) determining the causes of the nonconformity;\n3) determining if similar nonconformities exist, or could potentially occur;\nc) implement any action needed;\nd) review the effectiveness of any corrective action taken;\ne) update risks and opportunities determined during planning, if necessary;\nf) make changes to the quality management system, if necessary.\nCorrective actions shall be appropriate to the effects of the nonconformities encountered."
+     },
+     {
+      "t": "• Improvement process\n• Root cause analysis process\n• Involvement of management team"
+     },
+     {
+      "t": "• Improvement action plans\n• Documentation of recording nonconformities including customer complaints\n• Records of root cause analysis\n• Records of corrective actions"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "10.2.2 The organization shall retain documented information as evidence of:\na) the nature of the nonconformities and any subsequent actions taken;\nb) the results of any corrective action."
+     },
+     {
+      "t": "**RDI-20\n• Improvement records\n• Recording of nonconformities\n• Corrective actions"
+     },
+     {
+      "t": "• Improvement action plans\n• Documentation of recording nonconformities including customer complaints\n• Records of root cause analysis and determination of corrective actions\n• Corrective actions"
+     }
+    ],
+    [
+     {
+      "bg": "grey",
+      "t": "**10.3 Continual improvement\nThe organization shall continually improve the suitability, adequacy and effectiveness of the quality management system.\nThe organization shall consider the results of analysis and evaluation, and the outputs from\nmanagement review, to determine if there are needs or opportunities that shall be addressed as part of continual improvement."
+     },
+     {
+      "t": "• Data and information processing and evaluation process\n• Resources provided for continual improvement\n• Senior management involvement\n• Management review\n• KPIs"
+     },
+     {
+      "t": "• Reporting system\n• Available management information system"
+     }
+    ]
+   ]
+  },
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    15.32,
+    35.26,
+    12.58,
+    36.84
+   ],
+   "rows": [
+    [
+     {
+      "cs": 4,
+      "t": "TABLE 1: LIST OF MDIs & RDIs",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "List of\nMaintained Documented Information (MDI)",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "List of\nRetained Documented Information (RDI)",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "MDI-01"
+     },
+     {
+      "t": "4.3"
+     },
+     {
+      "t": "RDI-01"
+     },
+     {
+      "t": "4.4.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-02"
+     },
+     {
+      "t": "4.4.2"
+     },
+     {
+      "t": "RDI-02"
+     },
+     {
+      "t": "7.1.5.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-03"
+     },
+     {
+      "t": "5.2.2"
+     },
+     {
+      "t": "RDI-03"
+     },
+     {
+      "t": "7.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-04"
+     },
+     {
+      "t": "6.2.1"
+     },
+     {
+      "t": "RDI-04"
+     },
+     {
+      "t": "7.5.3.2"
+     }
+    ],
+    [
+     {
+      "t": "MDI-05"
+     },
+     {
+      "t": "8.1"
+     },
+     {
+      "t": "RDI-05"
+     },
+     {
+      "t": "8.1"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-06"
+     },
+     {
+      "t": "8.2.3.2"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-07"
+     },
+     {
+      "t": "8.3.3"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-08"
+     },
+     {
+      "t": "8.3.4"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-09"
+     },
+     {
+      "t": "8.3.5"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-10"
+     },
+     {
+      "t": "8.3.6"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-11"
+     },
+     {
+      "t": "8.4.1"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-12"
+     },
+     {
+      "t": "8.5.2"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-13"
+     },
+     {
+      "t": "8.5.3"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-14"
+     },
+     {
+      "t": "8.5.6"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-15"
+     },
+     {
+      "t": "8.6"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-16"
+     },
+     {
+      "t": "8.7.2"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-17"
+     },
+     {
+      "t": "9.1.1"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-18"
+     },
+     {
+      "t": "9.2.2"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-19"
+     },
+     {
+      "t": "9.3.3"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-20"
+     },
+     {
+      "t": "10.2.2"
+     }
+    ]
+   ]
+  }
+ ]
+}

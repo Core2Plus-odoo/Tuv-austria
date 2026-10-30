@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Predefined forms and Reports cards of the smaller ESYD / PNAC / SAAC forms.
+         noupdate: what the users filled in on the predefined forms is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="esyd_certificate_text_form" model="tuv.audit.plan"><field name="name">ESYD Certificate Text</field></record>
+        <record id="pnac_certificate_text_form" model="tuv.audit.plan"><field name="name">PNAC Certificate Text</field></record>
+        <record id="pnac_client_response_form" model="tuv.audit.plan"><field name="name">PNAC Client Response Form</field></record>
+        <record id="pnac_expert_report_form" model="tuv.audit.plan"><field name="name">PNAC Technical Expert Report</field></record>
+        <record id="saac_participation_list_form" model="tuv.audit.plan"><field name="name">SAAC Participation List</field></record>
+        <record id="saac_auditor_assignment_form" model="tuv.audit.plan"><field name="name">SAAC Auditor Assignment</field></record>
+        <record id="saac_audit_program_form" model="tuv.audit.plan"><field name="name">SAAC Audit Program</field></record>
+    </data>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('esyd_certificate_text_form')]"/>
+        <value eval="{'audit_report_key': 'esyd_certificate_text', 'audit_report_uses_info': False, 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-013-CT-EN | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_esyd_certificate_text">
+        <value eval="[ref('esyd_certificate_text_form')]"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('pnac_certificate_text_form')]"/>
+        <value eval="{'audit_report_key': 'pnac_certificate_text', 'audit_report_uses_info': False, 'form_subtitle': 'Certificate Text', 'form_reference': 'TUV/BA/FM/04-2 | Rev 02, Dated 16/05/2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('pnac_client_response_form')]"/>
+        <value eval="{'audit_report_key': 'pnac_client_response', 'audit_report_uses_info': False, 'form_subtitle': 'Client Response Form', 'form_reference': 'TUV/BA/FM/09-1 | Rev 00, Issue 01, Dated 11/08/2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('pnac_expert_report_form')]"/>
+        <value eval="{'audit_report_key': 'pnac_expert_report', 'form_subtitle': 'Certification of Managementsystems', 'form_reference': 'FM-TAGMBH-MSZ-004_Expert-Report-EN | Revision: 05/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_expert_requirements">
+        <value eval="[ref('pnac_expert_report_form')]"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('saac_participation_list_form')]"/>
+        <value eval="{'audit_report_key': 'saac_participation_list', 'form_subtitle': 'Management systems certification', 'form_reference': 'FM-BA-ZET-MS-All-012-TNL | Revision: 02/02.08.2023'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('saac_auditor_assignment_form')]"/>
+        <value eval="{'audit_report_key': 'saac_auditor_assignment', 'audit_report_uses_info': False, 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-007-AAS-EN | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('saac_audit_program_form')]"/>
+        <value eval="{'audit_report_key': 'saac_audit_program', 'audit_report_uses_info': False, 'form_subtitle': 'TÜV AUSTRIA', 'form_reference': 'FM-BA-ZET-MS-All-008-AT-EN | Rev.02 / 01.04.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_saac_audit_program">
+        <value eval="[ref('saac_audit_program_form')]"/>
+    </function>
+
+    <!-- Standalone form: the TUV expert report / participation list blocks also show for the PNAC /
+         SAAC cards (the project side is in views/forms/acc_small_forms.xml). Here, not in views/forms,
+         because they inherit the generated twins of views/standalone_blocks.xml. -->
+    <record id="standalone_block_pnac_expert_report" model="ir.ui.view">
+        <field name="name">tuv.audit.plan.form.tuv.block.pnac_expert_report</field>
+        <field name="model">tuv.audit.plan</field>
+        <field name="inherit_id" ref="tuv_audit_reports.project_block_audit_expert_report_standalone"/>
+        <field name="arch" type="xml">
+            <div name="tuv_block_audit_expert_report" position="attributes">
+                <attribute name="invisible">audit_report_key not in ('expert_report', 'pnac_expert_report')</attribute>
+            </div>
+        </field>
+    </record>
+    <record id="standalone_block_saac_participation_list" model="ir.ui.view">
+        <field name="name">tuv.audit.plan.form.tuv.block.saac_participation_list</field>
+        <field name="model">tuv.audit.plan</field>
+        <field name="inherit_id" ref="tuv_audit_reports.project_block_audit_participation_standalone"/>
+        <field name="arch" type="xml">
+            <div name="tuv_block_audit_participation" position="attributes">
+                <attribute name="invisible">audit_report_key not in ('participation_list', 'saac_participation_list')</attribute>
+            </div>
+        </field>
+    </record>
+
+    <!-- ============ Cards ============ -->
+    <record id="audit_report_esyd_certificate_text" model="tuv.audit.report">
+        <field name="name">Certificate Text</field>
+        <field name="accreditation">esyd</field>
+        <field name="sequence">500</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-013-CT-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-013-CT-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.esyd_certificate_text_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_esyd_certificate_text</field>
+        <field name="report_key">esyd_certificate_text</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_pnac_certificate_text" model="tuv.audit.report">
+        <field name="name">Certificate Text</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">510</field>
+        <field name="subtitle">Certificate Text</field>
+        <field name="code">TUV/BA/FM/04-2</field>
+        <field name="revision">Rev 02, 16/05/2024</field>
+        <field name="document_name">3. Certificate Text.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.pnac_certificate_text_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_pnac_certificate_text</field>
+        <field name="report_key">pnac_certificate_text</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_pnac_client_response" model="tuv.audit.report">
+        <field name="name">Client Response Form</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">520</field>
+        <field name="subtitle">Client Response Form</field>
+        <field name="code">TUV/BA/FM/09-1</field>
+        <field name="revision">Rev 00, Issue 01, 11/08/2025</field>
+        <field name="document_name">4. Client Response Form.doc</field>
+        <field name="record_xmlid">tuv_audit_reports.pnac_client_response_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_pnac_client_response</field>
+        <field name="report_key">pnac_client_response</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <!-- the TUV expert report FM-TAGMBH-MSZ-004 word for word: its fields and PDF -->
+    <record id="audit_report_pnac_expert_report" model="tuv.audit.report">
+        <field name="name">Technical Expert Report</field>
+        <field name="accreditation">pnac</field>
+        <field name="sequence">530</field>
+        <field name="subtitle">Certification of Managementsystems</field>
+        <field name="code">FM-TAGMBH-MSZ-004</field>
+        <field name="revision">05/17.10.2024</field>
+        <field name="document_name">5. Technical Expert Report.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.pnac_expert_report_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_expert</field>
+        <field name="report_key">pnac_expert_report</field>
+    </record>
+    <record id="audit_report_saac_participation_list" model="tuv.audit.report">
+        <field name="name">Participation List</field>
+        <field name="accreditation">saac</field>
+        <field name="sequence">540</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">FM-BA-ZET-MS-All-012-TNL</field>
+        <field name="revision">02/02.08.2023</field>
+        <field name="document_name">ENG-FM-BA-ZET-MS-All-012-TNL-participian list.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.saac_participation_list_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_saac_participation_list</field>
+        <field name="report_key">saac_participation_list</field>
+    </record>
+    <record id="audit_report_saac_auditor_assignment" model="tuv.audit.report">
+        <field name="name">Auditor Assignment</field>
+        <field name="accreditation">saac</field>
+        <field name="sequence">550</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-007-AAS-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-007-AAS-EN-Auditor assignment.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.saac_auditor_assignment_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_saac_auditor_assignment</field>
+        <field name="report_key">saac_auditor_assignment</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_saac_audit_program" model="tuv.audit.report">
+        <field name="name">Audit Program</field>
+        <field name="accreditation">saac</field>
+        <field name="sequence">560</field>
+        <field name="subtitle">TÜV AUSTRIA</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AT-EN</field>
+        <field name="revision">Rev.02 / 01.04.2024</field>
+        <field name="document_name">Updated Audit Program 1.4.2024.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.saac_audit_program_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_saac_audit_program</field>
+        <field name="report_key">saac_audit_program</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+
+</odoo>

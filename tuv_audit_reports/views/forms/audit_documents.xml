@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Reference documents (PNAC audit guidelines): nothing to fill in, they print as they are.
+         tools/gen_standalone_views.py copies it to the standalone form. -->
+    <record id="project_block_audit_documents" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_documents</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_documents"
+                    invisible="audit_report_key not in ('doc_pnac_guide_9001', 'doc_pnac_guide_14001', 'doc_pnac_guide_45001')">
+                    <div class="alert alert-info" role="alert">
+                        This is a reference document for the auditors (audit guideline: evaluation points and the
+                        evidence to retain per clause of the standard). It has no fields to fill in: click
+                        <b>Print</b> to get it.
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>
