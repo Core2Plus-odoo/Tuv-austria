@@ -8,8 +8,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_audit_participation" invisible="audit_report_key != 'participation_list'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_audit_participation" invisible="execution_report_key != 'participation_list'">
                     <separator string="Participation List"/>
                     <field name="pl_participant_ids">
                         <list editable="bottom">

@@ -382,18 +382,18 @@ class ProjectProject(models.Model):
     sar_objectives_fulfilled = fields.Selection(compute='_compute_acc_recommendation', store=True,
                                                 readonly=False)
 
-    @api.depends('audit_report_id')
+    @api.depends('final_report_id')
     def _compute_acc_rows(self):
         # the fixed rows of the Word form, added once its audit report is picked; entries are kept
         for project in self:
             for form, sections in ROW_FIELDS.items():
                 for section, fname in sections.items():
-                    if project.audit_report_key == ACC_KEYS[form] and not project[fname]:
+                    if project.final_report_key == ACC_KEYS[form] and not project[fname]:
                         project[fname] = acc_row_commands(form, section)
                     else:
                         project[fname] = project[fname]
 
-    @api.depends('audit_report_id', 'nonconformity_ids.grade', 'nonconformity_ids.clause',
+    @api.depends('final_report_id', 'nonconformity_ids.grade', 'nonconformity_ids.clause',
                  'nonconformity_ids.description', 'nonconformity_ids.root_cause',
                  'nonconformity_ids.correction', 'nonconformity_ids.corrective_action',
                  'nonconformity_ids.deadline', 'nonconformity_ids.client_evidence_name',
@@ -403,7 +403,7 @@ class ProjectProject(models.Model):
         # the other reports keep their lines
         for project in self:
             for form, fname in FINDING_FIELDS.items():
-                if project.audit_report_key != ACC_KEYS[form]:
+                if project.final_report_key != ACC_KEYS[form]:
                     project[fname] = project[fname]
                     continue
                 ncs = project.nonconformity_ids.filtered(lambda nc: nc.state != 'cancelled')

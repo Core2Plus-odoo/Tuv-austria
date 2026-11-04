@@ -18,6 +18,10 @@ from lxml import etree
 
 MODULE = pathlib.Path(__file__).resolve().parent.parent
 PROJECT_TAB = 'tuv_audit_reports.edit_project_audit_plan_tab'
+# the audit / expert reports sit on the Audit Report tab, a view of its own
+FINAL_REPORT_TAB = 'tuv_audit_reports.edit_project_final_report_tab'
+# and the certificate texts on the Certificate Dispatched tab
+DISPATCH_TAB = 'tuv_audit_reports.edit_project_certificate_dispatch_tab'
 STANDALONE_FORM = 'tuv_audit_reports.tuv_audit_plan_view_form'
 
 
@@ -34,7 +38,7 @@ def main():
         tree = etree.parse(str(path), etree.XMLParser(remove_blank_text=False))
         for record in tree.iterfind('.//record[@model="ir.ui.view"]'):
             inherit = record.find('field[@name="inherit_id"]')
-            if inherit is None or inherit.get('ref') != PROJECT_TAB:
+            if inherit is None or inherit.get('ref') not in (PROJECT_TAB, FINAL_REPORT_TAB, DISPATCH_TAB):
                 continue
             twin = copy.deepcopy(record)
             twin.set('id', record.get('id') + '_standalone')
@@ -42,6 +46,13 @@ def main():
                 record.find('field[@name="name"]').text.replace('project.project', 'tuv.audit.plan'))
             twin.find('field[@name="model"]').text = 'tuv.audit.plan'
             twin.find('field[@name="inherit_id"]').set('ref', STANDALONE_FORM)
+            # on the project the execution forms sit on the Audit Execution tab, the audit /
+            # expert reports on the Audit Report tab and the certificate texts on the
+            # Certificate Dispatched tab; the standalone form has one block area for every form
+            for node in twin.iter():
+                if node.get('name') in ('tuv_execution_blocks', 'tuv_final_report_blocks',
+                                        'tuv_dispatch_blocks'):
+                    node.set('name', 'tuv_form_blocks')
             twin.tail = '\n\n    '
             out.append(twin)
     out[-1].tail = '\n\n'

@@ -72,11 +72,12 @@ class ProjectProject(models.Model):
     ic_line_ids = fields.One2many('tuv.form.isms.line', 'project_id', string='ISMS Checklist',
                                   compute='_compute_ic_line_ids', store=True, readonly=False)
 
-    @api.depends('audit_report_id')
+    @api.depends('execution_report_id')
     def _compute_ic_line_ids(self):
-        # the rows of the Excel checklist, added once that checklist is picked; entries are kept
+        # the rows of the Excel checklist, added once that checklist is picked on the Audit
+        # Execution tab; entries are kept
         for project in self:
-            if not project.ic_line_ids and project.audit_report_key == ISMS_KEY:
+            if not project.ic_line_ids and project.execution_report_key == ISMS_KEY:
                 project.ic_line_ids = isms_line_commands()
             else:
                 project.ic_line_ids = project.ic_line_ids

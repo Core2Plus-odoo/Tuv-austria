@@ -276,6 +276,16 @@ class AuditPlan(models.Model):
     # same names as on the project, so the form blocks work on both models
     audit_report_key = fields.Char(string='Form Key', readonly=True)
     audit_report_uses_info = fields.Boolean(string='Company and Audit Information', default=True)
+    # the execution forms (participation lists, checklists) read these on the project, where
+    # the Audit Execution tab has its own pick; a standalone form is always its own form
+    execution_report_key = fields.Char(related='audit_report_key', string='Execution Form Key')
+    execution_report_uses_info = fields.Boolean(related='audit_report_uses_info')
+    # the same for the audit / expert reports (Audit Report tab on the project)
+    final_report_key = fields.Char(related='audit_report_key', string='Audit Report Form Key')
+    final_report_uses_info = fields.Boolean(related='audit_report_uses_info')
+    # and for the certificate texts (Certificate Dispatched tab on the project)
+    dispatch_report_key = fields.Char(related='audit_report_key', string='Certificate Form Key')
+    dispatch_report_uses_info = fields.Boolean(related='audit_report_uses_info')
     company_id = fields.Many2one('res.company', string='TUV Company', required=True,
                                  default=lambda self: self.env.company)
     ap_standard_line_ids = fields.One2many('tuv.audit.plan.standard', 'plan_id',

@@ -14,7 +14,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">tuv_audit_reports.report_aqg_checklist</field>
         <field name="report_file">tuv_audit_reports.report_aqg_checklist</field>
-        <field name="print_report_name">'%s - %s' % (object.audit_report_id.name or 'Audit Questionnaire', object.ap_partner_id.name or object.name)</field>
+        <field name="print_report_name">'%s - %s' % ((object.execution_report_id.name if object._name == 'project.project' else object.name) or 'Audit Questionnaire', object.ap_partner_id.name or object.name)</field>
         <field name="paperformat_id" ref="paperformat_audit_plan"/>
     </record>
     <record id="action_report_aqg_portrait" model="ir.actions.report">
@@ -23,7 +23,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">tuv_audit_reports.report_aqg_checklist</field>
         <field name="report_file">tuv_audit_reports.report_aqg_checklist</field>
-        <field name="print_report_name">'%s - %s' % (object.audit_report_id.name or 'Audit Questionnaire', object.ap_partner_id.name or object.name)</field>
+        <field name="print_report_name">'%s - %s' % ((object.execution_report_id.name if object._name == 'project.project' else object.name) or 'Audit Questionnaire', object.ap_partner_id.name or object.name)</field>
         <field name="paperformat_id" ref="paperformat_tuv_letter"/>
     </record>
 

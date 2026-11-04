@@ -9,8 +9,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_audit_checklist_isms" invisible="audit_report_key != 'checklist_iso27001'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_audit_checklist_isms" invisible="execution_report_key != 'checklist_iso27001'">
                     <separator string="Audit Checklist - Information Security Management System"/>
                     <div class="text-muted small mb-1">
                         Template to ISO/IEC 27001:2022 - 12.08.2025. Rate: FC / IM / PC / NC.

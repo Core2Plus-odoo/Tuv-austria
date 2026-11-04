@@ -12,8 +12,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_aqg_esyd_27001" invisible="audit_report_key != 'aqg_esyd_27001'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_aqg_esyd_27001" invisible="execution_report_key != 'aqg_esyd_27001'">
                     <separator string="Audit Objective"/>
                     <field name="aqg_esyd_27001_objective_ids" nolabel="1">
                         <list editable="bottom" create="0" delete="0">
@@ -71,8 +71,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_aqg_esyd_9001_14001_45001" invisible="audit_report_key != 'aqg_esyd_9001_14001_45001'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_aqg_esyd_9001_14001_45001" invisible="execution_report_key != 'aqg_esyd_9001_14001_45001'">
                     <separator string="Audit Objective"/>
                     <field name="aqg_esyd_9001_14001_45001_objective_ids" nolabel="1">
                         <list editable="bottom" create="0" delete="0">
@@ -131,8 +131,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_aqg_esyd_9001_14001" invisible="audit_report_key != 'aqg_esyd_9001_14001'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_aqg_esyd_9001_14001" invisible="execution_report_key != 'aqg_esyd_9001_14001'">
                     <separator string="Audit Objective"/>
                     <field name="aqg_esyd_9001_14001_objective_ids" nolabel="1">
                         <list editable="bottom" create="0" delete="0">
@@ -190,8 +190,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_aqg_9001_22000" invisible="audit_report_key != 'aqg_9001_22000'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_aqg_9001_22000" invisible="execution_report_key != 'aqg_9001_22000'">
                     <separator string="Audit Objective"/>
                     <field name="aqg_9001_22000_objective_ids" nolabel="1">
                         <list editable="bottom" create="0" delete="0">
@@ -249,8 +249,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_aqg_pnac_22000" invisible="audit_report_key != 'aqg_pnac_22000'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_aqg_pnac_22000" invisible="execution_report_key != 'aqg_pnac_22000'">
                     <p class="text-muted">
                         "3. Audit Objectives" (with the characterization of findings) and the list of
                         required mandatory documents are fixed texts of the form; they print in the PDF.
@@ -291,8 +291,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_aqg_saac_9001" invisible="audit_report_key != 'aqg_saac_9001'">
+            <div name="tuv_execution_blocks" position="inside">
+                <div name="tuv_block_aqg_saac_9001" invisible="execution_report_key != 'aqg_saac_9001'">
                     <separator string="Process-oriented Audit: Standard Elements per Audit Type"/>
                     <div class="text-muted small mb-1">
                         Tick the audit types each element was audited in. "Mandatory for" lists the

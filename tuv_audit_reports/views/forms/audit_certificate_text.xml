@@ -6,10 +6,10 @@
     <record id="project_block_audit_certificate_text" model="ir.ui.view">
         <field name="name">project.project.form.tuv.block.audit_certificate_text</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_certificate_dispatch_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_audit_certificate_text" invisible="audit_report_key != 'certificate_text'">
+            <div name="tuv_dispatch_blocks" position="inside">
+                <div name="tuv_block_audit_certificate_text" invisible="dispatch_report_key != 'certificate_text'">
                     <group string="Contact">
                         <group>
                             <field name="ct_contact_person"/>

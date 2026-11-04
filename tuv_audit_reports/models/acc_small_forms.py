@@ -650,42 +650,42 @@ class ProjectProject(models.Model):
     sapg_recert_actual = fields.Date(compute='_compute_sapg_stages', store=True, readonly=False)
 
     # ----- tables -----
-    @api.depends('audit_report_id')
+    @api.depends('dispatch_report_id')
     def _compute_ect_head_ids(self):
         for project in self:
-            if not project.ect_head_ids and project.audit_report_key == 'esyd_certificate_text':
+            if not project.ect_head_ids and project.dispatch_report_key == 'esyd_certificate_text':
                 project.ect_head_ids = _head_office_commands(project)
             else:
                 project.ect_head_ids = project.ect_head_ids
 
-    @api.depends('audit_report_id')
+    @api.depends('dispatch_report_id')
     def _compute_ect_site_ids(self):
         for project in self:
-            if not project.ect_site_ids and project.audit_report_key == 'esyd_certificate_text':
+            if not project.ect_site_ids and project.dispatch_report_key == 'esyd_certificate_text':
                 project.ect_site_ids = _site_commands(project)
             else:
                 project.ect_site_ids = project.ect_site_ids
 
-    @api.depends('audit_report_id')
+    @api.depends('dispatch_report_id')
     def _compute_ect_ggap_line_ids(self):
         for project in self:
-            if not project.ect_ggap_line_ids and project.audit_report_key == 'esyd_certificate_text':
+            if not project.ect_ggap_line_ids and project.dispatch_report_key == 'esyd_certificate_text':
                 project.ect_ggap_line_ids = ect_ggap_commands()
             else:
                 project.ect_ggap_line_ids = project.ect_ggap_line_ids
 
-    @api.depends('audit_report_id')
+    @api.depends('dispatch_report_id')
     def _compute_pct_head_ids(self):
         for project in self:
-            if not project.pct_head_ids and project.audit_report_key == 'pnac_certificate_text':
+            if not project.pct_head_ids and project.dispatch_report_key == 'pnac_certificate_text':
                 project.pct_head_ids = _head_office_commands(project)
             else:
                 project.pct_head_ids = project.pct_head_ids
 
-    @api.depends('audit_report_id')
+    @api.depends('dispatch_report_id')
     def _compute_pct_site_ids(self):
         for project in self:
-            if not project.pct_site_ids and project.audit_report_key == 'pnac_certificate_text':
+            if not project.pct_site_ids and project.dispatch_report_key == 'pnac_certificate_text':
                 project.pct_site_ids = _site_commands(project)
             else:
                 project.pct_site_ids = project.pct_site_ids
@@ -706,12 +706,12 @@ class ProjectProject(models.Model):
             else:
                 project.sapg_question_ids = project.sapg_question_ids
 
-    @api.depends('audit_report_id')
+    @api.depends('final_report_id')
     def _compute_er_requirement_ids(self):
         # the PNAC technical expert report is the TUV expert report: same rows, own card
         super()._compute_er_requirement_ids()
         for project in self:
-            if not project.er_requirement_ids and project.audit_report_key == 'pnac_expert_report':
+            if not project.er_requirement_ids and project.final_report_key == 'pnac_expert_report':
                 project.er_requirement_ids = expert_requirement_commands()
 
     # ----- certificate texts -----

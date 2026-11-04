@@ -75,11 +75,11 @@ class ProjectProject(models.Model):
         compute='_compute_er_requirement_ids', store=True, readonly=False)
     er_expert_id = fields.Many2one(compute='_compute_er_expert_id', store=True, readonly=False)
 
-    @api.depends('audit_report_id')
+    @api.depends('final_report_id')
     def _compute_er_requirement_ids(self):
         # the requirement rows of the Word form, added once the expert report is picked
         for project in self:
-            if not project.er_requirement_ids and project.audit_report_key == 'expert_report':
+            if not project.er_requirement_ids and project.final_report_key == 'expert_report':
                 project.er_requirement_ids = expert_requirement_commands()
             else:
                 project.er_requirement_ids = project.er_requirement_ids

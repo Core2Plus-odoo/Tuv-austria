@@ -8,10 +8,10 @@
     <record id="project_block_esyd_certificate_text" model="ir.ui.view">
         <field name="name">project.project.form.tuv.block.esyd_certificate_text</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_certificate_dispatch_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_esyd_certificate_text" invisible="audit_report_key != 'esyd_certificate_text'">
+            <div name="tuv_dispatch_blocks" position="inside">
+                <div name="tuv_block_esyd_certificate_text" invisible="dispatch_report_key != 'esyd_certificate_text'">
                     <separator string="Certification Standard – Applicable Standard"/>
                     <group>
                         <group>
@@ -159,10 +159,10 @@
     <record id="project_block_pnac_certificate_text" model="ir.ui.view">
         <field name="name">project.project.form.tuv.block.pnac_certificate_text</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_certificate_dispatch_tab"/>
         <field name="arch" type="xml">
-            <div name="tuv_form_blocks" position="inside">
-                <div name="tuv_block_pnac_certificate_text" invisible="audit_report_key != 'pnac_certificate_text'">
+            <div name="tuv_dispatch_blocks" position="inside">
+                <div name="tuv_block_pnac_certificate_text" invisible="dispatch_report_key != 'pnac_certificate_text'">
                     <separator string="Certification Standard – Applicable Standard"/>
                     <group>
                         <group>
@@ -515,7 +515,7 @@
         <field name="inherit_id" ref="tuv_audit_reports.project_block_audit_expert_report"/>
         <field name="arch" type="xml">
             <div name="tuv_block_audit_expert_report" position="attributes">
-                <attribute name="invisible">audit_report_key not in ('expert_report', 'pnac_expert_report')</attribute>
+                <attribute name="invisible">final_report_key not in ('expert_report', 'pnac_expert_report')</attribute>
             </div>
         </field>
     </record>
@@ -525,7 +525,7 @@
         <field name="inherit_id" ref="tuv_audit_reports.project_block_audit_participation"/>
         <field name="arch" type="xml">
             <div name="tuv_block_audit_participation" position="attributes">
-                <attribute name="invisible">audit_report_key not in ('participation_list', 'saac_participation_list')</attribute>
+                <attribute name="invisible">execution_report_key not in ('participation_list', 'saac_participation_list')</attribute>
             </div>
         </field>
     </record>

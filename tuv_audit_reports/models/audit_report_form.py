@@ -215,7 +215,7 @@ class ProjectProject(models.Model):
     ar_objectives_fulfilled = fields.Selection(compute='_compute_ar_recommendation', store=True,
                                                readonly=False)
 
-    @api.depends('audit_report_id')
+    @api.depends('final_report_id')
     def _compute_ar_section_rows(self):
         # the fixed rows of the Word form, added once the audit report is picked; entries are kept
         section_fields = {
@@ -226,7 +226,7 @@ class ProjectProject(models.Model):
         }
         for project in self:
             for section, fname in section_fields.items():
-                if project.audit_report_key == AR_KEY and not project[fname]:
+                if project.final_report_key == AR_KEY and not project[fname]:
                     project[fname] = report_row_commands(section)
                 else:
                     project[fname] = project[fname]

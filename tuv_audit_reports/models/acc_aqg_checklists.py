@@ -232,7 +232,7 @@ class AqgMixin(models.AbstractModel):
     def _aqg_payload(self):
         """Everything the PDF needs for the AQG form selected on this record."""
         self.ensure_one()
-        key = self.audit_report_key
+        key = self.execution_report_key
         data = aqg_data(key)
         resolver = _Resolver(self, key)
         return {'meta': data['meta'], 'blocks': [out for b in data['blocks'] for out in resolver.blocks(b)]}
@@ -374,11 +374,12 @@ class ProjectProject(models.Model):
     aqg_pnac_22000_legal_ids = _project_lines_field('aqg_pnac_22000', 'legal')
     aqg_saac_9001_element_ids = _project_lines_field('aqg_saac_9001', 'element')
 
-    @api.depends('audit_report_id')
+    @api.depends('execution_report_id')
     def _compute_aqg_line_ids(self):
-        # the lines of the Word form, added once that form is picked; entries are kept
+        # the lines of the Word form, added once that form is picked on the Audit Execution tab;
+        # entries are kept
         for project in self:
-            selected = project.audit_report_key
+            selected = project.execution_report_key
             for key, (_part, lists) in AQG_FORMS.items():
                 for list_key in lists:
                     fname = aqg_field(key, list_key)

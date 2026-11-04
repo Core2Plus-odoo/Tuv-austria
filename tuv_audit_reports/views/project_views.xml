@@ -13,9 +13,11 @@
                 <page name="audit_plan_report" string="Audit Plan">
                     <group>
                         <group>
+                            <field name="audit_scheme"/>
                             <label for="audit_report_id"/>
                             <div class="o_row">
-                                <field name="audit_report_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="audit_report_id" options="{'no_create': True, 'no_open': True}" readonly="not audit_scheme"
+                                    domain="[('is_audit_plan', '=', True), ('accreditation', '=', audit_scheme)]"/>
                                 <button name="action_print_audit_report" type="object" string="Print"
                                     icon="fa-print" class="btn-secondary" invisible="not audit_report_key"/>
                             </div>
@@ -94,6 +96,316 @@
 
                     <!-- each form's own block: views/forms/*.xml -->
                     <div name="tuv_form_blocks"/>
+                </page>
+            </page>
+
+            <!-- Audit Execution tab: replaced by its own Scheme / Report / Print. The forms
+                 picked here (participation lists, checklists) put their block in
+                 <div name="tuv_execution_blocks"> from their views/forms file. -->
+            <page name="audit_execution" position="replace">
+                <page name="audit_execution" string="Audit Execution">
+                    <group>
+                        <group>
+                            <field name="execution_scheme" string="Scheme"/>
+                            <label for="execution_report_id" string="Report"/>
+                            <div class="o_row">
+                                <field name="execution_report_id" options="{'no_create': True, 'no_open': True}" readonly="not execution_scheme"
+                                    domain="[('is_execution_form', '=', True), ('accreditation', '=', execution_scheme)]"/>
+                                <button name="action_print_execution_report" type="object" string="Print"
+                                    icon="fa-print" class="btn-secondary" invisible="not execution_report_key"/>
+                            </div>
+                            <field name="execution_report_key" invisible="1"/>
+                            <field name="execution_report_uses_info" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <div name="tuv_execution_audit_info" invisible="not execution_report_uses_info">
+                        <!-- 1. Company information -->
+                        <separator string="1. Company Information"/>
+                        <group>
+                            <group>
+                                <field name="ap_partner_id" string="Company Name"/>
+                                <field name="ap_company_address"/>
+                                <field name="ap_other_sites"/>
+                            </group>
+                            <group>
+                                <field name="ap_representative" string="Company Representative"/>
+                                <field name="ap_representative_email" widget="email"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="ap_certificate_scope" string="Scope of Certification / Certificate Text"/>
+                        </group>
+
+                        <!-- 2. Audit information -->
+                        <separator string="2. Audit Information"/>
+                        <group>
+                            <group string="Audit Date">
+                                <field name="ap_audit_date_stage1" string="Stage 1"/>
+                                <field name="ap_audit_date_stage2" string="Stage 2"/>
+                                <field name="ap_audit_date_until"/>
+                                <field name="ap_remote" widget="radio" options="{'horizontal': true}"/>
+                            </group>
+                            <group string="Audit Method">
+                                <field name="ap_audit_method"/>
+                                <field name="ap_audit_method_other"
+                                    invisible="ap_audit_method not in ('others', 'self_definition')"/>
+                                <field name="ap_employee_count"/>
+                                <field name="ap_employee_scope_count"/>
+                                <field name="ap_audit_duration_hours"/>
+                            </group>
+                        </group>
+                        <label for="ap_standard_line_ids" string="Audit Standard(s) (max. 5)" class="fw-bold"/>
+                        <field name="ap_standard_line_ids">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="standard"/>
+                                <field name="audit_type"/>
+                                <field name="audit_type_other"/>
+                                <field name="registration_no"/>
+                            </list>
+                        </field>
+                        <group>
+                            <group string="Scope">
+                                <field name="ap_scope_change" widget="radio"/>
+                                <field name="ap_eac_scope"/>
+                            </group>
+                            <group string="Codes">
+                                <field name="ap_nace_code"/>
+                                <field name="ap_category"/>
+                            </group>
+                        </group>
+                        <group string="Audit Team">
+                            <field name="ap_lead_auditor_id" string="Lead Auditor"/>
+                        </group>
+                        <field name="ap_team_line_ids">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="partner_id"/>
+                                <field name="role"/>
+                            </list>
+                        </field>
+                    </div>
+
+                    <div name="tuv_execution_blocks"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- Audit Evidence tab (task 3.3) is not wanted: the Certificate Dispatched tab takes its
+         place. Scheme / Report (no print), the certificate text's fields below, and a
+         Draft / Submitted state; the certificate texts put their block in
+         <div name="tuv_dispatch_blocks"> from their views/forms file. -->
+    <record id="edit_project_certificate_dispatch_tab" model="ir.ui.view">
+        <field name="name">project.project.form.certificate.dispatch.tab</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_austria_customization.edit_project_audit_evidence_tuv_austria_customization"/>
+        <field name="arch" type="xml">
+            <page name="audit_evidence" position="replace">
+                <page name="certificate_dispatch" string="Certificate Dispatched">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <button name="action_dispatch_submit" type="object" string="Submit"
+                            class="btn-primary" invisible="dispatch_state != 'draft'"/>
+                        <field name="dispatch_state" widget="statusbar" class="ms-auto"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="dispatch_scheme" string="Scheme" readonly="dispatch_state == 'submitted'"/>
+                            <field name="dispatch_report_id" string="Report"
+                                options="{'no_create': True, 'no_open': True}"
+                                readonly="not dispatch_scheme or dispatch_state == 'submitted'"
+                                domain="[('is_certificate_form', '=', True), ('accreditation', '=', dispatch_scheme)]"/>
+                            <field name="dispatch_report_key" invisible="1"/>
+                            <field name="dispatch_report_uses_info" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <div name="tuv_dispatch_audit_info" invisible="not dispatch_report_uses_info">
+                        <!-- 1. Company information -->
+                        <separator string="1. Company Information"/>
+                        <group>
+                            <group>
+                                <field name="ap_partner_id" string="Company Name"/>
+                                <field name="ap_company_address"/>
+                                <field name="ap_other_sites"/>
+                            </group>
+                            <group>
+                                <field name="ap_representative" string="Company Representative"/>
+                                <field name="ap_representative_email" widget="email"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="ap_certificate_scope" string="Scope of Certification / Certificate Text"/>
+                        </group>
+
+                        <!-- 2. Audit information -->
+                        <separator string="2. Audit Information"/>
+                        <group>
+                            <group string="Audit Date">
+                                <field name="ap_audit_date_stage1" string="Stage 1"/>
+                                <field name="ap_audit_date_stage2" string="Stage 2"/>
+                                <field name="ap_audit_date_until"/>
+                                <field name="ap_remote" widget="radio" options="{'horizontal': true}"/>
+                            </group>
+                            <group string="Audit Method">
+                                <field name="ap_audit_method"/>
+                                <field name="ap_audit_method_other"
+                                    invisible="ap_audit_method not in ('others', 'self_definition')"/>
+                                <field name="ap_employee_count"/>
+                                <field name="ap_employee_scope_count"/>
+                                <field name="ap_audit_duration_hours"/>
+                            </group>
+                        </group>
+                        <label for="ap_standard_line_ids" string="Audit Standard(s) (max. 5)" class="fw-bold"/>
+                        <field name="ap_standard_line_ids">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="standard"/>
+                                <field name="audit_type"/>
+                                <field name="audit_type_other"/>
+                                <field name="registration_no"/>
+                            </list>
+                        </field>
+                        <group>
+                            <group string="Scope">
+                                <field name="ap_scope_change" widget="radio"/>
+                                <field name="ap_eac_scope"/>
+                            </group>
+                            <group string="Codes">
+                                <field name="ap_nace_code"/>
+                                <field name="ap_category"/>
+                            </group>
+                        </group>
+                        <group string="Audit Team">
+                            <field name="ap_lead_auditor_id" string="Lead Auditor"/>
+                        </group>
+                        <field name="ap_team_line_ids">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="partner_id"/>
+                                <field name="role"/>
+                            </list>
+                        </field>
+                    </div>
+
+                    <div name="tuv_dispatch_blocks"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- The Certificate smart button (and the form it opens) and Initiate Certificate are not wanted -->
+    <record id="edit_project_remove_certificate_buttons" model="ir.ui.view">
+        <field name="name">project.project.form.remove.certificate.buttons</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_austria_customization.edit_project_certificate_tuv_austria_customization"/>
+        <field name="arch" type="xml">
+            <button name="action_view_certificate" position="replace"/>
+            <button name="action_initiate_certificate" position="replace"/>
+        </field>
+    </record>
+
+    <!-- Audit Report tab: replaced by its own Scheme / Report / Print. The audit reports and
+         expert reports picked here put their block in <div name="tuv_final_report_blocks">
+         from their views/forms file (those views inherit this one). -->
+    <record id="edit_project_final_report_tab" model="ir.ui.view">
+        <field name="name">project.project.form.audit.report.tab</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_austria_customization.edit_project_audit_report_tuv_austria_customization"/>
+        <field name="arch" type="xml">
+            <page name="audit_report" position="replace">
+                <page name="audit_report" string="Audit Report">
+                    <group>
+                        <group>
+                            <field name="final_report_scheme" string="Scheme"/>
+                            <label for="final_report_id" string="Report"/>
+                            <div class="o_row">
+                                <field name="final_report_id" options="{'no_create': True, 'no_open': True}" readonly="not final_report_scheme"
+                                    domain="[('is_final_report', '=', True), ('accreditation', '=', final_report_scheme)]"/>
+                                <button name="action_print_final_report" type="object" string="Print"
+                                    icon="fa-print" class="btn-secondary" invisible="not final_report_key"/>
+                            </div>
+                            <field name="final_report_key" invisible="1"/>
+                            <field name="final_report_uses_info" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <div name="tuv_final_report_audit_info" invisible="not final_report_uses_info">
+                        <!-- 1. Company information -->
+                        <separator string="1. Company Information"/>
+                        <group>
+                            <group>
+                                <field name="ap_partner_id" string="Company Name"/>
+                                <field name="ap_company_address"/>
+                                <field name="ap_other_sites"/>
+                            </group>
+                            <group>
+                                <field name="ap_representative" string="Company Representative"/>
+                                <field name="ap_representative_email" widget="email"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="ap_certificate_scope" string="Scope of Certification / Certificate Text"/>
+                        </group>
+
+                        <!-- 2. Audit information -->
+                        <separator string="2. Audit Information"/>
+                        <group>
+                            <group string="Audit Date">
+                                <field name="ap_audit_date_stage1" string="Stage 1"/>
+                                <field name="ap_audit_date_stage2" string="Stage 2"/>
+                                <field name="ap_audit_date_until"/>
+                                <field name="ap_remote" widget="radio" options="{'horizontal': true}"/>
+                            </group>
+                            <group string="Audit Method">
+                                <field name="ap_audit_method"/>
+                                <field name="ap_audit_method_other"
+                                    invisible="ap_audit_method not in ('others', 'self_definition')"/>
+                                <field name="ap_employee_count"/>
+                                <field name="ap_employee_scope_count"/>
+                                <field name="ap_audit_duration_hours"/>
+                            </group>
+                        </group>
+                        <label for="ap_standard_line_ids" string="Audit Standard(s) (max. 5)" class="fw-bold"/>
+                        <field name="ap_standard_line_ids">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="standard"/>
+                                <field name="audit_type"/>
+                                <field name="audit_type_other"/>
+                                <field name="registration_no"/>
+                            </list>
+                        </field>
+                        <group>
+                            <group string="Scope">
+                                <field name="ap_scope_change" widget="radio"/>
+                                <field name="ap_eac_scope"/>
+                            </group>
+                            <group string="Codes">
+                                <field name="ap_nace_code"/>
+                                <field name="ap_category"/>
+                            </group>
+                        </group>
+                        <group string="Audit Team">
+                            <field name="ap_lead_auditor_id" string="Lead Auditor"/>
+                        </group>
+                        <field name="ap_team_line_ids">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="partner_id"/>
+                                <field name="role"/>
+                            </list>
+                        </field>
+                    </div>
+
+                    <div name="tuv_final_report_blocks"/>
+
+                    <!-- anchors of the old tab: technical review (3.5), NC counts (3.4) and the
+                         invoice alert (4.1) are placed around them from tuv_austria_customization -->
+                    <group name="audit_report_submission" invisible="1">
+                        <field name="audit_ofi_count"/>
+                    </group>
                 </page>
             </page>
         </field>

@@ -15,7 +15,7 @@ The audit forms of TUV Austria, kept as records in Odoo instead of Word files.
     'author': "Core2Plus",
     'website': "https://www.core2plus.com",
     'category': 'Services/Certification',
-    'version': '1.0',
+    'version': '1.3',
 
     'depends': ['base', 'project', 'tuv_austria_customization'],
 

@@ -104,7 +104,7 @@ class AuditChecklistMixin(models.AbstractModel):
     def _cl_payload(self):
         """Everything the checklist PDF needs for the checklist selected on this record."""
         self.ensure_one()
-        key = (self.audit_report_key or '').removeprefix(REPORT_KEY_PREFIX)
+        key = (self.execution_report_key or '').removeprefix(REPORT_KEY_PREFIX)
         data = checklist_data(key)
         lines = {line.sequence: line for line in self['cl_%s_line_ids' % key]}
         ticks, mandatory = [], []
@@ -176,11 +176,12 @@ class ProjectProject(models.Model):
     cl_pnaccombined_line_ids = _lines_field('project_id', 'pnaccombined', compute='_compute_cl_line_ids',
                                             store=True, readonly=False)
 
-    @api.depends('audit_report_id')
+    @api.depends('execution_report_id')
     def _compute_cl_line_ids(self):
-        # the elements of the Word checklist, added once that checklist is picked; ticks are kept
+        # the elements of the Word checklist, added once that checklist is picked on the Audit
+        # Execution tab; ticks are kept
         for project in self:
-            selected = (project.audit_report_key or '').removeprefix(REPORT_KEY_PREFIX)
+            selected = (project.execution_report_key or '').removeprefix(REPORT_KEY_PREFIX)
             for key in CHECKLIST_KEYS:
                 fname = 'cl_%s_line_ids' % key
                 if key == selected and not project[fname]:

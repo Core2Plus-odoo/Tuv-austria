@@ -36,6 +36,29 @@ class AuditReport(models.Model):
     uses_audit_info = fields.Boolean(
         string='Company and Audit Information', default=True,
         help='The form opens with sections "1. Company information" and "2. Audit information".')
+    # The project's Audit Plan tab offers only these (audit_plan, audit_plan_isms,
+    # esyd_audit_plan, pnac_audit_plan, saac_audit_plan, saac_audit_plan_27001).
+    is_audit_plan = fields.Boolean(string='Audit Plan Form', compute='_compute_is_audit_plan', store=True)
+    # The project's Audit Execution tab offers these: participation lists, audit checklists
+    # and the AQG audit questionnaires (checklists of ESYD / PNAC / SAAC).
+    is_execution_form = fields.Boolean(string='Audit Execution Form', compute='_compute_is_audit_plan',
+                                       store=True)
+    # The project's Audit Report tab offers these: the audit reports and the expert reports.
+    is_final_report = fields.Boolean(string='Audit Report Form', compute='_compute_is_audit_plan',
+                                     store=True)
+    # The project's Certificate Dispatched tab offers these: the certificate texts.
+    is_certificate_form = fields.Boolean(string='Certificate Form', compute='_compute_is_audit_plan',
+                                         store=True)
+
+    @api.depends('report_key')
+    def _compute_is_audit_plan(self):
+        for card in self:
+            key = card.report_key or ''
+            card.is_audit_plan = 'audit_plan' in key
+            card.is_execution_form = (key.endswith('participation_list')
+                                      or key.startswith(('checklist_', 'aqg_')))
+            card.is_final_report = key.endswith(('audit_report', 'expert_report'))
+            card.is_certificate_form = key.endswith('certificate_text')
 
     @api.depends('name', 'accreditation')
     def _compute_display_name(self):
