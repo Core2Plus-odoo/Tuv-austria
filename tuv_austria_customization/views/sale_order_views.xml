@@ -89,9 +89,8 @@
                     invisible="document_type not in ('contract_form', 'pnac_contract')"/>
             </xpath>
             <field name="state" position="after">
-                <!-- One bar for the whole flow; statusbar_visible keeps it short, so
-                     only the stage the order is actually in is drawn. -->
-                <field name="flow_state" widget="statusbar" statusbar_visible="_"/>
+                <!-- One bar for the whole flow, every stage drawn -->
+                <field name="flow_state" widget="statusbar"/>
                 <field name="review_state" invisible="1"/>
                 <field name="review_locked" invisible="1"/>
                 <field name="document_stage" invisible="1"/>
@@ -422,6 +421,33 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
+        </field>
+    </record>
+
+    <!-- Preview Document at the end of each document tab: the same report as the gear
+         menu's Print, shown in the browser. The Contract tab previews the contract of
+         the document type (PNAC-Contract or TAC-TAH-Contract). -->
+    <record id="view_order_form_preview_document_tuv" model="ir.ui.view">
+        <field name="name">sale.order.form.preview.document.tuv</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="tuv_austria_customization.view_order_form_inherit_tuv_austria_customization"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='application_form_page']" position="inside">
+                <button name="action_preview_document" type="object" string="Preview Document"
+                    icon="fa-eye" class="btn-secondary mt-3" context="{'preview_document': 'application_form'}"/>
+            </xpath>
+            <xpath expr="//page[@name='review_form_page']" position="inside">
+                <button name="action_preview_document" type="object" string="Preview Document"
+                    icon="fa-eye" class="btn-secondary mt-3" context="{'preview_document': 'review_form'}"/>
+            </xpath>
+            <xpath expr="//page[@name='proposal_page']" position="inside">
+                <button name="action_preview_document" type="object" string="Preview Document"
+                    icon="fa-eye" class="btn-secondary mt-3" context="{'preview_document': 'proposal'}"/>
+            </xpath>
+            <xpath expr="//page[@name='contract_page']" position="inside">
+                <button name="action_preview_document" type="object" string="Preview Document"
+                    icon="fa-eye" class="btn-secondary mt-3" context="{'preview_document': 'contract'}"/>
+            </xpath>
         </field>
     </record>
 

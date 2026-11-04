@@ -17,7 +17,7 @@ The audit forms of TUV Austria, kept as records in Odoo instead of Word files.
     'category': 'Services/Certification',
     'version': '1.3',
 
-    'depends': ['base', 'project', 'tuv_austria_customization'],
+    'depends': ['base', 'project', 'sale_timesheet', 'tuv_austria_customization'],
 
     'data': [
         'security/ir.model.access.csv',

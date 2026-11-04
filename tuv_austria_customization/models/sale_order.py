@@ -1,4 +1,7 @@
 from odoo import Command, _, api, fields, models
+from odoo.exceptions import UserError
+
+from .project_invoice import AUDIT_INVOICING, _amount
 
 # Handing one of these to the client means the contract is done: that is the moment
 # the order gets its project, not the confirmation.
@@ -334,3 +337,72 @@ class SaleOrder(models.Model):
         # sudo: the salesperson confirming the order is not necessarily a project user,
         # and project.stage_id sits behind project.group_project_stages.
         return self.env['project.project'].sudo().create(values)
+
+    def action_preview_document(self):
+        """Preview Document button of the document tabs: the tab's report, shown in the browser."""
+        self.ensure_one()
+        document = self.env.context.get('preview_document')
+        if document == 'contract':
+            document = 'contract_pnac' if self.document_type == 'pnac_contract' else 'contract_tac_tah'
+        report = self.env.ref('tuv_austria_customization.action_report_sale_order_%s' % document)
+        # config=False: straight to the report, never the document layout wizard
+        action = report.report_action(self, config=False)
+        action['report_type'] = 'qweb-html'
+        return action
+
+    def _add_contract_invoice_line(self):
+        """Give an order with nothing to invoice the line of its contract fee.
+
+        The order lines are hidden on the form, so a contract order has no line and the
+        standard Create Invoice found "no items to invoice". The line is the service of the
+        project's audit (certification / surveillance / re-certification) at the contract
+        fee and tax of that audit year, the same terms as the commercial invoice.
+        """
+        for order in self:
+            if order.state != 'sale' or any(line.qty_to_invoice for line in order.order_line):
+                continue
+            project = order.sudo().project_ids.filtered(lambda p: p.md_sale_order_id == order)[:1] \
+                or order.sudo().project_ids[:1]
+            if project and project.md_sale_order_id == order:
+                product, fee, _mandays, tax, _tax_amount = project._invoice_terms()
+                audit_type = project.md_audit_type or 'certification'
+            else:
+                audit_type = 'certification'
+                year, product_name = AUDIT_INVOICING[audit_type]
+                product = self.env['product.product'].search([('name', '=', product_name)], limit=1)
+                fee = _amount(order['contract_fee_%s' % year])
+                tax = self.env['project.project']._invoice_tax(
+                    fee, _amount(order['contract_tax_%s' % year]), order.contract_tax_province)
+            year, product_name = AUDIT_INVOICING.get(audit_type, AUDIT_INVOICING['certification'])
+            if not product:
+                raise UserError(_('Cannot create the invoice: the service product "%s" is missing.', product_name))
+            if not fee:
+                raise UserError(_('Cannot create the invoice: the contract fee for %(year)s is empty on %(order)s.',
+                                  year=year.upper().replace('Y', 'Year '), order=order.name))
+            if order.order_line.filtered(lambda line: line.product_id == product):
+                raise UserError(_('%(order)s is already fully invoiced for "%(product)s".',
+                                  order=order.name, product=product.name))
+            order.order_line = [Command.create({
+                'product_id': product.id, 'product_uom_qty': 1, 'price_unit': fee,
+                'tax_ids': [Command.set(tax.ids)],
+            })]
+
+
+class SaleAdvancePaymentInv(models.TransientModel):
+    _inherit = 'sale.advance.payment.inv'
+
+    def create_invoices(self):
+        # Regular invoice of a contract order: invoice its contract fee
+        if self.advance_payment_method == 'delivered':
+            self.sale_order_ids._add_contract_invoice_line()
+        action = super().create_invoices()
+        # the invoice belongs to the order's audit project, like the commercial invoice
+        # (Sales Tax Invoice, payment tracking and the certificate gate read it there)
+        for order in self.sale_order_ids.sudo():
+            project = order.project_ids.filtered(lambda p: p.md_sale_order_id == order)[:1] or order.project_ids[:1]
+            invoices = order.invoice_ids.filtered(lambda move: not move.tuv_project_id)
+            if project and invoices:
+                invoices.tuv_project_id = project
+                if not project.commercial_invoice_id:
+                    project.commercial_invoice_id = invoices[:1]
+        return action
