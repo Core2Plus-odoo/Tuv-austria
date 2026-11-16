@@ -1,6 +1,8 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .project_task_mandays import MD_STANDARD
+
 RF_YESNO = [('yes', 'Yes'), ('no', 'No')]
 RF_AUDIT_TYPE = [
     ('initial_certification', 'Initial Certification'),
@@ -49,7 +51,7 @@ class SaleOrder(models.Model):
     # folded into the one line the user follows from draft to contract.
     flow_state = fields.Selection([
         ('draft', 'Draft'),
-        ('offer_application', 'Offer Application'),
+        ('offer_application', 'Application Form'),
         ('waiting_review', 'Waiting for Review'),
         ('review_approved', 'Review Approved'),
         ('review_form', 'Review Form'),
@@ -98,7 +100,7 @@ class SaleOrder(models.Model):
     # CLIENT INFORMATION (client name is the order's customer)
     rf_scope = fields.Text(string='Review Scope')
     rf_iaf_code = fields.Char(string='Applicable IAF Code')
-    rf_standards = fields.Char(string='Standards')
+    rf_standards = fields.Selection(MD_STANDARD, string='Standards')
 
     # CERTIFICATION HISTORY (for recertification only)
     rf_certified_since = fields.Date(string='This Client Is Certified Since')
@@ -159,8 +161,8 @@ class SaleOrder(models.Model):
         if self.review_state != 'draft':
             raise UserError(_('This order has already been sent to the planning team.'))
         if self.document_type != 'offer_application':
-            raise UserError(_('Take the offer application first: the application form is '
-                              'what goes to the planning team.'))
+            raise UserError(_('Take the Application Form first: it is what goes to the '
+                              'planning team.'))
         self.write({
             'review_state': 'waiting_review',
             'review_submitted_on': fields.Datetime.now(),

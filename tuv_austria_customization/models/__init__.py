@@ -39,3 +39,4 @@ from . import stock
 from . import ir_actions_report
 from . import application_annex
 from . import ir_ui_view
+from . import sale_document_preview

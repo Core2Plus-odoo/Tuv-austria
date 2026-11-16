@@ -40,7 +40,7 @@ class ProjectProject(models.Model):
     def _compute_atjf_standards(self):
         labels = dict(self._fields['md_standard_1'].selection)
         for project in self:
-            names = [project.certification_standard] + [
+            names = [labels.get(project.certification_standard)] + [
                 labels.get(code) for code in (
                     project.md_standard_1, project.md_standard_2, project.md_standard_3)
             ] + [project.md_standard_other]

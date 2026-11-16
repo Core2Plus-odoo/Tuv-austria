@@ -616,7 +616,7 @@
 
                         <!-- advance = "Total" row / "Initial Audit" column of the cost table -->
                         <t t-set="advance"
-                            t-value="(doc.cost_grand_initial_audit or '').replace('USD', '').replace('$', '').strip()"/>
+                            t-value="'{:,.2f}'.format(doc.cost_grand_initial_audit) if doc.cost_grand_initial_audit else ''"/>
                         <div class="pr_h3">3.2 Invoicing:</div>
                         <p>
                             <span t-field="doc.proposal_invoicing_terms"/><t t-if="advance">

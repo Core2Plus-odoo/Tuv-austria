@@ -59,7 +59,7 @@
                      first and goes to the planning team, and only their approval
                      opens the review form, the proposal and the contract. -->
                 <button name="action_document_offer_application" type="object"
-                    string="Offer Application" class="btn-primary" data-hotkey="1"
+                    string="Application Form" class="btn-primary" data-hotkey="1"
                     invisible="document_type"/>
                 <button name="action_submit_to_planning" type="object"
                     string="Submit to Planning Team" class="btn-primary" data-hotkey="s"
@@ -79,7 +79,7 @@
                     string="Proposal Form" class="btn-primary" data-hotkey="3"
                     invisible="document_type != 'review_form'"/>
                 <button name="action_document_contract_form" type="object"
-                    string="TAC-TAH-Contract" data-hotkey="4"
+                    string="ESYD/Austrian Contract" data-hotkey="4"
                     invisible="document_type not in ('proposal_form', 'pnac_contract')"/>
                 <button name="action_document_pnac_contract" type="object"
                     string="PNAC-Contract" data-hotkey="5"
@@ -315,7 +315,7 @@
                             <field name="cost_grand_total"/>
                         </group>
                         <group name="group_proposal_cost_invoicing" string="Invoicing">
-                            <field name="proposal_invoicing_terms"/>
+                            <field name="proposal_invoicing_terms" options="{'no_create': True}"/>
                         </group>
                     </group>
                     <group name="group_proposal_prepared_by" string="Prepared By"
@@ -424,9 +424,25 @@
         </field>
     </record>
 
+    <!-- The popup of Preview Document: the PDF over the sale order, closed with X / Close -->
+    <record id="tuv_sale_document_preview_view_form" model="ir.ui.view">
+        <field name="name">tuv.sale.document.preview.form</field>
+        <field name="model">tuv.sale.document.preview</field>
+        <field name="arch" type="xml">
+            <form string="Preview Document" create="0" edit="0" delete="0">
+                <field name="pdf_name" invisible="1"/>
+                <field name="pdf" widget="pdf_viewer" filename="pdf_name" nolabel="1"
+                    class="o_tuv_document_preview w-100"/>
+                <footer>
+                    <button string="Close" special="cancel" class="btn-secondary" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
     <!-- Preview Document at the end of each document tab: the same report as the gear
-         menu's Print, shown in the browser. The Contract tab previews the contract of
-         the document type (PNAC-Contract or TAC-TAH-Contract). -->
+         menu's Print, in a popup over the order. The Contract tab previews the contract of
+         the document type (PNAC-Contract or ESYD/Austrian Contract). -->
     <record id="view_order_form_preview_document_tuv" model="ir.ui.view">
         <field name="name">sale.order.form.preview.document.tuv</field>
         <field name="model">sale.order</field>
@@ -475,7 +491,7 @@
             <filter name="my_quotation" position="replace">
                 <filter name="flow_draft" string="Draft"
                     domain="[('flow_state', '=', 'draft')]"/>
-                <filter name="flow_offer_application" string="Offer Application"
+                <filter name="flow_offer_application" string="Application Form"
                     domain="[('flow_state', '=', 'offer_application')]"/>
                 <filter name="flow_waiting_review" string="Waiting for Review"
                     domain="[('flow_state', '=', 'waiting_review')]"/>

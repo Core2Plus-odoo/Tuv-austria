@@ -75,3 +75,4 @@ access_tuv_management_review_planning,tuv.management.review.planning,model_tuv_m
 access_tuv_management_review_cert_manager,tuv.management.review.cert.manager,model_tuv_management_review,tuv_austria_customization.group_certification_manager,1,1,1,1
 access_tuv_management_review_manager,tuv.management.review.manager,model_tuv_management_review,base.group_system,1,1,1,1
 access_tuv_application_annex_product_manager,tuv.application.annex.product.manager,model_tuv_application_annex_product,base.group_system,1,1,1,1
+access_tuv_sale_document_preview_user,tuv.sale.document.preview.user,model_tuv_sale_document_preview,base.group_user,1,1,1,1

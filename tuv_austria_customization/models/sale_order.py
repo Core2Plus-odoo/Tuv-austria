@@ -1,7 +1,10 @@
+import base64
+
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 
 from .project_invoice import AUDIT_INVOICING, _amount
+from .project_task_mandays import MD_STANDARD
 
 # Handing one of these to the client means the contract is done: that is the moment
 # the order gets its project, not the confirmation.
@@ -15,10 +18,10 @@ class SaleOrder(models.Model):
     # taken first, the review form goes to the planning team next, and only their
     # approval opens the remaining sales documents.
     document_type = fields.Selection([
-        ('offer_application', 'Offer Application'),
+        ('offer_application', 'Application Form'),
         ('review_form', 'Review Form'),
         ('proposal_form', 'Proposal Form'),
-        ('contract_form', 'TAC-TAH-Contract'),
+        ('contract_form', 'ESYD/Austrian Contract'),
         ('pnac_contract', 'PNAC-Contract'),
     ], string='Document Type', tracking=True)
     # How far the order got: every page up to this stage stays visible on the form,
@@ -32,6 +35,20 @@ class SaleOrder(models.Model):
         order_of['pnac_contract'] = order_of['contract_form']
         for order in self:
             order.document_stage = order_of.get(order.document_type, 0)
+
+    @api.depends('cost_initial_audit', 'cost_surveillance_1', 'cost_surveillance_2',
+                 'cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2',
+                 'cost_grand_initial_audit', 'cost_grand_surveillance_1', 'cost_grand_surveillance_2')
+    def _compute_cost_totals(self):
+        # Proposal > Summary of Cost: the Total of each group adds up its three audits
+        for order in self:
+            order.cost_total = (order.cost_initial_audit + order.cost_surveillance_1
+                                + order.cost_surveillance_2)
+            order.cost_tax_total = (order.cost_tax_initial_audit + order.cost_tax_surveillance_1
+                                    + order.cost_tax_surveillance_2)
+            order.cost_grand_total = (order.cost_grand_initial_audit + order.cost_grand_surveillance_1
+                                      + order.cost_grand_surveillance_2)
+
     # ------------------------------------------------------------------
     # Document numbers
     # ------------------------------------------------------------------
@@ -41,13 +58,13 @@ class SaleOrder(models.Model):
     # left empty on purpose: the client writes whichever number belongs on that
     # form, so none of them inherits the offer application's.
     tuv_sequence = fields.Char(
-        string='Sequence No', copy=False, tracking=True, index='btree_not_null',
-        help='Drawn from the sequence the moment the order reaches the Offer '
-             'Application step, and editable afterwards: type your own number and '
+        string='Reference Number', copy=False, tracking=True, index='btree_not_null',
+        help='Drawn from the sequence the moment the order reaches the Application '
+             'Form step, and editable afterwards: type your own number and '
              'it is kept as it is.')
-    rf_sequence_no = fields.Char(string='Sequence No', copy=False)
-    pr_sequence_no = fields.Char(string='Sequence No', copy=False)
-    ct_sequence_no = fields.Char(string='Sequence No', copy=False)
+    rf_sequence_no = fields.Char(string='Reference Number', copy=False)
+    pr_sequence_no = fields.Char(string='Reference Number', copy=False)
+    ct_sequence_no = fields.Char(string='Reference Number', copy=False)
 
     def _assign_tuv_sequence(self):
         """Draw the document number for orders that reached the offer application."""
@@ -88,7 +105,8 @@ class SaleOrder(models.Model):
     vat = fields.Char(
         related='partner_id.vat', string='VAT Nr.', store=True, readonly=True)
     certificate_no = fields.Char(string='Certificate No')
-    certification_standard = fields.Char(string='Certification Standard')
+    # the standard fields of the order pick from the Mandays standards (md_standard_1)
+    certification_standard = fields.Selection(MD_STANDARD, string='Certification Standard')
     ea_code_ids = fields.Many2many('industry.ea.code', string='EA Code')
     scope_of_certification = fields.Char(string='Scope of Certification')
     issue_date = fields.Date(string='Issue Date')
@@ -154,21 +172,24 @@ class SaleOrder(models.Model):
     charge_surveillance_1 = fields.Char(string='1ST Annual Surveillance@')
     charge_surveillance_2 = fields.Char(string='2nd Annual Surveillance@')
 
-    # Summary of Cost - typed in by hand, nothing is taken from the order lines
+    # Summary of Cost - typed in by hand, nothing is taken from the order lines; each group's
+    # Total is the sum of its three audits
     cost_tax_label = fields.Char(string='Sales Tax Row Label')
-    cost_initial_audit = fields.Char(string='Initial Audit')
-    cost_surveillance_1 = fields.Char(string='1st Surveillance Audit')
-    cost_surveillance_2 = fields.Char(string='2nd Surveillance Audit')
-    cost_total = fields.Char(string='Total')
-    cost_tax_initial_audit = fields.Char(string='Initial Audit')
-    cost_tax_surveillance_1 = fields.Char(string='1st Surveillance Audit')
-    cost_tax_surveillance_2 = fields.Char(string='2nd Surveillance Audit')
-    cost_tax_total = fields.Char(string='Total')
-    cost_grand_initial_audit = fields.Char(string='Initial Audit')
-    cost_grand_surveillance_1 = fields.Char(string='1st Surveillance Audit')
-    cost_grand_surveillance_2 = fields.Char(string='2nd Surveillance Audit')
-    cost_grand_total = fields.Char(string='Total')
-    proposal_invoicing_terms = fields.Char(string='Invoicing Terms')
+    cost_initial_audit = fields.Float(string='Initial Audit')
+    cost_surveillance_1 = fields.Float(string='1st Surveillance Audit')
+    cost_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
+    cost_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
+    cost_tax_initial_audit = fields.Float(string='Initial Audit')
+    cost_tax_surveillance_1 = fields.Float(string='1st Surveillance Audit')
+    cost_tax_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
+    cost_tax_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
+    cost_grand_initial_audit = fields.Float(string='Initial Audit')
+    cost_grand_surveillance_1 = fields.Float(string='1st Surveillance Audit')
+    cost_grand_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
+    cost_grand_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
+    # Proposal > Invoicing: the order's own payment terms, picked from Odoo's list
+    proposal_invoicing_terms = fields.Many2one(related='payment_term_id', string='Invoicing Terms',
+                                               readonly=False)
 
     # Prepared By block - blank falls back to the salesperson on the order
     prepared_by_name = fields.Char(string='Prepared By Name')
@@ -181,8 +202,8 @@ class SaleOrder(models.Model):
     # ------------------------------------------------------------------
     # Contract Form (TAC-TAH template) - every <<placeholder>> of the doc
     # ------------------------------------------------------------------
-    contract_standards = fields.Char(
-        string='Standard(s)', help='Goes into "<<Enter Standard(s)>>" of the contract.')
+    contract_standards = fields.Selection(
+        MD_STANDARD, string='Standard(s)', help='Goes into "<<Enter Standard(s)>>" of the contract.')
     contract_address_1 = fields.Char(string='Address 1')
     contract_address_2 = fields.Char(string='Address 2')
     contract_representative = fields.Char(string='Company Representative (Attn)')
@@ -191,15 +212,16 @@ class SaleOrder(models.Model):
     contract_ref = fields.Char(string='Ref #')
 
     # Table: Certification Services Offered / ACCREDITATION (2 rows)
-    contract_service_1 = fields.Char(string='Service 1 - Standard(s)')
+    contract_service_1 = fields.Selection(MD_STANDARD, string='Service 1 - Standard(s)')
     contract_accreditation_1 = fields.Char(string='Service 1 - Accreditation Body')
-    contract_service_2 = fields.Char(string='Service 2 - Standard(s)')
+    contract_service_2 = fields.Selection(MD_STANDARD, string='Service 2 - Standard(s)')
     contract_accreditation_2 = fields.Char(string='Service 2 - Accreditation Body')
 
     # CHARGES table - 4 rows x 3 year columns, all typed in by hand
-    contract_fee_y1 = fields.Char(string='Standard(s) - 1st Year')
-    contract_fee_y2 = fields.Char(string='Standard(s) - 2nd Year')
-    contract_fee_y3 = fields.Char(string='Standard(s) - 3rd Year')
+    # user's decision (16.11.2026): a standard per contract year, no longer the fee amounts
+    contract_fee_y1 = fields.Selection(MD_STANDARD, string='Standard(s) - 1st Year')
+    contract_fee_y2 = fields.Selection(MD_STANDARD, string='Standard(s) - 2nd Year')
+    contract_fee_y3 = fields.Selection(MD_STANDARD, string='Standard(s) - 3rd Year')
     contract_mandays_y1 = fields.Char(string='# of Man-days - 1st Year')
     contract_mandays_y2 = fields.Char(string='# of Man-days - 2nd Year')
     contract_mandays_y3 = fields.Char(string='# of Man-days - 3rd Year')
@@ -339,16 +361,31 @@ class SaleOrder(models.Model):
         return self.env['project.project'].sudo().create(values)
 
     def action_preview_document(self):
-        """Preview Document button of the document tabs: the tab's report, shown in the browser."""
+        """Preview Document button of the document tabs: the tab's report as a PDF in a popup
+        over the order (the same document as the gear menu's Print)."""
         self.ensure_one()
         document = self.env.context.get('preview_document')
         if document == 'contract':
             document = 'contract_pnac' if self.document_type == 'pnac_contract' else 'contract_tac_tah'
         report = self.env.ref('tuv_austria_customization.action_report_sale_order_%s' % document)
-        # config=False: straight to the report, never the document layout wizard
-        action = report.report_action(self, config=False)
-        action['report_type'] = 'qweb-html'
-        return action
+        pdf, _report_type = self.env['ir.actions.report']._render_qweb_pdf(report, self.ids)
+        title = '%s - %s' % (report.name, self.name)
+        preview = self.env['tuv.sale.document.preview'].create({
+            'order_id': self.id,
+            'name': title,
+            'pdf': base64.b64encode(pdf),
+            'pdf_name': '%s.pdf' % title,
+        })
+        return {
+            'type': 'ir.actions.act_window',
+            'name': title,
+            'res_model': 'tuv.sale.document.preview',
+            'res_id': preview.id,
+            'view_mode': 'form',
+            'views': [(self.env.ref('tuv_austria_customization.tuv_sale_document_preview_view_form').id, 'form')],
+            'target': 'new',
+            'context': {'dialog_size': 'extra-large'},
+        }
 
     def _add_contract_invoice_line(self):
         """Give an order with nothing to invoice the line of its contract fee.
@@ -370,7 +407,7 @@ class SaleOrder(models.Model):
                 audit_type = 'certification'
                 year, product_name = AUDIT_INVOICING[audit_type]
                 product = self.env['product.product'].search([('name', '=', product_name)], limit=1)
-                fee = _amount(order['contract_fee_%s' % year])
+                fee = 0.0  # contract_fee_y* are standard dropdowns now, not amounts
                 tax = self.env['project.project']._invoice_tax(
                     fee, _amount(order['contract_tax_%s' % year]), order.contract_tax_province)
             year, product_name = AUDIT_INVOICING.get(audit_type, AUDIT_INVOICING['certification'])

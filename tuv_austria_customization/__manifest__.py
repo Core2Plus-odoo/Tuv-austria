@@ -17,7 +17,7 @@ Centralized module for client-specific customizations across:
     'website': "https://www.core2plus.com",
 
     'category': 'Customizations',
-    'version': '1.7',
+    'version': '1.10',
 
     'depends': ['base', 'account', 'product', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
 
@@ -96,6 +96,7 @@ Centralized module for client-specific customizations across:
         'web.assets_backend': [
             'tuv_austria_customization/static/src/scss/project_task_mandays.scss',
             'tuv_austria_customization/static/src/scss/home_menu_caption.scss',
+            'tuv_austria_customization/static/src/scss/document_preview.scss',
         ],
     },
 

@@ -170,7 +170,8 @@
 
                         <!-- ══════════════ TITLE ══════════════ -->
                         <div class="ct_title">
-                            CONTRACT FOR CERTIFICATION OF <t t-if="is_pnac">ISO </t><span class="ct_val" t-out="doc.contract_standards"/>
+                            <!-- the standards are dropdowns: print their label (it already says "ISO...") -->
+                            CONTRACT FOR CERTIFICATION OF <t t-if="is_pnac and not (doc.contract_standards or '').startswith('iso')">ISO </t><span class="ct_val" t-field="doc.contract_standards"/>
                         </div>
                         <div class="ct_between">BETWEEN</div>
                         <div class="ct_party">TUV AUSTRIA BUREAU OF INSPECTION &amp; CERTIFICATION PVT. LTD.</div>
@@ -182,7 +183,7 @@
                         <p style="margin-top: 14px;">
                             This Contract is made between <span class="ct_bold">the Company</span> and
                             <span class="ct_bold">the Client</span> for the purpose of
-                            <span class="ct_val" t-out="doc.contract_standards"/><t t-if="not is_pnac"> CERTIFICATION</t> of
+                            <span class="ct_val" t-field="doc.contract_standards"/><t t-if="not is_pnac"> CERTIFICATION</t> of
                             <span class="ct_bold">the Client.</span>
                         </p>
 
@@ -230,11 +231,11 @@
                                 <th>ACCREDITATION</th>
                             </tr>
                             <tr t-if="doc.contract_service_1 or doc.contract_accreditation_1">
-                                <td class="ct_val"><span t-out="doc.contract_service_1"/></td>
+                                <td class="ct_val"><span t-field="doc.contract_service_1"/></td>
                                 <td class="ct_val"><span t-out="doc.contract_accreditation_1"/></td>
                             </tr>
                             <tr t-if="doc.contract_service_2 or doc.contract_accreditation_2">
-                                <td class="ct_val"><span t-out="doc.contract_service_2"/></td>
+                                <td class="ct_val"><span t-field="doc.contract_service_2"/></td>
                                 <td class="ct_val"><span t-out="doc.contract_accreditation_2"/></td>
                             </tr>
                         </table>
@@ -253,10 +254,10 @@
                                 <th>3rd Year Surveillance Audit (USD)</th>
                             </tr>
                             <tr>
-                                <td class="ct_row_lbl_c ct_val"><span t-out="doc.contract_standards"/></td>
-                                <td><span t-out="doc.contract_fee_y1"/></td>
-                                <td><span t-out="doc.contract_fee_y2"/></td>
-                                <td><span t-out="doc.contract_fee_y3"/></td>
+                                <td class="ct_row_lbl_c ct_val"><span t-field="doc.contract_standards"/></td>
+                                <td><span t-field="doc.contract_fee_y1"/></td>
+                                <td><span t-field="doc.contract_fee_y2"/></td>
+                                <td><span t-field="doc.contract_fee_y3"/></td>
                             </tr>
                             <tr>
                                 <td class="ct_row_lbl_c ct_val">*# of Man-days</td>

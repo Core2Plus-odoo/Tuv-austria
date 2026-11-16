@@ -64,7 +64,10 @@ class ProjectProject(models.Model):
         year, product_name = AUDIT_INVOICING.get(self.md_audit_type or 'certification',
                                                  AUDIT_INVOICING['certification'])
         product = self.env['product.product'].search([('name', '=', product_name)], limit=1)
-        fee = _amount(order['contract_fee_%s' % year])
+        # contract_fee_y1/2/3 became standard dropdowns (user's decision, 16.11.2026): the
+        # contract has no fee field any more, so the fee is blocked as empty, not read as a
+        # number out of a standard's name
+        fee = 0.0
         mandays = order['contract_mandays_%s' % year] or ''
         tax_amount = _amount(order['contract_tax_%s' % year])
         return product, fee, mandays, self._invoice_tax(fee, tax_amount, order.contract_tax_province), tax_amount
