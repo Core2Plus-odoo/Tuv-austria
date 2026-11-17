@@ -411,8 +411,14 @@ class SaleOrder(models.Model):
         project's audit (certification / surveillance / re-certification) at the contract
         fee and tax of that audit year, the same terms as the commercial invoice.
         """
+        contract_products = self.env['product.product'].search(
+            [('name', 'in', [name for _year, name in AUDIT_INVOICING.values()])])
         for order in self:
-            if order.state != 'sale' or any(line.qty_to_invoice for line in order.order_line):
+            if order.state != 'sale':
+                continue
+            # a line typed by hand (not one of the contract services) is invoiced as it is
+            if any(line.qty_to_invoice and line.product_id not in contract_products
+                   for line in order.order_line):
                 continue
             project = order.sudo().project_ids.filtered(lambda p: p.md_sale_order_id == order)[:1] \
                 or order.sudo().project_ids[:1]
@@ -434,9 +440,16 @@ class SaleOrder(models.Model):
                                   'Fill it in the Proposal tab > Summary of Cost > Certification Fee > %(line)s.',
                                   year=year.upper().replace('Y', 'Year '), order=order.name,
                                   line=order._fields[order.COST_FIELDS[year][0]].string))
-            if order.order_line.filtered(lambda line: line.product_id == product):
+            existing = order.order_line.filtered(lambda line: line.product_id == product)
+            if existing.filtered('qty_invoiced'):
                 raise UserError(_('%(order)s is already fully invoiced for "%(product)s".',
                                   order=order.name, product=product.name))
+            if existing:
+                # added by an earlier try and not invoiced yet: bring it to today's fee and tax
+                # (it kept the old price, e.g. 1,500, after the proposal amounts changed)
+                existing.write({'price_unit': fee, 'product_uom_qty': 1,
+                                'tax_ids': [Command.set(tax.ids)]})
+                continue
             order.order_line = [Command.create({
                 'product_id': product.id, 'product_uom_qty': 1, 'price_unit': fee,
                 'tax_ids': [Command.set(tax.ids)],
