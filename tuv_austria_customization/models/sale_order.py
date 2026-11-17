@@ -36,6 +36,22 @@ class SaleOrder(models.Model):
         for order in self:
             order.document_stage = order_of.get(order.document_type, 0)
 
+    # contract year (AUDIT_INVOICING) -> its line of Proposal > Summary of Cost
+    COST_FIELDS = {
+        'y1': ('cost_initial_audit', 'cost_tax_initial_audit'),
+        'y2': ('cost_surveillance_1', 'cost_tax_surveillance_1'),
+        'y3': ('cost_surveillance_2', 'cost_tax_surveillance_2'),
+    }
+
+    def _contract_fee_and_tax(self, year):
+        """(fee, sales tax amount) of contract year y1/y2/y3. The fee comes from the
+        proposal's Summary of Cost (the contract's year fields hold standards since
+        16.11.2026); the tax from the contract's Sales Tax of that year, else the proposal's."""
+        self.ensure_one()
+        fee_field, tax_field = self.COST_FIELDS.get(year, self.COST_FIELDS['y1'])
+        tax = _amount(self['contract_tax_%s' % year]) or self[tax_field]
+        return self[fee_field], tax
+
     @api.depends('cost_initial_audit', 'cost_surveillance_1', 'cost_surveillance_2',
                  'cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2',
                  'cost_grand_initial_audit', 'cost_grand_surveillance_1', 'cost_grand_surveillance_2')
@@ -407,15 +423,17 @@ class SaleOrder(models.Model):
                 audit_type = 'certification'
                 year, product_name = AUDIT_INVOICING[audit_type]
                 product = self.env['product.product'].search([('name', '=', product_name)], limit=1)
-                fee = 0.0  # contract_fee_y* are standard dropdowns now, not amounts
+                fee, tax_amount = order._contract_fee_and_tax(year)
                 tax = self.env['project.project']._invoice_tax(
-                    fee, _amount(order['contract_tax_%s' % year]), order.contract_tax_province)
+                    fee, tax_amount, order.contract_tax_province)
             year, product_name = AUDIT_INVOICING.get(audit_type, AUDIT_INVOICING['certification'])
             if not product:
                 raise UserError(_('Cannot create the invoice: the service product "%s" is missing.', product_name))
             if not fee:
-                raise UserError(_('Cannot create the invoice: the contract fee for %(year)s is empty on %(order)s.',
-                                  year=year.upper().replace('Y', 'Year '), order=order.name))
+                raise UserError(_('Cannot create the invoice: the fee for %(year)s is empty on %(order)s. '
+                                  'Fill it in the Proposal tab > Summary of Cost > Certification Fee > %(line)s.',
+                                  year=year.upper().replace('Y', 'Year '), order=order.name,
+                                  line=order._fields[order.COST_FIELDS[year][0]].string))
             if order.order_line.filtered(lambda line: line.product_id == product):
                 raise UserError(_('%(order)s is already fully invoiced for "%(product)s".',
                                   order=order.name, product=product.name))

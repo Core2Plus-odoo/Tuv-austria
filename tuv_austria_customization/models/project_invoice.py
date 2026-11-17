@@ -64,12 +64,9 @@ class ProjectProject(models.Model):
         year, product_name = AUDIT_INVOICING.get(self.md_audit_type or 'certification',
                                                  AUDIT_INVOICING['certification'])
         product = self.env['product.product'].search([('name', '=', product_name)], limit=1)
-        # contract_fee_y1/2/3 became standard dropdowns (user's decision, 16.11.2026): the
-        # contract has no fee field any more, so the fee is blocked as empty, not read as a
-        # number out of a standard's name
-        fee = 0.0
+        # the fee of that year from the proposal's Summary of Cost
+        fee, tax_amount = order._contract_fee_and_tax(year)
         mandays = order['contract_mandays_%s' % year] or ''
-        tax_amount = _amount(order['contract_tax_%s' % year])
         return product, fee, mandays, self._invoice_tax(fee, tax_amount, order.contract_tax_province), tax_amount
 
     def _invoice_tax(self, fee, tax_amount, province_text):
@@ -102,7 +99,8 @@ class ProjectProject(models.Model):
         if not product:
             problems.append(_('the service product for this audit type is missing'))
         if not fee:
-            problems.append(_('the contract fee for this audit year is empty'))
+            problems.append(_('the fee for this audit year is empty (sales order > Proposal tab > '
+                              'Summary of Cost > Certification Fee)'))
         return problems
 
     # ------------------------------------------------------------------
