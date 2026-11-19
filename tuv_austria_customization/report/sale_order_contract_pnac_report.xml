@@ -10,6 +10,7 @@
         <field name="print_report_name">'PNAC-Contract - %s' % (object.name)</field>
         <field name="binding_model_id" ref="sale.model_sale_order"/>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_contract"/>
     </record>
 
     <template id="report_sale_order_contract_pnac">

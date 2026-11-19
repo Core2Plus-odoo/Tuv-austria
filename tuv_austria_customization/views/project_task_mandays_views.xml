@@ -481,4 +481,98 @@
         </field>
     </record>
 
+    <!-- ATJF: prepared by planning and reviewed before the audit. It shares the
+         Mandays Calculation tab, so it builds on that view. -->
+    <record id="edit_project_atjf_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.atjf.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="edit_project_mandays_tuv_austria_customization"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="atjf_state" invisible="1"/>
+                <button name="action_atjf_submit" type="object"
+                    string="Submit ATJF for Review" class="btn-primary"
+                    invisible="atjf_state != 'draft' or not md_sale_order_id"/>
+                <button name="action_atjf_approve" type="object"
+                    string="Approve ATJF" class="btn-primary"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="atjf_state != 'to_review'"/>
+                <button name="action_atjf_reset" type="object"
+                    string="ATJF Back to Draft"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="atjf_state == 'draft'"/>
+                <button name="action_send_audit_plan" type="object"
+                    string="Send Audit Plan to Client"
+                    groups="tuv_austria_customization.group_planning_team,base.group_system"
+                    invisible="atjf_state != 'reviewed'"/>
+            </xpath>
+
+            <!-- ATJF and Mandays Calculation are one tab: the ATJF part only adds what
+                 the Mandays sections do not already show (audit team, EA code, covered
+                 standards, audit dates and man-days are the same fields). -->
+            <page name="mandays_calculation" position="attributes">
+                <attribute name="string">Mandays Calculation &amp; ATJF</attribute>
+            </page>
+            <xpath expr="//page[@name='mandays_calculation']/div[hasclass('o_tuv_mandays_page')]" position="before">
+                <div class="mb-2" invisible="not md_sale_order_id">
+                    <span class="o_form_label me-2">ATJF</span>
+                    <field name="atjf_state" widget="badge" readonly="1"
+                        decoration-muted="atjf_state == 'draft'"
+                        decoration-warning="atjf_state == 'to_review'"
+                        decoration-success="atjf_state == 'reviewed'"/>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_fssc_22000']" position="after">
+                <field name="atjf_standards" invisible="not md_sale_order_id"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']/div[hasclass('o_tuv_mandays_page')]" position="after">
+                <div invisible="not md_sale_order_id">
+                    <separator string="ATJF"/>
+                    <group>
+                        <group string="Client Site">
+                            <field name="partner_id" string="Client" readonly="1"/>
+                            <field name="atjf_site_address"/>
+                            <field name="other_facilities"/>
+                        </group>
+                        <group string="Fee Details (from the contract)">
+                            <field name="contract_fee_y1_ids" widget="many2many_tags"/>
+                            <field name="contract_fee_y2_ids" widget="many2many_tags"/>
+                            <field name="contract_fee_y3_ids" widget="many2many_tags"/>
+                            <field name="contract_mandays_y1"/>
+                            <field name="contract_mandays_y2"/>
+                            <field name="contract_mandays_y3"/>
+                            <field name="contract_tax_province"/>
+                            <field name="contract_total_y1"/>
+                            <field name="contract_total_y2"/>
+                            <field name="contract_total_y3"/>
+                        </group>
+                        <group string="Review">
+                            <field name="atjf_prepared_by"/>
+                            <field name="atjf_prepared_on"/>
+                            <field name="atjf_reviewed_by"/>
+                            <field name="atjf_reviewed_on"/>
+                            <field name="atjf_review_notes"
+                                readonly="atjf_state == 'reviewed'"/>
+                        </group>
+                        <group string="Audit Plan To Client">
+                            <field name="partner_id" string="Sent To" readonly="1"
+                                widget="res_partner_many2one" context="{'show_email': True}"/>
+                            <field name="audit_plan_sent_on"/>
+                        </group>
+                    </group>
+                    <!-- Sent to the client automatically when the ATJF is approved -->
+                    <separator string="Documents To Be Prepared By The Client"/>
+                    <field name="audit_document_ids" nolabel="1"
+                        options="{'no_create': True}">
+                        <list>
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="certification_standard_ids" widget="many2many_tags"/>
+                        </list>
+                    </field>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

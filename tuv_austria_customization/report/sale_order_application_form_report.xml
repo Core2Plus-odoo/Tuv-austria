@@ -388,7 +388,7 @@
                             <col style="width: 16.80%;"/><col style="width: 16.60%;"/><col style="width: 16.40%;"/>
                         </colgroup>
                         <tr>
-                            <td class="af_c" style="line-height: 23.3px;"><span t-field="doc.certification_standard"/>&#160;</td>
+                            <td class="af_c" style="line-height: 23.3px;"><span t-field="doc.certification_standard_ids"/>&#160;</td>
                             <td class="af_c">&#160;</td><td class="af_c">&#160;</td><td class="af_c">&#160;</td><td class="af_c">&#160;</td><td class="af_c">&#160;</td>
                         </tr>
                     </table>

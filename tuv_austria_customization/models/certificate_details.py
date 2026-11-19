@@ -4,20 +4,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 from .audit_document import _standard_key
-from .project_task_mandays import MD_STANDARD
-
-
-def _md_standard_code(text):
-    """'ISO 9001:2015, ISO 14001:2015' -> 'iso9001_2015' (the first standard that is in the
-    Mandays list, which the order's standard dropdowns use); False when none matches."""
-    keys = {}
-    for code, label in MD_STANDARD:     # ISO22000:2018 before ISO22000:2005
-        keys.setdefault(_standard_key(label), code)
-    for name in (text or '').split(','):
-        code = keys.get(_standard_key(name))
-        if code:
-            return code
-    return False
 
 # Validity rules: a certification cycle runs 3 years, kept alive by annual surveillance.
 CYCLE_YEARS = 3
@@ -172,9 +158,10 @@ class TuvCertificate(models.Model):
             # the order already carries the certificate fields: keep them in step
             cert.project_id.md_sale_order_id.sudo().write({
                 'certificate_no': number,
-                # a dropdown on the order: the first of the certificate's standards
-                'certification_standard': _md_standard_code(cert.standards)
-                or cert.project_id.md_sale_order_id.certification_standard,
+                # every standard of the certificate; the order keeps its own when none is set
+                'certification_standard_ids': [(6, 0, (
+                    self.env['certification.standard']._from_names((cert.standards or '').split(','))
+                    or cert.project_id.md_sale_order_id.certification_standard_ids).ids)],
                 'scope_of_certification': cert.scope,
                 'ea_code_ids': [(6, 0, cert.ea_code_ids.ids)],
                 'issue_date': cert.issue_date,

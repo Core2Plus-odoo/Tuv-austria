@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- ATJF of a project, in the same table style as the Mandays Calculation. -->
+    <!-- ATJF of a project, in the same table style as the Mandays Calculation. With
+         `combined` it follows the Mandays Calculation in one PDF, and leaves out what that
+         part already printed: EA code, audit team, man-days and audit dates. -->
     <template id="report_project_atjf_body">
-        <div class="page tuv_md">
+        <div class="page tuv_md" t-att-style="'page-break-before: always;' if combined else None">
             <style>
                 .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 12px; }
                 .tuv_md .md_title {
@@ -51,7 +53,7 @@
                     <td class="md_lbl">Other Sites</td>
                     <td class="md_val"><span t-field="doc.other_facilities"/></td>
                 </tr>
-                <tr>
+                <tr t-if="not combined">
                     <td class="md_lbl">EA Code</td>
                     <td class="md_val"><t t-esc="', '.join(doc.ea_code_ids.mapped('name'))"/></td>
                 </tr>
@@ -62,7 +64,7 @@
             </table>
 
             <!-- ══════════════ AUDIT TEAM ══════════════ -->
-            <table class="md_tbl">
+            <table class="md_tbl" t-if="not combined">
                 <colgroup><col style="width: 28%;"/><col style="width: 72%;"/></colgroup>
                 <tr><td class="md_section" colspan="2">AUDIT TEAM</td></tr>
                 <tr>
@@ -84,7 +86,7 @@
             </table>
 
             <!-- ══════════════ MAN-DAYS & AUDIT DATES ══════════════ -->
-            <table class="md_tbl">
+            <table class="md_tbl" t-if="not combined">
                 <colgroup>
                     <col style="width: 28%;"/><col style="width: 22%;"/>
                     <col style="width: 28%;"/><col style="width: 22%;"/>
@@ -131,9 +133,9 @@
                 </tr>
                 <tr>
                     <td class="md_lbl">Fee</td>
-                    <td class="md_val center"><span t-field="doc.contract_fee_y1"/></td>
-                    <td class="md_val center"><span t-field="doc.contract_fee_y2"/></td>
-                    <td class="md_val center"><span t-field="doc.contract_fee_y3"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_fee_y1_ids"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_fee_y2_ids"/></td>
+                    <td class="md_val center"><span t-field="doc.contract_fee_y3_ids"/></td>
                 </tr>
                 <tr>
                     <td class="md_lbl"># of Man-days</td>
@@ -201,8 +203,8 @@
         <field name="report_name">tuv_austria_customization.report_project_atjf</field>
         <field name="report_file">tuv_austria_customization.report_project_atjf</field>
         <field name="print_report_name">'ATJF - %s' % (object.name)</field>
-        <field name="binding_model_id" ref="project.model_project_project"/>
-        <field name="binding_type">report</field>
+        <!-- printed with the Mandays Calculation instead (action_report_project_mandays) -->
+        <field name="binding_model_id" eval="False"/>
     </record>
 
 </odoo>

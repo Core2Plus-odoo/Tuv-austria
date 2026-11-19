@@ -6,8 +6,8 @@ class ProjectProject(models.Model):
 
     certificate_no = fields.Char(
         related='md_sale_order_id.certificate_no', store=True, readonly=True)
-    certification_standard = fields.Selection(
-        related='md_sale_order_id.certification_standard', store=True, readonly=True)
+    certification_standard_ids = fields.Many2many(
+        related='md_sale_order_id.certification_standard_ids', readonly=True)
     ea_code_ids = fields.Many2many(
         'industry.ea.code', 'project_project_ea_code_rel', 'project_id', 'ea_code_id',
         string='EA Code', compute='_compute_ea_code_ids', store=True, readonly=False)

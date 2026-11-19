@@ -21,7 +21,7 @@ class ProjectProject(models.Model):
         store=True, readonly=False)
     audit_plan_sent_on = fields.Datetime(string='Audit Plan Sent On', readonly=True, copy=False)
 
-    @api.depends('certification_standard', 'md_standard_1', 'md_standard_2',
+    @api.depends('certification_standard_ids', 'md_standard_1', 'md_standard_2',
                  'md_standard_3', 'md_standard_other')
     def _compute_audit_document_ids(self):
         Document = self.env['tuv.audit.document']

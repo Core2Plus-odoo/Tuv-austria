@@ -25,7 +25,7 @@
                     <group>
                         <group>
                             <field name="certificate_no"/>
-                            <field name="certification_standard"/>
+                            <field name="certification_standard_ids" widget="many2many_tags"/>
                             <field name="ea_code_ids" widget="many2many_tags"/>
                             <field name="scope_of_certification"/>
                             <field name="issue_date" options="{'numeric': true}"/>
@@ -188,7 +188,7 @@
                     invisible="document_stage &lt; 4">
                     <group>
                         <group string="Contract Details">
-                            <field name="contract_standards"/>
+                            <field name="contract_standard_ids" widget="many2many_tags"/>
                             <field name="contract_address_1"/>
                             <field name="contract_address_2"/>
                             <field name="contract_representative"/>
@@ -198,15 +198,15 @@
                             <field name="contract_advance_amount"/>
                         </group>
                         <group string="Certification Services Offered">
-                            <field name="contract_service_1"/>
+                            <field name="contract_service_1_ids" widget="many2many_tags"/>
                             <field name="contract_accreditation_1"/>
-                            <field name="contract_service_2"/>
+                            <field name="contract_service_2_ids" widget="many2many_tags"/>
                             <field name="contract_accreditation_2"/>
                         </group>
                         <group string="Charges">
-                            <field name="contract_fee_y1"/>
-                            <field name="contract_fee_y2"/>
-                            <field name="contract_fee_y3"/>
+                            <field name="contract_fee_y1_ids" widget="many2many_tags"/>
+                            <field name="contract_fee_y2_ids" widget="many2many_tags"/>
+                            <field name="contract_fee_y3_ids" widget="many2many_tags"/>
                             <field name="contract_mandays_y1"/>
                             <field name="contract_mandays_y2"/>
                             <field name="contract_mandays_y3"/>
@@ -225,118 +225,5 @@
             </page>
         </field>
     </record>
-
-    <!-- ATJF: the audit team, codes, standard, man-days, dates, site and fee of the
-         project on one page, prepared by planning and reviewed before the audit.
-         Every value is the project's own field, so nothing is typed in twice. -->
-    <record id="edit_project_atjf_tuv_austria_customization" model="ir.ui.view">
-        <field name="name">project.project.form.atjf.custom.operations</field>
-        <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.edit_project"/>
-        <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
-                <field name="atjf_state" invisible="1"/>
-                <button name="action_atjf_submit" type="object"
-                    string="Submit ATJF for Review" class="btn-primary"
-                    invisible="atjf_state != 'draft' or not md_sale_order_id"/>
-                <button name="action_atjf_approve" type="object"
-                    string="Approve ATJF" class="btn-primary"
-                    groups="tuv_austria_customization.group_planning_team,base.group_system"
-                    invisible="atjf_state != 'to_review'"/>
-                <button name="action_atjf_reset" type="object"
-                    string="ATJF Back to Draft"
-                    groups="tuv_austria_customization.group_planning_team,base.group_system"
-                    invisible="atjf_state == 'draft'"/>
-                <button name="action_send_audit_plan" type="object"
-                    string="Send Audit Plan to Client"
-                    groups="tuv_austria_customization.group_planning_team,base.group_system"
-                    invisible="atjf_state != 'reviewed'"/>
-            </xpath>
-
-            <page name="settings" position="before">
-                <page name="atjf" string="ATJF" invisible="not md_sale_order_id">
-                    <div class="mb-2">
-                        <field name="atjf_state" widget="badge" readonly="1"
-                            decoration-muted="atjf_state == 'draft'"
-                            decoration-warning="atjf_state == 'to_review'"
-                            decoration-success="atjf_state == 'reviewed'"/>
-                    </div>
-                    <group>
-                        <group string="Audit Team">
-                            <field name="auditor_id" string="Lead Auditor"
-                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"
-                                options="{'no_quick_create': True}"/>
-                            <field name="md_co_auditor_id"
-                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
-                            <field name="md_trainee_id"
-                                context="{'show_auditor_availability': True, 'availability_exclude_task': id}"/>
-                            <field name="md_other_participants"/>
-                        </group>
-                        <group string="EA Code &amp; Standard">
-                            <field name="ea_code_ids" widget="many2many_tags"/>
-                            <field name="atjf_standards"/>
-                            <field name="md_standard_1"/>
-                            <field name="md_standard_2"/>
-                            <field name="md_standard_3"/>
-                            <field name="md_standard_other"/>
-                        </group>
-                        <group string="Man-days">
-                            <field name="md_audit_duration"/>
-                            <field name="md4_total_cert"/>
-                            <field name="md4_total_surv1"/>
-                            <field name="md4_total_surv2"/>
-                        </group>
-                        <group string="Audit Dates">
-                            <field name="md_audit_date_st1"/>
-                            <field name="md_audit_date_st2"/>
-                            <field name="md_audit_date_surveillance"/>
-                            <field name="md_audit_date_recert"/>
-                        </group>
-                        <group string="Client Site">
-                            <field name="partner_id" string="Client" readonly="1"/>
-                            <field name="atjf_site_address"/>
-                            <field name="other_facilities"/>
-                        </group>
-                        <group string="Fee Details (from the contract)">
-                            <field name="contract_fee_y1"/>
-                            <field name="contract_fee_y2"/>
-                            <field name="contract_fee_y3"/>
-                            <field name="contract_mandays_y1"/>
-                            <field name="contract_mandays_y2"/>
-                            <field name="contract_mandays_y3"/>
-                            <field name="contract_tax_province"/>
-                            <field name="contract_total_y1"/>
-                            <field name="contract_total_y2"/>
-                            <field name="contract_total_y3"/>
-                        </group>
-                        <group string="Review">
-                            <field name="atjf_prepared_by"/>
-                            <field name="atjf_prepared_on"/>
-                            <field name="atjf_reviewed_by"/>
-                            <field name="atjf_reviewed_on"/>
-                            <field name="atjf_review_notes"
-                                readonly="atjf_state == 'reviewed'"/>
-                        </group>
-                        <group string="Audit Plan To Client">
-                            <field name="partner_id" string="Sent To" readonly="1"
-                                widget="res_partner_many2one" context="{'show_email': True}"/>
-                            <field name="audit_plan_sent_on"/>
-                        </group>
-                    </group>
-                    <!-- Sent to the client automatically when the ATJF is approved -->
-                    <separator string="Documents To Be Prepared By The Client"/>
-                    <field name="audit_document_ids" nolabel="1"
-                        options="{'no_create': True}">
-                        <list>
-                            <field name="sequence" widget="handle"/>
-                            <field name="name"/>
-                            <field name="certification_standard_ids" widget="many2many_tags"/>
-                        </list>
-                    </field>
-                </page>
-            </page>
-        </field>
-    </record>
-
 
 </odoo>

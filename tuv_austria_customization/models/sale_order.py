@@ -2,9 +2,9 @@ import base64
 
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import file_open
 
 from .project_invoice import AUDIT_INVOICING, _amount
-from .project_task_mandays import MD_STANDARD
 
 # Handing one of these to the client means the contract is done: that is the moment
 # the order gets its project, not the confirmation.
@@ -15,8 +15,8 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     # The order of the values is the order of the flow: the offer application is
-    # taken first, the review form goes to the planning team next, and only their
-    # approval opens the remaining sales documents.
+    # taken first, then the review form, which goes to the planning team; only their
+    # approval opens the proposal and the contract.
     document_type = fields.Selection([
         ('offer_application', 'Application Form'),
         ('review_form', 'Review Form'),
@@ -38,9 +38,9 @@ class SaleOrder(models.Model):
 
     # contract year (AUDIT_INVOICING) -> its line of Proposal > Summary of Cost
     COST_FIELDS = {
-        'y1': ('cost_initial_audit', 'cost_tax_initial_audit'),
-        'y2': ('cost_surveillance_1', 'cost_tax_surveillance_1'),
-        'y3': ('cost_surveillance_2', 'cost_tax_surveillance_2'),
+        'y1': ('cost_grand_initial_audit', 'cost_tax_initial_audit'),
+        'y2': ('cost_grand_surveillance_1', 'cost_tax_surveillance_1'),
+        'y3': ('cost_grand_surveillance_2', 'cost_tax_surveillance_2'),
     }
 
     def _contract_fee_and_tax(self, year):
@@ -53,11 +53,14 @@ class SaleOrder(models.Model):
         return self[fee_field], tax
 
     @api.depends('cost_initial_audit', 'cost_surveillance_1', 'cost_surveillance_2',
-                 'cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2',
-                 'cost_grand_initial_audit', 'cost_grand_surveillance_1', 'cost_grand_surveillance_2')
+                 'cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2')
     def _compute_cost_totals(self):
-        # Proposal > Summary of Cost: the Total of each group adds up its three audits
+        # Proposal > Summary of Cost: the Total group adds each audit's fee and sales tax,
+        # and the Total of each group adds up its three audits
         for order in self:
+            order.cost_grand_initial_audit = order.cost_initial_audit + order.cost_tax_initial_audit
+            order.cost_grand_surveillance_1 = order.cost_surveillance_1 + order.cost_tax_surveillance_1
+            order.cost_grand_surveillance_2 = order.cost_surveillance_2 + order.cost_tax_surveillance_2
             order.cost_total = (order.cost_initial_audit + order.cost_surveillance_1
                                 + order.cost_surveillance_2)
             order.cost_tax_total = (order.cost_tax_initial_audit + order.cost_tax_surveillance_1
@@ -70,17 +73,46 @@ class SaleOrder(models.Model):
     # ------------------------------------------------------------------
     # One number is drawn automatically, at the offer application, and stays with
     # the order; the user may overwrite it with a number of his own, and nothing
-    # draws over it afterwards. Every other document carries its own number instead,
-    # left empty on purpose: the client writes whichever number belongs on that
-    # form, so none of them inherits the offer application's.
+    # draws over it afterwards. The proposal and the contract show this same number;
+    # the review form keeps a number of its own, left empty for the client to fill.
     tuv_sequence = fields.Char(
         string='Reference Number', copy=False, tracking=True, index='btree_not_null',
         help='Drawn from the sequence the moment the order reaches the Application '
              'Form step, and editable afterwards: type your own number and '
              'it is kept as it is.')
     rf_sequence_no = fields.Char(string='Reference Number', copy=False)
-    pr_sequence_no = fields.Char(string='Reference Number', copy=False)
-    ct_sequence_no = fields.Char(string='Reference Number', copy=False)
+    # The proposal and the contract show the order's own reference number rather than a
+    # number of their own.
+    pr_sequence_no = fields.Char(related='tuv_sequence', string='Reference Number', readonly=False)
+    ct_sequence_no = fields.Char(related='tuv_sequence', string='Reference Number', readonly=False)
+
+    @api.depends('cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2',
+                 'cost_grand_initial_audit', 'cost_grand_surveillance_1', 'cost_grand_surveillance_2')
+    def _compute_contract_amounts(self):
+        def text(amount):
+            return '{:,.2f}'.format(amount) if amount else False
+        for order in self:
+            order.contract_advance_amount = text(order.cost_grand_initial_audit)
+            order.contract_tax_y1 = text(order.cost_tax_initial_audit)
+            order.contract_tax_y2 = text(order.cost_tax_surveillance_1)
+            order.contract_tax_y3 = text(order.cost_tax_surveillance_2)
+            order.contract_total_y1 = text(order.cost_grand_initial_audit)
+            order.contract_total_y2 = text(order.cost_grand_surveillance_1)
+            order.contract_total_y3 = text(order.cost_grand_surveillance_2)
+
+    @api.depends('certification_standard_ids')
+    def _compute_contract_standard_ids(self):
+        for order in self:
+            order.contract_standard_ids = order.certification_standard_ids
+
+    @api.depends('partner_id')
+    def _compute_contract_address_1(self):
+        for order in self:
+            partner = order.partner_id
+            order.contract_address_1 = ', '.join(filter(None, [
+                partner.street, partner.street2, partner.city, partner.state_id.name,
+                partner.zip, partner.country_id.name,
+            ])) or False
 
     def _assign_tuv_sequence(self):
         """Draw the document number for orders that reached the offer application."""
@@ -122,7 +154,9 @@ class SaleOrder(models.Model):
         related='partner_id.vat', string='VAT Nr.', store=True, readonly=True)
     certificate_no = fields.Char(string='Certificate No')
     # the standard fields of the order pick from the Mandays standards (md_standard_1)
-    certification_standard = fields.Selection(MD_STANDARD, string='Certification Standard')
+    certification_standard_ids = fields.Many2many(
+        'certification.standard', 'sale_order_certification_standard_rel', 'order_id', 'standard_id',
+        string='Certification Standard')
     ea_code_ids = fields.Many2many('industry.ea.code', string='EA Code')
     scope_of_certification = fields.Char(string='Scope of Certification')
     issue_date = fields.Date(string='Issue Date')
@@ -188,8 +222,8 @@ class SaleOrder(models.Model):
     charge_surveillance_1 = fields.Char(string='1ST Annual Surveillance@')
     charge_surveillance_2 = fields.Char(string='2nd Annual Surveillance@')
 
-    # Summary of Cost - typed in by hand, nothing is taken from the order lines; each group's
-    # Total is the sum of its three audits
+    # Summary of Cost - fee and sales tax typed in by hand, nothing is taken from the order
+    # lines; the Total group is fee + tax per audit, and each group's Total sums its three audits
     cost_tax_label = fields.Char(string='Sales Tax Row Label')
     cost_initial_audit = fields.Float(string='Initial Audit')
     cost_surveillance_1 = fields.Float(string='1st Surveillance Audit')
@@ -199,9 +233,12 @@ class SaleOrder(models.Model):
     cost_tax_surveillance_1 = fields.Float(string='1st Surveillance Audit')
     cost_tax_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
     cost_tax_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
-    cost_grand_initial_audit = fields.Float(string='Initial Audit')
-    cost_grand_surveillance_1 = fields.Float(string='1st Surveillance Audit')
-    cost_grand_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
+    cost_grand_initial_audit = fields.Float(
+        string='Initial Audit', compute='_compute_cost_totals', store=True)
+    cost_grand_surveillance_1 = fields.Float(
+        string='1st Surveillance Audit', compute='_compute_cost_totals', store=True)
+    cost_grand_surveillance_2 = fields.Float(
+        string='2nd Surveillance Audit', compute='_compute_cost_totals', store=True)
     cost_grand_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
     # Proposal > Invoicing: the order's own payment terms, picked from Odoo's list
     proposal_invoicing_terms = fields.Many2one(related='payment_term_id', string='Invoicing Terms',
@@ -218,9 +255,14 @@ class SaleOrder(models.Model):
     # ------------------------------------------------------------------
     # Contract Form (TAC-TAH template) - every <<placeholder>> of the doc
     # ------------------------------------------------------------------
-    contract_standards = fields.Selection(
-        MD_STANDARD, string='Standard(s)', help='Goes into "<<Enter Standard(s)>>" of the contract.')
-    contract_address_1 = fields.Char(string='Address 1')
+    contract_standard_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_standard_rel', 'order_id', 'standard_id',
+        string='Standard(s)', compute='_compute_contract_standard_ids', store=True, readonly=True,
+        help='Goes into "<<Enter Standard(s)>>" of the contract. Taken from the proposal\'s '
+             'Certification Standard.')
+    contract_address_1 = fields.Char(
+        string='Address 1', compute='_compute_contract_address_1', store=True, readonly=False,
+        help="Filled with the customer's address; editable.")
     contract_address_2 = fields.Char(string='Address 2')
     contract_representative = fields.Char(string='Company Representative (Attn)')
     contract_designation = fields.Char(string='Designation')
@@ -228,35 +270,64 @@ class SaleOrder(models.Model):
     contract_ref = fields.Char(string='Ref #')
 
     # Table: Certification Services Offered / ACCREDITATION (2 rows)
-    contract_service_1 = fields.Selection(MD_STANDARD, string='Service 1 - Standard(s)')
+    contract_service_1_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_service_1_rel', 'order_id', 'standard_id',
+        string='Service 1 - Standard(s)')
     contract_accreditation_1 = fields.Char(string='Service 1 - Accreditation Body')
-    contract_service_2 = fields.Selection(MD_STANDARD, string='Service 2 - Standard(s)')
+    contract_service_2_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_service_2_rel', 'order_id', 'standard_id',
+        string='Service 2 - Standard(s)')
     contract_accreditation_2 = fields.Char(string='Service 2 - Accreditation Body')
 
     # CHARGES table - 4 rows x 3 year columns, all typed in by hand
     # user's decision (16.11.2026): a standard per contract year, no longer the fee amounts
-    contract_fee_y1 = fields.Selection(MD_STANDARD, string='Standard(s) - 1st Year')
-    contract_fee_y2 = fields.Selection(MD_STANDARD, string='Standard(s) - 2nd Year')
-    contract_fee_y3 = fields.Selection(MD_STANDARD, string='Standard(s) - 3rd Year')
+    contract_fee_y1_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_fee_y1_rel', 'order_id', 'standard_id',
+        string='Standard(s) - 1st Year')
+    contract_fee_y2_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_fee_y2_rel', 'order_id', 'standard_id',
+        string='Standard(s) - 2nd Year')
+    contract_fee_y3_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_fee_y3_rel', 'order_id', 'standard_id',
+        string='Standard(s) - 3rd Year')
     contract_mandays_y1 = fields.Char(string='# of Man-days - 1st Year')
     contract_mandays_y2 = fields.Char(string='# of Man-days - 2nd Year')
     contract_mandays_y3 = fields.Char(string='# of Man-days - 3rd Year')
     contract_tax_province = fields.Char(string='Sales Tax (Province)@')
-    contract_tax_y1 = fields.Char(string='Sales Tax - 1st Year')
-    contract_tax_y2 = fields.Char(string='Sales Tax - 2nd Year')
-    contract_tax_y3 = fields.Char(string='Sales Tax - 3rd Year')
-    contract_total_y1 = fields.Char(string='Total Payable - 1st Year')
-    contract_total_y2 = fields.Char(string='Total Payable - 2nd Year')
-    contract_total_y3 = fields.Char(string='Total Payable - 3rd Year')
-    contract_advance_amount = fields.Char(string='1st Year Initial Audit Amount (Advance)')
-    pnac_logo_1 = fields.Binary(string='PNAC Logo 1', attachment=True)
-    pnac_logo_1_filename = fields.Char(string='PNAC Logo 1 Filename')
-    pnac_logo_2 = fields.Binary(string='PNAC Logo 2', attachment=True)
-    pnac_logo_2_filename = fields.Char(string='PNAC Logo 2 Filename')
-    pnac_logo_3 = fields.Binary(string='PNAC Logo 3', attachment=True)
-    pnac_logo_3_filename = fields.Char(string='PNAC Logo 3 Filename')
-    pnac_logo_4 = fields.Binary(string='PNAC Logo 4', attachment=True)
-    pnac_logo_4_filename = fields.Char(string='PNAC Logo 4 Filename')
+    # Sales Tax and Total Payable of each year: the proposal's Summary of Cost
+    # (Sales Tax and Total of the initial audit, 1st and 2nd surveillance)
+    contract_tax_y1 = fields.Char(string='Sales Tax - 1st Year', compute='_compute_contract_amounts',
+                                  store=True, readonly=True)
+    contract_tax_y2 = fields.Char(string='Sales Tax - 2nd Year', compute='_compute_contract_amounts',
+                                  store=True, readonly=True)
+    contract_tax_y3 = fields.Char(string='Sales Tax - 3rd Year', compute='_compute_contract_amounts',
+                                  store=True, readonly=True)
+    contract_total_y1 = fields.Char(string='Total Payable - 1st Year', compute='_compute_contract_amounts',
+                                    store=True, readonly=True)
+    contract_total_y2 = fields.Char(string='Total Payable - 2nd Year', compute='_compute_contract_amounts',
+                                    store=True, readonly=True)
+    contract_total_y3 = fields.Char(string='Total Payable - 3rd Year', compute='_compute_contract_amounts',
+                                    store=True, readonly=True)
+    # the proposal's Summary of Cost > Total > Initial Audit (fee + sales tax)
+    contract_advance_amount = fields.Char(
+        string='1st Year Initial Audit Amount (Advance)', compute='_compute_contract_amounts',
+        store=True, readonly=True)
+    # PNAC Annexure 1: the four fixed TUV Austria / PNAC accreditation logos, shipped with
+    # the module, the same on every contract
+    pnac_logo_1 = fields.Binary(string='QMS - EN ISO 9001:2015', compute='_compute_pnac_logos')
+    pnac_logo_2 = fields.Binary(string='EMS - EN ISO 14001:2015', compute='_compute_pnac_logos')
+    pnac_logo_3 = fields.Binary(string='OHSMS - ISO 45001:2018', compute='_compute_pnac_logos')
+    pnac_logo_4 = fields.Binary(string='FSMS - ISO 22000:2018', compute='_compute_pnac_logos')
+
+    def _compute_pnac_logos(self):
+        logos = {}
+        for number in range(1, 5):
+            with file_open('tuv_austria_customization/static/src/img/pnac/pnac_logo_%s.png' % number,
+                           'rb') as logo:
+                logos[number] = base64.b64encode(logo.read())
+        for order in self:
+            for number, logo in logos.items():
+                order['pnac_logo_%s' % number] = logo
 
     def action_view_project_ids(self):
         self.ensure_one()
@@ -294,6 +365,8 @@ class SaleOrder(models.Model):
         return self._set_document_type('offer_application')
 
     def action_document_proposal_form(self):
+        if self.filtered(lambda o: o.review_state != 'review_approved'):
+            raise UserError(_('The planning team has to approve the review form before the proposal.'))
         return self._set_document_type('proposal_form')
 
     def action_document_contract_form(self):

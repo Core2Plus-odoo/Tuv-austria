@@ -114,8 +114,8 @@
         <field name="report_name">tuv_austria_customization.report_project_audit_checklist</field>
         <field name="report_file">tuv_austria_customization.report_project_audit_checklist</field>
         <field name="print_report_name">'Audit Checklist - %s' % (object.name)</field>
-        <field name="binding_model_id" ref="project.model_project_project"/>
-        <field name="binding_type">report</field>
+        <!-- not offered in the project's Print menu -->
+        <field name="binding_model_id" eval="False"/>
     </record>
 
 </odoo>

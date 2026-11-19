@@ -566,23 +566,27 @@
         <field name="binding_type">report</field>
     </record>
 
+    <!-- The project prints its Mandays Calculation and its ATJF as one document -->
     <template id="report_project_mandays">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <t t-call="tuv_austria_customization.report_project_task_mandays_body"/>
+                    <t t-if="doc.md_sale_order_id" t-call="tuv_austria_customization.report_project_atjf_body">
+                        <t t-set="combined" t-value="True"/>
+                    </t>
                 </t>
             </t>
         </t>
     </template>
 
     <record id="action_report_project_mandays" model="ir.actions.report">
-        <field name="name">Mandays Calculation</field>
+        <field name="name">Mandays Calculation &amp; ATJF</field>
         <field name="model">project.project</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">tuv_austria_customization.report_project_mandays</field>
         <field name="report_file">tuv_austria_customization.report_project_mandays</field>
-        <field name="print_report_name">'Mandays Calculation - %s' % (object.name)</field>
+        <field name="print_report_name">'Mandays Calculation &amp; ATJF - %s' % (object.name)</field>
         <field name="binding_model_id" ref="project.model_project_project"/>
         <field name="binding_type">report</field>
     </record>

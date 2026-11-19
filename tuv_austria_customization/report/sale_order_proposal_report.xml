@@ -254,7 +254,7 @@
                             </div>
                             <div class="pr_c_block">
                                 <div class="pr_c_lbl">STANDARD(s):</div>
-                                <div class="pr_c_val"><span t-field="doc.certification_standard"/></div>
+                                <div class="pr_c_val"><span t-field="doc.certification_standard_ids"/></div>
                             </div>
                             <div class="pr_c_block" style="margin-top: 64.2px;">
                                 <div class="pr_c_sub">PROPOSAL SUBMITTED BY:</div>
@@ -514,11 +514,11 @@
                             TUV AUS BIC will carry out Stage 1 Audit of your
                             <strong><span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM</strong>
                             emissions according to the Verification Regulation and the requirements of
-                            <strong><span t-field="doc.certification_standard"/></strong> standard In order to
+                            <strong><span t-field="doc.certification_standard_ids"/></strong> standard In order to
                             establish to what extent, the
                             <strong><span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM</strong>
                             addresses the requirements of
-                            <strong><span t-field="doc.certification_standard"/></strong> Standard, and if a
+                            <strong><span t-field="doc.certification_standard_ids"/></strong> Standard, and if a
                             subsequent final Assessment for Accredited Certificate is likely to result in
                             successful certification at an early stage, by which usually companies take the
                             necessary corrective/preventive actions as appropriate and prior to the final
@@ -530,7 +530,7 @@
                         <p>
                             TUV AUS BIC shall conduct onsite Verification audit according to the Verification
                             Regulation and the requirements of
-                            <strong><span t-field="doc.certification_standard"/></strong> standard and award the
+                            <strong><span t-field="doc.certification_standard_ids"/></strong> standard and award the
                             Verification Statement stating the result of the verification process in case of a
                             positive result.
                         </p>
@@ -549,7 +549,7 @@
                             of your
                             <strong><span t-field="doc.management_system_name"/> MANAGEMENT SYSTEM</strong>
                             to the requirements of
-                            <strong><span t-field="doc.certification_standard"/></strong> Standard.
+                            <strong><span t-field="doc.certification_standard_ids"/></strong> Standard.
                         </p>
 
                         <!-- ══════════════════ 3. FINANCIAL PROPOSAL ══════════════════ -->
@@ -589,7 +589,7 @@
                             </tr>
                             <tr>
                                 <td class="pr_cost_row">
-                                    <span t-field="doc.certification_standard"/> CERTIFICATION
+                                    <span t-field="doc.certification_standard_ids"/> CERTIFICATION
                                 </td>
                                 <td><span t-field="doc.cost_initial_audit"/></td>
                                 <td><span t-field="doc.cost_surveillance_1"/></td>

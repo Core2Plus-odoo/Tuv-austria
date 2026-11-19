@@ -17,7 +17,7 @@ Centralized module for client-specific customizations across:
     'website': "https://www.core2plus.com",
 
     'category': 'Customizations',
-    'version': '1.10',
+    'version': '1.16',
 
     'depends': ['base', 'account', 'product', 'sale', 'sale_project', 'contacts', 'project', 'stock', 'hr'],
 

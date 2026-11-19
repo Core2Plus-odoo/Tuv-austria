@@ -35,19 +35,19 @@ class ProjectProject(models.Model):
     # Standard(s) of the ATJF: the order's standard plus those picked on the Mandays tab.
     atjf_standards = fields.Char(string='ATJF Standard(s)', compute='_compute_atjf_standards')
 
-    @api.depends('certification_standard', 'md_standard_1', 'md_standard_2',
+    @api.depends('certification_standard_ids', 'md_standard_1', 'md_standard_2',
                  'md_standard_3', 'md_standard_other')
     def _compute_atjf_standards(self):
         labels = dict(self._fields['md_standard_1'].selection)
         for project in self:
-            names = [labels.get(project.certification_standard)] + [
+            names = project.certification_standard_ids.mapped('name') + [
                 labels.get(code) for code in (
                     project.md_standard_1, project.md_standard_2, project.md_standard_3)
             ] + [project.md_standard_other]
             # the order says "ISO 9001:2015", the Mandays list "ISO9001:2015": one standard
             unique = {}
             for name in filter(None, names):
-                unique.setdefault(name.replace(' ', '').lower(), name)
+                unique.setdefault(name.replace(' ', '').lower(), name.strip())
             project.atjf_standards = ', '.join(unique.values()) or False
 
     @api.depends('audit_site', 'md_street', 'md_street2', 'md_city', 'md_zip',
