@@ -1,7 +1,7 @@
-# 4. Development Standards & Coding Conventions
+# Development Standards & Coding Conventions — TÜV Austria BIC
 
 Status: **Proposed standard** — to be adopted for all further work on this repository.
-Applies to: Odoo 19 (Community/Enterprise — edition to be confirmed, see Decision D-02).
+Applies to: Odoo 19 (Community/Enterprise — edition to be confirmed, see Decision D-01).
 
 ## 4.1 Golden rules
 
@@ -83,5 +83,5 @@ A PR may merge only when:
 3. At least one automated test covers the happy path and one edge case.
 4. `odoo-bin -u <module> --test-enable` passes on a staging copy.
 5. Linked documents (sale order ↔ project ↔ certificate ↔ invoice) still drill down.
-6. No regression on the existing flows listed in the process linkage matrix (doc 03).
+6. No regression on the existing flows listed in `docs/architecture/PROCESS_LINKAGE_MATRIX.md`.
 7. Documentation in `docs/` updated when the architecture or data model changed.

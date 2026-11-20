@@ -1,4 +1,4 @@
-# 7. Testing, Reconciliation, Migration & Deployment Strategy
+# Testing, Reconciliation, Migration & Deployment Strategy — TÜV Austria BIC
 
 Status: **Proposed** — nothing below exists yet except where marked *verified*.
 
@@ -10,7 +10,7 @@ Status: **Proposed** — nothing below exists yet except where marked *verified*
 - No CI pipeline (`.github/workflows` absent), no pre-commit config, no linting config.
 - A disciplined `migrations/` trail exists (versions 1.1 → 1.16), which indicates changes
   are being applied against a live/UAT database. That database is the de-facto source of
-  truth; the repo has no deployment notes for it (see Decision D-03: hosting unknown).
+  truth; the repo has no deployment notes for it (see ADR-010: hosting unknown).
 
 ## 7.2 Test pyramid (target)
 
