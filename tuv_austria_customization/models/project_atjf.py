@@ -91,7 +91,9 @@ class ProjectProject(models.Model):
             'atjf_reviewed_by': False,
             'atjf_reviewed_on': False,
         })
-        self.message_post(body=_('ATJF prepared by %s and sent for review.', self.env.user.name))
+        # internal note: kept in the chatter, no email to the followers
+        self.message_post(body=_('ATJF prepared by %s and sent for review.', self.env.user.name),
+                          subtype_xmlid='mail.mt_note')
         return True
 
     def action_atjf_approve(self):
