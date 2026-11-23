@@ -103,7 +103,7 @@
                  picked here (participation lists, checklists) put their block in
                  <div name="tuv_execution_blocks"> from their views/forms file. -->
             <page name="audit_execution" position="replace">
-                <page name="audit_execution" string="Audit Execution">
+                <page name="audit_execution" string="Audit Checklist">
                     <group>
                         <group>
                             <field name="execution_scheme" string="Scheme"/>

@@ -68,7 +68,7 @@
             </xpath>
 
             <page name="settings" position="before">
-                <page name="audit_execution" string="Audit Execution"
+                <page name="audit_execution" string="Audit Checklist"
                     invisible="atjf_state != 'reviewed' and audit_state == 'not_started'">
                     <div class="mb-2">
                         <field name="audit_state" widget="badge" readonly="1"
