@@ -29,6 +29,7 @@ The audit forms of TUV Austria, kept as records in Odoo instead of Word files.
         'views/audit_report_views.xml',
         'views/project_views.xml',
         'views/audit_execution_ack_views.xml',
+        'views/mdc_docx_views.xml',
         'views/forms/audit_plan.xml',
         'views/forms/audit_plan_isms.xml',
         'views/forms/audit_checklist.xml',
@@ -60,6 +61,7 @@ The audit forms of TUV Austria, kept as records in Odoo instead of Word files.
         'report/acc_audit_reports_report.xml',
         'report/acc_small_forms_report.xml',
         'report/acc_aqg_checklists_report.xml',
+        'report/mdc_docx_reports.xml',
         'views/menus.xml',
         'data/audit_report_data.xml',
         'data/audit_checklist_data.xml',
@@ -70,6 +72,12 @@ The audit forms of TUV Austria, kept as records in Odoo instead of Word files.
         'data/acc_small_forms_data.xml',
         'data/acc_aqg_checklists_data.xml',
     ],
+
+    'assets': {
+        'web.assets_backend': [
+            'tuv_audit_reports/static/src/js/docx_report_handler.js',
+        ],
+    },
 
     'application': True,
     'installable': True,
