@@ -1,0 +1,1014 @@
+{
+ "key": "pnac_guide_45001",
+ "meta": {
+  "title": "Auditing guideline / ISO 45001:2018",
+  "subtitle": "Certification of Management Systems",
+  "code": "FM-TAGMBH-MSZ-015_Audit-Guideline-ISO-45001-EN",
+  "revision": "01/17.10.24",
+  "vkl": "Internal"
+ },
+ "blocks": [
+  {
+   "type": "p",
+   "t": "A Terms and Definition",
+   "b": true
+  },
+  {
+   "type": "table",
+   "widths": [
+    22.49,
+    77.51
+   ],
+   "rows": [
+    [
+     {
+      "t": "interested party",
+      "b": true
+     },
+     {
+      "t": "person or organization that can affect, be affected by, or perceive itself to be affected by a decision or activity"
+     }
+    ],
+    [
+     {
+      "t": "management system",
+      "b": true
+     },
+     {
+      "t": "set of interrelated or interacting elements of an organization to establish policies and objectives and processes to achieve those objectives"
+     }
+    ],
+    [
+     {
+      "t": "hazard",
+      "b": true
+     },
+     {
+      "t": "source with a potential to cause injury and ill health"
+     }
+    ],
+    [
+     {
+      "t": "Risk",
+      "b": true
+     },
+     {
+      "t": "effect of uncertainty"
+     }
+    ],
+    [
+     {
+      "t": "Outsource",
+      "b": true
+     },
+     {
+      "t": "make an arrangement where an external organization performs part of an organization’s function or process"
+     }
+    ],
+    [
+     {
+      "t": "Traceability",
+      "b": true
+     },
+     {
+      "t": "ability to follow the history, application, movement and location of an object through specified stage(s) of production, processing and distribution"
+     }
+    ],
+    [
+     {
+      "t": "documented information",
+      "b": true
+     },
+     {
+      "t": "information required to be controlled and maintained by an organization and the medium on which it is contained"
+     }
+    ],
+    [
+     {
+      "t": "Indicator",
+      "b": true
+     },
+     {
+      "t": "measurable representation of the condition or status of operations, management or conditions"
+     }
+    ],
+    [
+     {
+      "t": "conformity",
+      "b": true
+     },
+     {
+      "t": "fulfilment of a requirement"
+     }
+    ],
+    [
+     {
+      "t": "Nonconformity",
+      "b": true
+     },
+     {
+      "t": "non-fulfilment of a requirement"
+     }
+    ],
+    [
+     {
+      "t": "corrective action",
+      "b": true
+     },
+     {
+      "t": "action to eliminate the cause of a nonconformity and to prevent recurrence"
+     }
+    ],
+    [
+     {
+      "t": "continual improvement",
+      "b": true
+     },
+     {
+      "t": "recurring activity to enhance performance"
+     }
+    ],
+    [
+     {
+      "t": "compliance obligations (preferred term)"
+     },
+     {
+      "t": "legal requirements and other requirements (admitted term)\nlegal requirements that an organization has to comply with and other requirements that an organization has to or chooses to comply with"
+     }
+    ],
+    [
+     {
+      "t": "control measure",
+      "b": true
+     },
+     {
+      "t": "action or activity that is essential to prevent a significant Environmental hazard or reduce it to an acceptable level"
+     }
+    ],
+    [
+     {
+      "t": "worker",
+      "b": true
+     },
+     {
+      "t": "person performing work or work-related activities that are under the control of the organization"
+     }
+    ],
+    [
+     {
+      "t": "top management",
+      "b": true
+     },
+     {
+      "t": "person or group of people who directs and controls an organization at the highest level"
+     }
+    ],
+    [
+     {
+      "t": "participation",
+      "b": true
+     },
+     {
+      "t": "involvement in decision-making"
+     }
+    ],
+    [
+     {
+      "t": "consultation",
+      "b": true
+     },
+     {
+      "t": "seeking views before making a decision"
+     }
+    ],
+    [
+     {
+      "t": "workplace",
+      "b": true
+     },
+     {
+      "t": "place under the control of the organization where a person needs to be or to go for work purposes"
+     }
+    ],
+    [
+     {
+      "t": "injury and ill health",
+      "b": true
+     },
+     {
+      "t": "adverse effect on the physical, mental or cognitive condition of a person"
+     }
+    ],
+    [
+     {
+      "t": "incident",
+      "b": true
+     },
+     {
+      "t": "occurrence arising out of, or in the course of, work that could or does result in injury and ill health"
+     }
+    ],
+    [
+     {
+      "t": "Maintained Documented Information (MDI-xx)",
+      "b": true
+     },
+     {
+      "t": "A “document” or “documented procedures”, “quality manual” or “quality plan” that is connected with a specific requirement of the Standard"
+     }
+    ],
+    [
+     {
+      "t": "Retained Documented Information (RDI-xx)",
+      "b": true
+     },
+     {
+      "t": "A “record” to denote documents needed to provide evidence of conformity with requirement of the Standard."
+     }
+    ],
+    [
+     {
+      "t": "Vertical audit",
+      "b": true
+     },
+     {
+      "t": "The “Vertical Audit” approach is an audit of a specific production or service traceable run and assessing several clauses and aspects of the standard through traceability (ie. Production elements, HACCP/OPRP plan, training of personnel, maintenance, calibration etc) related to the chosen run. The auditor is choosing a production run and is looking at all the records associated with that run."
+     }
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "A. Purpose and Scope",
+   "b": true
+  },
+  {
+   "type": "p",
+   "t": "The purpose of the guideline is to:"
+  },
+  {
+   "type": "p",
+   "t": "• To set the minimum audit requirements for the standard"
+  },
+  {
+   "type": "p",
+   "t": "• To provided guidance to the auditors in order to perform the audit in detail and to the appropriate depth"
+  },
+  {
+   "type": "p",
+   "t": "• To determine the minimum recording requirements in respect to needed verifiable evidence for certification decision"
+  },
+  {
+   "type": "p",
+   "t": "C. Guidance and clarifications",
+   "b": true
+  },
+  {
+   "type": "p",
+   "t": "• The mentioned data and information in columns A and B below are the minimum and the main topics to be assessed during the audit. The points are not exhaustive and other or part of them have to be assessed during the audit."
+  },
+  {
+   "type": "p",
+   "t": "• Reference of objective evidence (MDExx) can be very brief and can refer only to traceable documents, names or information."
+  },
+  {
+   "type": "p",
+   "t": "• For all fields that are checked, means that the auditor has seen the adequate information and/or data and are satisfied"
+  },
+  {
+   "type": "p",
+   "t": "• In Table 1 all requires Retained and Maintained Documented Information (RDI & MDI) are listed to facilitate the auditor to have direct view the relevant requirement of the standard"
+  },
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    33.39,
+    36.0,
+    30.62
+   ],
+   "rows": [
+    [
+     {
+      "t": "ISO 45001:2018, clauses",
+      "b": true
+     },
+     {
+      "t": "(A) Evaluation Points",
+      "b": true
+     },
+     {
+      "t": "(B) Information, Data, Evidence",
+      "b": true
+     }
+    ],
+    [
+     {
+      "t": "4 Context of the organization",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**4.1 Understanding the organization and its context\nThe organization shall determine external and internal issues that are relevant to its purpose and that affect its ability to achieve the intended outcomes of its OH&S management system."
+     },
+     {
+      "t": "Identification and determination of the external and internal issues that are relevant to its purpose and that affect its ability to achieve the intended outcomes of its OH&S management system\nReview information about context"
+     },
+     {
+      "t": "**MDE 01\n• Procedure / Method for Determining and identifying the Context of the Organization and Interested Parties\n• Record / Manual with identified external and internal issues and interested Parties also including the company profile, organization, scope etc).\n• Internal & External Issues relevant to the scope and purpose of the company may include:\n**A. external issues, such as:\n1) the cultural, social, political, legal, financial, technological, economic and natural surroundings and market competition (e.g. PESTELE analysis), whether international, national, regional or local;\n2) introduction of new competitors, contractors, subcontractors, suppliers, partners and providers, new technologies, new laws and the emergence of new occupations;\n3) new knowledge on products and their effect on health and safety;\n4) key drivers and trends relevant to the industry or sector having impact on the organization;\n5) relationships with, as well as perceptions and values of, its external interested parties;\n6) changes in relation to any of the above;\n**B. internal issues, such as:\n1) governance, organizational structure, roles and accountabilities;\n2) policies, objectives and the strategies that are in place to achieve them;\n3) the capabilities, understood in terms of resources, knowledge and competence (e.g. capital, time, human resources, processes, systems and technologies);\n4) information systems, information flows and decision-making processes (both formal and informal);\n5) introduction of new products, materials, services, tools, software, premises and equipment;\n6) relationships with, as well as perceptions and values of, workers;\n7) the culture in the organization;\n8) standards, guidelines and models adopted by the organization;\n9) the form and extent of contractual relationships, including, for example, outsourced activities;\n10) working time arrangements;\n11) working conditions;\n12) changes in relation to any of the above."
+     }
+    ],
+    [
+     {
+      "t": "**4.2 Understanding the needs and expectations of workers and other interested parties\nThe organization shall determine:\na) the other interested parties, in addition to workers, that are relevant to the OH&S management system;\nb) the relevant needs and expectations (i.e. requirements) of workers and other interested parties;\nc) which of these needs and expectations are, or could become, legal requirements and other requirements"
+     },
+     {
+      "t": "Determination of relevant interested parties to company’s OH&S\nDetermination of specific requirements (needs & expectations) for workers and other interest party.\nDetermine which of these needs and expectations are, or could become, legal and other requirements\nMonitoring of changing needs and expectations of interested parties.\nReview information about company’s interested parties"
+     },
+     {
+      "t": "**MDE\n• Procedure / Method for Determining and identifying the Context of the Organization and Interested Parties\n• Record / Manual with identified external and internal issues and interested Parties also including the company profile, organization, scope etc).\n• Determination and identification of interested parties:\n• interested parties who are relevant to OHS management system (e.g.\na) legal and regulatory authorities (local, regional, state/provincial, national or international);\nb) parent organizations;\nc) suppliers, contractors and subcontractors;\nd) workers’ representatives;\ne) workers’ organizations (trade unions) and employers’ organizations;\nf) owners, shareholders, clients, visitors, local community and neighbours of the organization and the general public;\ng) customers, medical and other community services, media, academia, business associations and non-governmental organizations (NGOs);\nh) occupational health and safety organizations, occupational safety and health-care professionals.)\n• information about company’s interested parties in general\n• OHS requirements of interested parties:\n• certifications\n• procedures\n• contracts\n• safety and health working environment\n• compliance with OHS law\n• ethical issues\n• needs and expectations that are mandatory\n• consultation with employees on establishing needs and expectations"
+     }
+    ],
+    [
+     {
+      "t": "**4.3 Determining the scope of the OH&S management system\nThe organization shall determine the boundaries and applicability of the OH&S management system to establish its scope.\nWhen determining this scope, the organization shall:\na) consider the external and internal issues referred to in 4.1;\nb) take into account the requirements referred to in 4.2;\nc) take into account the planned or performed work-related activities\nThe OH&S management system shall include the activities, products and services within the organization’s control or influence that can impact the organization’s OH&S performance.\nThe scope shall be available as documented information."
+     },
+     {
+      "t": "**MDI-01\nDocumented description of the scope (eg. manual, documented procedure, procedures etc.)\nDetermination of the boundaries of the scope of the OH&S management system. What has been considered for the determination.\nThe activities, products and services included within the scope of your OH&S management system.\nIf the scope of your OH&S management system has changed, why and if so how."
+     },
+     {
+      "t": "**MDE\nDocumented scope of OHS, documented procedures, records:\n• Products\n• Services\n• Activities\n• Processes\n• Production sites\n• Number of personnel\n• Number of shifts\n• Operation license(s)\n• Relevant OHS legislation\n• Detailed description or/and definition of scope\n• The scope must be relevant and within the legitimate activities of the company\nMDI-01 - Mandatory Document (s):\nScope of the OH&S management system"
+     }
+    ],
+    [
+     {
+      "t": "**4.4 OH&S management system\nThe organization shall establish, implement, maintain and continually improve an OH&S management system, including the processes needed and their interactions, in accordance with the requirements of this document"
+     },
+     {
+      "t": "Identify the necessary processes to establish, implement, maintain and continually improve the OH&S management system.\nInformation on processes and how they interact"
+     },
+     {
+      "t": "**MDE\n• OH&S Manual\n• Description of:\n• The OHS contents and structure\n• Processes and procedures\n• Process interaction diagram\n• List of documents\n• Working instructions\n• Legislation list\n• OHSMS Manual\n• Integration of OHS management system requirements into business processes (e.g. design and development, procurement, human resources, sales and marketing).\n• Policies and procedures by other parts of the company and/or parent organization e.g. corporate OH&S policies, education, training and competency programmes, and procurement controls"
+     }
+    ],
+    [
+     {
+      "t": "5 Leadership",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**5.1 Leadership and commitment\nTop management shall demonstrate leadership and commitment with respect to the OH&S management system by:\na) taking overall responsibility and accountability for the prevention of work-related injury and ill health, as well as the provision of safe and healthy workplaces and activities;\nb) ensuring that the OH&S policy and related OH&S objectives are established and are compatible with the strategic direction of the organization;\nc) ensuring the integration of the OH&S management system requirements into the organization’s business processes;\nd) ensuring that the resources needed to establish, implement, maintain and improve the OH&S management system are available;\ne) communicating the importance of effective OH&S management and of conforming to the OH&S management system requirements;\nf) ensuring that the OH&S management system achieves its intended outcome(s);\ng) directing and supporting persons to contribute to the effectiveness of the OH&S management system;\nh) ensuring and promoting continual improvement;\ni) supporting other relevant management roles to demonstrate their leadership as it applies to their areas of responsibility;\nj) developing, leading and promoting a culture in the organization that supports the intended outcomes of the OH&S management system;\nk) protecting workers from reprisals when reporting incidents, hazards, risks and opportunities;\nl) ensuring the organization establishes and implements a process(es) for consultation and participation of workers (see 5.4);\nm) supporting the establishment and functioning of health and safety committees, [see 5.4 e) 1)].\nNOTE Reference to “business” in this document can be interpreted broadly to mean those activities that are core to the purposes of the organization’s existence."
+     },
+     {
+      "t": "Evidence of how top management:\n• Are engaged with and demonstrate leadership and commitment to the OH&S management system including developing, leading and promoting a positive OH&S culture, the provision of a safe and healthy workplace, the prevention of work related injury and ill-health\n• Ensure that the OH&S management system processes are integrated into other business processes and ensure that the OH&S policy and related objectives align with the businesses strategic direction\n• Ensures active worker participation, the implementation of processes for consultation and participation in the OH&S management system (see also section 5.4 below) , and supporting the establishment and functioning of health and safety committees\n• Ensures that the resources are needed are available\n• Communicate the importance of effective OH&S management\n• Protection of workers from reprisals when reporting incidents, hazards, risks and opportunities\n• Ensures the OH&S management system achieves its intended outcomes"
+     },
+     {
+      "t": "Evidence of Top Management’s leadership and commitment\n• OHS Policy,\n• Upload policy onto company’s webpage\n• Other corporate policies, (if amy)\n• Available resources, investment plans\n• Staff involvement,\n• Participation and consultation of employees\n• Internal communication tools and/or practices (mail, posts, company’s site etc.)\n• OHS objectives,\n• Evidence of staff training in company policies\n• Involvement of top management in the OHS management system.\n• Results of evaluation processes and/or mechanisms\n• Organizational structure and roles, responsibilities, and authorizations\n• Projects of continual improvement"
+     }
+    ],
+    [
+     {
+      "t": "**5.2 OH&S Policy\nTop management shall establish, implement and maintain an OH&S policy that:\na) includes a commitment to provide safe and healthy working conditions for the prevention of work related injury and ill health and is appropriate to the purpose, size and context of the organization and to the specific nature of its OH&S risks and OH&S opportunities;\nb) provides a framework for setting the OH&S objectives;\nc) includes a commitment to fulfil legal requirements and other requirements;\nd) includes a commitment to eliminate hazards and reduce OH&S risks (see 8.1.2);\ne) includes a commitment to continual improvement of the OH&S management system;\nf) includes a commitment to consultation and participation of workers, and, where they exist, workers’ representatives.\nThe OH&S policy shall:\n—be available as documented information;\n— be communicated within the organization;\n— be available to interested parties, as appropriate;\n— be relevant and appropriate."
+     },
+     {
+      "t": "**MDI-02\nIs OHS policy relevant and appropriate to the purpose, size and context of the organization and to the specific nature of its OH&S risks and OH&S opportunities?\nDoes OHS policy provide a framework for setting OHS objectives?\nDoes OHS policy include all commitments:  to fulfil legal requirements and other requirements; to eliminate hazards and reduce OH&S risks; to continual improve the OH&S management system; to consultation and participation of workers, and, where they exist, workers’ representatives?\nHow is the OHS policy communicated within the organization\nHow is the OHS Policy available to interested parties?\nPeriodically review the OH&S policy by senior leadership to ensure it remains applicable to the context of the organization"
+     },
+     {
+      "t": "**MDE\nDocumented OHS Policy (code/title, edition, date)\nPolicy approved/issued/validated by authorized person or/and team (signature)\nCommunication tools and/or practices (mail, posts, company’s site e.t.c)\nUpload policy onto company’s webpage\nValidation and update process of the policy’s elements\nConsultation with employees on establishing OHS policy\nconsistency and coordination of OHS policy with other policies\nMDI-02 - Mandatory Document (s):\nOH&S policy"
+     }
+    ],
+    [
+     {
+      "t": "**5.3 Organizational roles, responsibilities and authorities\nTop management shall ensure that the responsibilities and authorities for relevant roles within the OH&S management system are assigned and communicated at all levels within the organization and maintained as documented information. Workers at each level of the organization shall assume responsibility for those aspects of the OH&S management system over which they have control.\nNOTE While responsibility and authority can be assigned, ultimately top management is still accountable for the functioning of the OH&S management system.\nTop management shall assign the responsibility and authority for:\na) ensuring that the OH&S management system conforms to the requirements of this document;\nb) reporting on the performance of the OH&S management system to top management."
+     },
+     {
+      "t": "**MDI-03\nAssignment of OHS roles, responsibilities, and authorities.\nCommunication of OHS roles, responsibilities, and authorities at all levels within the organization\nEmployees with OH&S qualifications, or other OH&S specialists, within the organization;"
+     },
+     {
+      "t": "**MDE\n• Company’s organization Chart\n• Job description for appropriate positions – (Name, Position, Responsibility)\n• Employees with special OHS qualifications, for example:\nWho manages contractors;\nWho is responsible for OH&S training;\nWho is responsible for equipment operation and maintenance;\nWho is responsible for facilities management;\n• Who has the responsibility and authority for a) ensuring that the OH&S management system conforms to the requirements of the Standard, b) reporting on the performance of the OH&S management system to top management?\nMDI-03 - Mandatory Document (s):\nResponsibilities and authorities within OH&SMS"
+     }
+    ],
+    [
+     {
+      "t": "**5.4 Consultation and participation of workers\nThe organization shall establish, implement and maintain a process(es) for consultation and participation of workers at all applicable levels and functions, and, where they exist, workers’ representatives, in the development, planning, implementation, performance evaluation and actions for improvement of the OH&S management system.\nThe organization shall:\na) provide mechanisms, time, training and resources necessary for consultation and participation;\nNOTE 1 Worker representation can be a mechanism for consultation and participation\nb) provide timely access to clear, understandable and relevant information about the OH&S management system;\nc) determine and remove obstacles or barriers to participation and minimize those that cannot be removed;\nNOTE 2 Obstacles and barriers can include failure to respond to worker inputs or suggestions, language or literacy barriers, reprisals or threats of reprisals and policies or practices that discourage or penalize worker participation.\nd) emphasize the consultation of non-managerial workers on the following:\n1) determining the needs and expectations of interested parties\n2) establishing the OH&S policy\n3) assigning organizational roles, responsibilities and authorities, as applicable\n4) determining how to fulfil legal requirements and other requirements;\n5) establishing OH&S objectives and planning to achieve them;\n6) determining applicable controls for outsourcing, procurement and contractors;\n7) determining what needs to be monitored, measured and evaluated;\n8) planning, establishing, implementing and maintaining an audit programme(s);\n9) ensuring continual improvement;\ne) emphasize the participation of non-managerial workers in the following:\n1) determining the mechanisms for their consultation and participation;\n2) identifying hazards and assessing risks and opportunities;\n3) determining actions to eliminate hazards and reduce OH&S risks;\n4) determining competence requirements, training needs, training and evaluating training;\n5) determining what needs to be communicated and how this will be done;\n6) determining control measures and their effective implementation and use;\n7) investigating incidents and nonconformities and determining corrective actions\nNOTE 3 Emphasizing the consultation and participation of non-managerial workers is intended to apply to persons carrying out the work activities, but is not intended to exclude, for example, managers who are impacted by work activities or other factors in the organization.\nNOTE 4 It is recognized that the provision of training at no cost to workers and the provision of training during working hours, where possible, can remove significant barriers to worker participation."
+     },
+     {
+      "t": "What are the mechanisms for participation and consultation. .e.g. workers representatives, OHS committees, formal or informal discussion forums; regular briefings; involvement in the strategy of the company; training and development, hazard and risk assessment participation, incident investigations including contributing factors etc\n• consultation with non-managerial workers relating to a range of OH&S issues\n• participation of non-managerial workers in a range of OH&S activities and decisions.\nHave employees participated in the development of the mechanisms for participation and consultation?\nWhat resources and training are provided for consultation and participation\nObstacles and barriers to participation are identified and removed or minimised Examples of obstacles: failure to respond to worker inputs or suggestions, language or literacy barriers, reprisals or threats of reprisals and policies or practices.\nDoes the processes for consultation and participation of workers include contractors and other interested parties, e.g. people working in parts of the organization not covered by the management system, carrying out work under the organization’s control, where relevant, for example, consultation with contractors on issues such as dealing with hazards which might be new or unfamiliar to them.\nhow additional emphasis is placed on the needs of non-managerial workers\nDoes the participation and consultation arrangements take into account the legal and other requirements?"
+     },
+     {
+      "t": "**MDE\n• Process / Procedure / Methods for Consultation and Participation of Workers\n• Minutes of meeting for consultation with employees including,\n• Agenda with OHS management system information.\n• Communication of agenda, before the meeting\n• Reports of hazardous situations, suggestions by employees. Implementation of these suggestions and corrective actions for handling hazardous situations\n• Consultation with subcontractors\n• Handling of obstacles and barriers\n• Needs of non-managerial workers.\n• Legal requirements"
+     }
+    ],
+    [
+     {
+      "t": "6 Planning",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "**6.1 Actions to address risks and opportunities\n**6.1.1 General\nWhen planning for the OH&S management system, the organization shall consider the issues referred to in 4.1 (context), the requirements referred to in 4.2 (interested parties) and 4.3 (the scope of its OH&S management system) and determine the risks and opportunities that need to be addressed to:\na) give assurance that the OH&S management system can achieve its intended outcome(s);\nb) prevent, or reduce, undesired effects;\nc) achieve continual improvement.\nWhen determining the risks and opportunities for the OH&S management system and its intended outcomes that need to be addressed, the organization shall take into account:\n— hazards (see 6.1.2.1);\n— OH&S risks and other risks (see 6.1.2.2);\n— OH&S opportunities and other opportunities (see 6.1.2.3);\n— legal requirements and other requirements (see 6.1.3).\nThe organization, in its planning process(es), shall determine and assess the risks and opportunities that are relevant to the intended outcomes of the OH&S management system associated with changes in the organization, its processes or the OH&S management system. In the case of planned changes, permanent or temporary, this assessment shall be undertaken before the change is implemented (see 8.1.3).\nThe organization shall maintain documented information on:\n— risks and opportunities;\n— the process(es) and actions needed to determine and address its risks and opportunities (see 6.1.2 to 6.1.4) to the extent necessary to have confidence that they are carried out as planned."
+     },
+     {
+      "t": "The planning for the OH&S management system, should consider the internal and external issues (context), the needs and expectations of the interested parties and the scope of the OH&S management system, when determining the risks and opportunities that need to be addressed to:\na) give assurance that the OH&S management system can achieve its intended outcome(s);\nb) prevent, or reduce, undesired effects;\nc) achieve continual improvement.\nEvidence of:\n• the documented processes needed to meet the requirements of clauses 6.1.2 to 6.1.4\n• how the clause 4 (context: interested parties; scope) outputs have been considered\n**MDI-04\nprocess(es) and actions needed to determine and address the risks and opportunities (6.1.2 to 6.1.4), to the extent necessary to have confidence they are carried out as planned\n**RDI-1:\n• risks and opportunities that need to be addressed\n• occupational risks and opportunities,\n• other risks and opportunities e.g. legal\n• risks and opportunities related to planned changes, permanent or temporary.\n• Actions to address risks and opportunities"
+     },
+     {
+      "t": "**MDE\n• Records of the risks and opportunities\n• Business plans.\n• How the company handle risks and opportunities that could affect the OHS performance of the  organization’s or disrupt its operation\n**MDI-04 : Mandatory Document (s):\nOH&S process for addressing risks and opportunities\n**RDI-1: Mandatory Record(s):\nOH&S risks and opportunities and actions for addressing them"
+     }
+    ],
+    [
+     {
+      "t": "**6.1.2 Hazard identification and assessment of risks and opportunities\n**6.1.2.1 Hazard identification\nThe organization shall establish, implement and maintain a process(es) for hazard identification that is ongoing and proactive. The process(es) shall take into account, but not be limited to:\na) how work is organized, social factors (including workload, work hours, victimization, harassment and bullying), leadership and the culture in the organization;\nb) routine and non-routine activities and situations, including hazards arising from:\n1) infrastructure, equipment, materials, substances and the physical conditions of the workplace;\n2) product and service design, research, development, testing, production, assembly, construction, service delivery, maintenance and disposal;\n3) human factors;\n4) how the work is performed;\nc) past relevant incidents, internal or external to the organization, including emergencies, and their causes;\nd) potential emergency situations;\ne) people, including consideration of:\n1) those with access to the workplace and their activities, including workers, contractors, visitors\nand other persons;\n2) those in the vicinity of the workplace who can be affected by the activities of the organization;\n3) workers at a location not under the direct control of the organization;\nf) other issues, including consideration of:\n1) the design of work areas, processes, installations, machinery/equipment, operating procedures and work organization, including their adaptation to the needs and capabilities of the workers involved;\n2) situations occurring in the vicinity of the workplace caused by work-related activities under the control of the organization;\n3) situations not controlled by the organization and occurring in the vicinity of the workplace that can cause injury and ill health to persons in the workplace;\ng) actual or proposed changes in organization, operations, processes, activities and the OH&S management system (see 8.1.3);\nh) changes in knowledge of, and information about, hazards."
+     },
+     {
+      "t": "Verifiable proof of:\n• the documented processes needed to meet the requirements of clauses 6.1.2 to 6.1.4\n• how the clause 4 (context: interested parties; scope) outputs have been considered\n• how employees are involved in the process.\n• Legal requirements and mechanism to adapt to changes in legal requirements\n• Communication of risk assessment to employees and subsequent worker training of control measures\n• Availability of resources to ensure hierarchy of controls can be applied to risk assessment findings"
+     },
+     {
+      "t": "**MDE\nProcedure / Methodology / Working Instruction for Hazard Identification and Assessment\nList of Hazards. Examples of hazards can include physical, chemical, biological, psychosocial, physiological, mechanical, electrical hazards, or those based on movement and energy.\nRisk assessment\nCommunication of risk assessment to employees / Training records of control measures"
+     }
+    ],
+    [
+     {
+      "t": "6.1.2.2 Assessment of OH&S risks and other risks to the OH&S management system\nThe organization shall establish, implement and maintain a process(es) to:\na) assess OH&S risks from the identified hazards, while taking into account the effectiveness of\nexisting controls;\nb) determine and assess the other risks related to the establishment, implementation, operation and\nmaintenance of the OH&S management system.\nThe organization’s methodology(ies) and criteria for the assessment of OH&S risks shall be defined with respect to their scope, nature and timing to ensure they are proactive rather than reactive and are used in a systematic way. Documented information shall be maintained and retained on the methodology(ies) and criteria."
+     },
+     {
+      "t": "**MDI-05\nVerifiable proof of:\n• the processes applied to meet the requirements of this clause\n• how the context outputs (par. 4) have been considered\n• Documented methodologies and criteria applied for the assessment of OH&S risks\n• OH&S risks and other risks to the OH&S management system.\n• how employees are involved in the process.\n• Legal requirements and mechanism to adapt to changes in legal requirements\n• Communication of the risk assessment to employees and subsequent worker training of control measures\n• Availability of resources to ensure hierarchy of controls can be applied to risk assessment findings"
+     },
+     {
+      "t": "**MDE\nProcess / methodology for OHS risks\nOccupational Risk assessment\nRisk assessment for other risks  related to the establishment, implementation, operation and maintenance of the OH&S management system\nCommunication of risk assessment to employees / Training records of control measures\n**MDI-05 : Mandatory Document (s):\nMethodology and criteria for assessment of OH&S risks"
+     }
+    ],
+    [
+     {
+      "t": "6.1.2.3 Assessment of OH&S opportunities and other opportunities for the OH&S management system\nThe organization shall establish, implement and maintain a process(es) to assess:\na) OH&S opportunities to enhance OH&S performance, while taking into account planned changes to the organization, its policies, its processes or its activities and:\n1) opportunities to adapt work, work organization and work environment to workers;\n2) opportunities to eliminate hazards and reduce OH&S risks;\nb) other opportunities for improving the OH&S management system.\nNOTE OH&S risks and OH&S opportunities can result in other risks and other opportunities for the organization."
+     },
+     {
+      "t": "The process for assessment should consider the OH&S opportunities and other opportunities determined, their benefits and potential to improve OH&S performance\n**MDI-04 (see 6.1.1)\n• risks and opportunities that need to be addressed\n• occupational risks and opportunities,\n• other risks and opportunities e.g. legal\n• risks and opportunities related to planned changes, permanent or temporary.\n• process(es) and actions needed to determine and address the risks and opportunities (6.1.2 to 6.1.4), to the extent necessary to have confidence they are carried out as planned"
+     },
+     {
+      "t": "**MDE\n• Records of opportunities and other opportunities,\nExamples of opportunities may include:\na) inspection and auditing functions;\nb) job hazard analysis (job safety analysis) and task-related assessments;\nc) improving OH&S performance by alleviating monotonous work or work at a potentially hazardous pre-determined work rate;\nd) permit to work and other recognition and control methods;\ne) incident or nonconformity investigations and corrective actions;\nf) ergonomic and other injury prevention-related assessments.\nExamples of other opportunities to improve OH&S performance:\n• integrating occupational health and safety requirements at the earliest stage in the life cycle of facilities, equipment or process planning for facilities relocation, process re-design or replacement of machinery and plant;\n• integrating occupational health and safety requirements at the earliest stage of planning for facilities relocation, process re-design or replacement of machinery and plant;\n• using new technologies to improve OH&S performance;\n• improving the occupational health and safety culture, such as by extending competence related to occupational health and safety beyond requirements or encouraging workers to report incidents in a timely manner;\n• improving the visibility of top management’s support for the OH&S management system;\n• enhancing the incident investigation process(es);\n• improving the process(es) for worker consultation and participation;\n• benchmarking, including consideration of both the organization’s own past performance and that of other organizations;\n• collaborating in forums that focus on topics dealing with occupational health and safety."
+     }
+    ],
+    [
+     {
+      "t": "6.1.3 Determination of legal requirements and other requirements\nThe organization shall establish, implement and maintain a process(es) to:\na) determine and have access to up-to-date legal requirements and other requirements that are applicable to its hazards, OH&S risks and OH&S management system;\nb) determine how these legal requirements and other requirements apply to the organization and what needs to be communicated;\nc) take these legal requirements and other requirements into account when establishing, implementing, maintaining and continually improving its OH&S management system.\nThe organization shall maintain and retain documented information on its legal requirements and other requirements and shall ensure that it is updated to reflect any changes.\nNOTE Legal requirements and other requirements can result in risks and opportunities for the organization"
+     },
+     {
+      "t": "**MDI-06\n• The organization needs to be confident that during the risk assessment process it is adhering to the latest applicable legal and other requirements. The legal and other requirements process of assessment will vary depending on the complexity of the business.\n• Compliance Obligations / Legislation. The list is not exhausted:\nA) Licenses of the Organization:\n• Fire Safety Certificate (retreading fire extinguishers, fire emergency plan according to ISO 23601:2009 Check the access to fire brigades)\n• ADR (International Carriage of Dangerous Goods by Road)\n• Explosion Protection Study (ATEX)\n• Certification of lifting equipment, compressing equipment, compressed air vessels\n• Safety Officer / Occupational Doctor\nB) the Licenses /Diplomas of the equipment and vehicle operators:\n• Clark\n• Welding"
+     },
+     {
+      "t": "**MDE\n• Process required to determine how the legal requirements and other requirements to which the organization subscribe apply to the organization and what needs to be communicated.\n• Documented information on the  legal requirements and other requirements and their updates need to be maintained and retained.\n**• A. Examples of legal requirements:\n1) legislation (national, regional or international), including statutes and regulations;\n2) decrees and directives;\n3) orders issued by regulators;\n4) permits, licences or other forms of authorization;\n5) judgments of courts or administrative tribunals;\n6) treaties, conventions, protocols;\n7) collective bargaining agreements.\n**b) Examples of other requirements:\n1) the organization’s requirements;\n2) contractual conditions;\n3) employment agreements;\n4) agreements with interested parties;\n5) agreements with health authorities;\n6) non-regulatory standards, consensus standards and guidelines;\n7) voluntary principles, codes of practice, technical specifications, charters;\n8) public commitments of the organization or its parent organization.\n• Indicatively a document may include the following information:\n• Name and reference number of regulation / requirement\n• Revision status\n• Date the regulation was last reviewed\n• Competent person responsible for reviewing the requirement\n• Area of the organization the requirement impacts including a short description of activity and associated documented information\n• A hyperlink or description of the source of information\n• Name and customer / external provider contact details if relevant to ‘other requirement’\n• Next review date\n**MDI-06 : Mandatory Document (s):\nLegal and other requirements\n**RDI-2: Mandatory Record(s):\nLegal and other requirements"
+     }
+    ],
+    [
+     {
+      "t": "6.1.4 Planning action\nThe organization shall plan:\na) actions to:\n1) address these risks and opportunities (see 6.1.2.2 and 6.1.2.3);\n2) address legal requirements and other requirements (see 6.1.3);\n3) prepare for and respond to emergency situations (see 8.2);\nb) how to:\n1) integrate and implement the actions into its OH&S management system processes or other\nbusiness processes;\n2) evaluate the effectiveness of these actions.\nThe organization shall take into account the hierarchy of controls (see 8.1.2) and outputs from the OH&S management system when planning to take action.\nWhen planning its actions, the organization shall consider best practices, technological options and financial, operational and business requirements."
+     },
+     {
+      "t": "• The organization has identified actions to address risks and opportunities; to address legal requirements and other requirements; to prepare for and respond to emergency situations\n• Is the planning of these actions and the introduction of control measures within the framework of the OH&S management system?\n• Has the organization shall take into account the hierarchy of controls when planning to take action?\n• Actions to reduce risk following the hazard identification process. Are the consequences of these actions considered before the actions are introduced?\n• Are control measures integrated into existing quality system work instructions or based on risk and developed into a dedicated Safe Systems of Work.\n• Are these controls incorporated into actions to improve competences?\n• Are tasks allocated to persons based on competency with consideration as to how any training will be delivered to different groups of workers\n• Are actions to address risks and opportunities considered under the management of change process, to ensure there are no resulting unintended consequences\n• How is the effectiveness of these actions evaluated?"
+     },
+     {
+      "t": "**MDE\n• Action Plan to address risks and opportunities; to address legal requirements and other requirements; to prepare for and respond to emergency situations\n• Evaluation of the effectiveness of the action plan\n• Consideration of its technological options and its financial, operational and business requirements"
+     }
+    ],
+    [
+     {
+      "t": "6.2 OH&S objectives and planning to achieve them\n6.2.1 OH&S objectives\nThe organization shall establish OH&S objectives at relevant functions and levels in order to maintain and continually improve the OH&S management system and OH&S performance (see 10.3).\nThe OH&S objectives shall:\na) be consistent with the OH&S policy;\nb) be measurable (if practicable) or capable of performance evaluation;\nc) take into account:\n1) applicable requirements;\n2) the results of the assessment of risks and opportunities (see 6.1.2.2 and 6.1.2.3);\n3) the results of consultation with workers (see 5.4) and, where they exist, workers’ representatives;\nd) be monitored;\ne) be communicated;\nf) be updated as appropriate."
+     },
+     {
+      "t": "**MDI-06\n• Process to establish OHS Objectives. Has the process taken into account the requirements of this clause?\n• Consistence of objectives with OHS Policy\n• Are OHS objectives established to maintain and improve OH&S performance? Are these objectives linked to risks and opportunities?\n• What are the performance criteria that the organization has identified as being necessary for the achievement of the intended outcomes of the OH&S management system\n• The measurement of OH&S objectives can be qualitative or quantitative. Qualitative measures can be approximations, such as those obtained from surveys, interviews and observations.\n• How often the objectives are reviewed and updating"
+     },
+     {
+      "t": "**MDE\n• OHS objectives can be integrated with other business objectives and should be set at relevant functions and levels. Objectives can be strategic, tactical or operational e.g.:\na) strategic objectives can be set to improve the overall performance of the OH&S management system (e.g. to eliminate noise exposure);\nb) tactical objectives can be set at facility, project or process level (e.g. to reduce noise at source);\nc) operational objectives can be set at the activity level (e.g. the enclosure of individual machines to reduce noise).\n• Communication of OHS objectives within the organization (tools or/and practices)\n• Frequency of review of OHS Objectives"
+     }
+    ],
+    [
+     {
+      "t": "6.2.2 Planning to achieve OH&S objectives\nWhen planning how to achieve its OH&S objectives, the organization shall determine:\na) what will be done;\nb) what resources will be required;\nc) who will be responsible;\nd) when it will be completed;\ne) how the results will be evaluated, including indicators for monitoring;\nf) how the actions to achieve OH&S objectives will be integrated into the organization’s business processes.\nThe organization shall maintain and retain documented information on the OH&S objectives and plans to achieve them."
+     },
+     {
+      "t": "**MDI-06\nHow the organization has planned to achieve objectives, individually or collectively? Plans can be developed for multiple objectives where necessary.\nHas the organization examined examine the resources required (e.g. financial, human, equipment, infrastructure) to achieve its objectives.\nAre objectives associated with an indicator which can be strategic, tactical or operational."
+     },
+     {
+      "t": "**MDE\nDocumented objectives and action plan to achieve them (actions, resources, timeframe, evaluation of results)\nAvailable resources (e.g. financial, human, equipment, infrastructure) to achieve its objectives.\nIntegration of actions to achieve objectives into other organization’s business processes\nPeriodically review of action plans\n**MDI-06 : Mandatory Document (s):\nOH&S objectives and plans for achieving them"
+     }
+    ],
+    [
+     {
+      "t": "7 Support",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "7.1 Resources\nThe organization shall determine and provide the resources needed for the establishment, implementation, maintenance and continual improvement of the OH&S management system."
+     },
+     {
+      "t": "Identification of the resources that needed to establish, implement and maintain its OHS management system\nThe following should be considered: The possibilities and the constraints of existing resources\nThe needs of external providers"
+     },
+     {
+      "t": "Examples of resources include human, natural, infrastructure, technology and financial.\nExamples of infrastructure include the organization’s buildings, plant, equipment, utilities, information technology and communications systems, and emergency containment systems."
+     }
+    ],
+    [
+     {
+      "t": "7.2 Competence\nThe organization shall:\na) determine the necessary competence of workers that affects or can affect its OH&S performance;\nb) ensure that workers are competent (including the ability to identify hazards) on the basis of appropriate education, training or experience;\nc) where applicable, take actions to acquire and maintain the necessary competence, and evaluate the effectiveness of the actions taken;\nd) retain appropriate documented information as evidence of competence.\nNOTE Applicable actions can include, for example, the provision of training to, the mentoring of, or the reassignment of currently employed persons, or the hiring or contracting of competent persons."
+     },
+     {
+      "t": "**RDI-3\nHow the organization determines the competency for workers that affect, or can affect OH&S performance. – including the ability to identify hazards\nHow the organization manages actions to acquire the necessary competency and how the effectiveness of these actions are evaluated\nIn determining the competence for each role, the organization should take into account things such as:\na) the education, training, qualification and experience necessary to undertake the role and the retraining necessary to maintain competence;\nb) the work environment;\nc) the preventive and control measures resulting from the risk assessment process(es);\nd) the requirements applicable to the OH&S management system;\ne) legal requirements and other requirements;\nf) the OH&S policy;\ng) the potential consequences of compliance and noncompliance, including the impact on the worker’s health and safety;\nh) the value of participation of workers in the OH&S management system based on their knowledge and skill;\ni) the duties and responsibilities associated with the roles;\nj) individual capabilities, including experience, language skills, literacy and diversity;\nk) the relevant updating of the competence made necessary by context or work changes."
+     },
+     {
+      "t": "**MDE\nStatus of available staff (training, qualifications)\nTraining Programs\nEvidence of employees’ trainings\nEvidence of the evaluation of the effectiveness of the training programs\nJob Requirements / Qualifications\nJob Descriptions\n**RDI-3: Mandatory Record(s):\nEvidence of competence"
+     }
+    ],
+    [
+     {
+      "t": "7.3 Awareness\nWorkers shall be made aware of:\na) the OH&S policy and OH&S objectives;\nb) their contribution to the effectiveness of the OH&S management system, including the benefits of improved OH&S performance;\nc) the implications and potential consequences of not conforming to the OH&S management system requirements;\nd) incidents and the outcomes of investigations that are relevant to them;\ne) hazards, OH&S risks and actions determined that are relevant to them;\nf) the ability to remove themselves from work situations that they consider present an imminent and serious danger to their life or health, as well as the arrangements for protecting them from undue consequences for doing so."
+     },
+     {
+      "t": "• Methods of awareness. How is awareness achieved.\n• Staff awareness degree about\n• OHS policy and OHS objectives,\n• their contribution to the effectiveness of the OH&S management system,\n• the implications and potential consequences of not conforming to the OH&S management system requirements;\n• incidents and the outcomes of investigations that are relevant to them;\n• hazards, OH&S risks and actions determined that are relevant to them;\n• the ability to remove themselves from work situations that they consider present an imminent and serious danger to their life or health, as well as the arrangements for protecting them from undue consequences for doing so.\n• In addition to workers (especially temporary workers), contractors, visitors and any other parties should be aware of the OH&S risks to which they are exposed."
+     },
+     {
+      "t": "**MDE\n• Evidence of trainings related to OHS management system\n• Announcements of various OHS issues, OHS notifications on Dashboards, notifications of the results of incidents etc.\n• Awareness of workers (especially temporary workers), contractors, visitors and any other parties should be aware of the OH&S risks to which they are exposed."
+     }
+    ],
+    [
+     {
+      "t": "7.4 Communication\n7.4.1 General\nThe organization shall establish, implement and maintain the process(es) needed for the internal and external communications relevant to the OH&S management system, including determining:\na) on what it will communicate;\nb) when to communicate;\nc) with whom to communicate:\n1) internally among the various levels and functions of the organization;\n2) among contractors and visitors to the workplace;\n3) among other interested parties;\nd) how to communicate.\nThe organization shall take into account diversity aspects (e.g. gender, language, culture, literacy, disability) when considering its communication needs.\nThe organization shall ensure that the views of external interested parties are considered in establishing its communication process(es).\nWhen establishing its communication process(es), the organization shall:\n— take into account its legal requirements and other requirements;\n— ensure that OH&S information to be communicated is consistent with information generated within the OH&S management system, and is reliable.\nThe organization shall respond to relevant communications on its OH&S management system.\nThe organization shall retain documented information as evidence of its communications, as appropriate."
+     },
+     {
+      "t": "**RDI-04\n• The process for communication\n• What the organization informs about and communicates on including when, who and how\n• Consideration of the views of external interested parties within the communication process(es)\n• How the organization ensures that communications are consistent with the information generated within the OH&S management system and are reliable\n• How the organization ensures that the information is provided, is received and is understandable to all relevant workers and interested parties\n• How the organization address diversity aspects and the views of relevant external interested parties\n• The arrangements within the OH&S management system for retaining appropriate documented evidence of the communications\n• Are legal and other requirements taken into account in the communication process?"
+     },
+     {
+      "t": "**MDE\n• Process / Procedure / Working instructions for communication (internal / external)\n• Established communication means\n• Responsibilities of involved personnel in relation to communication\n• Crisis management\n• Records of communication\n**RDI-4: Mandatory Record(s):\nEvidence of communications"
+     }
+    ],
+    [
+     {
+      "t": "7.4.2 Internal communication\nThe organization shall:\na) internally communicate information relevant to the OH&S management system among the various levels and functions of the organization, including changes to the OH&S management system, as appropriate;\nb) ensure its communication process(es) enables workers to contribute to continual improvement."
+     },
+     {
+      "t": "• Availability of information to all involved parties within the organisation\n• Participation of all involved parties to the applied communication network eg. email accounts\n• Is the internal communication effective?\n• Does the internal communication contribute to continual improvement of the OHS Management System?"
+     },
+     {
+      "t": "**MDE\n• Process of internal communication\n• Communication procedures and rules\n• Authorisations for internal communications\n• Communication tools (mail, memos, meetings etc.)"
+     }
+    ],
+    [
+     {
+      "t": "7.4.3 External communication\nThe organization shall externally communicate information relevant to the OH&S management system, as established by the organization’s communication process(es) and taking into account its legal requirements and other requirements."
+     },
+     {
+      "t": "• What type of information is communicated externally and when?\n• Who is responsible for external communication?\n• Are legal and other requirements taken into account in the communication process?"
+     },
+     {
+      "t": "**MDE\n• Evidence of external communication\n• Authorisations for external communications"
+     }
+    ],
+    [
+     {
+      "t": "7.5 Documented information\n7.5.1 General\nThe organization’s OH&S management system shall include:\na) documented information required by this document;\nb) documented information determined by the organization as being necessary for the effectiveness of the OH&S management system.\nNOTE The extent of documented information for an OH&S management system can differ from one organization to another due to:\n— the size of organization and its type of activities, processes, products and services;\n— the need to demonstrate fulfilment of legal requirements and other requirements;\n— the complexity of processes and their interactions;\n— the competence of workers."
+     },
+     {
+      "t": "• Documented information required by the standard\n• documented information determined by the organization as being necessary for the effectiveness of the OH&S management system"
+     },
+     {
+      "t": "**MDE\n• Procedure for Document and Record Control\n• Documented information required by the standard:\n4.3 Scope of the OH&S management system\n5.2 OH&S policy\n5.3 Responsibilities and authorities within OH&SMS\n6.1.1 OH&S risks and opportunities and actions for addressing them\n6.1.3 Legal and other requirements\n6.1.2.2 Methodology and criteria for assessment of OH&S risks\n6.2.2 OH&S objectives and plans for achieving them\n7.2 Evidence of competence\n7.4.1 Evidence of communications\n8.1.1 Documented information to provide confidence that processes have been carried out as planned\n8.2 Plans for responding to potential emergency situations\n9.1.1 Results on monitoring, measurements, analysis and performance evaluation\n9.1.1 Maintenance, calibration or verification of monitoring equipment\n9.1.2 Compliance evaluation results\n9.2.2 Internal audit program\n9.2.2 Internal audit report\n9.3 Results of management review\n10.2 Nature of incidents or nonconformities and any subsequent action taken\n10.2 Results of any action and corrective action, including their effectiveness\n10.3 Evidence of the results of continual improvement"
+     }
+    ],
+    [
+     {
+      "t": "7.5.2 Creating and updating\nWhen creating and updating documented information, the organization shall ensure appropriate:\na) identification and description (e.g. a title, date, author or reference number);\nb) format (e.g. language, software version, graphics) and media (e.g. paper, electronic);\nc) review and approval for suitability and adequacy."
+     },
+     {
+      "t": "• Applied processes / procedures for creating and updating of documentation information\n• Documented information should:\n• Be identifiable and should include appropriate description (e.g. a title, date, author or reference number);\n• Have appropriate format (e.g. language, software version, graphics) and media (e.g. paper, electronic);\n• Be reviewed and approval for suitability and adequacy\n• Who is responsible for creating and updating of documentation information"
+     },
+     {
+      "t": "**MDE\n• Coding / Format of documented information\n• Responsibilities for creating updating and approval of documented information"
+     }
+    ],
+    [
+     {
+      "t": "7.5.3 Control of documented information\nDocumented information required by the OH&S management system and by this document shall be controlled to ensure:\na) it is available and suitable for use, where and when it is needed;\nb) it is adequately protected (e.g. from loss of confidentiality, improper use or loss of integrity).\nFor the control of documented information, the organization shall address the following activities, as applicable:\n— distribution, access, retrieval and use;\n— storage and preservation, including preservation of legibility;\n— control of changes (e.g. version control);\n— retention and disposition.\nDocumented information of external origin determined by the organization to be necessary for the planning and operation of the OH&S management system shall be identified, as appropriate, and controlled.\nNOTE 1 Access can imply a decision regarding the permission to view the documented information only, or the permission and authority to view and change the documented information.\nNOTE 2 Access to relevant documented information includes access by workers, and, where they exist, workers’ representatives."
+     },
+     {
+      "t": "• Documented information should be controlled to ensure the availability and suitability for use, to adequately protected\n• How the organization addresses the following activities for the control of the documented information (distribution, access, retrieval, storage, control of changes, retention and disposition)?\n• Conditions and rules of controlling information (retained and maintained)\n• Protection measures taken\n• Responsibilities and authorities for controlling of documented information\n• How the organization handles documentation of external origin"
+     },
+     {
+      "t": "**MDE\n• List of documented information\n• List of distribution / updating of documented information\n• Process / Working instruction for updating / revision of documents / release of documents\n• Information Security\n• Archiving rules / retention time\n• List of external documents\n• Verification and identification external documents, e.g. laws, standards\n• contract requirements / specifications\n• Confidentiality and integrity assurance of information"
+     }
+    ],
+    [
+     {
+      "t": "8 Operation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "8.1 Operational planning and control\n8.1.1 General\nThe organization shall plan, implement, control and maintain the processes needed to meet requirements of the OH&S management system, and to implement the actions determined in Clause 6, by:\na) establishing criteria for the processes;\nb) implementing control of the processes in accordance with the criteria;\nc) maintaining and retaining documented information to the extent necessary to have confidence that the processes have been carried out as planned;\nd) adapting work to workers.\nAt multi-employer workplaces, the organization shall coordinate the relevant parts of the OH&S management system with the other organizations."
+     },
+     {
+      "t": "**MDI-07\n• evidence of the establishing of criteria for processes and the control of processes in line with the determined criteria."
+     },
+     {
+      "t": "**MDE\n• Procedure/methodology/working instruction for Operational Planning and Control\n• Criteria for processes, which may include:\n• The boundaries of each process and how they interact\n• What resources are required to manage the process including leadership, equipment, time, human (competency and training aspects) and financial\n• What documented information is required to aid management of the process including procedures and safe systems of work\n• The method in which changes to the process are planned and controlled including unintended events\n• Application of legal and other requirements or manufacturer’s instructions for equipment\n• Engineering controls, for example interlocked guards and exhaust systems\n**MDI-07 : Mandatory Document (s):\nDocumented information to provide confidence that processes have been carried out as planned and determining"
+     }
+    ],
+    [
+     {
+      "t": "8.1.2 Eliminating hazards and reducing OH&S risks\nThe organization shall establish, implement and maintain a process(es) for the elimination of hazards and reduction of OH&S risks using the following hierarchy of controls:\na) eliminate the hazard;\nb) substitute with less hazardous processes, operations, materials or equipment;\nc) use engineering controls and reorganization of work;\nd) use administrative controls, including training;\ne) use adequate personal protective equipment.\nNOTE In many countries, legal requirements and other requirements include the requirement that personal protective equipment (PPE) is provided at no cost to workers."
+     },
+     {
+      "t": "evidence of how the hierarchy of controls are provided and applied to the associated hazards, including adequate use of PPE being the lowest level of control."
+     },
+     {
+      "t": "Risk Assessment methodology"
+     }
+    ],
+    [
+     {
+      "t": "8.1.3 Management of change\nThe organization shall establish a process(es) for the implementation and control of planned temporary and permanent changes that impact OH&S performance, including:\na) new products, services and processes, or changes to existing products, services and processes, including:\n— workplace locations and surroundings;\n— work organization;\n— working conditions;\n— equipment;\n— work force;\nb) changes to legal requirements and other requirements;\nc) changes in knowledge or information about hazards and OH&S risks;\nd) developments in knowledge and technology.\nThe organization shall review the consequences of unintended changes, taking action to mitigate any adverse effects, as necessary.\nNOTE Changes can result in risks and opportunities."
+     },
+     {
+      "t": "Evidence of a process for controlling changes. A process is needed for controlling planned changes, change management should promote OH&S opportunities and consequences of unintended changes must be reviewed with actions taken as necessary to mitigate any adverse effects including addressing potential opportunities."
+     },
+     {
+      "t": "**MDE\nProcess /Procedure for change management. This may be a written document (e.g. flow chart, procedure, working instruction) which accounts for different scenarios based on\nrisk and opportunity."
+     }
+    ],
+    [
+     {
+      "t": "8.1.4 Procurement\n8.1.4.1 General\nThe organization shall establish, implement and maintain a process(es) to control the procurement of products and services in order to ensure their conformity to its OH&S management system."
+     },
+     {
+      "t": "Evidence of a process for the control of the procurement of products and services in order to ensure their conformity with the OH&S management system."
+     },
+     {
+      "t": "**MDE\nProcess / Procedure for the control of the procurement of products and services"
+     }
+    ],
+    [
+     {
+      "t": "8.1.4.2 Contractors\nThe organization shall coordinate its procurement process(es) with its contractors, in order to identify hazards and to assess and control the OH&S risks arising from:\na) the contractors’ activities and operations that impact the organization;\nb) the organization’s activities and operations that impact the contractors’ workers;\nc) the contractors’ activities and operations that impact other interested parties in the workplace.\nThe organization shall ensure that the requirements of its OH&S management system are met by contractors and their workers. The organization’s procurement process(es) shall define and apply occupational health and safety criteria for the selection of contractors.\nNOTE It can be helpful to include the occupational health and safety criteria for the selection of contractors in the contractual documents."
+     },
+     {
+      "t": "Evidence of:\n• The criteria for the selection of contractors\n• Identifying the risks as defined in this clause\nThe procurement process(es) is required to be coordinated , with its contractor(s), for hazard identification and to assess and control the OH&S risks."
+     },
+     {
+      "t": "**MDE\n• Process / Procedure for the selection of subcontractors\n• Risk assessment of the contractors’ activities and control of the OHS risks\n• process to protect contractors (workers) and other workers who may be exposed to hazards due to their activities.\n• Contractual agreements\n• Records of supervision of contractors / OHS inspections\n• Records of induction training to contractor’s employees."
+     }
+    ],
+    [
+     {
+      "t": "8.1.4.3 Outsourcing\nThe organization shall ensure that outsourced functions and processes are controlled. The organization shall ensure that its outsourcing arrangements are consistent with legal requirements and other requirements and with achieving the intended outcomes of the OH&S management system. The type and degree of control to be applied to these functions and processes shall be defined within the OH&S management system.\nNOTE Coordination with external providers can assist an organization to address any impact that outsourcing has on its OH&S performance."
+     },
+     {
+      "t": "• Outsourced processes affecting the OH&S MS must be controlled, with the type and degree of control defined within the OH&S management system.\n• Evidence of how outsourced processes are control\n• Type and degree of control of outsourced processes"
+     },
+     {
+      "t": "**MDE\n• Process / Procedure for the control of outsourced processes\n• Contractual agreements\n• Records of Supervision / Inspection of outsourced activities\n• Evaluation of subcontractors\n• Records of NCR on outsourced processes"
+     }
+    ],
+    [
+     {
+      "t": "8.2 Emergency preparedness and response\nThe organization shall establish, implement and maintain a process(es) needed to prepare for and respond to potential emergency situations, as identified in 6.1.2.1, including:\na) establishing a planned response to emergency situations, including the provision of first aid;\nb) providing training for the planned response;\nc) periodically testing and exercising the planned response capability;\nd) evaluating performance and, as necessary, revising the planned response, including after testing and, in particular, after the occurrence of emergency situations;\ne) communicating and providing relevant information to all workers on their duties and responsibilities;\nf) communicating relevant information to contractors, visitors, emergency response services, government authorities and, as appropriate, the local community;\ng) taking into account the needs and capabilities of all relevant interested parties and ensuring their involvement, as appropriate, in the development of the planned response.\nThe organization shall maintain and retain documented information on the process(es) and on the plans for responding to potential emergency situations."
+     },
+     {
+      "t": "**MDI-08:\n**RDI-05:\n• What are the emergencies that the organization has identified. The risk assessment process has identify any additional emergencies.\n• Has the organization established a plan to respond to emergencies\n• What are the resources required to respond to emergencies?\n• Training needs have been identified?\n• Appropriate responsibilities and authorities have been allocated?\n• Communication arrangements have been set to include others e.g. contractors, visitors, emergency response services, government authorities and, as appropriate?\n• How often the plans are tested?\n• Drills"
+     },
+     {
+      "t": "**MDE12\n• Emergency preparedness and response process\n• Emergency preparedness plans can include natural, technical and man-made events that occur inside and outside normal working hours.\n• Emergency situations that have been identified;\n• Emergency plans and evidence of drills (date, duration, brief description of actions etc)\n• Evaluation of drills and review of plans\n• Emergency drills\n**MDI-08 : Mandatory Document (s):\nEmergency preparedness and response process\n**RDI-5: Mandatory Record(s):\nPlans for responding to potential emergency situations"
+     }
+    ],
+    [
+     {
+      "t": "9 Performance evaluation",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "9.1 Monitoring, measurement, analysis and performance evaluation\n9.1.1 General\nThe organization shall establish, implement and maintain a process(es) for monitoring, measurement, analysis and performance evaluation.\nThe organization shall determine:\na) what needs to be monitored and measured, including:\n1) the extent to which legal requirements and other requirements are fulfilled;\n2) its activities and operations related to identified hazards, risks and opportunities;\n3) progress towards achievement of the organization’s OH&S objectives;\n4) effectiveness of operational and other controls;\nb) the methods for monitoring, measurement, analysis and performance evaluation, as applicable, to ensure valid results;\nc) the criteria against which the organization will evaluate its OH&S performance;\nd) when the monitoring and measuring shall be performed;\ne) when the results from monitoring and measurement shall be analysed, evaluated and communicated.\nThe organization shall evaluate the OH&S performance and determine the effectiveness of the OH&S management system.\nThe organization shall ensure that monitoring and measuring equipment is calibrated or verified as applicable, and is used and maintained as appropriate.\nNOTE There can be legal requirements or other requirements (e.g. national or international standards) concerning the calibration or verification of monitoring and measuring equipment.\nThe organization shall retain appropriate documented information:\n— as evidence of the results of monitoring, measurement, analysis and performance evaluation;\n— on the maintenance, calibration or verification of measuring equipment."
+     },
+     {
+      "t": "**RDI-06 & 07\n• Planning for effectiveness monitoring, measurement and evaluation actions of  processes\n• Methods for monitoring, criteria for evaluation of OHS performance, frequency of monitoring and measurement\n• Record keeping\n• Calibration and maintenance of monitoring and measuring equipment"
+     },
+     {
+      "t": "**MDE\n• Procedure/Working Instruction for Monitoring, Measuring and Analysis\n• KPI’s\n• Data analysis\n• Action Plans to improve OHS management system\n• Methods of statistical analysis\n• List of calibrated equipment\n• Evidence of standards for calibration or verification of equipment\n• Evidence of Adequacy of Testing Laboratories (when external providers are used)\nExamples of what could be monitored and measured can include, but are not limited to:\n1) occupational health complaints, health of workers (through surveillance) and work environment;\n2) work-related incidents, injuries and ill health, and complaints, including trends;\n3) the effectiveness of operational controls and emergency exercises, or the need to modify or\nintroduce new controls;\n4) competence.\nb) Examples of what could be monitored and measured to evaluate the fulfilment of legal requirements can include, but are not limited to:\n1) identified legal requirements (e.g. whether all legal requirements have been determined, and\nwhether the organization’s documented information of them is kept up-to-date);\n2) collective agreements (when legally binding);\n3) the status of identified gaps in compliance\nc) Examples of what could be monitored and measured to evaluate the fulfilment of other requirements can include, but are not limited to:\n1) collective agreements (when not legally binding);\n2) standards and codes;\n3) corporate and other policies, rules and regulations;\n4) insurance requirements\nd) Criteria are what the organization can use to compare its performance against.\nBenchmarking\nOther indicators such as: frequency, type, severity or number of incidents; percentage of completion of corrective actions on time\n**RDI-6&7: Mandatory Record(s):\n• Results on monitoring, measurements, analysis and performance evaluation\n• Maintenance, calibration or verification of monitoring equipment"
+     }
+    ],
+    [
+     {
+      "t": "9.1.2 Evaluation of compliance\nThe organization shall establish, implement and maintain a process(es) for evaluating compliance with legal requirements and other requirements (see 6.1.3).\nThe organization shall:\na) determine the frequency and method(s) for the evaluation of compliance;\nb) evaluate compliance and take action if needed (see 10.2);\nc) maintain knowledge and understanding of its compliance status with legal requirements and other requirements;\nd) retain documented information of the compliance evaluation result(s)."
+     },
+     {
+      "t": "**RDI-08\n• Method and frequency for the evaluation of OHS compliance to legal and other requirements\n• Actions to achieve compliance, if needed\n• Methods to maintain the knowledge and understanding of OHS compliance status.\n• What documented information will be retained regarding compliance evaluation results"
+     },
+     {
+      "t": "**MDE\n• Procedure / Working Instruction for Compliance Evaluation\n• Evidence of compliance evaluation\n**RDI-8: Mandatory Record(s):\nCompliance evaluation results"
+     }
+    ],
+    [
+     {
+      "t": "9.2 Internal audit\n9.2.1 General\nThe organization shall conduct internal audits at planned intervals to provide information on whether the OH&S management system:\na) conforms to:\n1) the organization’s own requirements for its OH&S management system, including the OH&S policy and OH&S objectives;\n2) the requirements of this document;\nb) is effectively implemented and maintained."
+     },
+     {
+      "t": "• Internal audits are carried out at regular intervals in order to verify that the requirements of the organization for the OHS Management System that it implements as well as the requirements of the standard are implemented effectively."
+     },
+     {
+      "t": "**MDE\n• Process / method / procedure for internal audit"
+     }
+    ],
+    [
+     {
+      "t": "9.2.2 Internal audit programme\nThe organization shall:\na) plan, establish, implement and maintain an audit programme(s) including the frequency, methods, responsibilities, consultation, planning requirements and reporting, which shall take into consideration the importance of the processes concerned and the results of previous audits;\nb) define the audit criteria and scope for each audit;\nc) select auditors and conduct audits to ensure objectivity and the impartiality of the audit process;\nd) ensure that the results of the audits are reported to relevant managers; ensure that relevant audit results are reported to workers, and, where they exist, workers’ representatives, and other relevant interested parties;\ne) take action to address nonconformities and continually improve its OH&S performance (see Clause 10);\nf) retain documented information as evidence of the implementation of the audit programme and the audit results."
+     },
+     {
+      "t": "**RDI-09 & 10\n• Plan, establish, implement and maintain an audit programme (including the frequency, methods, responsibilities, consultation, planning requirements and reporting), which shall take into consideration the importance of the processes concerned and the results of previous audits;\n• define the audit criteria and scope for each audit;\n• select auditors and conduct audits to ensure objectivity and the impartiality of the audit process;\n• ensure that the results of the audits are reported to relevant managers; ensure that relevant audit results are reported to workers, and, where they exist, workers’ representatives, and other relevant interested parties;\n• take action to address nonconformities and continually improve its OH&S performance (see Clause 10);\n• retain documented information as evidence of the implementation of the audit programme and the audit results."
+     },
+     {
+      "t": "**MDE\n• Process / method / procedure for internal audit\n• Internal audit program/schedule\n• Audit criteria\n• Internal Audit team / training records of auditors\n• Audit report / Internal audit results\n• Communication of audit results as appropriate\n• Records of Non Conformities and corrective actions\n**RDI-09&10: Mandatory Record(s):\nInternal audit program\nInternal audit report"
+     }
+    ],
+    [
+     {
+      "t": "9.3 Management review\nTop management shall review the organization’s OH&S management system, at planned intervals, to ensure its continuing suitability, adequacy and effectiveness.\nThe management review shall include consideration of:\na) the status of actions from previous management reviews;\nb) changes in external and internal issues that are relevant to the OH&S management system, including:\n1) the needs and expectations of interested parties;\n2) legal requirements and other requirements;\n3) risks and opportunities;\nc) the extent to which the OH&S policy and the OH&S objectives have been met;\nd) information on the OH&S performance, including trends in:\n1) incidents, nonconformities, corrective actions and continual improvement;\n2) monitoring and measurement results;\n3) results of evaluation of compliance with legal requirements and other requirements;\n4) audit results;\n5) consultation and participation of workers;\n6) risks and opportunities;\ne) adequacy of resources for maintaining an effective OH&S management system;\nf) relevant communication(s) with interested parties;\ng) opportunities for continual improvement.\nThe outputs of the management review shall include decisions related to:\n— the continuing suitability, adequacy and effectiveness of the OH&S management system in achieving its intended outcomes;\n— continual improvement opportunities;\n— any need for changes to the OH&S management system;\n— resources needed;\n— actions, if needed;\n— opportunities to improve integration of the OH&S management system with other business processes;\n— any implications for the strategic direction of the organization.\nTop management shall communicate the relevant outputs of management reviews to workers, and, where they exist, workers’ representatives (see 7.4).\nThe organization shall retain documented information as evidence of the results of management reviews."
+     },
+     {
+      "t": "**RDI-11\n• Review of OHS management system by top management at planned intervals\n• Inputs to the management review:\n• the status of actions from previous management reviews;\n• changes in external and internal issues\n• the extent to which the OH&S policy and the OH&S objectives have been met;\n• information on the OH&S performance, including trends in:\n1) incidents, nonconformities, corrective actions and continual improvement;\n2) monitoring and measurement results;\n3) results of evaluation of compliance with legal requirements and other requirements;\n4) audit results;\n5) consultation and participation of workers;\n6) risks and opportunities;\n• adequacy of resources\n• relevant communication(s) with interested parties;\n• opportunities for continual improvement.\n• Outputs of the management review shall include decisions related to:\n• the continuing suitability, adequacy and effectiveness of the OH&S management system in achieving its intended outcomes;\n• continual improvement opportunities;\n• any need for changes to the OH&S management system;\n• resources needed;\n• actions, if needed;\n• opportunities to improve integration of the OH&S management system with other business processes;\n• any implications for the strategic direction of the organization."
+     },
+     {
+      "t": "**MDE\n• Procedure for Management Review\n• Frequency of management review / Participants\n• Management review report / minutes of meeting\n• Inputs to management review and communication of inputs\n• Plans/actions for continual improvement,\n• OHS objectives\n• Evidence of communication of management minutes of meetings to workers / workers representatives.\n**RDI-11: Mandatory Record(s):\nResults of management review"
+     }
+    ],
+    [
+     {
+      "t": "10 Improvement",
+      "b": true
+     },
+     {},
+     {}
+    ],
+    [
+     {
+      "t": "10.1 General\nThe organization shall determine opportunities for improvement (see Clause 9) and implement necessary actions to achieve the intended outcomes of its OH&S management system."
+     },
+     {
+      "t": "The organization should consider the results from analysis and evaluation of OH&S performance, evaluation of compliance, internal audits and management review when taking action to improve.\n."
+     },
+     {
+      "t": "**MDE\nExamples of improvement include corrective action, continual improvement, breakthrough change, innovation and re-organization"
+     }
+    ],
+    [
+     {
+      "t": "10.2 Incident, nonconformity and corrective action\nThe organization shall establish, implement and maintain a process(es), including reporting, investigating and taking action, to determine and manage incidents and nonconformities.\nWhen an incident or a nonconformity occurs, the organization shall:\na) react in a timely manner to the incident or nonconformity and, as applicable:\n1) take action to control and correct it;\n2) deal with the consequences;\nb) evaluate, with the participation of workers (see 5.4) and the involvement of other relevant interested parties, the need for corrective action to eliminate the root cause(s) of the incident or nonconformity, in order that it does not recur or occur elsewhere, by:\n1) investigating the incident or reviewing the nonconformity;\n2) determining the cause(s) of the incident or nonconformity;\n3) determining if similar incidents have occurred, if nonconformities exist, or if they could potentially occur;\nc) review existing assessments of OH&S risks and other risks, as appropriate (see 6.1);\nd) determine and implement any action needed, including corrective action, in accordance with the hierarchy of controls (see 8.1.2) and the management of change (see 8.1.3);\ne) assess OH&S risks that relate to new or changed hazards, prior to taking action;\nf) review the effectiveness of any action taken, including corrective action;\ng) make changes to the OH&S management system, if necessary.\nCorrective actions shall be appropriate to the effects or potential effects of the incidents or nonconformities encountered.\nThe organization shall retain documented information as evidence of:\n— the nature of the incidents or nonconformities and any subsequent actions taken;\n— the results of any action and corrective action, including their effectiveness.\nThe organization shall communicate this documented information to relevant workers, and, where they exist, workers’ representatives, and other relevant interested parties.\nNOTE The reporting and investigation of incidents without undue delay can enable hazards to be eliminated and associated OH&S risks to be minimized as soon as possible."
+     },
+     {
+      "t": "**RDI-12 & 13\n• Process(es), including reporting, to investigate and take action, to determine and manage incidents and nonconformities\n• Is there an adequate mechanism to handle an incident or a nonconformity:\n• react in a timely manner to the incident or nonconformity\n• evaluate, with the participation of workers and the involvement of other relevant interested parties, the need for corrective action to eliminate the root cause(s) of the incident or nonconformity\n• review existing assessments of OH&S risks and other risks,\n• determine and implement any action needed;\n• assess OH&S risks that relate to new or changed hazards, prior to taking action;\n• review the effectiveness of any action taken,\n• make changes to the OH&S management system, if necessary\n• Nature of incidents or nonconformities and any subsequent action taken\n• Results of any action and corrective action, including their effectiveness"
+     },
+     {
+      "t": "**MDE\n• Procedure for Incident Investigation\n• Procedure for Management of Nonconformities and Corrective Actions\n• Incidents, NCR reporting\n• Incidents, NCR records of investigations including correction and corrective actions\n• Review of the effectiveness of corrective actions\n• Review of existing OHS risks and other risks and update if required\n• Root cause analysis\n• Evidence of communication of incidents to employees.\n• Application of any legal requirements\nExamples of incidents, nonconformities and corrective actions can include, but are not limited to:\na) incidents: same level fall with or without injury; broken leg; asbestosis; hearing loss; damage to buildings or vehicles where they can lead to OH&S risks;\nb) nonconformities: protective equipment not functioning properly; failure to fulfil legal requirements and other requirements; prescribed procedures not being followed;\nc) corrective actions: eliminating hazards; substituting with less hazardous materials; redesigning or modifying equipment or tools; developing procedures; improving the competence of affected workers; changing the frequency of use; using personal protective equipment.\n**RDI-12 & 13: Mandatory Record(s):\n• Nature of incidents or nonconformities and any subsequent action taken\n• Results of any action and corrective action, including their effectiveness"
+     }
+    ],
+    [
+     {
+      "t": "10.3 Continual improvement\nThe organization shall continually improve the suitability, adequacy and effectiveness of the OH&S management system, by:\na) enhancing OH&S performance;\nb) promoting a culture that supports an OH&S management system;\nc) promoting the participation of workers in implementing actions for the continual improvement of the OH&S management system;\nd) communicating the relevant results of continual improvement to workers, and, where they exist, workers’ representatives;\ne) maintaining and retaining documented information as evidence of continual improvement."
+     },
+     {
+      "t": "**RDI-14\n• The suitability, adequacy and effectiveness of the OH&S management system should be continually improved\n• process for continual improvement together with details regarding how to communicate the results to relevant workers and\n• what documented information is retained of continual improvement"
+     },
+     {
+      "t": "**MDE\n• Procedure for continual improvement\n• Method / process to improve OHS management system\n• Evidence of the results of continual improvement\n• Communication of results of continual improvement to employees\nExamples of continual improvement issues include, but are not limited to:\na) new technology;\nb) good practices, both internal and external to the organization;\nc) suggestions and recommendations from interested parties;\nd) new knowledge and understanding of occupational health and safety-related issues;\ne) new or improved materials;\nf) changes in worker capabilities or competence;\ng) achieving improved performance with fewer resources (i.e. simplification, streamlining, etc.).\n**RDI-14: Mandatory Record(s):\nEvidence of the results of continual improvement"
+     }
+    ]
+   ]
+  },
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    12.5,
+    33.49,
+    11.51,
+    42.5
+   ],
+   "rows": [
+    [
+     {
+      "cs": 4,
+      "t": "TABLE 1: LIST OF MDIs & RDIs",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "List of\nMaintained Documented Information (MDI)",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "List of\nRetained Documented Information (RDI)",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "MDI-01"
+     },
+     {
+      "t": "4.3 Scope of the OH&S management system"
+     },
+     {
+      "t": "RDI-01"
+     },
+     {
+      "t": "6.1.1 OH&S risks and opportunities and actions for addressing them"
+     }
+    ],
+    [
+     {
+      "t": "MDI-02"
+     },
+     {
+      "t": "5.2 OH&S policy"
+     },
+     {
+      "t": "RDI-02"
+     },
+     {
+      "t": "6.1.3 Legal and other requirements"
+     }
+    ],
+    [
+     {
+      "t": "MDI-03"
+     },
+     {
+      "t": "5.3 Responsibilities and authorities within OH&SMS"
+     },
+     {
+      "t": "RDI-03"
+     },
+     {
+      "t": "7.2 Evidence of competence"
+     }
+    ],
+    [
+     {
+      "t": "MDI-04"
+     },
+     {
+      "t": "6.1.1 OH&S process for addressing risks and opportunities"
+     },
+     {
+      "t": "RDI-04"
+     },
+     {
+      "t": "7.4.1 Evidence of communications"
+     }
+    ],
+    [
+     {
+      "t": "MDI-05"
+     },
+     {
+      "t": "6.1.2.2 Methodology and criteria for assessment of OH&S risks"
+     },
+     {
+      "t": "RDI-05"
+     },
+     {
+      "t": "8.2 Plans for responding to potential emergency situations"
+     }
+    ],
+    [
+     {
+      "t": "MDI-06"
+     },
+     {
+      "t": "6.2.2 OH&S objectives and plans for achieving them"
+     },
+     {
+      "t": "RDI-06"
+     },
+     {
+      "t": "9.1.1 Results on monitoring, measurements, analysis and performance evaluation"
+     }
+    ],
+    [
+     {
+      "t": "MDI-07"
+     },
+     {
+      "t": "8.1.1 Documented information to provide confidence that processes have been carried out as planned and determining"
+     },
+     {
+      "t": "RDI-07"
+     },
+     {
+      "t": "9.1.1 Maintenance, calibration or verification of monitoring equipment"
+     }
+    ],
+    [
+     {
+      "t": "MDI-08"
+     },
+     {
+      "t": "8.2 Emergency preparedness and response process"
+     },
+     {
+      "t": "RDI-08"
+     },
+     {
+      "t": "9.1.2 Compliance evaluation results"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-09"
+     },
+     {
+      "t": "9.2.2 Internal audit program"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-10"
+     },
+     {
+      "t": "9.2.2 Internal audit report"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-11"
+     },
+     {
+      "t": "9.3 Results of management review"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-12"
+     },
+     {
+      "t": "10.2 Nature of incidents or nonconformities and any subsequent action taken"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-13"
+     },
+     {
+      "t": "10.2 Results of any action and corrective action, including their effectiveness"
+     }
+    ],
+    [
+     {},
+     {},
+     {
+      "t": "RDI-14"
+     },
+     {
+      "t": "10.3 Evidence of the results of continual improvement"
+     }
+    ]
+   ]
+  }
+ ]
+}

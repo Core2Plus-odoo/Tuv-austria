@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The documents asked of every client before an audit. noupdate: once the
+         client edits the list, an upgrade leaves it as he keeps it. Standard specific
+         documents are added from Planning > Configuration > Audit Documents. -->
+    <data noupdate="1">
+
+        <record id="audit_document_scope" model="tuv.audit.document">
+            <field name="name">Scope of certification and organisation chart</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="audit_document_manual" model="tuv.audit.document">
+            <field name="name">Management system manual / list of documented information</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="audit_document_policy" model="tuv.audit.document">
+            <field name="name">Policy and objectives, with how they are measured</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="audit_document_internal_audit" model="tuv.audit.document">
+            <field name="name">Internal audit programme and the latest internal audit report</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="audit_document_management_review" model="tuv.audit.document">
+            <field name="name">Minutes of the latest management review</field>
+            <field name="sequence">50</field>
+        </record>
+        <record id="audit_document_capa" model="tuv.audit.document">
+            <field name="name">Nonconformity and corrective action records</field>
+            <field name="sequence">60</field>
+        </record>
+        <record id="audit_document_legal" model="tuv.audit.document">
+            <field name="name">List of applicable legal and regulatory requirements</field>
+            <field name="sequence">70</field>
+        </record>
+        <record id="audit_document_risks" model="tuv.audit.document">
+            <field name="name">Risks and opportunities register</field>
+            <field name="sequence">80</field>
+        </record>
+        <record id="audit_document_competence" model="tuv.audit.document">
+            <field name="name">Training and competence records of key personnel</field>
+            <field name="sequence">90</field>
+        </record>
+        <record id="audit_document_sites" model="tuv.audit.document">
+            <field name="name">List of sites, shifts and number of employees per site</field>
+            <field name="sequence">100</field>
+        </record>
+
+    </data>
+</odoo>

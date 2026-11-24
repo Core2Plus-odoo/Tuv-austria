@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit Plan (FM-TAGMBH-MSZ-001): the block under sections 1 and 2 on the project's
+         Audit Plan tab. tools/gen_standalone_views.py copies it to the standalone form. -->
+    <record id="project_block_audit_plan" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.audit_plan</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_audit_plan" invisible="audit_report_key != 'audit_plan'">
+                    <!-- Declaration of independence -->
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional relationship of any kind
+                        and have not provided any kind of advisory service or any kind of service (internal
+                        audits, design / development of management system) for the company being audited,
+                        or another company legally associated with this company, during the last two (2)
+                        years, at least. Also, they are committed that they will not develop any kind of
+                        cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally, they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <!-- General -->
+                    <separator string="General"/>
+                    <group>
+                        <group>
+                            <field name="ap_audit_language" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <div class="fw-bold">Audit Objectives</div>
+                    <ul class="text-muted">
+                        <li>Conformity of the management system with the respective standard/s</li>
+                        <li>Ability of the management system to fulfil the applicable legal, regulatory and contractual requirements</li>
+                        <li>Effectiveness of the implemented management system and</li>
+                        <li>Suitability of the management system to fulfil the defined objectives in the long term.</li>
+                        <li>Framework for possible improvements to the management system</li>
+                    </ul>
+
+                    <!-- Audit schedule -->
+                    <separator string="Audit Schedule"/>
+                    <field name="ap_schedule_line_ids">
+                        <list editable="bottom" decoration-bf="is_section" decoration-info="is_section">
+                            <field name="sequence" widget="handle"/>
+                            <field name="is_section" optional="show"/>
+                            <field name="date"/>
+                            <field name="time_from" widget="float_time"/>
+                            <field name="time_to" widget="float_time"/>
+                            <field name="content"/>
+                            <field name="participants"/>
+                            <field name="auditors"/>
+                        </list>
+                    </field>
+                    <div class="text-muted small">
+                        <p>Changes of the audit action are possible.</p>
+                        <p>Participants are to be appointed by the company.</p>
+                        <p>For ISO 45001: 1) management legally responsible for occupational health and
+                            safety. 2) personnel responsible for monitoring employees' health (e.g., doctors
+                            and nurses) 3) employees' representative(s) with responsibility for occupational
+                            health and safety 4) managers and permanent and temporary employees 5) managers
+                            and employees performing activities related to prevention of occupational health
+                            and safety risks 6) contractors' management and employees.</p>
+                        <p>The participants in the closing meeting must always be updated here in the event
+                            of a change or listed separately in the audit report. For ISO 45001: a
+                            justification must be provided if certain people are unable to attend the
+                            closing meeting.</p>
+                        <p>The required number of shifts must be taken from the OEB and the audit planning
+                            must be entered in the audit plan.</p>
+                        <p>The customer has agreed to the figures stated here (number of employees).</p>
+                    </div>
+
+                    <!-- Signatures -->
+                    <separator string="Signatures"/>
+                    <group>
+                        <group>
+                            <field name="ap_sign_place"/>
+                            <field name="ap_sign_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="ap_lead_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="ap_auditor_signature" widget="signature" string="Signature(s)"/>
+                        </group>
+                    </group>
+
+                    <!-- Significant issues -->
+                    <separator string="Significant Issues Impacting on the Audit Plan"/>
+                    <field name="ap_significant_issues" placeholder="Notes..."/>
+                    <group>
+                        <field name="ap_customer_confirmed"/>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

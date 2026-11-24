@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: the client may reword the mail in Settings > Technical > Email
+         Templates, and an upgrade must not put the original text back. -->
+    <data noupdate="1">
+
+        <record id="mail_template_audit_plan" model="mail.template">
+            <field name="name">TUV: Audit Plan to Client</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="subject">Audit Plan - {{ object.partner_id.name }} - {{ object.atjf_standards or '' }}</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent to the client automatically when the ATJF is approved</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        We are pleased to confirm the audit plan for your certification against
+        <b t-out="object.atjf_standards or ''">ISO 9001:2015</b>.
+        <t t-if="object.atjf_site_address">
+            The audit will take place at <b t-out="object.atjf_site_address">site</b>.
+        </t>
+    </p>
+
+    <p style="margin-top: 16px;"><b>Confirmed Audit Dates</b></p>
+    <table style="border-collapse: collapse;">
+        <tr t-foreach="object._audit_plan_dates()" t-as="line">
+            <td style="border: 1px solid #ccc; padding: 4px 10px; background-color: #f2f2f2;" t-out="line[0]">Stage 1</td>
+            <td style="border: 1px solid #ccc; padding: 4px 10px;" t-out="line[1]">01/01/2026</td>
+        </tr>
+    </table>
+
+    <p style="margin-top: 16px;"><b>Audit Team</b></p>
+    <table style="border-collapse: collapse;">
+        <tr t-foreach="object._audit_plan_team()" t-as="member">
+            <td style="border: 1px solid #ccc; padding: 4px 10px; background-color: #f2f2f2;" t-out="member[0]">Lead Auditor</td>
+            <td style="border: 1px solid #ccc; padding: 4px 10px;" t-out="member[1]">Name</td>
+        </tr>
+    </table>
+
+    <t t-if="object.audit_document_ids">
+        <p style="margin-top: 16px;"><b>Documents To Be Prepared Before The Audit</b></p>
+        <ol>
+            <li t-foreach="object.audit_document_ids" t-as="document" t-out="document.name">Document</li>
+        </ol>
+    </t>
+
+    <p style="margin-top: 16px;">
+        Please have these documents available on the first audit day and let us know
+        if any date does not suit you.
+    </p>
+    <p>
+        Kind regards,<br/>
+        <t t-out="object.company_id.name or ''">TUV Austria</t>
+    </p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

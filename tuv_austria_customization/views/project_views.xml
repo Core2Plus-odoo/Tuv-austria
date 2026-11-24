@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="edit_project_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.inherit.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <!-- The task's two custom header fields, on the project as well. -->
+            <field name="tag_ids" position="after">
+                <field name="ea_code_ids" widget="many2many_tags"/>
+                <field name="auditor_id"
+                    context="{'show_auditor_availability': True}"
+                    options="{'no_quick_create': True}"/>
+                <field name="contract_completed" invisible="1"/>
+                <field name="contract_status" widget="badge"
+                    decoration-success="contract_completed"
+                    invisible="not contract_completed"/>
+            </field>
+            <!-- The client does not use this page. It is hidden rather than dropped
+                 because the review view below still anchors itself on it, and a
+                 database that carries the older stored arch has to keep finding it. -->
+            <page name="description" position="after">
+                <page name="certification_details" string="Certification Details" invisible="1">
+                    <group>
+                        <group>
+                            <field name="certificate_no"/>
+                            <field name="certification_standard_ids" widget="many2many_tags"/>
+                            <field name="ea_code_ids" widget="many2many_tags"/>
+                            <field name="scope_of_certification"/>
+                            <field name="issue_date" options="{'numeric': true}"/>
+                            <field name="expiry_date" options="{'numeric': true}"/>
+                            <field name="next_surveillance" options="{'numeric': true}"/>
+                        </group>
+                        <group>
+                            <field name="audit_type"/>
+                            <field name="lead_auditor"/>
+                            <field name="certificate_status"/>
+                            <field name="office_issued_from"/>
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_task_form2_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.custom.operations</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="user_ids" position="after">
+                <field name="ea_code_ids" widget="many2many_tags"/>
+                <field name="auditor_id"
+                    context="{'show_auditor_availability': True, 'availability_exclude_task': id}"
+                    options="{'no_quick_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="task_type_edit_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.task.type.form.inherit.custom.operations</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit"/>
+        <field name="arch" type="xml">
+            <field name="project_ids" position="attributes">
+                <attribute name="required">False</attribute>
+            </field>
+            <field name="project_ids" position="after">
+                <field name="auditor_busy"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="task_type_tree_inherit_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.task.type.list.inherit.custom.operations</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_tree"/>
+        <field name="arch" type="xml">
+            <field name="project_ids" position="attributes">
+                <attribute name="required">False</attribute>
+            </field>
+            <field name="project_ids" position="after">
+                <field name="auditor_busy" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- The planning team's workspace: review form + contract of the order, read only,
+         plus the two buttons that move the order's review forward. -->
+    <record id="edit_project_review_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.review.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <!-- the form already has a header, so the review buttons go inside it -->
+            <xpath expr="//header" position="inside">
+                    <button name="action_approve_review" type="object"
+                        string="Approve Review" class="btn-primary" data-hotkey="a"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"
+                        invisible="review_state != 'waiting_review'"/>
+                    <button name="action_reject_review" type="object"
+                        string="Send Back to Sales" data-hotkey="r"
+                        groups="tuv_austria_customization.group_planning_team,base.group_system"
+                        invisible="review_state != 'waiting_review'"/>
+                    <!-- One step at a time: each button shows only while the project
+                         sits in the stage right before it. -->
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Application Review" class="btn-primary"
+                        invisible="stage_name != 'Review Approved'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Contract Received" class="btn-primary"
+                        invisible="stage_name != 'Application Review'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Planing" class="btn-primary"
+                        invisible="stage_name != 'Contract Received'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Execution" class="btn-primary"
+                        invisible="stage_name != 'Planing'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Invoicing &amp; Recovery" class="btn-primary"
+                        invisible="stage_name != 'Execution'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Certificate Issuance" class="btn-primary"
+                        invisible="stage_name != 'Invoicing &amp; Recovery'"/>
+                    <button name="action_move_next_stage" type="object"
+                        string="Submit to Feedback &amp; Continuous Improvement" class="btn-primary"
+                        invisible="stage_name != 'Certificate Issuance'"/>
+                    <field name="stage_name" invisible="1"/>
+                    <field name="review_state" invisible="1"/>
+                    <field name="md_sale_order_id" invisible="1"/>
+                    <field name="document_stage" invisible="1"/>
+            </xpath>
+
+            <!-- pages and buttons the client does not use -->
+            <xpath expr="//page[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='settings']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_open_share_project_wizard']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <page name="certification_details" position="before">
+                <!-- What the planning team approves: the application form sales
+                     filled in, read only, with the approval trace underneath. -->
+                <page name="application_form" string="Application Form"
+                    invisible="not md_sale_order_id">
+                    <group>
+                        <group string="Site &amp; Contacts">
+                            <field name="audit_site"/>
+                            <field name="other_facilities"/>
+                            <field name="sites_to_be_audited"/>
+                            <field name="company_representative"/>
+                            <field name="management_system_representative"/>
+                            <field name="management_system_representative_phone"/>
+                            <field name="management_system_representative_email"/>
+                            <field name="consultant"/>
+                            <field name="consultant_phone"/>
+                            <field name="consultant_email"/>
+                        </group>
+                        <group string="Activity &amp; Personnel">
+                            <field name="scope_of_activity"/>
+                            <field name="critical_processes"/>
+                            <field name="legislation_relative"/>
+                            <field name="permanent_personnel"/>
+                            <field name="temporary_personnel"/>
+                            <field name="personnel_on_shifts"/>
+                            <field name="number_of_shifts"/>
+                            <field name="other_certified_management_system"/>
+                            <field name="level_of_integration"/>
+                            <field name="license_attachment_filename" invisible="1"/>
+                            <field name="license_attachment" filename="license_attachment_filename"/>
+                        </group>
+                        <group string="Approval Trace">
+                            <field name="md_sequence_no"/>
+                            <field name="review_submitted_by"/>
+                            <field name="review_submitted_on"/>
+                            <field name="review_approved_by"/>
+                            <field name="review_approved_on"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="contract_details" string="Contract"
+                    invisible="document_stage &lt; 4">
+                    <group>
+                        <group string="Contract Details">
+                            <field name="contract_standard_ids" widget="many2many_tags"/>
+                            <field name="contract_address_1"/>
+                            <field name="contract_address_2"/>
+                            <field name="contract_representative"/>
+                            <field name="contract_designation"/>
+                            <field name="contract_date"/>
+                            <field name="contract_ref"/>
+                            <field name="contract_advance_amount"/>
+                        </group>
+                        <group string="Certification Services Offered">
+                            <field name="contract_service_1_ids" widget="many2many_tags"/>
+                            <field name="contract_accreditation_1"/>
+                            <field name="contract_service_2_ids" widget="many2many_tags"/>
+                            <field name="contract_accreditation_2"/>
+                        </group>
+                        <group string="Charges">
+                            <field name="contract_fee_y1_ids" widget="many2many_tags"/>
+                            <field name="contract_fee_y2_ids" widget="many2many_tags"/>
+                            <field name="contract_fee_y3_ids" widget="many2many_tags"/>
+                            <field name="contract_mandays_y1"/>
+                            <field name="contract_mandays_y2"/>
+                            <field name="contract_mandays_y3"/>
+                        </group>
+                        <group string="Taxes &amp; Totals">
+                            <field name="contract_tax_province"/>
+                            <field name="contract_tax_y1"/>
+                            <field name="contract_tax_y2"/>
+                            <field name="contract_tax_y3"/>
+                            <field name="contract_total_y1"/>
+                            <field name="contract_total_y2"/>
+                            <field name="contract_total_y3"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

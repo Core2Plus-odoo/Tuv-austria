@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="md_scheme_import_view_form" model="ir.ui.view">
+        <field name="name">md.scheme.import.form</field>
+        <field name="model">md.scheme.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Annex">
+                <div class="alert alert-info" role="status">
+                    Upload the MDC annex of the standard (the Word file, e.g.
+                    <code>VB-BA-ZET-MS-All-003-Ann-MDC-9001-EN.docx</code>). It is read the
+                    way it is written: the grey rows become sections, the audit duration
+                    table, the risk / complexity categories and the adjustment factors are
+                    filled in from the tables of the document.
+                </div>
+                <group>
+                    <group>
+                        <field name="annex_filename" invisible="1"/>
+                        <field name="annex_file" filename="annex_filename"/>
+                        <field name="scheme_id" options="{'no_create': True}"
+                            readonly="context.get('default_scheme_id')"/>
+                    </group>
+                    <group>
+                        <field name="keep_manual_edits"/>
+                    </group>
+                </group>
+                <field name="result" readonly="1" invisible="not result"
+                    style="font-family: monospace; white-space: pre-wrap;"/>
+                <footer>
+                    <button name="action_import" string="Import" type="object" class="btn-primary"
+                        data-hotkey="q"/>
+                    <button name="action_preview" string="Check File First" type="object"
+                        class="btn-secondary" data-hotkey="v"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="md_scheme_import_action" model="ir.actions.act_window">
+        <field name="name">Import Annex</field>
+        <field name="res_model">md.scheme.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

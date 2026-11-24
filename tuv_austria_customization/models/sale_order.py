@@ -1,0 +1,549 @@
+import base64
+
+from odoo import Command, _, api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools import file_open
+
+from .project_invoice import AUDIT_INVOICING, _amount
+
+# Handing one of these to the client means the contract is done: that is the moment
+# the order gets its project, not the confirmation.
+CONTRACT_DOCUMENT_TYPES = ('contract_form', 'pnac_contract')
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    # The order of the values is the order of the flow: the offer application is
+    # taken first, then the review form, which goes to the planning team; only their
+    # approval opens the proposal and the contract.
+    document_type = fields.Selection([
+        ('offer_application', 'Application Form'),
+        ('review_form', 'Review Form'),
+        ('proposal_form', 'Proposal Form'),
+        ('contract_form', 'ESYD/Austrian Contract'),
+        ('pnac_contract', 'PNAC-Contract'),
+    ], string='Document Type', tracking=True)
+    # How far the order got: every page up to this stage stays visible on the form,
+    # instead of only the page of the current document type.
+    document_stage = fields.Integer(compute='_compute_document_stage')
+
+    @api.depends('document_type')
+    def _compute_document_stage(self):
+        order_of = {t: i for i, t in enumerate(
+            ('offer_application', 'review_form', 'proposal_form', 'contract_form'), start=1)}
+        order_of['pnac_contract'] = order_of['contract_form']
+        for order in self:
+            order.document_stage = order_of.get(order.document_type, 0)
+
+    # contract year (AUDIT_INVOICING) -> its line of Proposal > Summary of Cost
+    COST_FIELDS = {
+        'y1': ('cost_grand_initial_audit', 'cost_tax_initial_audit'),
+        'y2': ('cost_grand_surveillance_1', 'cost_tax_surveillance_1'),
+        'y3': ('cost_grand_surveillance_2', 'cost_tax_surveillance_2'),
+    }
+
+    def _contract_fee_and_tax(self, year):
+        """(fee, sales tax amount) of contract year y1/y2/y3. The fee comes from the
+        proposal's Summary of Cost (the contract's year fields hold standards since
+        16.11.2026); the tax from the contract's Sales Tax of that year, else the proposal's."""
+        self.ensure_one()
+        fee_field, tax_field = self.COST_FIELDS.get(year, self.COST_FIELDS['y1'])
+        tax = _amount(self['contract_tax_%s' % year]) or self[tax_field]
+        return self[fee_field], tax
+
+    @api.depends('cost_initial_audit', 'cost_surveillance_1', 'cost_surveillance_2',
+                 'cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2')
+    def _compute_cost_totals(self):
+        # Proposal > Summary of Cost: the Total group adds each audit's fee and sales tax,
+        # and the Total of each group adds up its three audits
+        for order in self:
+            order.cost_grand_initial_audit = order.cost_initial_audit + order.cost_tax_initial_audit
+            order.cost_grand_surveillance_1 = order.cost_surveillance_1 + order.cost_tax_surveillance_1
+            order.cost_grand_surveillance_2 = order.cost_surveillance_2 + order.cost_tax_surveillance_2
+            order.cost_total = (order.cost_initial_audit + order.cost_surveillance_1
+                                + order.cost_surveillance_2)
+            order.cost_tax_total = (order.cost_tax_initial_audit + order.cost_tax_surveillance_1
+                                    + order.cost_tax_surveillance_2)
+            order.cost_grand_total = (order.cost_grand_initial_audit + order.cost_grand_surveillance_1
+                                      + order.cost_grand_surveillance_2)
+
+    # ------------------------------------------------------------------
+    # Document numbers
+    # ------------------------------------------------------------------
+    # One number is drawn automatically, at the offer application, and stays with
+    # the order; the user may overwrite it with a number of his own, and nothing
+    # draws over it afterwards. The proposal and the contract show this same number;
+    # the review form keeps a number of its own, left empty for the client to fill.
+    tuv_sequence = fields.Char(
+        string='Reference Number', copy=False, tracking=True, index='btree_not_null',
+        help='Drawn from the sequence the moment the order reaches the Application '
+             'Form step, and editable afterwards: type your own number and '
+             'it is kept as it is.')
+    rf_sequence_no = fields.Char(string='Reference Number', copy=False)
+    # The proposal and the contract show the order's own reference number rather than a
+    # number of their own.
+    pr_sequence_no = fields.Char(related='tuv_sequence', string='Reference Number', readonly=False)
+    ct_sequence_no = fields.Char(related='tuv_sequence', string='Reference Number', readonly=False)
+
+    @api.depends('cost_tax_initial_audit', 'cost_tax_surveillance_1', 'cost_tax_surveillance_2',
+                 'cost_grand_initial_audit', 'cost_grand_surveillance_1', 'cost_grand_surveillance_2')
+    def _compute_contract_amounts(self):
+        def text(amount):
+            return '{:,.2f}'.format(amount) if amount else False
+        for order in self:
+            order.contract_advance_amount = text(order.cost_grand_initial_audit)
+            order.contract_tax_y1 = text(order.cost_tax_initial_audit)
+            order.contract_tax_y2 = text(order.cost_tax_surveillance_1)
+            order.contract_tax_y3 = text(order.cost_tax_surveillance_2)
+            order.contract_total_y1 = text(order.cost_grand_initial_audit)
+            order.contract_total_y2 = text(order.cost_grand_surveillance_1)
+            order.contract_total_y3 = text(order.cost_grand_surveillance_2)
+
+    @api.depends('certification_standard_ids')
+    def _compute_contract_standard_ids(self):
+        for order in self:
+            order.contract_standard_ids = order.certification_standard_ids
+
+    @api.depends('partner_id')
+    def _compute_contract_address_1(self):
+        for order in self:
+            partner = order.partner_id
+            order.contract_address_1 = ', '.join(filter(None, [
+                partner.street, partner.street2, partner.city, partner.state_id.name,
+                partner.zip, partner.country_id.name,
+            ])) or False
+
+    def _assign_tuv_sequence(self):
+        """Draw the document number for orders that reached the offer application."""
+        for order in self:
+            if order.document_type and not order.tuv_sequence:
+                number = self.env['ir.sequence'].next_by_code('tuv.austria.document')
+                if number:
+                    # sudo: a salesperson may already be locked out of the order by
+                    # the review
+                    order.sudo().write({'tuv_sequence': number})
+
+    contract_completed = fields.Boolean(
+        string='Contract Completed', copy=False, tracking=True,
+        help='Set automatically the moment a contract document type is chosen, '
+             'which is also when the project is created.')
+    # The read-only tag shown on the order and on its project.
+    contract_status = fields.Char(
+        string='Contract', compute='_compute_contract_status')
+
+    @api.depends('contract_completed')
+    def _compute_contract_status(self):
+        for order in self:
+            order.contract_status = _('Completed') if order.contract_completed else False
+    partner_street = fields.Char(related='partner_id.street', string='Street', readonly=True)
+    partner_street2 = fields.Char(related='partner_id.street2', string='Street 2', readonly=True)
+    partner_city = fields.Char(related='partner_id.city', string='City', readonly=True)
+    partner_state_id = fields.Many2one(related='partner_id.state_id', string='State', readonly=True)
+    partner_zip = fields.Char(related='partner_id.zip', string='Zip', readonly=True)
+    partner_country_id = fields.Many2one(related='partner_id.country_id', string='Country', readonly=True)
+    distinctive_title = fields.Char(
+        related='partner_id.distinctive_title', string='Distinctive Title', store=True, readonly=True)
+    partner_phone = fields.Char(related='partner_id.phone', string='Phone', readonly=True)
+    partner_email = fields.Char(related='partner_id.email', string='Email', readonly=True)
+    telefax = fields.Char(
+        related='partner_id.telefax', string='Telefax', store=True, readonly=True)
+    website = fields.Char(
+        related='partner_id.website', string='URL', store=True, readonly=True)
+    vat = fields.Char(
+        related='partner_id.vat', string='VAT Nr.', store=True, readonly=True)
+    certificate_no = fields.Char(string='Certificate No')
+    # the standard fields of the order pick from the Mandays standards (md_standard_1)
+    certification_standard_ids = fields.Many2many(
+        'certification.standard', 'sale_order_certification_standard_rel', 'order_id', 'standard_id',
+        string='Certification Standard')
+    ea_code_ids = fields.Many2many('industry.ea.code', string='EA Code')
+    scope_of_certification = fields.Char(string='Scope of Certification')
+    issue_date = fields.Date(string='Issue Date')
+    expiry_date = fields.Date(string='Expiry Date')
+    next_surveillance = fields.Date(string='Next Surveillance')
+    audit_type = fields.Char(string='Audit Type')
+    lead_auditor = fields.Selection([
+        ('yes', 'Yes'),
+        ('no', 'No'),
+    ], string='Lead Auditor')
+    certificate_status = fields.Char(string='Certificate Status')
+    office_issued_from = fields.Char(string='Office Issued From')
+    notes = fields.Char(string='Notes')
+
+    audit_site = fields.Char(string='Site Where The Audit Will Take Place')
+    other_facilities = fields.Char(string='Other Facilities / Subsidiaries / Temporary Sites')
+    sites_to_be_audited = fields.Selection([
+        ('yes', 'Yes'),
+        ('no', 'No'),
+    ], string='Do You Wish Those Sites To Be Audited As Well?')
+    company_representative = fields.Char(string='Company Representative')
+    management_system_representative = fields.Char(string='Management System Representative')
+    management_system_representative_phone = fields.Char(string='Management System Representative Phone')
+    management_system_representative_email = fields.Char(string='Management System Representative Email')
+    consultant = fields.Char(string='Consultant')
+    consultant_phone = fields.Char(string='Consultant Phone')
+    consultant_email = fields.Char(string='Consultant Email')
+    scope_of_activity = fields.Char(string='Scope Of Activity')
+    critical_processes = fields.Char(
+        string='Critical Processes, Processes Carried Out By Subcontractors And Their Interaction')
+    legislation_relative = fields.Char(
+        string='Legislation Relative To The Products Or The Services Of The Company')
+    permanent_personnel = fields.Char(string='Permanent Personnel')
+    temporary_personnel = fields.Char(string='Temporary Personnel')
+    personnel_on_shifts = fields.Char(string='Number Of Personnel On Shifts')
+    number_of_shifts = fields.Char(string='Nr. Of Shifts (if any)')
+    level_of_integration = fields.Selection(
+        [(str(pct), '%d%%' % pct) for pct in range(10, 101, 10)],
+        string='Level Of Integration Of Management Systems (%)')
+    other_certified_management_system = fields.Selection([
+        ('yes', 'Yes'),
+        ('no', 'No'),
+    ], string='Existence Of Other Certified Management System '
+              '(Please Fill In Relevant Annex In Case Of Transfer Request)')
+    # The annex that belongs with this application. The application form asks for
+    # one for every standard marked * on it; picking a record here prints its pages
+    # underneath the application form.
+    application_annex_id = fields.Many2one(
+        'tuv.application.annex', string='Application Annex', ondelete='restrict',
+        help='Pick the annex that belongs to the standard applied for. Its pages are '
+             'printed at the end of the Application Form.')
+
+    license_attachment = fields.Binary(
+        string='Operation License / Environmental License / Corporation Charter (please attach)')
+    license_attachment_filename = fields.Char(string='License Attachment Filename')
+
+    # Proposal Form (<<XYZ>> / <<STANDARD>> placeholders of the Word proposal template)
+    management_system_name = fields.Char(
+        string='Management System Name', help='Goes into "<<XYZ>> MANAGEMENT SYSTEM" of the proposal.')
+    charge_stage_1_audit = fields.Char(string='Stage 1 Audit')
+    charge_stage_2_audit = fields.Char(string='Stage 2 Audit')
+    travel_boarding_lodging = fields.Char(string='Traveling, Boarding & Lodging')
+    charge_surveillance_1 = fields.Char(string='1ST Annual Surveillance@')
+    charge_surveillance_2 = fields.Char(string='2nd Annual Surveillance@')
+
+    # Summary of Cost - fee and sales tax typed in by hand, nothing is taken from the order
+    # lines; the Total group is fee + tax per audit, and each group's Total sums its three audits
+    cost_tax_label = fields.Char(string='Sales Tax Row Label')
+    cost_initial_audit = fields.Float(string='Initial Audit')
+    cost_surveillance_1 = fields.Float(string='1st Surveillance Audit')
+    cost_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
+    cost_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
+    cost_tax_initial_audit = fields.Float(string='Initial Audit')
+    cost_tax_surveillance_1 = fields.Float(string='1st Surveillance Audit')
+    cost_tax_surveillance_2 = fields.Float(string='2nd Surveillance Audit')
+    cost_tax_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
+    cost_grand_initial_audit = fields.Float(
+        string='Initial Audit', compute='_compute_cost_totals', store=True)
+    cost_grand_surveillance_1 = fields.Float(
+        string='1st Surveillance Audit', compute='_compute_cost_totals', store=True)
+    cost_grand_surveillance_2 = fields.Float(
+        string='2nd Surveillance Audit', compute='_compute_cost_totals', store=True)
+    cost_grand_total = fields.Float(string='Total', compute='_compute_cost_totals', store=True)
+    # Proposal > Invoicing: the order's own payment terms, picked from Odoo's list
+    proposal_invoicing_terms = fields.Many2one(related='payment_term_id', string='Invoicing Terms',
+                                               readonly=False)
+
+    # Prepared By block - blank falls back to the salesperson on the order
+    prepared_by_name = fields.Char(string='Prepared By Name')
+    prepared_by_designation = fields.Char(string='Designation')
+    prepared_by_phone = fields.Char(string='Prepared By Phone')
+    prepared_by_email = fields.Char(string='Prepared By Email')
+    prepared_by_signature = fields.Binary(string='Signature', attachment=True)
+    prepared_by_signature_filename = fields.Char(string='Signature Filename')
+
+    # ------------------------------------------------------------------
+    # Contract Form (TAC-TAH template) - every <<placeholder>> of the doc
+    # ------------------------------------------------------------------
+    contract_standard_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_standard_rel', 'order_id', 'standard_id',
+        string='Standard(s)', compute='_compute_contract_standard_ids', store=True, readonly=True,
+        help='Goes into "<<Enter Standard(s)>>" of the contract. Taken from the proposal\'s '
+             'Certification Standard.')
+    contract_address_1 = fields.Char(
+        string='Address 1', compute='_compute_contract_address_1', store=True, readonly=False,
+        help="Filled with the customer's address; editable.")
+    contract_address_2 = fields.Char(string='Address 2')
+    contract_representative = fields.Char(string='Company Representative (Attn)')
+    contract_designation = fields.Char(string='Designation')
+    contract_date = fields.Date(string='Contract Date')
+    contract_ref = fields.Char(string='Ref #')
+
+    # Table: Certification Services Offered / ACCREDITATION (2 rows)
+    contract_service_1_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_service_1_rel', 'order_id', 'standard_id',
+        string='Service 1 - Standard(s)')
+    contract_accreditation_1 = fields.Char(string='Service 1 - Accreditation Body')
+    contract_service_2_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_service_2_rel', 'order_id', 'standard_id',
+        string='Service 2 - Standard(s)')
+    contract_accreditation_2 = fields.Char(string='Service 2 - Accreditation Body')
+
+    # CHARGES table - 4 rows x 3 year columns, all typed in by hand
+    # user's decision (16.11.2026): a standard per contract year, no longer the fee amounts
+    contract_fee_y1_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_fee_y1_rel', 'order_id', 'standard_id',
+        string='Standard(s) - 1st Year')
+    contract_fee_y2_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_fee_y2_rel', 'order_id', 'standard_id',
+        string='Standard(s) - 2nd Year')
+    contract_fee_y3_ids = fields.Many2many(
+        'certification.standard', 'sale_order_contract_fee_y3_rel', 'order_id', 'standard_id',
+        string='Standard(s) - 3rd Year')
+    contract_mandays_y1 = fields.Char(string='# of Man-days - 1st Year')
+    contract_mandays_y2 = fields.Char(string='# of Man-days - 2nd Year')
+    contract_mandays_y3 = fields.Char(string='# of Man-days - 3rd Year')
+    contract_tax_province = fields.Char(string='Sales Tax (Province)@')
+    # Sales Tax and Total Payable of each year: the proposal's Summary of Cost
+    # (Sales Tax and Total of the initial audit, 1st and 2nd surveillance)
+    contract_tax_y1 = fields.Char(string='Sales Tax - 1st Year', compute='_compute_contract_amounts',
+                                  store=True, readonly=True)
+    contract_tax_y2 = fields.Char(string='Sales Tax - 2nd Year', compute='_compute_contract_amounts',
+                                  store=True, readonly=True)
+    contract_tax_y3 = fields.Char(string='Sales Tax - 3rd Year', compute='_compute_contract_amounts',
+                                  store=True, readonly=True)
+    contract_total_y1 = fields.Char(string='Total Payable - 1st Year', compute='_compute_contract_amounts',
+                                    store=True, readonly=True)
+    contract_total_y2 = fields.Char(string='Total Payable - 2nd Year', compute='_compute_contract_amounts',
+                                    store=True, readonly=True)
+    contract_total_y3 = fields.Char(string='Total Payable - 3rd Year', compute='_compute_contract_amounts',
+                                    store=True, readonly=True)
+    # the proposal's Summary of Cost > Total > Initial Audit (fee + sales tax)
+    contract_advance_amount = fields.Char(
+        string='1st Year Initial Audit Amount (Advance)', compute='_compute_contract_amounts',
+        store=True, readonly=True)
+    # PNAC Annexure 1: the four fixed TUV Austria / PNAC accreditation logos, shipped with
+    # the module, the same on every contract
+    pnac_logo_1 = fields.Binary(string='QMS - EN ISO 9001:2015', compute='_compute_pnac_logos')
+    pnac_logo_2 = fields.Binary(string='EMS - EN ISO 14001:2015', compute='_compute_pnac_logos')
+    pnac_logo_3 = fields.Binary(string='OHSMS - ISO 45001:2018', compute='_compute_pnac_logos')
+    pnac_logo_4 = fields.Binary(string='FSMS - ISO 22000:2018', compute='_compute_pnac_logos')
+
+    def _compute_pnac_logos(self):
+        logos = {}
+        for number in range(1, 5):
+            with file_open('tuv_austria_customization/static/src/img/pnac/pnac_logo_%s.png' % number,
+                           'rb') as logo:
+                logos[number] = base64.b64encode(logo.read())
+        for order in self:
+            for number, logo in logos.items():
+                order['pnac_logo_%s' % number] = logo
+
+    def action_view_project_ids(self):
+        self.ensure_one()
+        projects = self.project_ids.filtered('active')
+        if len(projects) == 1:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': projects.name,
+                'res_model': 'project.project',
+                'res_id': projects.id,
+                'view_mode': 'form',
+                'views': [(False, 'form')],
+                'target': 'current',
+            }
+        return super().action_view_project_ids()
+
+    def action_view_task_ids(self):
+        self.ensure_one()
+        tasks = self.tasks_ids
+        action = self.env['ir.actions.actions']._for_xml_id('project.action_view_all_task')
+        if len(tasks) == 1:
+            action['views'] = [(False, 'form')]
+            action['res_id'] = tasks.id
+        else:
+            action['domain'] = [('id', 'in', tasks.ids)]
+        return action
+
+    # ------------------------------------------------------------------
+    # The header buttons that move the order along the document type bar
+    # ------------------------------------------------------------------
+    def action_document_review_form(self):
+        return self._set_document_type('review_form')
+
+    def action_document_offer_application(self):
+        return self._set_document_type('offer_application')
+
+    def action_document_proposal_form(self):
+        if self.filtered(lambda o: o.review_state != 'review_approved'):
+            raise UserError(_('The planning team has to approve the review form before the proposal.'))
+        return self._set_document_type('proposal_form')
+
+    def action_document_contract_form(self):
+        return self._set_document_type('contract_form')
+
+    def action_document_pnac_contract(self):
+        return self._set_document_type('pnac_contract')
+
+    def _set_document_type(self, document_type):
+        # write(), so a contract type still creates the project and ticks the flag
+        self.write({'document_type': document_type})
+        return True
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = super().create(vals_list)
+        orders._handle_contract_document()
+        orders._assign_tuv_sequence()
+        return orders
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'document_type' in vals:
+            self._handle_contract_document()
+            self._assign_tuv_sequence()
+        return res
+
+    def _handle_contract_document(self):
+        """Give the order its project as soon as the contract is handed over.
+
+        Offer Application and Proposal Form are still pre-sales, so they create
+        nothing; only the two contract document types do. Order lines are hidden on
+        the form, so sale_project's own generation (driven by the service products of
+        those lines) never runs and the project is created here, without any task.
+        """
+        # sudo: project_ids is behind the project groups, which sales may not have
+        for order in self.sudo():
+            if order.document_type not in CONTRACT_DOCUMENT_TYPES:
+                continue
+            if not order.contract_completed:
+                order.contract_completed = True
+            # The Confirm button is gone from the header: handing over the contract is
+            # what closes the sale, so the order confirms itself here. Without it the
+            # order would stay a quotation and could never be invoiced.
+            if order.state in ('draft', 'sent'):
+                order.action_confirm()
+            if order.order_line or order.project_ids:
+                continue
+            order._create_order_project()
+            # project_ids is a non stored compute that was just read above, so drop
+            # the now stale cache to keep the Projects smart button in sync.
+            order.invalidate_recordset(['project_ids', 'project_count'])
+
+    def _create_order_project(self):
+        """Create the project an order without any line should still get."""
+        self.ensure_one()
+        values = {
+            'name': '%s - %s' % (self.client_order_ref, self.name) if self.client_order_ref else self.name,
+            'partner_id': self.partner_id.id,
+            'company_id': self.company_id.id,
+            'user_id': self.user_id.id,
+            'reinvoiced_sale_order_id': self.id,
+            'allow_billable': True,
+            'active': True,
+        }
+        # Reuse the shared task stages. Without this, core seeds every freshly created
+        # project with its own To Do / In Progress / Done / Cancelled set, which is what
+        # made the same task show different stages depending on how it was opened.
+        shared_stages = self.env['project.task.type'].sudo().search([('user_id', '=', False)])
+        if shared_stages:
+            values['type_ids'] = [Command.set(shared_stages.ids)]
+        # The project opens in the first stage of the client's own flow (Application
+        # Review); the core stages it ships with are archived here.
+        stage = self.env['project.project.stage'].sudo().search([], order='sequence, id', limit=1)
+        if not stage:
+            stage = self.env.ref('project.project_project_stage_1', raise_if_not_found=False)
+        if stage:
+            values['stage_id'] = stage.id
+        # sudo: the salesperson confirming the order is not necessarily a project user,
+        # and project.stage_id sits behind project.group_project_stages.
+        return self.env['project.project'].sudo().create(values)
+
+    def action_preview_document(self):
+        """Preview Document button of the document tabs: the tab's report as a PDF in a popup
+        over the order (the same document as the gear menu's Print)."""
+        self.ensure_one()
+        document = self.env.context.get('preview_document')
+        if document == 'contract':
+            document = 'contract_pnac' if self.document_type == 'pnac_contract' else 'contract_tac_tah'
+        report = self.env.ref('tuv_austria_customization.action_report_sale_order_%s' % document)
+        pdf, _report_type = self.env['ir.actions.report']._render_qweb_pdf(report, self.ids)
+        title = '%s - %s' % (report.name, self.name)
+        preview = self.env['tuv.sale.document.preview'].create({
+            'order_id': self.id,
+            'name': title,
+            'pdf': base64.b64encode(pdf),
+            'pdf_name': '%s.pdf' % title,
+        })
+        return {
+            'type': 'ir.actions.act_window',
+            'name': title,
+            'res_model': 'tuv.sale.document.preview',
+            'res_id': preview.id,
+            'view_mode': 'form',
+            'views': [(self.env.ref('tuv_austria_customization.tuv_sale_document_preview_view_form').id, 'form')],
+            'target': 'new',
+            'context': {'dialog_size': 'extra-large'},
+        }
+
+    def _add_contract_invoice_line(self):
+        """Give an order with nothing to invoice the line of its contract fee.
+
+        The order lines are hidden on the form, so a contract order has no line and the
+        standard Create Invoice found "no items to invoice". The line is the service of the
+        project's audit (certification / surveillance / re-certification) at the contract
+        fee and tax of that audit year, the same terms as the commercial invoice.
+        """
+        contract_products = self.env['product.product'].search(
+            [('name', 'in', [name for _year, name in AUDIT_INVOICING.values()])])
+        for order in self:
+            if order.state != 'sale':
+                continue
+            # a line typed by hand (not one of the contract services) is invoiced as it is
+            if any(line.qty_to_invoice and line.product_id not in contract_products
+                   for line in order.order_line):
+                continue
+            project = order.sudo().project_ids.filtered(lambda p: p.md_sale_order_id == order)[:1] \
+                or order.sudo().project_ids[:1]
+            if project and project.md_sale_order_id == order:
+                product, fee, _mandays, tax, _tax_amount = project._invoice_terms()
+                audit_type = project.md_audit_type or 'certification'
+            else:
+                audit_type = 'certification'
+                year, product_name = AUDIT_INVOICING[audit_type]
+                product = self.env['product.product'].search([('name', '=', product_name)], limit=1)
+                fee, tax_amount = order._contract_fee_and_tax(year)
+                tax = self.env['project.project']._invoice_tax(
+                    fee, tax_amount, order.contract_tax_province)
+            year, product_name = AUDIT_INVOICING.get(audit_type, AUDIT_INVOICING['certification'])
+            if not product:
+                raise UserError(_('Cannot create the invoice: the service product "%s" is missing.', product_name))
+            if not fee:
+                raise UserError(_('Cannot create the invoice: the fee for %(year)s is empty on %(order)s. '
+                                  'Fill it in the Proposal tab > Summary of Cost > Certification Fee > %(line)s.',
+                                  year=year.upper().replace('Y', 'Year '), order=order.name,
+                                  line=order._fields[order.COST_FIELDS[year][0]].string))
+            existing = order.order_line.filtered(lambda line: line.product_id == product)
+            if existing.filtered('qty_invoiced'):
+                raise UserError(_('%(order)s is already fully invoiced for "%(product)s".',
+                                  order=order.name, product=product.name))
+            if existing:
+                # added by an earlier try and not invoiced yet: bring it to today's fee and tax
+                # (it kept the old price, e.g. 1,500, after the proposal amounts changed)
+                existing.write({'price_unit': fee, 'product_uom_qty': 1,
+                                'tax_ids': [Command.set(tax.ids)]})
+                continue
+            order.order_line = [Command.create({
+                'product_id': product.id, 'product_uom_qty': 1, 'price_unit': fee,
+                'tax_ids': [Command.set(tax.ids)],
+            })]
+
+
+class SaleAdvancePaymentInv(models.TransientModel):
+    _inherit = 'sale.advance.payment.inv'
+
+    def create_invoices(self):
+        # Regular invoice of a contract order: invoice its contract fee
+        if self.advance_payment_method == 'delivered':
+            self.sale_order_ids._add_contract_invoice_line()
+        action = super().create_invoices()
+        # the invoice belongs to the order's audit project, like the commercial invoice
+        # (Sales Tax Invoice, payment tracking and the certificate gate read it there)
+        for order in self.sale_order_ids.sudo():
+            project = order.project_ids.filtered(lambda p: p.md_sale_order_id == order)[:1] or order.project_ids[:1]
+            invoices = order.invoice_ids.filtered(lambda move: not move.tuv_project_id)
+            if project and invoices:
+                invoices.tuv_project_id = project
+                if not project.commercial_invoice_id:
+                    project.commercial_invoice_id = invoices[:1]
+        return action

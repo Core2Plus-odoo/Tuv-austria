@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="privilege_md_calculation" model="res.groups.privilege">
+        <field name="name">MD's Calculation</field>
+        <field name="sequence">51</field>
+    </record>
+
+    <!-- The annexes are the rule book everyone planning or quoting an audit reads
+         (read rights go to base.group_user in ir.model.access.csv); this group is the
+         one that maintains them. -->
+    <record id="group_md_manager" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="privilege_id" ref="privilege_md_calculation"/>
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>

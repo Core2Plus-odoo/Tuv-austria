@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit Execution Acknowledgement by Client, FM 04-10 (revision 01, 05.12.2022):
+         one Letter page, printed from the project's Audit Execution tab. -->
+    <record id="paperformat_audit_execution_ack" model="report.paperformat">
+        <field name="name">TUV Audit Execution Acknowledgement (Letter portrait)</field>
+        <field name="format">Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">36</field>
+        <field name="margin_bottom">16</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_audit_execution_ack" model="ir.actions.report">
+        <field name="name">Audit Execution Acknowledgement</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_execution_ack</field>
+        <field name="report_file">tuv_audit_reports.report_audit_execution_ack</field>
+        <field name="print_report_name">'Audit Execution Acknowledgement - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_execution_ack"/>
+    </record>
+
+    <template id="audit_execution_ack_style">
+        <style>
+            /* Liberation Serif: same metrics as Times New Roman where that font is not installed */
+            .aea, .aea td { font-family: 'Times New Roman', 'Liberation Serif', Times, serif; color: #000; }
+            .aea { width: 100%; border: 1px solid #000; border-collapse: separate; border-spacing: 2px;
+                   font-size: 13px; margin: 0; }
+            .aea td { border: 1px solid #000; padding: 4px 6px; vertical-align: middle; }
+            .aea .bar { background: #C00000; color: #fff; font-weight: bold; font-size: 14px; padding: 2px 6px; }
+            .aea .lbl { background: #D9D9D9; font-weight: bold; }
+            .aea .sub { background: #D9D9D9; font-weight: bold; padding: 1px 6px; }
+            .aea .hint { color: #A6A6A6; text-align: center; }
+            .aea .center { text-align: center; }
+            .aea img.sig { max-height: 40px; max-width: 100%; }
+            .aea-gap { height: 14px; }
+            .aea-intro { font-family: 'Times New Roman', 'Liberation Serif', Times, serif; font-size: 15px; margin: 4px 0 10px 0; }
+        </style>
+    </template>
+
+    <!-- "Sign here" until a signature is drawn. Expects: sig, hint -->
+    <template id="audit_execution_ack_sign">
+        <td t-if="sig" class="center"><img class="sig" t-att-src="image_data_uri(sig)" alt="Signature"/></td>
+        <td t-else="" class="hint" t-out="hint or 'Sign here'"/>
+    </template>
+
+    <template id="report_audit_execution_ack">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="box" t-value="lambda v: '☒' if v else '☐'"/>
+                <t t-set="fmt" t-value="lambda d: d.strftime('%d.%m.%Y') if d else ''"/>
+                <div class="header">
+                    <t t-call="tuv_audit_reports.audit_execution_ack_style"/>
+                    <table class="aea">
+                        <tr>
+                            <td class="center" style="font-size: 18px; font-weight: bold; height: 44px;">AUDIT EXECUTION ACKNOWLEDGEMENT</td>
+                            <td rowspan="2" class="center" style="width: 24%; padding: 2px;">
+                                <img t-att-src="o._aea_logo_data_uri()" style="max-height: 72px; max-width: 100%;" alt="TUV Austria"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="center" style="font-size: 18px; font-weight: bold; height: 40px;">BY CLIENT</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_execution_ack_style"/>
+                    <div class="aea-intro">It is hereby confirmed that Management System Certification Audit of our
+                        organization has been conducted as details mentioned hereunder:</div>
+
+                    <!-- 1. and 2. -->
+                    <table class="aea">
+                        <colgroup>
+                            <col style="width: 14%;"/><col style="width: 15%;"/><col style="width: 10%;"/>
+                            <col style="width: 9%;"/><col style="width: 19%;"/><col style="width: 7%;"/><col/>
+                        </colgroup>
+                        <tr><td colspan="7" class="bar">1.  Company Information</td></tr>
+                        <tr>
+                            <td colspan="2" class="lbl">Company name</td>
+                            <td colspan="5" t-out="o.ap_partner_id.name or ''"/>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="lbl">Address</td>
+                            <td colspan="5" t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/>
+                        </tr>
+                        <tr><td colspan="7" class="bar">2. Audit Information</td></tr>
+                        <tr>
+                            <td rowspan="2" class="lbl">Audit type:</td>
+                            <td rowspan="2" style="font-size: 12px; line-height: 1.35;">
+                                <b>Initial</b> <t t-out="box(o.aea_audit_type == 'initial')"/><br/>
+                                <b>Surveillance</b> <t t-out="box(o.aea_audit_type == 'surveillance')"/><br/>
+                                <b>Recertification</b> <t t-out="box(o.aea_audit_type == 'recertification')"/>
+                            </td>
+                            <td rowspan="2" colspan="2" class="lbl">Audit date(s)</td>
+                            <td colspan="2"><b>Stage 1:</b> <t t-out="fmt(o.aea_date_stage1)"/></td>
+                            <td><b>Stage 2:</b> <t t-out="fmt(o.aea_date_stage2)"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Surveillance:</b> <t t-out="fmt(o.aea_date_surveillance)"/></td>
+                            <td><b>Recertification:</b> <t t-out="fmt(o.aea_date_recert)"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">EAC<br/>Scope:</td>
+                            <td colspan="2" t-out="o.aea_eac_scope or ''"/>
+                            <td colspan="2" class="lbl">Audit duration</td>
+                            <td colspan="2" t-out="o.aea_audit_duration or ''"/>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="lbl">Audited<br/>Standard(s)</td>
+                            <td colspan="2" class="sub">Standard 1:</td>
+                            <td colspan="2" class="sub">Standard 2:</td>
+                            <td colspan="1" class="sub" style="white-space: nowrap;">Standard 3:</td>
+                            <td class="sub">Standard 4 (further):</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 22px;" t-out="o.aea_standard_1 or ''"/>
+                            <td colspan="2" t-out="o.aea_standard_2 or ''"/>
+                            <td t-out="o.aea_standard_3 or ''"/>
+                            <td t-out="o.aea_standard_4 or ''"/>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="sub">Lead Auditor</td>
+                            <td colspan="2" class="sub">Technical expert</td>
+                            <td colspan="2" class="sub">Co-Auditor</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="height: 22px;" t-out="o.aea_lead_auditor_id.name or ''"/>
+                            <td colspan="2" t-out="o.aea_technical_expert_id.name or ''"/>
+                            <td colspan="2" t-out="o.aea_co_auditor_id.name or ''"/>
+                        </tr>
+                    </table>
+                    <div class="aea-gap"/>
+
+                    <!-- 3. Signatures -->
+                    <table class="aea">
+                        <colgroup><col style="width: 22%;"/><col style="width: 28%;"/><col style="width: 20%;"/><col/></colgroup>
+                        <tr><td colspan="4" class="bar">3. Signatures</td></tr>
+                        <tr style="height: 46px;">
+                            <td class="lbl">Lead Auditor</td>
+                            <t t-call="tuv_audit_reports.audit_execution_ack_sign">
+                                <t t-set="sig" t-value="o.aea_lead_auditor_signature"/>
+                            </t>
+                            <td class="lbl">Co-Auditor(s)</td>
+                            <t t-call="tuv_audit_reports.audit_execution_ack_sign">
+                                <t t-set="sig" t-value="o.aea_co_auditor_signature"/>
+                            </t>
+                        </tr>
+                        <tr style="height: 46px;">
+                            <td class="lbl">Company representative (Name &amp; Designation)</td>
+                            <td t-out="o.aea_company_representative or ''"/>
+                            <td class="lbl">Sign &amp; Stamp by Company:</td>
+                            <t t-call="tuv_audit_reports.audit_execution_ack_sign">
+                                <t t-set="sig" t-value="o.aea_company_stamp"/>
+                                <t t-set="hint" t-value="'Sign &amp; stamp here'"/>
+                            </t>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td class="lbl">Place &amp; Date</td>
+                            <td colspan="3">
+                                <t t-out="o.aea_place or ''"/><t t-if="o.aea_place and o.aea_date">, </t><t t-out="fmt(o.aea_date)"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="aea-gap"/>
+
+                    <!-- 4. For official use -->
+                    <table class="aea">
+                        <colgroup><col style="width: 22%;"/><col style="width: 28%;"/><col style="width: 20%;"/><col/></colgroup>
+                        <tr><td colspan="4" class="bar">4. FOR OFFICIAL USE<br/>
+                            <span style="font-size: 13px;">To be fille by TUV AUSTRIA Bureau of inspection &amp; certification (Pvt.) Ltd.</span></td></tr>
+                        <tr style="height: 60px;">
+                            <td class="lbl">Payment Status</td>
+                            <td style="line-height: 1.8;">
+                                <b>Received</b> <t t-out="box(o.aea_payment_status == 'received')"/>
+                                &#160;&#160;<b>Not Received</b> <t t-out="box(o.aea_payment_status == 'not_received')"/><br/>
+                                <b>Partial Payment</b> &#160;&#160;<t t-out="box(o.aea_payment_status == 'partial')"/>
+                            </td>
+                            <td class="lbl">Date of reciept <t t-out="fmt(o.aea_payment_date)"/></td>
+                            <t t-call="tuv_audit_reports.audit_execution_ack_sign">
+                                <t t-set="sig" t-value="o.aea_payment_signature"/>
+                                <t t-set="hint" t-value="False"/>
+                            </t>
+                        </tr>
+                        <tr style="height: 36px;">
+                            <td class="lbl">Sales Tax Invoice</td>
+                            <td><b>Yes</b> <t t-out="box(o.aea_sales_tax_invoice == 'yes')"/>
+                                &#160;&#160;&#160;&#160;<b>NO</b> <t t-out="box(o.aea_sales_tax_invoice == 'no')"/></td>
+                            <td class="lbl">Issue date <t t-out="fmt(o.aea_sales_tax_invoice_date)"/></td>
+                            <t t-call="tuv_audit_reports.audit_execution_ack_sign">
+                                <t t-set="sig" t-value="o.aea_sales_tax_invoice_signature"/>
+                            </t>
+                        </tr>
+                        <tr style="height: 36px;">
+                            <td class="lbl">Audit File Received from Auditor</td>
+                            <td><b>Yes</b> <t t-out="box(o.aea_file_received == 'yes')"/>
+                                &#160;&#160;&#160;&#160;<b>NO</b> <t t-out="box(o.aea_file_received == 'no')"/></td>
+                            <td class="lbl">Date of reciept <t t-out="fmt(o.aea_file_date)"/></td>
+                            <t t-call="tuv_audit_reports.audit_execution_ack_sign">
+                                <t t-set="sig" t-value="o.aea_file_signature"/>
+                            </t>
+                        </tr>
+                    </table>
+                    <div class="aea-intro" style="color: #C00000; font-weight: bold; text-align: center; margin-top: 14px; font-size: 14px;">
+                        <u>NOTE:</u> This acknowledgment form, which is duly filled, signed &amp; stamped, shall be sent by
+                        the <u>CLIENT</u> upon completion of audit activity by email or fax. e:
+                        <span style="color: #0563C1;"><u>controller.ba@tuvat.com.pk</u></span> || f: +92-(42)-35872179-80
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.audit_execution_ack_style"/>
+                    <table class="aea" style="font-family: Arial, sans-serif; font-size: 11px;">
+                        <tr>
+                            <td class="center" style="width: 30%; font-family: Arial, sans-serif;">FM 04-10</td>
+                            <td class="center" style="width: 24%; font-family: Arial, sans-serif;">Revision: 01</td>
+                            <td class="center" style="width: 24%; font-family: Arial, sans-serif;">05.12.2022</td>
+                            <td class="center" style="font-family: Arial, sans-serif;">Page <b class="page"/> of <b class="topage"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

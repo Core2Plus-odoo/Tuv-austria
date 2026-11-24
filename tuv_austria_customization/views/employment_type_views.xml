@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employment_type_list" model="ir.ui.view">
+        <field name="name">employment.type.list</field>
+        <field name="model">employment.type</field>
+        <field name="arch" type="xml">
+            <list string="Employment Type" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_employment_type" model="ir.actions.act_window">
+        <field name="name">Employment Type</field>
+        <field name="res_model">employment.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_employment_type"
+        action="action_employment_type"
+        name="Employment Type"
+        parent="contacts.res_partner_menu_config"
+        sequence="7"/>
+
+</odoo>

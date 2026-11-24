@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_certificate_notice_list" model="ir.ui.view">
+        <field name="name">tuv.certificate.notice.list</field>
+        <field name="model">tuv.certificate.notice</field>
+        <field name="arch" type="xml">
+            <list string="Suspension &amp; Withdrawal" create="0" edit="0"
+                decoration-danger="notice_type == 'withdrawal'" decoration-warning="state == 'awaiting'"
+                decoration-muted="state in ('lifted', 'escalated')">
+                <field name="name"/>
+                <field name="notice_type" widget="badge" decoration-warning="notice_type == 'suspension'"
+                    decoration-danger="notice_type == 'withdrawal'"/>
+                <field name="certificate_number"/>
+                <field name="partner_id"/>
+                <field name="standards" optional="show"/>
+                <field name="missed_due_date"/>
+                <field name="notice_date"/>
+                <field name="grace_end"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_certificate_notice_form" model="ir.ui.view">
+        <field name="name">tuv.certificate.notice.form</field>
+        <field name="model">tuv.certificate.notice</field>
+        <field name="arch" type="xml">
+            <form string="Notice" create="0">
+                <header>
+                    <button name="action_record_response" type="object" string="Record Client Response"
+                        class="btn-primary" invisible="notice_type != 'suspension' or state != 'awaiting'"
+                        groups="tuv_austria_customization.group_planning_team,tuv_austria_customization.group_certification_manager,base.group_system"/>
+                    <button name="action_lift_suspension" type="object" string="Lift Suspension"
+                        invisible="notice_type != 'suspension' or state not in ('awaiting', 'responded')"
+                        groups="tuv_austria_customization.group_planning_team,tuv_austria_customization.group_certification_manager,base.group_system"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Withdrawn" bg_color="text-bg-danger" invisible="notice_type != 'withdrawal'"/>
+                    <widget name="web_ribbon" title="Suspended" bg_color="text-bg-warning"
+                        invisible="notice_type != 'suspension' or state not in ('awaiting', 'responded')"/>
+                    <div class="oe_title"><h1><field name="name"/></h1><field name="notice_type"/></div>
+                    <group>
+                        <group string="Certificate">
+                            <field name="certificate_id"/>
+                            <field name="certificate_number"/>
+                            <field name="partner_id"/>
+                            <field name="standards"/>
+                            <field name="register_id"/>
+                        </group>
+                        <group string="Timeline">
+                            <field name="missed_due_date"/>
+                            <field name="notice_date"/>
+                            <field name="grace_end" invisible="notice_type != 'suspension'"/>
+                            <field name="suspension_id" invisible="not suspension_id"/>
+                            <field name="sent_to"/>
+                        </group>
+                        <group string="Client Response" invisible="notice_type != 'suspension'">
+                            <field name="response_note" readonly="state != 'awaiting'"/>
+                            <field name="planned_audit_date" readonly="state != 'awaiting'"/>
+                            <field name="response_date"/>
+                        </group>
+                        <group string="Lifting" invisible="notice_type != 'suspension'">
+                            <field name="lift_note" readonly="state not in ('awaiting', 'responded')"/>
+                            <field name="lifted_on"/>
+                            <field name="lifted_by"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tuv_certificate_notice_search" model="ir.ui.view">
+        <field name="name">tuv.certificate.notice.search</field>
+        <field name="model">tuv.certificate.notice</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="certificate_number"/>
+                <field name="partner_id"/>
+                <filter name="suspensions" string="Suspensions" domain="[('notice_type', '=', 'suspension')]"/>
+                <filter name="withdrawals" string="Withdrawals" domain="[('notice_type', '=', 'withdrawal')]"/>
+                <filter name="awaiting" string="Awaiting Response" domain="[('state', '=', 'awaiting')]"/>
+                <group>
+                    <filter name="group_type" string="Type" context="{'group_by': 'notice_type'}"/>
+                    <filter name="group_month" string="Month" context="{'group_by': 'notice_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tuv_certificate_notice" model="ir.actions.act_window">
+        <field name="name">Suspension &amp; Withdrawal</field>
+        <field name="res_model">tuv.certificate.notice</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No suspension or withdrawal</p>
+            <p>Generated automatically: suspension when a surveillance audit is 3 months overdue,
+               withdrawal when the client does not respond within the grace period.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_certificate_notice" action="action_tuv_certificate_notice"
+        name="Suspension &amp; Withdrawal" parent="project.menu_main_pm" sequence="23"/>
+
+    <!-- Management review report -->
+    <record id="view_tuv_management_review_form" model="ir.ui.view">
+        <field name="name">tuv.management.review.form</field>
+        <field name="model">tuv.management.review</field>
+        <field name="arch" type="xml">
+            <form string="Management Review Report">
+                <p>Continuous improvement data of the period - certification, client feedback,
+                   corrective and improvement actions, nonconformities, audit process and auditor
+                   performance - for the BA Division management review and accreditation reporting.</p>
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="action_print" type="object" string="Print Report" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tuv_management_review" model="ir.actions.act_window">
+        <field name="name">Management Review Report</field>
+        <field name="res_model">tuv.management.review</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_tuv_management_review" action="action_tuv_management_review"
+        name="Management Review Report" parent="project.menu_main_pm" sequence="24"
+        groups="tuv_austria_customization.group_planning_team,tuv_austria_customization.group_certification_manager,base.group_system"/>
+
+    <!-- Certificate: its certification status and notices -->
+    <record id="view_tuv_certificate_form_notice" model="ir.ui.view">
+        <field name="name">tuv.certificate.form.notice</field>
+        <field name="model">tuv.certificate</field>
+        <field name="inherit_id" ref="tuv_austria_customization.view_tuv_certificate_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="inside">
+                <field name="certification_status" widget="badge" invisible="state not in ('approved', 'printed', 'dispatched')"
+                    decoration-success="certification_status == 'active'"
+                    decoration-warning="certification_status == 'suspended'"
+                    decoration-danger="certification_status == 'withdrawn'"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <separator string="Suspension &amp; Withdrawal" invisible="not notice_ids"/>
+                <field name="notice_ids" readonly="1" invisible="not notice_ids">
+                    <list>
+                        <field name="name"/>
+                        <field name="notice_type"/>
+                        <field name="notice_date"/>
+                        <field name="grace_end"/>
+                        <field name="state"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_company_form_withdrawal_grace_tuv" model="ir.ui.view">
+        <field name="name">res.company.form.withdrawal.grace.custom.operations</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="tuv_austria_customization.view_company_form_ba_team_tuv"/>
+        <field name="arch" type="xml">
+            <field name="ba_team_phone" position="after">
+                <field name="withdrawal_grace_days"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

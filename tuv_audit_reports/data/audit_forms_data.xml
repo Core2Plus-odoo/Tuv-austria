@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Predefined forms and Reports cards of the remaining audit forms (participation list,
+         expert report, certificate text, audit report, ISMS checklist, letters).
+         noupdate: what the users filled in on the predefined forms is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="audit_report_form" model="tuv.audit.plan"><field name="name">Audit Report</field></record>
+        <record id="participation_list_form" model="tuv.audit.plan"><field name="name">Participation List</field></record>
+        <record id="expert_report_form" model="tuv.audit.plan"><field name="name">Expert Report</field></record>
+        <record id="certificate_text_form" model="tuv.audit.plan"><field name="name">Certificate Text</field></record>
+        <record id="letter_surveillance_form" model="tuv.audit.plan"><field name="name">Surveillance Audit Letter</field></record>
+        <record id="letter_suspension_form" model="tuv.audit.plan"><field name="name">Suspension of Certificate Validity</field></record>
+        <record id="letter_withdrawal_form" model="tuv.audit.plan"><field name="name">Withdrawal of Certificate Validity</field></record>
+    </data>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('letter_surveillance_form')]"/>
+        <value eval="{'audit_report_key': 'letter_surveillance', 'audit_report_uses_info': False, 'form_subtitle': 'Certification', 'form_reference': 'FM-BA-ZET-MS-All-016-SRVL-EN | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('letter_suspension_form')]"/>
+        <value eval="{'audit_report_key': 'letter_suspension', 'audit_report_uses_info': False, 'form_subtitle': 'Certification', 'form_reference': 'FM-BA-ZET-MS-All-016-SUSPL-EN | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('letter_withdrawal_form')]"/>
+        <value eval="{'audit_report_key': 'letter_withdrawal', 'audit_report_uses_info': False, 'form_subtitle': 'Certification', 'form_reference': 'FM-BA-ZET-MS-All-016-WDRL-EN | Revision: 00'}"/>
+    </function>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('certificate_text_form')]"/>
+        <value eval="{'audit_report_key': 'certificate_text', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-038_Certificate-Text-EN | Revision: 02/17.10.2024'}"/>
+    </function>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('audit_report_form')]"/>
+        <value eval="{'audit_report_key': 'audit_report', 'form_subtitle': 'Management systems certification', 'form_reference': 'FM-TAGMBH-MSZ-003_Audit-Report-EN | Revision: 12/22.01.2026'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_report_rows">
+        <value eval="[ref('audit_report_form')]"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('participation_list_form')]"/>
+        <value eval="{'audit_report_key': 'participation_list', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-005_Participation-List-EN | Revision: 03/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('expert_report_form')]"/>
+        <value eval="{'audit_report_key': 'expert_report', 'form_subtitle': 'Certification of Managementsystems', 'form_reference': 'FM-TAGMBH-MSZ-004_Expert-Report-EN | Revision: 05/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_expert_requirements">
+        <value eval="[ref('expert_report_form')]"/>
+    </function>
+
+    <record id="audit_report_audit_report" model="tuv.audit.report">
+        <field name="name">Audit Report</field>
+        <field name="sequence">30</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">FM-TAGMBH-MSZ-003</field>
+        <field name="revision">12/22.01.2026</field>
+        <field name="document_name">FM-TAGMBH-MSZ-003_Audit-Report-IMS-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.audit_report_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_report_form</field>
+        <field name="report_key">audit_report</field>
+    </record>
+
+    <record id="audit_report_participation_list" model="tuv.audit.report">
+        <field name="name">Participation List</field>
+        <field name="sequence">40</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-005</field>
+        <field name="revision">03/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-005_Participation-List-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.participation_list_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_participation</field>
+        <field name="report_key">participation_list</field>
+    </record>
+
+    <record id="audit_report_expert_report" model="tuv.audit.report">
+        <field name="name">Expert Report</field>
+        <field name="sequence">50</field>
+        <field name="subtitle">Certification of Managementsystems</field>
+        <field name="code">FM-TAGMBH-MSZ-004</field>
+        <field name="revision">05/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-004_Expert-Report-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.expert_report_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_expert</field>
+        <field name="report_key">expert_report</field>
+    </record>
+
+    <record id="audit_report_certificate_text" model="tuv.audit.report">
+        <field name="name">Certificate Text</field>
+        <field name="sequence">60</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-038</field>
+        <field name="revision">02/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-038_Certificate-Text-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.certificate_text_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_certificate_text</field>
+        <field name="report_key">certificate_text</field>
+    </record>
+
+    <record id="audit_report_letter_surveillance" model="tuv.audit.report">
+        <field name="name">Surveillance Audit Letter</field>
+        <field name="sequence">200</field>
+        <field name="subtitle">Certification</field>
+        <field name="code">FM-BA-ZET-MS-All-016-SRVL</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-016-SRVL-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.letter_surveillance_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_letter_surveillance</field>
+        <field name="report_key">letter_surveillance</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_letter_suspension" model="tuv.audit.report">
+        <field name="name">Suspension of Certificate Validity</field>
+        <field name="sequence">210</field>
+        <field name="subtitle">Certification</field>
+        <field name="code">FM-BA-ZET-MS-All-016-SUSPL</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-016-SUSPL-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.letter_suspension_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_letter_suspension</field>
+        <field name="report_key">letter_suspension</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+    <record id="audit_report_letter_withdrawal" model="tuv.audit.report">
+        <field name="name">Withdrawal of Certificate Validity</field>
+        <field name="sequence">220</field>
+        <field name="subtitle">Certification</field>
+        <field name="code">FM-BA-ZET-MS-All-016-WDRL</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-016-WDRL-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.letter_withdrawal_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_letter_withdrawal</field>
+        <field name="report_key">letter_withdrawal</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+
+</odoo>

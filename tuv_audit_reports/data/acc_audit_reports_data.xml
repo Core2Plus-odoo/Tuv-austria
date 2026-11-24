@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Predefined forms and Reports cards of the audit reports of ESYD, PNAC and SAAC.
+         noupdate: what the users filled in on the predefined forms is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="esyd_audit_report_form" model="tuv.audit.plan"><field name="name">ESYD Audit Report</field></record>
+        <record id="pnac_audit_report_form" model="tuv.audit.plan"><field name="name">PNAC Audit Report</field></record>
+        <record id="saac_audit_report_form" model="tuv.audit.plan"><field name="name">SAAC Audit Report IMS</field></record>
+    </data>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('esyd_audit_report_form')]"/>
+        <value eval="{'audit_report_key': 'esyd_audit_report', 'audit_report_uses_info': True, 'form_subtitle': 'Management Systems Certification', 'form_reference': 'FM-BA-ZET-MS-All-008-AR-EN | Revision: 02_15.02.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_acc_report_rows">
+        <value eval="[ref('esyd_audit_report_form')]"/>
+        <value>esyd</value>
+    </function>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('pnac_audit_report_form')]"/>
+        <value eval="{'audit_report_key': 'pnac_audit_report', 'audit_report_uses_info': True, 'form_subtitle': 'Management systems certification', 'form_reference': 'TUV/BA/FM/04-4 | Rev 00, Issue 01, Dated 31/07/2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_acc_report_rows">
+        <value eval="[ref('pnac_audit_report_form')]"/>
+        <value>pnac</value>
+    </function>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('saac_audit_report_form')]"/>
+        <value eval="{'audit_report_key': 'saac_audit_report', 'audit_report_uses_info': True, 'form_subtitle': 'Management systems certification', 'form_reference': 'FM-BA-ZET-MS-All-010-AR-Audit report_IMS | Revision: 08/30.07.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_acc_report_rows">
+        <value eval="[ref('saac_audit_report_form')]"/>
+        <value>saac</value>
+    </function>
+
+    <record id="audit_report_esyd_audit_report" model="tuv.audit.report">
+        <field name="name">Audit Report</field>
+        <field name="sequence">400</field>
+        <field name="accreditation">esyd</field>
+        <field name="subtitle">Management Systems Certification</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AR</field>
+        <field name="revision">02_15.02.2024</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AR-EN_rev02.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.esyd_audit_report_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_esyd_audit_report</field>
+        <field name="report_key">esyd_audit_report</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+    <record id="audit_report_pnac_audit_report" model="tuv.audit.report">
+        <field name="name">Audit Report</field>
+        <field name="sequence">410</field>
+        <field name="accreditation">pnac</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">TUV/BA/FM/04-4</field>
+        <field name="revision">Rev 00, Issue 01, 31/07/2025</field>
+        <field name="document_name">2. Audit Report.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.pnac_audit_report_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_pnac_audit_report</field>
+        <field name="report_key">pnac_audit_report</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+    <record id="audit_report_saac_audit_report" model="tuv.audit.report">
+        <field name="name">Audit Report IMS</field>
+        <field name="sequence">420</field>
+        <field name="accreditation">saac</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">FM-BA-ZET-MS-All-010a-AR</field>
+        <field name="revision">08/30.07.2024</field>
+        <field name="document_name">ENG-Form 'FM-BA-ZET-MS-All-010a-AR-Audit_report_IMS_EN' [English].docx</field>
+        <field name="record_xmlid">tuv_audit_reports.saac_audit_report_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_saac_audit_report</field>
+        <field name="report_key">saac_audit_report</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+</odoo>

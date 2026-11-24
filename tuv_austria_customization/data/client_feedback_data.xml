@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_tuv_client_feedback" model="ir.sequence">
+            <field name="name">TUV Client Feedback</field>
+            <field name="code">tuv.client.feedback</field>
+            <field name="prefix">FB/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="mail_template_client_feedback" model="mail.template">
+            <field name="name">TUV: Client Feedback Request</field>
+            <field name="model_id" ref="model_tuv_client_feedback"/>
+            <field name="subject">{{ object.project_id.company_id.name }} - How was your audit?</field>
+            <field name="email_from">{{ (object.project_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent automatically when the audit is closed</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        Your <b t-out="object.standards or ''">ISO 9001:2015</b> audit is now closed. We would value
+        your opinion on the auditor's professionalism, the audit quality, the clarity of the
+        report and our service overall - it takes about one minute.
+    </p>
+    <p style="text-align: center; margin: 24px 0;">
+        <a t-att-href="object.feedback_url"
+            style="background-color: #b81d1d; color: #ffffff; padding: 10px 26px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+            Give Feedback
+        </a>
+    </p>
+    <p>Thank you,<br/><t t-out="object.project_id.company_id.name or ''">TUV Austria</t></p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>

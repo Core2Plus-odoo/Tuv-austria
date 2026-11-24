@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Participation list, form FM-TAGMBH-MSZ-005 (revision 03/17.10.2024).
+         Page 1: sections 1 and 2; then the list (26 rows, filled ones first), header repeated. -->
+    <record id="action_report_audit_participation" model="ir.actions.report">
+        <field name="name">Participation List</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_participation</field>
+        <field name="report_file">tuv_audit_reports.report_audit_participation</field>
+        <field name="print_report_name">'Participation List - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <template id="report_audit_participation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Participation list'"/>
+                <t t-set="form_subtitle" t-value="'Certification of Management Systems'"/>
+                <t t-set="form_code" t-value="'FM-TAGMBH-MSZ-005_Participation-List-EN'"/>
+                <t t-set="form_revision" t-value="'03/17.10.2024'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+                <t t-set="no_total" t-value="True"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>.tap thead { display: table-header-group; }</style>
+
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="show_email" t-value="False"/>
+                        <t t-set="duration_label" t-value="'acc. plan'"/>
+                    </t>
+
+                    <div style="page-break-before: always;"/>
+                    <table class="tap">
+                        <thead>
+                            <tr>
+                                <td class="lbl center" style="width: 20%; height: 40px;">Name</td>
+                                <td class="lbl center" style="width: 20%;">Company</td>
+                                <td class="lbl center" style="width: 20%;">Function / Department</td>
+                                <td class="lbl center" style="width: 15%;">Participation at the closing meeting</td>
+                                <td class="lbl center">Signature</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o._pl_rows()" t-as="row" style="height: 34px;">
+                                <td t-out="row and row.name or ''"/>
+                                <td t-out="row and row.company or ''"/>
+                                <td t-out="row and row.function or ''"/>
+                                <td class="center">
+                                    <span t-out="'☒' if row and row.closing_meeting == 'yes' else '☐'"/> Yes
+                                    &#160;&#160;
+                                    <span t-out="'☒' if row and row.closing_meeting == 'no' else '☐'"/> No
+                                </td>
+                                <td class="center">
+                                    <img t-if="row and row.signature" t-att-src="image_data_uri(row.signature)"
+                                        style="max-height: 28px;" alt="Signature"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

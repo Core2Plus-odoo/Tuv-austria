@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit checklist ISO/IEC 27001:2022, form FM-TAGMBH-MSZ-023 (an Excel sheet; revision
+         Rev.01/17.10.2024, footer "Seite x von y"). Printed like the sheet's print area:
+         columns Sel. to Audit Notes, chapter rows grey, the rate coloured. -->
+    <record id="paperformat_tuv_sheet" model="report.paperformat">
+        <field name="name">TUV Checklist Sheet (A4 landscape)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">24</field>
+        <field name="margin_bottom">16</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">18</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_audit_checklist_isms" model="ir.actions.report">
+        <field name="name">Audit Checklist ISO 27001</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_checklist_isms</field>
+        <field name="report_file">tuv_audit_reports.report_audit_checklist_isms</field>
+        <field name="print_report_name">'Audit Checklist ISO 27001 - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_sheet"/>
+    </record>
+
+    <template id="report_audit_checklist_isms">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="meta" t-value="o._ic_meta()"/>
+                <div class="header">
+                    <div style="font-family: Arial, Helvetica, sans-serif; color: #000; font-size: 10px; text-align: right;">
+                        <t t-out="meta['code']"/><br/><t t-out="meta['revision']"/>
+                    </div>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <style>
+                        .ic { font-family: Arial, Helvetica, sans-serif; color: #000; }
+                        .ic h2 { font-size: 17px; font-weight: bold; margin: 0; }
+                        .ic .sub { font-size: 11px; margin-bottom: 6px; }
+                        .ic table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 10px; }
+                        .ic thead { display: table-header-group; }
+                        .ic td, .ic th { border: 1px solid #808080; padding: 2px 3px; vertical-align: top; word-wrap: break-word; }
+                        .ic th { background: #BFBFBF; font-weight: bold; text-align: left; }
+                        .ic tr { page-break-inside: avoid; }
+                        .ic tr.chap td { background: #A6A6A6; font-weight: bold; }
+                        .ic td.rate { text-align: center; vertical-align: middle; font-weight: bold; }
+                        .ic td.r-FC { background: #00B050; }
+                        .ic td.r-IM { background: #FFFF00; }
+                        .ic td.r-PC { background: #FFC000; }
+                        .ic td.r-NC { background: #FF0000; }
+                    </style>
+                    <div class="ic">
+                        <h2 t-out="meta['title']"/>
+                        <div class="sub" t-out="meta['template']"/>
+                        <table>
+                            <colgroup>
+                                <col style="width: 5%;"/><col style="width: 5%;"/><col style="width: 30%;"/>
+                                <col style="width: 3.5%;"/><col style="width: 15%;"/><col style="width: 14.5%;"/>
+                                <col style="width: 14%;"/><col style="width: 13%;"/>
+                            </colgroup>
+                            <thead>
+                                <tr><th>Sel.</th><th>Ref.</th><th>Requirement / Control</th><th>Rate</th>
+                                    <th>Evidence</th><th>Findings</th><th>Comments</th><th>Audit Notes</th></tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.ic_line_ids" t-as="line">
+                                    <tr t-if="line.is_chapter" class="chap">
+                                        <td t-out="line.sel"/><td t-out="line.ref"/>
+                                        <td colspan="6" t-out="line.requirement"/>
+                                    </tr>
+                                    <tr t-else="">
+                                        <td><t t-foreach="(line.sel or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                        <td><t t-foreach="(line.ref or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                        <td><t t-foreach="(line.requirement or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                        <td t-att-class="'rate r-%s' % (line.rate or '')" t-out="line.rate or ''"/>
+                                        <td><t t-foreach="(line.evidence or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                        <td><t t-foreach="(line.findings or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                        <td><t t-foreach="(line.comments or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                        <td><t t-foreach="(line.audit_notes or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div style="font-family: Arial, Helvetica, sans-serif; color: #000; font-size: 10px; text-align: center;">
+                        Seite <span class="page"/> von <span class="topage"/><br/>
+                        <t t-out="meta['code']"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_sales_tax_invoice_list" model="ir.ui.view">
+        <field name="name">tuv.sales.tax.invoice.list</field>
+        <field name="model">tuv.sales.tax.invoice</field>
+        <field name="arch" type="xml">
+            <list string="Sales Tax Invoices" create="0"
+                decoration-danger="is_overdue" decoration-muted="state == 'cancelled'">
+                <field name="is_overdue" column_invisible="1"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="project_id" optional="show"/>
+                <field name="commercial_invoice_id"/>
+                <field name="tax_name" optional="show"/>
+                <field name="amount_untaxed" sum="Total" optional="show"/>
+                <field name="amount_tax" sum="Sales Tax"/>
+                <field name="amount_total" sum="Total" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="due_on"/>
+                <field name="issued_on" optional="show"/>
+                <field name="issued_on_time" optional="show"/>
+                <field name="tax_period" optional="show"/>
+                <field name="state" widget="badge"
+                    decoration-warning="state == 'draft'" decoration-success="state == 'issued'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tuv_sales_tax_invoice_form" model="ir.ui.view">
+        <field name="name">tuv.sales.tax.invoice.form</field>
+        <field name="model">tuv.sales.tax.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Sales Tax Invoice" create="0">
+                <header>
+                    <button name="action_issue" type="object" string="Issue Sales Tax Invoice"
+                        class="btn-primary" invisible="state != 'draft'"
+                        groups="tuv_austria_customization.group_tax_manager,base.group_system"/>
+                    <button name="action_send_to_client" type="object" string="Send to Client"
+                        invisible="state != 'issued'"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                        invisible="state == 'cancelled'"
+                        groups="tuv_austria_customization.group_tax_manager,base.group_system"
+                        confirm="Cancel this Sales Tax Invoice?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,issued"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Overdue" bg_color="text-bg-danger" invisible="not is_overdue"/>
+                    <widget name="web_ribbon" title="Issued" bg_color="text-bg-success" invisible="state != 'issued'"/>
+                    <field name="is_overdue" invisible="1"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Commercial Invoice">
+                            <field name="commercial_invoice_id"/>
+                            <field name="invoice_date"/>
+                            <field name="project_id"/>
+                            <field name="description"/>
+                        </group>
+                        <group string="48-Hour Deadline">
+                            <field name="due_on"/>
+                            <field name="issued_on"/>
+                            <field name="issued_by"/>
+                            <field name="issued_on_time" invisible="state != 'issued'"/>
+                            <field name="tax_period"/>
+                            <field name="sent_to_client" invisible="state != 'issued'"/>
+                        </group>
+                        <group string="Supplier">
+                            <field name="company_id"/>
+                            <field name="supplier_ntn"/>
+                            <field name="supplier_strn"/>
+                        </group>
+                        <group string="Buyer">
+                            <field name="partner_id"/>
+                            <field name="buyer_ntn"/>
+                            <field name="buyer_cnic"/>
+                            <field name="buyer_strn" readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Amounts">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount_untaxed"/>
+                            <field name="tax_name"/>
+                            <field name="tax_rate"/>
+                            <field name="amount_tax"/>
+                            <field name="amount_total"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes" nolabel="1" colspan="2"
+                                placeholder="Coordination notes of the Finance / Tax Manager"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tuv_sales_tax_invoice_search" model="ir.ui.view">
+        <field name="name">tuv.sales.tax.invoice.search</field>
+        <field name="model">tuv.sales.tax.invoice</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="commercial_invoice_id"/>
+                <field name="project_id"/>
+                <filter name="to_issue" string="To Issue" domain="[('state', '=', 'draft')]"/>
+                <filter name="overdue" string="Overdue (past 48h)" domain="[('is_overdue', '=', True)]"/>
+                <filter name="issued" string="Issued" domain="[('state', '=', 'issued')]"/>
+                <filter name="late" string="Issued Late" domain="[('state', '=', 'issued'), ('issued_on_time', '=', False)]"/>
+                <group>
+                    <filter name="group_period" string="Tax Period" context="{'group_by': 'tax_period'}"/>
+                    <filter name="group_tax" string="Sales Tax" context="{'group_by': 'tax_name'}"/>
+                    <filter name="group_partner" string="Buyer" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tuv_sales_tax_invoice" model="ir.actions.act_window">
+        <field name="name">Sales Tax Invoices</field>
+        <field name="res_model">tuv.sales.tax.invoice</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_to_issue': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No Sales Tax Invoice to issue</p>
+            <p>One is drafted for every commercial invoice that carries sales tax; the Finance /
+               Tax Manager issues it within 48 hours.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_sales_tax_invoice"
+        action="action_tuv_sales_tax_invoice"
+        name="Sales Tax Invoices"
+        parent="account.menu_finance_receivables"
+        sequence="2"/>
+
+    <!-- Project: both invoices, side by side, on their own tab -->
+    <record id="edit_project_invoicing_tuv_austria_customization" model="ir.ui.view">
+        <field name="name">project.project.form.invoicing.custom.operations</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="tuv_invoicing" string="Invoicing" invisible="not commercial_invoice_id">
+                    <group>
+                        <group string="Commercial Invoice">
+                            <field name="commercial_invoice_id" string="Invoice"/>
+                            <field name="ci_created_on"/>
+                            <field name="ci_invoice_date"/>
+                            <field name="ci_currency_id" invisible="1"/>
+                            <field name="ci_amount_tax"/>
+                            <field name="ci_amount_total"/>
+                            <field name="ci_state"/>
+                            <field name="ci_payment_state" widget="badge"/>
+                            <field name="ci_is_sent"/>
+                        </group>
+                    </group>
+                    <separator string="Sales Tax Invoice"/>
+                    <field name="sales_tax_invoice_ids" nolabel="1" readonly="1">
+                        <list decoration-danger="is_overdue" decoration-muted="state == 'cancelled'">
+                            <field name="is_overdue" column_invisible="1"/>
+                            <field name="name"/>
+                            <field name="commercial_invoice_id"/>
+                            <field name="tax_name"/>
+                            <field name="amount_tax"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="due_on"/>
+                            <field name="issued_on"/>
+                            <field name="issued_by"/>
+                            <field name="issued_on_time"/>
+                            <field name="state" widget="badge"
+                                decoration-warning="state == 'draft'" decoration-success="state == 'issued'"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- STRN next to the NTN on companies -->
+    <record id="view_partner_form_strn_tuv" model="ir.ui.view">
+        <field name="name">res.partner.form.strn.custom.operations</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="strn" invisible="not is_company"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- The commercial invoice shows its Sales Tax Invoice -->
+    <record id="view_move_form_sti_tuv" model="ir.ui.view">
+        <field name="name">account.move.form.sti.custom.operations</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="tuv_project_id" position="after">
+                <field name="sales_tax_invoice_ids" widget="many2many_tags"
+                    string="Sales Tax Invoice" invisible="not sales_tax_invoice_ids"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

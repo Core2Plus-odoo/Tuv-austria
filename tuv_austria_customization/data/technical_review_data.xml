@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: an upgrade must not reset the running counter -->
+    <data noupdate="1">
+        <record id="seq_tuv_technical_review" model="ir.sequence">
+            <field name="name">TUV Technical Review</field>
+            <field name="code">tuv.technical.review</field>
+            <field name="prefix">TR/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

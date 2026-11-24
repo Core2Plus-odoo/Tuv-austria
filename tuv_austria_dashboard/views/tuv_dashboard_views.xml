@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_tuv_dashboard" model="ir.actions.client">
+        <field name="name">Client Portfolio</field>
+        <field name="tag">tuv_austria_dashboard.main</field>
+    </record>
+
+    <menuitem id="menu_tuv_dashboard_root"
+        name="Dashboard-Business Insurance"
+        web_icon="tuv_austria_dashboard,static/description/icon.png"
+        sequence="1"
+        groups="base.group_user"/>
+
+    <menuitem id="menu_tuv_dashboard_overview"
+        name="Client Portfolio"
+        parent="menu_tuv_dashboard_root"
+        action="action_tuv_dashboard"
+        sequence="10"/>
+
+</odoo>

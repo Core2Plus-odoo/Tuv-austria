@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Paper formats of the TUV Austria forms ============ -->
+    <!-- audit forms: A4 landscape, room for the header and footer boxes -->
+    <record id="paperformat_audit_plan" model="report.paperformat">
+        <field name="name">TUV Audit Form (A4 landscape)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">42</field>
+        <field name="margin_bottom">22</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">36</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- letters (surveillance, suspension, withdrawal): A4 portrait -->
+    <record id="paperformat_tuv_letter" model="report.paperformat">
+        <field name="name">TUV Letter (A4 portrait)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">24</field>
+        <field name="margin_left">18</field>
+        <field name="margin_right">18</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">34</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- ============ Look shared by all forms ============
+         Tables drawn with cell spacing give the double lines of the Word forms;
+         red section bars; grey label cells. -->
+    <template id="audit_plan_style">
+        <style>
+            .tap, .tap td, .tap th { font-family: Arial, Helvetica, sans-serif; color: #000; }
+            .tap { width: 100%; border: 1px solid #000; border-collapse: separate; border-spacing: 2px;
+                   font-size: 15px; margin-bottom: 0; }
+            .tap td, .tap th { border: 1px solid #000; padding: 4px 6px; vertical-align: middle; }
+            .tap tr { page-break-inside: avoid; }
+            .tap .bar { background: #C00000; color: #fff; font-weight: bold; font-size: 15px; }
+            .tap .lbl { background: #D9D9D9; font-weight: bold; }
+            .tap .head { background: #C9C9C9; font-weight: bold; text-align: center; font-size: 15px; }
+            .tap .sub { background: #D9D9D9; font-weight: bold; padding: 0 6px; }
+            .tap .grey { background: #D9D9D9; }
+            .tap .light { background: #F2F2F2; }
+            .tap .center { text-align: center; }
+            .tap .bold { font-weight: bold; }
+            .tap .top { vertical-align: top; }
+            .tap .shift { color: #00B050; }
+            .tap ul { margin: 0; padding-left: 22px; }
+            .tap .nob { border: none; }
+            .tap-small { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #000; }
+            .tap-text { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000; }
+            .tap-gap { height: 14px; }
+            .tap-box { font-size: 15px; }
+        </style>
+    </template>
+
+    <!-- Header box of every page: title, subtitle, TUV logo.
+         Expects: logo, form_title, form_subtitle -->
+    <template id="form_page_header">
+        <t t-call="tuv_audit_reports.audit_plan_style"/>
+        <table class="tap">
+            <tr>
+                <td class="center" style="font-size: 22px; font-weight: bold; height: 44px;" t-out="form_title"/>
+                <td rowspan="2" class="center" style="width: 14%; padding: 2px;">
+                    <img t-att-src="logo" style="max-height: 80px; max-width: 100%;" alt="TUV Austria"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="center bold" style="font-size: 14px; height: 30px;" t-out="form_subtitle"/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Footer box of every page.
+         Expects: form_code, form_revision, form_vkl; optional page_word / of_word
+         ("Seite" / "von" on the German-made forms), no_total (only "Page N") -->
+    <template id="form_page_footer">
+        <t t-call="tuv_audit_reports.audit_plan_style"/>
+        <table class="tap" style="font-size: 12px;">
+            <tr>
+                <td class="center" style="width: 42%;" t-out="form_code"/>
+                <td class="center" style="width: 27%;">Revision: <t t-out="form_revision"/></td>
+                <td class="center" style="width: 15%;">VKL: <t t-out="form_vkl"/></td>
+                <td class="center">
+                    <t t-out="page_word or 'Page'"/> <b class="page"/>
+                    <t t-if="not no_total"> <t t-out="of_word or 'of'"/> <b class="topage"/></t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Sections "1. Company information" and "2. Audit information".
+         Expects: o (a record with the tuv.audit.info.mixin fields). Optional:
+           show_email      - E-mail cell next to the company representative (default yes)
+           scope_label     - label of the last company row; no row when empty
+           scope_value     - text shown instead of the scope field (e.g. "see audit report")
+           sites_value     - text shown instead of the other audited sites
+           duration_label  - 'hours' (audit plan), 'value' (hours after "Audit duration:")
+                             or a fixed text such as 'acc. plan'
+           emp_note        - footnote mark 6) after the employee counts
+           category_label  - label of the category cell -->
+    <template id="form_sections_company_audit">
+        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:5]"/>
+        <t t-set="team" t-value="o.ap_team_line_ids"/>
+        <table class="tap">
+            <colgroup>
+                <col style="width: 16%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+                <col style="width: 16.8%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+            </colgroup>
+            <!-- 1. Company information -->
+            <tr><td colspan="6" class="bar">1.  Company information</td></tr>
+            <tr>
+                <td colspan="2" class="lbl">Company name</td>
+                <td colspan="4"><span t-out="o.ap_partner_id.name or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="lbl">Address</td>
+                <td colspan="4"><span t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="lbl">Other audited sites</td>
+                <td colspan="4"><span t-out="sites_value or o.ap_other_sites or ''"/></td>
+            </tr>
+            <tr t-if="show_email is False">
+                <td colspan="2" class="lbl">Company representative</td>
+                <td colspan="4"><span t-out="o.ap_representative or ''"/></td>
+            </tr>
+            <tr t-else="">
+                <td colspan="2" class="lbl">Company representative</td>
+                <td colspan="2"><span t-out="o.ap_representative or ''"/></td>
+                <td class="lbl" style="width: 8%;">E-mail</td>
+                <td><span t-out="o.ap_representative_email or ''"/></td>
+            </tr>
+            <tr t-if="scope_label">
+                <td colspan="2" class="lbl" style="height: 36px;" t-out="scope_label"/>
+                <td colspan="4"><span t-out="scope_value or o.ap_certificate_scope or ''"/></td>
+            </tr>
+
+            <!-- 2. Audit information -->
+            <tr><td colspan="6" class="bar">2. Audit information</td></tr>
+            <tr>
+                <td class="lbl">Audit date</td>
+                <td><b>Stage 1:</b>
+                    <span t-if="o.ap_audit_date_stage1" t-out="o.ap_audit_date_stage1.strftime('%d.%m.%Y')"/></td>
+                <td><b>Stage 2:</b>
+                    <span t-if="o.ap_audit_date_stage2" t-out="o.ap_audit_date_stage2.strftime('%d.%m.%Y')"/></td>
+                <td colspan="2"><b>until:</b>
+                    <span t-if="o.ap_audit_date_until" t-out="o.ap_audit_date_until.strftime('%d.%m.%Y')"/></td>
+                <td><b>Remote:</b> <span t-field="o.ap_remote"/></td>
+            </tr>
+            <tr>
+                <td><b>Audit method:</b><br/>
+                    <span t-if="o.ap_audit_method in ('others', 'self_definition') and o.ap_audit_method_other"
+                        t-out="o.ap_audit_method_other"/>
+                    <span t-else="" t-field="o.ap_audit_method"/></td>
+                <td colspan="2"><b>No. of employees<sup t-if="emp_note">6)</sup>:</b> <span t-out="o.ap_employee_count or ''"/></td>
+                <td colspan="2"><b>No. of employees in scope<sup t-if="emp_note">6)</sup>:</b> <span t-out="o.ap_employee_scope_count or ''"/></td>
+                <td t-if="duration_label == 'hours'"><b>Audit duration in hours:</b>
+                    <span t-out="('%g' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+                <td t-elif="duration_label == 'value'"><b>Audit duration:</b>
+                    <span t-out="('%g h' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+                <td t-else=""><b>Audit duration:</b> <t t-out="duration_label or ''"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="lbl">Audit standard(s)</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td class="sub">Standard <t t-out="i + 1"/>:</td>
+                </t>
+            </tr>
+            <tr>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Audit type<br/>per standard</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><b>Audit type:</b><br/>
+                        <t t-if="i &lt; len(std_lines)">
+                            <span t-if="std_lines[i].audit_type in ('others', 'self_definition') and std_lines[i].audit_type_other"
+                                t-out="std_lines[i].audit_type_other"/>
+                            <span t-else="" t-field="std_lines[i].audit_type"/>
+                        </t>
+                    </td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Registration no.</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><span t-if="i &lt; len(std_lines)" t-out="std_lines[i].registration_no or ''"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Scope</td>
+                <td>
+                    <span t-out="'☒' if o.ap_scope_change == 'no_changes' else '☐'"/> No changes<br/>
+                    <span t-out="'☒' if o.ap_scope_change == 'adjustment' else '☐'"/> Adjustment required
+                </td>
+                <td><b>EAC scope:</b> <span t-field="o.ap_eac_scope"/></td>
+                <td><b>NACE code</b> (only for EMAS): <span t-out="o.ap_nace_code or ''"/></td>
+                <td colspan="2"><b t-out="category_label or 'Category (ISO 22003/ISO 13485/ISO 50003):'"/>
+                    <span t-out="o.ap_category or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="sub">Lead Auditor</td>
+                <td colspan="2" class="sub">Auditor</td>
+                <td colspan="2" class="sub">Expert</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 22px;"><span t-out="o.ap_lead_auditor_id.name or ''"/></td>
+                <td colspan="2">
+                    <t t-foreach="team.filtered(lambda l: l.role != 'expert')" t-as="m">
+                        <span t-out="m.partner_id.name"/><t t-if="m.role != 'auditor'"> (<span t-field="m.role"/>)</t><t t-if="not m_last">, </t>
+                    </t>
+                </td>
+                <td colspan="2">
+                    <t t-foreach="team.filtered(lambda l: l.role == 'expert')" t-as="m">
+                        <span t-out="m.partner_id.name"/><t t-if="not m_last">, </t>
+                    </t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- "Declaration of independence" paragraph of the audit plans and the expert report -->
+    <template id="form_declaration_independence">
+        <div class="tap-small">
+            <p style="margin: 0 0 4px 0;">Declaration of independence</p>
+            <p style="margin: 0 0 10px 0;">All the members of the audit team have signed the declaration of
+                independence, in which they are committed that there is no professional relationship of any
+                kind and have not provided any kind of advisory service or any kind of service (internal
+                audits, design / development of management system) for the company being audited, or another
+                company legally associated with this company, during the last two (2) years, at least. Also,
+                they are committed that they will not develop any kind of cooperation and / or advisory service,
+                during the next two (2) years after the audit. Finally, they are committed that there is no
+                conflict of interest with the company being audited due to previous or current relationship.
+                If any of the above is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA
+                in writing.</p>
+        </div>
+    </template>
+
+    <!-- Rows of an audit schedule table (audit plan, audit plan ISMS). Expects: rows -->
+    <template id="report_audit_plan_schedule_rows">
+        <t t-foreach="rows" t-as="line">
+            <t t-set="parts" t-value="[p.strip() for p in (line.content or '').split('\n') if p.strip()]"/>
+            <t t-set="first" t-value="o._ap_schedule_title(line)"/>
+            <t t-set="when" t-value="line.date and line.date.strftime('%d.%m.%Y') or ''"/>
+            <t t-set="hours" t-value="o._ap_time_range(line)"/>
+            <tr t-if="line.is_section and not line.date and first == 'General'">
+                <td colspan="4" class="head" style="height: 24px;" t-out="first"/>
+            </tr>
+            <tr t-elif="line.is_section">
+                <td class="center bold light">
+                    <t t-out="when or 'dd.mm.yyyy'"/><t t-if="hours"><br/><t t-out="hours"/></t>
+                </td>
+                <td class="center light">
+                    <t t-if="first.startswith('Location address')">
+                        <b>Location address</b> <t t-out="first[len('Location address'):]"/>
+                    </t>
+                    <t t-else=""><b t-out="' '.join(parts)"/></t>
+                </td>
+                <td class="light" t-out="line.participants or ''"/>
+                <td class="light" t-out="line.auditors or ''"/>
+            </tr>
+            <tr t-else="">
+                <td class="center" style="height: 24px;">
+                    <t t-out="when"/><t t-if="when and hours"><br/></t><t t-out="hours"/>
+                </td>
+                <td t-if="first.startswith('For shift work')" class="shift" t-out="' '.join(parts)"/>
+                <td t-elif="len(parts) == 1 and (first == 'Break' or first.startswith('End of audit'))"
+                    class="center bold" t-out="first"/>
+                <!-- the audit plan's own rows: "Opening meeting ..." on one bold line -->
+                <td t-elif="(first.startswith('Opening meeting') or first.startswith('Closing meeting'))
+                            and not any(p.startswith('- ') for p in parts)"
+                    class="bold" t-out="' '.join(parts)"/>
+                <td t-else="">
+                    <t t-foreach="o._ap_schedule_blocks(line)" t-as="block">
+                        <ul t-if="block[0] == 'ul'"><li t-foreach="block[1]" t-as="p" t-out="p"/></ul>
+                        <div t-else="" class="bold" t-att-style="block[2] and ('color: %s;' % block[2])" t-out="block[1]"/>
+                    </t>
+                </td>
+                <td t-out="line.participants or ''"/>
+                <td t-out="line.auditors or ''"/>
+            </tr>
+        </t>
+    </template>
+
+    <!-- Header of the audit schedule table -->
+    <template id="report_audit_plan_schedule_head">
+        <tr>
+            <td class="head" style="width: 10%;">Date / Time<sup>1</sup></td>
+            <td class="head" style="width: 59%;">Audit content / Processes</td>
+            <td class="head" style="width: 17%; font-size: 13px;">Department /<br/>Organizational unit /<br/>Participants <sup>2 3 4</sup></td>
+            <td class="head">Auditor(s)</td>
+        </tr>
+    </template>
+
+    <!-- "Place / Date - Lead auditor - Auditor(s) - Signature" box of the audit plans.
+         Expects: place, sign_date, lead_name, auditor_names, lead_signature, auditor_signature -->
+    <template id="form_plan_signatures">
+        <table class="tap">
+            <tr>
+                <td class="lbl center" style="width: 13%; height: 30px;">Place / Date</td>
+                <td colspan="3">
+                    <t t-out="place or ''"/>
+                    <t t-if="place and sign_date"> / </t>
+                    <t t-if="sign_date" t-out="sign_date.strftime('%d.%m.%Y')"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Lead auditor</td>
+                <td style="width: 32%;" t-out="lead_name or ''"/>
+                <td class="lbl center" style="width: 14%;">Auditor(s)</td>
+                <td t-out="auditor_names or ''"/>
+            </tr>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Signature</td>
+                <td>
+                    <img t-if="lead_signature" t-att-src="image_data_uri(lead_signature)"
+                        style="max-height: 40px;" alt="Signature"/>
+                </td>
+                <td class="lbl center">Signature(s)</td>
+                <td>
+                    <img t-if="auditor_signature" t-att-src="image_data_uri(auditor_signature)"
+                        style="max-height: 40px;" alt="Signature"/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+</odoo>

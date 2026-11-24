@@ -1,0 +1,1103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit reports of the accreditation bodies:
+         ESYD  FM-BA-ZET-MS-All-008-AR-EN (revision 02_15.02.2024),
+         PNAC  TUV/BA/FM/04-4 (Rev 00, Issue 01, 31/07/2025),
+         SAAC  FM-BA-ZET-MS-All-010a-AR-Audit report IMS (revision 08/30.07.2024).
+         Shared pieces first (acc_ar_*), then one template per form. -->
+    <record id="action_report_esyd_audit_report" model="ir.actions.report">
+        <field name="name">ESYD Audit Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_esyd_audit_report</field>
+        <field name="report_file">tuv_audit_reports.report_esyd_audit_report</field>
+        <field name="print_report_name">'Audit Report ESYD - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_pnac_audit_report" model="ir.actions.report">
+        <field name="name">PNAC Audit Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_pnac_audit_report</field>
+        <field name="report_file">tuv_audit_reports.report_pnac_audit_report</field>
+        <field name="print_report_name">'Audit Report PNAC - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_saac_audit_report" model="ir.actions.report">
+        <field name="name">SAAC Audit Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_saac_audit_report</field>
+        <field name="report_file">tuv_audit_reports.report_saac_audit_report</field>
+        <field name="print_report_name">'Audit Report SAAC - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <!-- ================= Shared pieces ================= -->
+    <template id="acc_ar_style">
+        <style>
+            .acc { font-size: 12px; }
+            .acc td { padding: 2px 5px; }
+            .acc .dark { background: #808080; color: #fff; font-weight: bold; }
+            .acc-text { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000; }
+            .acc-text ol { margin: 4px 0 6px 0; padding-left: 26px; }
+            .acc-check { list-style: none; padding-left: 10px; }
+            .acc-check li:before { content: "✔ "; }
+            .acc-note { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-style: italic; color: #000; }
+        </style>
+    </template>
+
+    <!-- PNAC footer: one right-aligned line, no page numbers -->
+    <template id="acc_ar_footer_pnac">
+        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; text-align: right;">TUV/BA/FM/04-4, Rev 00, Issue 01, Dated 31/07/2025</div>
+    </template>
+
+    <!-- Multi-line text: lines joined with <br/>. Expects: text -->
+    <template id="acc_ar_lines">
+        <t t-foreach="(text or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+    </template>
+
+    <!-- Stage 1 table. Expects: rows, std_lines, n_std, esyd (ESYD head), grade_text -->
+    <template id="acc_ar_stage1">
+        <table class="tap acc">
+            <colgroup>
+                <col style="width: 22%;"/><col style="width: 10%;"/>
+                <t t-foreach="range(n_std)" t-as="i"><col/></t>
+            </colgroup>
+            <t t-if="esyd">
+                <tr>
+                    <td colspan="2" rowspan="2" class="bold">Requirement<br/><i style="font-size: 9px; font-weight: normal;">Evaluation (1,2)</i></td>
+                    <td t-att-colspan="n_std" class="center bold">Standard(s)</td>
+                </tr>
+                <tr>
+                    <t t-foreach="range(n_std)" t-as="i">
+                        <td class="center bold"><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/><t t-else="">……</t></td>
+                    </t>
+                </tr>
+            </t>
+            <t t-else="">
+                <tr>
+                    <td colspan="2" rowspan="2" class="lbl">Requirement</td>
+                    <t t-foreach="range(n_std)" t-as="i"><td class="sub">Standard <t t-out="i + 1"/>:</td></t>
+                </tr>
+                <tr>
+                    <t t-foreach="range(n_std)" t-as="i">
+                        <td><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                    </t>
+                </tr>
+            </t>
+            <tr t-foreach="rows" t-as="row">
+                <td class="bold" style="height: 30px;"><t t-foreach="(row.label or '').split('\n')" t-as="n"><t t-if="n_first" t-out="n"/><span t-else="" style="font-size: 9px; font-weight: normal;"><br/><t t-out="n"/></span></t></td>
+                <td style="font-size: 10px; font-style: italic;" t-out="grade_text"/>
+                <t t-foreach="['std1', 'std2', 'std3', 'std4', 'std5'][:n_std]" t-as="f">
+                    <td><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="row[f]"/></t></td>
+                </t>
+            </tr>
+        </table>
+    </template>
+
+    <!-- List of deviations for stage 1.
+         Expects: devs, title, time_text, heads (7 column titles), use_verification (last column
+         is the evaluation text instead of the rating), ratings -->
+    <template id="acc_ar_deviations">
+        <table class="tap acc">
+            <colgroup>
+                <col style="width: 4%;"/><col style="width: 24%;"/><col style="width: 8%;"/><col style="width: 8%;"/>
+                <col style="width: 22%;"/><col style="width: 20%;"/><col/>
+            </colgroup>
+            <tr>
+                <td colspan="4" class="center bold" style="height: 26px;" t-out="title"/>
+                <td colspan="2" class="center bold" t-out="time_text"/>
+                <td/>
+            </tr>
+            <tr class="center bold" style="font-size: 10px;">
+                <t t-foreach="heads" t-as="h"><td class="center" t-out="h"/></t>
+            </tr>
+            <tr t-foreach="list(devs) + [False] * max(0, 7 - len(devs))" t-as="d" style="height: 22px;">
+                <td t-out="d and d.number or ''"/><td t-out="d and d.description or ''"/>
+                <td t-out="d and d.standard or ''"/><td t-out="d and d.clause or ''"/>
+                <td t-out="d and d.corrective_action or ''"/>
+                <td class="grey" t-out="d and d.evidence or ''"/>
+                <td t-if="use_verification" class="grey" t-out="d and d.verification or ''"/>
+                <td t-else="" class="grey" t-out="d and d.rating and ratings.get(d.rating) or ''"/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Place / date, signature and name box under the deviation and finding lists.
+         Expects: place_date, rep_date, lead_date, place_word, lead_word, rep_word,
+         completion_word; optional first_signature (text of the first signature cell) -->
+    <template id="acc_ar_signoff">
+        <table class="tap acc" style="margin-top: 14px;">
+            <colgroup><col style="width: 25%;"/><col style="width: 25%;"/><col style="width: 25%;"/><col/></colgroup>
+            <tr>
+                <td colspan="2"/><td/>
+                <td class="grey bold center" t-out="completion_word"/>
+            </tr>
+            <tr>
+                <td colspan="2" class="bold"><t t-out="place_word"/> <t t-out="place_date or ''"/></td>
+                <td class="bold"><t t-out="place_word"/> <t t-out="rep_date or ''"/></td>
+                <td class="bold"><t t-out="place_word"/> <t t-out="lead_date or ''"/></td>
+            </tr>
+            <tr class="bold">
+                <td class="center" t-out="lead_word"/><td class="center" t-out="rep_word"/>
+                <td class="center" t-out="rep_word"/><td class="center" t-out="lead_word"/>
+            </tr>
+            <tr style="height: 40px;">
+                <td class="center" t-out="first_signature or '(Signature)'"/>
+                <td class="center">(Signature)</td><td class="center">(Signature)</td><td class="center">(Signature)</td>
+            </tr>
+            <tr>
+                <td class="center" t-out="o.ap_lead_auditor_id.name or '(Name)'"/>
+                <td class="center" t-out="o.ap_representative or '(Name)'"/>
+                <td class="center" t-out="o.ap_representative or '(Name)'"/>
+                <td class="center" t-out="o.ap_lead_auditor_id.name or '(Name)'"/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- List of findings / nonconformities.
+         Expects: findings, min_rows, heads (9 column titles), legend; title_lines (lines of the
+         title row) -->
+    <template id="acc_ar_findings">
+        <table class="tap acc" style="font-size: 10px;">
+            <colgroup>
+                <col style="width: 4%;"/><col style="width: 6%;"/><col style="width: 6%;"/><col style="width: 22%;"/>
+                <col style="width: 6%;"/><col style="width: 17%;"/><col style="width: 8%;"/><col style="width: 15%;"/><col/>
+            </colgroup>
+            <tr><td colspan="9" class="lbl center" style="font-size: 12px; height: 22px;">
+                <t t-foreach="title_lines" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td></tr>
+            <tr class="center bold">
+                <t t-foreach="heads" t-as="h"><td class="lbl center" t-out="h"/></t>
+            </tr>
+            <tr t-foreach="list(findings) + [False] * max(0, min_rows - len(findings))" t-as="f" style="height: 22px;">
+                <td t-out="f and f.number or ''"/><td t-out="f and f.standard or ''"/><td t-out="f and f.clause or ''"/>
+                <td t-out="f and f.description or ''"/>
+                <td class="center" t-out="f and f.rating and f.rating.upper() or ''"/>
+                <td t-out="f and f.corrective_action or ''"/>
+                <td class="center" t-out="f and f.completion_date and f.completion_date.strftime('%d.%m.%Y') or ''"/>
+                <td class="grey" t-out="f and f.evidence or ''"/>
+                <td class="grey" t-out="f and f.verification or ''"/>
+            </tr>
+            <tr><td colspan="9" style="font-size: 8px;" t-out="legend"/></tr>
+        </table>
+    </template>
+
+    <!-- List of positive findings. Expects: positives, min_rows -->
+    <template id="acc_ar_positives">
+        <table class="tap acc">
+            <tr><td colspan="2" class="lbl center" style="height: 24px;">LIST OF POSITIVE FINDINGS</td></tr>
+            <tr><td class="lbl center" style="width: 9%;">No.</td><td class="lbl center">Description</td></tr>
+            <tr t-foreach="list(positives) + [False] * max(0, min_rows - len(positives))" t-as="f" style="height: 20px;">
+                <td t-out="f and f.number or ''"/><td t-out="f and f.description or ''"/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- 5. Recommendation of the audit team.
+         Expects: title, scope, objectives, findings_raised (None: no row), standards, suggestion,
+         after, sugg_opts, after_opts, yes_word, no_word -->
+    <template id="acc_ar_recommendation">
+        <table class="tap acc">
+            <colgroup>
+                <col style="width: 18%;"/><col style="width: 4%;"/><col style="width: 30%;"/>
+                <col style="width: 4%;"/><col style="width: 4%;"/><col/>
+            </colgroup>
+            <tr><td colspan="6" class="bar" t-out="title"/></tr>
+            <t t-foreach="[('The certification scope is appropriate', scope, yes_word, no_word), ('The audit objectives have been fulfilled', objectives, yes_word, no_word)] + ([('Findings raised', findings_raised, yes_word + ' (see Annex)', no_word + ' (No Annex required)')] if findings_raised is not None else [])" t-as="yn">
+                <tr>
+                    <td colspan="3" class="bold" t-out="yn[0]"/>
+                    <td colspan="2" class="bold"><t t-out="yn[2]"/> <t t-out="'☒' if yn[1] == 'yes' else '☐'"/></td>
+                    <td class="bold"><t t-out="yn[3]"/> <t t-out="'☒' if yn[1] == 'no' else '☐'"/></td>
+                </tr>
+            </t>
+            <tr>
+                <td class="bold">Standard(s)</td>
+                <td colspan="5" class="bold">Audit team suggestion</td>
+            </tr>
+            <t t-foreach="range(len(sugg_opts))" t-as="i">
+                <tr>
+                    <td t-if="i == 0" t-att-rowspan="len(sugg_opts)" class="center" t-out="standards or '……………'"/>
+                    <td class="center" t-out="'☒' if suggestion == sugg_opts[i][0] else '☐'"/>
+                    <td t-out="sugg_opts[i][1]"/>
+                    <td t-if="i == 0" t-att-rowspan="len(after_opts)" class="center bold" style="font-size: 10px;">AFTER</td>
+                    <t t-if="i &lt; len(after_opts)">
+                        <td class="center" t-out="'☒' if after == after_opts[i][0] else '☐'"/>
+                        <td t-out="after_opts[i][1]"/>
+                    </t>
+                    <td t-else="" colspan="3"/>
+                </tr>
+            </t>
+        </table>
+    </template>
+
+    <!-- Place, date / lead auditor / auditor(s) / signatures.
+         Expects: place_date, lead_signature, auditor_signature, place_word -->
+    <template id="acc_ar_signatures">
+        <table class="tap acc" style="margin-top: 14px;">
+            <colgroup>
+                <col style="width: 12%;"/><col style="width: 28%;"/><col style="width: 12%;"/>
+                <col style="width: 24%;"/><col/>
+            </colgroup>
+            <tr>
+                <td class="lbl center" style="height: 26px;" t-out="place_word"/>
+                <td colspan="4" t-out="place_date or ''"/>
+            </tr>
+            <tr>
+                <td class="lbl center" style="height: 26px;">Lead Auditor</td>
+                <td t-out="o.ap_lead_auditor_id.name or ''"/>
+                <td class="lbl center">Auditor(s)</td>
+                <td t-out="o.ap_auditor_names or ''"/>
+                <td/>
+            </tr>
+            <tr>
+                <td class="lbl center" style="height: 30px;">Signature</td>
+                <td><img t-if="lead_signature" t-att-src="image_data_uri(lead_signature)" style="max-height: 40px;" alt="Signature"/></td>
+                <td class="lbl center">Signature</td>
+                <td><img t-if="auditor_signature" t-att-src="image_data_uri(auditor_signature)" style="max-height: 40px;" alt="Signature"/></td>
+                <td/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Client acceptance. Expects: client_name, client_signature, next_audit, name_label -->
+    <template id="acc_ar_client_acceptance">
+        <table class="tap acc" style="margin-top: 14px;">
+            <colgroup>
+                <col style="width: 12%;"/><col style="width: 20%;"/><col style="width: 12%;"/>
+                <col style="width: 20%;"/><col style="width: 12%;"/><col/>
+            </colgroup>
+            <tr><td colspan="6" class="bold" style="height: 22px;">CLIENT ACCEPTANCE</td></tr>
+            <tr style="height: 60px;">
+                <td class="lbl center"><t t-out="name_label"/></td>
+                <td t-out="client_name or ''"/>
+                <td class="lbl center">Signature / Stamp</td>
+                <td><img t-if="client_signature" t-att-src="image_data_uri(client_signature)" style="max-height: 50px;" alt="Signature"/></td>
+                <td class="lbl center">Period of the next audit <i>(Month and year)</i></td>
+                <td t-out="next_audit or ''"/>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Audit conclusion rows of PNAC and SAAC (3 columns). Expects: rows -->
+    <template id="acc_ar_conclusion_rows">
+        <t t-foreach="rows" t-as="row">
+            <tr t-if="row.kind == 'head'"><td colspan="3" class="dark" t-out="row.label"/></tr>
+            <tr t-elif="row.kind == 'item'">
+                <td class="grey" t-out="row.label"/>
+                <td class="grey center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                <td class="grey center" t-out="row.rating and row.rating.upper() or ''"/>
+            </tr>
+            <tr t-elif="row.kind == 'comment'">
+                <td colspan="3" style="height: 22px;"><b t-out="row.label"/>
+                    <t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="row.comment"/></t></td>
+            </tr>
+            <tr t-elif="row.kind == 'sub'"><td colspan="3" class="grey" t-out="row.label"/></tr>
+            <tr t-elif="row.kind == 'blank'"><td colspan="3" style="height: 18px;"/></tr>
+            <tr t-else="">
+                <td colspan="3"><t t-out="row.label"/>
+                    <t t-if="row.comment"> <t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="row.comment"/></t></t></td>
+            </tr>
+        </t>
+    </template>
+
+    <!-- Disclaimer and distribution list of PNAC and SAAC (same wording as TUV Austria) -->
+    <template id="acc_ar_disclaimer">
+        <div class="acc-text" style="font-size: 12px; text-align: justify;">
+            <p><b>Other Information / Disclaimer:</b></p>
+            <p style="margin: 0;">During the validity of the certificate, the certified company is obliged to inform the certification body about relevant changes in the management system and its documentation.</p>
+            <p style="margin: 0;">It should be noted that the audit is conducted based on sampling of available information, which may result in nonconformities in addition to those documented during the audit.</p>
+            <p style="margin: 0;">The result of the audit does not relieve the audited company of its responsibility for the control of the existing management system and for the maintenance and conformity with the requirements of the standard(s) for which the certificate(s) has/have been issued.</p>
+            <p>The certification body or the auditor shall under no circumstances replace the control carried out by the competent national authorities.</p>
+            <p>*) The audit involves assessing the performance of the management system in ensuring that the company fundamentally meets the applicable legal, regulatory, and contractual requirements. This evaluation is based on samples viewed and is not an assessment of compliance with legal requirements. The responsibility for enforcement and assessment of compliance with the relevant laws and regulations remains with the company in all cases.</p>
+        </div>
+        <table class="tap" style="margin-top: 18px;"><tr><td class="bar">6.  Distribution list</td></tr></table>
+        <ul class="acc-text acc-check" style="margin-top: 10px;">
+            <li>Client</li>
+            <li>Certification body of TÜV AUSTRIA</li>
+            <li>Audit team</li>
+        </ul>
+    </template>
+
+    <!-- The six audit objectives (same in all three forms) -->
+    <template id="acc_ar_objectives_list">
+        The audit objectives are the following:
+        <ol>
+            <li>Determination of the conformity of the client’s management system, or parts of it, with audit criteria within the scope of the Management System.</li>
+            <li>Determination of the ability of the management system to ensure the client organization meets applicable statutory, regulatory, and contractual requirements.</li>
+            <li>Determination of the effectiveness of the management system to ensure the client organization can reasonably expect to achieve its specified objectives.</li>
+            <li>As applicable, identification of areas for potential improvement of the management system.</li>
+            <li>Review of any management system’s changes.</li>
+            <li>Validation that the management system was effectively applied in the previous period (valid for surveillance or recertification audits) and to verify its readiness for the coming period.</li>
+        </ol>
+    </template>
+
+    <!-- ================= ESYD: sections 1 and 2 ================= -->
+    <template id="acc_ar_esyd_sections">
+        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:4]"/>
+        <t t-set="team" t-value="o.ap_team_line_ids"/>
+        <t t-set="auditors" t-value="team.filtered(lambda l: l.role == 'auditor')"/>
+        <t t-set="stage_labels" t-value="dict(o._fields['ear_audit_stage'].selection)"/>
+        <table class="tap acc">
+            <colgroup>
+                <col style="width: 16%;"/>
+                <t t-foreach="range(12)" t-as="i"><col style="width: 7%;"/></t>
+            </colgroup>
+            <tr><td colspan="13" class="bar">1.  Company Information</td></tr>
+            <tr><td colspan="2" class="lbl">Company name</td><td colspan="11" t-out="o.ap_partner_id.name or ''"/></tr>
+            <tr><td colspan="2" class="lbl">Address</td>
+                <td colspan="11" t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/></tr>
+            <tr><td colspan="2" class="lbl">Other audited sites</td><td colspan="11" t-out="o.ap_other_sites or ''"/></tr>
+            <tr><td colspan="2" class="lbl">Company representative</td><td colspan="11" t-out="o.ap_representative or ''"/></tr>
+            <tr><td colspan="2" class="lbl">Company description, business activities</td>
+                <td colspan="11"><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="o.ear_company_description"/></t></td></tr>
+
+            <tr><td colspan="13" class="bar">2. Audit Information</td></tr>
+            <tr>
+                <td class="lbl" style="height: 30px;">Audit date(s)</td>
+                <t t-foreach="[(o.ap_audit_date_stage1, 'Stage 1'), (o.ap_audit_date_stage2, stage_labels.get(o.ear_audit_stage) or 'Stage 2'), (o.ap_audit_date_until, 'until')]" t-as="ds">
+                    <td colspan="2" class="bold" t-out="ds[0] and ds[0].strftime('%d.%m.%Y') or ''"/>
+                    <td colspan="2" class="bold" t-out="ds[0] and ds[1] or ''"/>
+                </t>
+            </tr>
+            <tr>
+                <td><b>Audit Method:</b><br/>
+                    <span t-if="o.ap_audit_method in ('others', 'self_definition') and o.ap_audit_method_other" t-out="o.ap_audit_method_other"/>
+                    <span t-else="" t-field="o.ap_audit_method"/></td>
+                <td colspan="3"><b>Number of employees relevant for the Scope:</b> <t t-out="o.ap_employee_scope_count or ''"/></td>
+                <td colspan="3"><b>Audit duration:</b> <t t-out="('%g h' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+                <td colspan="3"><b>Audit language:</b> <span t-field="o.ap_audit_language"/></td>
+                <td colspan="3"><b>Use of remote activities (describe):</b> <t t-out="o.ear_remote_activities or ''"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="lbl">Audit Standard(s)</td>
+                <t t-foreach="range(4)" t-as="i">
+                    <td colspan="3" class="sub">Standard <t t-out="i + 1"/><t t-if="i == 3"> (further)</t>:</td>
+                </t>
+            </tr>
+            <tr>
+                <t t-foreach="range(4)" t-as="i">
+                    <td colspan="3"><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Audit type:</td>
+                <t t-foreach="range(4)" t-as="i">
+                    <td colspan="3"><t t-if="i &lt; len(std_lines)">
+                        <span t-if="std_lines[i].audit_type in ('others', 'self_definition') and std_lines[i].audit_type_other" t-out="std_lines[i].audit_type_other"/>
+                        <span t-else="" t-field="std_lines[i].audit_type"/>
+                    </t></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Registration no.:</td>
+                <t t-foreach="range(4)" t-as="i">
+                    <td colspan="3"><span t-if="i &lt; len(std_lines)" t-out="std_lines[i].registration_no or ''"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td rowspan="2" class="lbl">Scope of application</td>
+                <td colspan="12" style="height: 34px;"><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="o.ap_certificate_scope"/></t></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <span t-out="'☒' if o.ap_scope_change == 'no_changes' else '☐'"/> No Changes<br/>
+                    <span t-out="'☒' if o.ap_scope_change == 'adjustment' else '☐'"/> Adjustment required
+                </td>
+                <td colspan="3"><b>EAC Scope:</b> <span t-field="o.ap_eac_scope"/></td>
+                <td colspan="3"><b>NACE Code:</b> <t t-out="o.ap_nace_code or ''"/></td>
+                <td colspan="3"><b>Category:</b> <t t-out="o.ap_category or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="sub">Lead Auditor</td>
+                <td colspan="4" class="sub">Audit team member</td>
+                <td colspan="4" class="sub">Audit team member</td>
+                <td colspan="3" class="sub">Other (specify)</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 22px;" t-out="o.ap_lead_auditor_id.name or ''"/>
+                <td colspan="4" t-out="auditors[:1].partner_id.name or ''"/>
+                <td colspan="4" t-out="', '.join(auditors[1:].partner_id.mapped('name'))"/>
+                <td colspan="3">
+                    <t t-foreach="team - auditors" t-as="m">
+                        <span t-out="m.partner_id.name"/> (<span t-field="m.role"/>)<t t-if="not m_last">, </t>
+                    </t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- ================= PNAC: sections 1 and 2 ================= -->
+    <template id="acc_ar_pnac_sections">
+        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:5]"/>
+        <t t-set="team" t-value="o.ap_team_line_ids"/>
+        <table class="tap acc">
+            <colgroup>
+                <col style="width: 16%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+                <col style="width: 16.8%;"/><col style="width: 16.8%;"/><col style="width: 16.8%;"/>
+            </colgroup>
+            <tr><td colspan="6" class="bar">1.  Company Information</td></tr>
+            <tr><td colspan="2" class="lbl">Company Name</td><td colspan="4" t-out="o.ap_partner_id.name or ''"/></tr>
+            <tr><td colspan="2" class="lbl">Address</td>
+                <td colspan="4" t-out="', '.join(p.strip(' ,') for p in (o.ap_company_address or '').split('\n') if p.strip(' ,'))"/></tr>
+            <tr><td colspan="2" class="lbl">Other Audited Sites</td><td colspan="4" t-out="o.ap_other_sites or ''"/></tr>
+            <tr>
+                <td colspan="2" class="lbl">Company Representative</td>
+                <td colspan="2" t-out="o.ap_representative or ''"/>
+                <td class="lbl">E-Mail</td>
+                <td t-out="o.ap_representative_email or ''"/>
+            </tr>
+            <tr><td colspan="2" class="lbl" style="height: 36px;">Scope of Certification</td>
+                <td colspan="4"><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="o.ap_certificate_scope"/></t></td></tr>
+
+            <tr><td colspan="6" class="bar">2. Audit Information</td></tr>
+            <tr>
+                <td class="lbl">Audit Date</td>
+                <td><b>Stage 1:</b> <t t-out="o.ap_audit_date_stage1 and o.ap_audit_date_stage1.strftime('%d.%m.%Y') or ''"/></td>
+                <td><b>Stage 2:</b> <t t-out="o.ap_audit_date_stage2 and o.ap_audit_date_stage2.strftime('%d.%m.%Y') or ''"/></td>
+                <td colspan="2"><b>until:</b> <t t-out="o.ap_audit_date_until and o.ap_audit_date_until.strftime('%d.%m.%Y') or ''"/></td>
+                <td><b>Remote:</b> <span t-field="o.ap_remote"/></td>
+            </tr>
+            <tr>
+                <td><b>Audit Method:</b><br/>
+                    <span t-if="o.ap_audit_method in ('others', 'self_definition') and o.ap_audit_method_other" t-out="o.ap_audit_method_other"/>
+                    <span t-else="" t-field="o.ap_audit_method"/></td>
+                <td colspan="2"><b>No. of Employees:</b> <t t-out="o.ap_employee_count or ''"/></td>
+                <td colspan="2"><b>No. of Employees in Scope:</b> <t t-out="o.ap_employee_scope_count or ''"/></td>
+                <td><b>Audit Duration:</b> <t t-out="('%g h' % o.ap_audit_duration_hours) if o.ap_audit_duration_hours else ''"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="lbl">Audit Standard(s)</td>
+                <t t-foreach="range(5)" t-as="i"><td class="sub">Standard <t t-out="i + 1"/>:</td></t>
+            </tr>
+            <tr>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><span t-if="i &lt; len(std_lines)" t-field="std_lines[i].standard"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Audit Type<br/>per Standard</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><b>Audit Type:</b><br/>
+                        <t t-if="i &lt; len(std_lines)">
+                            <span t-if="std_lines[i].audit_type in ('others', 'self_definition') and std_lines[i].audit_type_other" t-out="std_lines[i].audit_type_other"/>
+                            <span t-else="" t-field="std_lines[i].audit_type"/>
+                        </t>
+                    </td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Registration no.</td>
+                <t t-foreach="range(5)" t-as="i">
+                    <td><span t-if="i &lt; len(std_lines)" t-out="std_lines[i].registration_no or ''"/></td>
+                </t>
+            </tr>
+            <tr>
+                <td class="lbl">Scope</td>
+                <td>
+                    <span t-out="'☒' if o.ap_scope_change == 'no_changes' else '☐'"/> No changes<br/>
+                    <span t-out="'☒' if o.ap_scope_change == 'adjustment' else '☐'"/> Adjustment required
+                </td>
+                <td><b>IAF Code:</b> <span t-field="o.ap_eac_scope"/></td>
+                <td><b>Complexity:</b> <t t-out="o.par_complexity or ''"/></td>
+                <td colspan="2"><b>Category (ISO 22003):</b> <t t-out="o.ap_category or ''"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="sub">Lead Auditor</td>
+                <td colspan="2" class="sub">Auditor</td>
+                <td colspan="2" class="sub">Expert</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 22px;" t-out="o.ap_lead_auditor_id.name or ''"/>
+                <td colspan="2">
+                    <t t-foreach="team.filtered(lambda l: l.role != 'expert')" t-as="m">
+                        <span t-out="m.partner_id.name"/><t t-if="m.role != 'auditor'"> (<span t-field="m.role"/>)</t><t t-if="not m_last">, </t>
+                    </t>
+                </td>
+                <td colspan="2">
+                    <t t-foreach="team.filtered(lambda l: l.role == 'expert')" t-as="m">
+                        <span t-out="m.partner_id.name"/><t t-if="not m_last">, </t>
+                    </t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- ================================================================= -->
+    <!-- ESYD audit report                                                 -->
+    <!-- ================================================================= -->
+    <template id="report_esyd_audit_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit Report'"/>
+                <t t-set="form_subtitle" t-value="'Management Systems Certification'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-008-AR-EN'"/>
+                <t t-set="form_revision" t-value="'02_15.02.2024'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+                <t t-set="ratings" t-value="dict(o.ear_deviation_ids._fields['rating'].selection)"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <t t-call="tuv_audit_reports.acc_ar_style"/>
+
+                    <!-- 1., 2. and 3. -->
+                    <t t-call="tuv_audit_reports.acc_ar_esyd_sections"/>
+                    <div class="tap-gap"/>
+                    <table class="tap acc acc-text">
+                        <tr><td class="bar">3. Audit Objectives</td></tr>
+                        <tr><td>
+                            <t t-call="tuv_audit_reports.acc_ar_objectives_list"/>
+                            The audit was carried out according to the relevant applicable procedure for Management Systems Certification and the relevant Regulation for Certification of TÜV AUSTRIA. The basic information documenting the results of the audit are included into this report, and in total, into the audit questionnaire, the copies of documents and other evidence obtained during the audit.
+                        </td></tr>
+                        <tr><td class="bold" style="font-size: 10px;">CHARACTERIZATION OF FINDINGS</td></tr>
+                        <tr><td style="font-size: 10px;">1: Full Compliance</td></tr>
+                        <tr><td style="font-size: 10px;">2: Opportunities for Improvement: No further action is required by the client</td></tr>
+                        <tr><td style="font-size: 10px;">3: Minor Non-Conformity(-ies): reviewed and accepted the client’s plan for correction and corrective action. Effectiveness of client’s corrective action is reviewed during the next audit</td></tr>
+                        <tr><td style="font-size: 10px;">4: Major Non-Conformity(-ies): Correction through submission of Documents</td></tr>
+                        <tr><td style="font-size: 10px;">5: Major Non-Conformity(-ies): Correction through Re-audit</td></tr>
+                        <tr><td style="font-size: 10px;">NA: Not Applicable or/and is Excluded</td></tr>
+                    </table>
+
+                    <!-- 4. Detailed results: stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc"><tr><td class="bar">4. Detailed results of the audit</td></tr></table>
+                    <table class="tap acc">
+                        <tr>
+                            <td class="lbl" style="width: 16%; height: 40px;">Result<br/>Audit Stage 1</td>
+                            <td><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="o.ear_stage1_result"/></t></td>
+                        </tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.acc_ar_stage1">
+                        <t t-set="rows" t-value="o.ear_stage1_row_ids"/>
+                        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:4]"/>
+                        <t t-set="n_std" t-value="4"/>
+                        <t t-set="esyd" t-value="True"/>
+                        <t t-set="grade_text" t-value="'Evaluation grade (1 or 2)'"/>
+                    </t>
+
+                    <!-- deviations of stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_deviations">
+                        <t t-set="devs" t-value="o.ear_deviation_ids"/>
+                        <t t-set="title" t-value="'LIST OF DEVIATIONS FOR STAGE 1⁽¹⁾'"/>
+                        <t t-set="time_text" t-value="'Time allowed to close deviations until (Maximum 6 months after the completion of stage 1)'"/>
+                        <t t-set="heads" t-value="['s/n', 'Findings Description', 'Relevant Standard(s)', '§ clause of the Standard', 'Corrective action', 'Correction evidence', 'Evaluation of corrective action']"/>
+                        <t t-set="use_verification" t-value="True"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signoff">
+                        <t t-set="place_date" t-value="o.ear_dev_place_date"/>
+                        <t t-set="rep_date" t-value="o.ear_dev_rep_place_date"/>
+                        <t t-set="lead_date" t-value="o.ear_dev_lead_place_date"/>
+                        <t t-set="place_word" t-value="'Place, Date:'"/>
+                        <t t-set="lead_word" t-value="'Lead Auditor'"/>
+                        <t t-set="rep_word" t-value="'Company Representative'"/>
+                        <t t-set="completion_word" t-value="'Completion of Corrective Actions'"/>
+                    </t>
+                    <p class="acc-note" style="margin-top: 8px;">⁽¹⁾ Areas of concern that could be classified as a nonconformity during stage 2.</p>
+
+                    <!-- audit conclusions -->
+                    <div style="page-break-before: always;"/>
+                    <t t-set="stage" t-value="o.ear_audit_stage"/>
+                    <table class="tap acc">
+                        <colgroup>
+                            <col style="width: 20%;"/><col style="width: 20%;"/><col style="width: 20%;"/>
+                            <col style="width: 28%;"/><col style="width: 6%;"/><col/>
+                        </colgroup>
+                        <tr><td colspan="6" class="grey bold" style="font-size: 14px;">Stage 2 or Surveillance</td></tr>
+                        <tr><td colspan="6" class="grey"><b>Audit Conclusions⁽²⁾</b> <i>(see instructions in Annex II for special aspects considered in respect to the standards)</i></td></tr>
+                        <tr class="grey">
+                            <td class="grey bold">Audit</td>
+                            <td class="grey bold">Stage 2 <t t-out="'☒' if stage == 'stage2' else '☐'"/></td>
+                            <td class="grey bold">Surveillance <t t-out="'☒' if stage == 'surveillance' else '☐'"/></td>
+                            <td colspan="3" class="grey bold">Recertification <t t-out="'☒' if stage == 'recertification' else '☐'"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="bold">Minimum Mandatory Requirements</td>
+                            <td class="bold center">Audited</td>
+                            <td class="bold center">Result</td>
+                        </tr>
+                        <t t-foreach="o.ear_conclusion_row_ids" t-as="row">
+                            <tr t-if="row.kind == 'item'">
+                                <td colspan="4" t-att-class="'dark' if row.dark else 'grey'" t-out="row.label"/>
+                                <td class="grey center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                                <td class="grey center" t-out="row.rating and row.rating.upper() or ''"/>
+                            </tr>
+                            <tr t-elif="row.kind == 'comment'">
+                                <td colspan="6" style="height: 22px;"><b t-out="row.label"/>
+                                    <t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="row.comment"/></t></td>
+                            </tr>
+                            <tr t-else=""><td colspan="6" t-out="row.label"/></tr>
+                        </t>
+                    </table>
+
+                    <!-- 5. Recommendation, signatures, client acceptance, disclaimer, 7. distribution -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_recommendation">
+                        <t t-set="title" t-value="'5. Recommendation of the audit team'"/>
+                        <t t-set="scope" t-value="o.ear_scope_appropriate"/>
+                        <t t-set="objectives" t-value="o.ear_objectives_fulfilled"/>
+                        <t t-set="findings_raised" t-value="o.ear_findings_raised or False"/>
+                        <t t-set="standards" t-value="o.ear_rec_standards"/>
+                        <t t-set="suggestion" t-value="o.ear_rec_suggestion"/>
+                        <t t-set="after" t-value="o.ear_rec_after"/>
+                        <t t-set="sugg_opts" t-value="o._fields['ear_rec_suggestion'].selection"/>
+                        <t t-set="after_opts" t-value="o._fields['ear_rec_after'].selection"/>
+                        <t t-set="yes_word" t-value="'YES'"/>
+                        <t t-set="no_word" t-value="'NO'"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signatures">
+                        <t t-set="place_word" t-value="'Place, Date:'"/>
+                        <t t-set="place_date" t-value="o.ear_place_date"/>
+                        <t t-set="lead_signature" t-value="o.ear_lead_signature"/>
+                        <t t-set="auditor_signature" t-value="o.ear_auditor_signature"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_client_acceptance">
+                        <t t-set="name_label" t-value="'Company Representative (Name and Surname)'"/>
+                        <t t-set="client_name" t-value="o.ear_client_name"/>
+                        <t t-set="client_signature" t-value="o.ear_client_signature"/>
+                        <t t-set="next_audit" t-value="o.ear_next_audit"/>
+                    </t>
+                    <div class="acc-text" style="font-size: 11px; text-align: justify;">
+                        <p style="margin: 0;"><b>Other Information / Disclaimer:</b></p>
+                        <p style="margin: 0;">During the validity of the Certificate, the certified company has the obligation to inform the Certification Body for any changes of the Management System and its documentation. It should be noted that the audit is based on sampling of the available information, which means that additional non – conformities may exist, besides the ones that have been documented during the audit. The result of the audit does not release the audited company from its responsibility to control the installed Management System, as well as of the maintenance and conformity to the requirements of the standard(s) for which the certificate(s) has (have) been awarded.</p>
+                        <p style="margin: 0;">The Certification Body or the Auditor does not, under no circumstances, substitute or replace the control enforced by the relevant National Authorities.</p>
+                        <p style="margin: 0;">The responsibility for the enforcement and the assessment of compliance with relevant legislation and regulations remains, in any case, company’s responsibility.</p>
+                    </div>
+                    <table class="tap" style="margin-top: 14px;"><tr><td class="bar">7.  Distribution list</td></tr></table>
+                    <ul class="acc-text acc-check" style="margin-top: 10px;">
+                        <li>Client</li>
+                        <li>Certification Body of TÜV AUSTRIA</li>
+                        <li>Audit team</li>
+                    </ul>
+
+                    <!-- Annex I: list of findings, Annex II: special aspects -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_findings">
+                        <t t-set="findings" t-value="o.ear_finding_ids"/>
+                        <t t-set="min_rows" t-value="8"/>
+                        <t t-set="title_lines" t-value="['Annex I⁽¹⁾', 'LIST OF FINDINGS']"/>
+                        <t t-set="heads" t-value="['s/n', 'Relevant standard', '§ clause of the Standard', 'Finding Description', 'Characterization', 'Root Cause and Corrective Action', 'Completion of corrective actions until:', 'Correction Evidence for Non-Conformities', 'Evaluation/Verification of corrective action']"/>
+                        <t t-set="legend" t-value="'2: Opportunities for Improvement: No further action is required by the client, 3: Minor Non-Conformity(-ies): reviewed and accepted the client’s plan for correction and corrective action. Effectiveness of client’s corrective action is reviewed during the next audit, 4: Major Non-Conformity(-ies): Correction through submission of Documents, 5: Major Non-Conformity(-ies): Correction through Re-audit'"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signoff">
+                        <t t-set="place_date" t-value="o.ear_nc_place_date"/>
+                        <t t-set="rep_date" t-value="o.ear_nc_rep_place_date"/>
+                        <t t-set="lead_date" t-value="o.ear_nc_lead_place_date"/>
+                        <t t-set="place_word" t-value="'Place, Date:'"/>
+                        <t t-set="lead_word" t-value="'Lead Auditor'"/>
+                        <t t-set="rep_word" t-value="'Company Representative'"/>
+                        <t t-set="completion_word" t-value="'Completion of Corrective Actions'"/>
+                        <t t-set="first_signature" t-value="'(Signature⁽²⁾)'"/>
+                    </t>
+                    <p class="acc-note" style="margin: 8px 0 0 0;">⁽¹⁾ List of Findings can be handled as an independent document until completing the NC evaluation process. However, it is considered an integral part of the final audit report.</p>
+                    <p class="acc-note">⁽²⁾ There is no need of signature in case there are no grated findings raised</p>
+                    <table class="tap acc" style="margin-top: 14px; font-size: 10px;">
+                        <colgroup><col style="width: 50%;"/><col/></colgroup>
+                        <tr><td colspan="2" class="bold">Annex II⁽²⁾<br/><i>Special aspects considered in respect to the standards</i></td></tr>
+                        <tr t-foreach="o._ear_annex2()" t-as="annex_row">
+                            <td t-foreach="annex_row" t-as="cell" class="top" t-att-colspan="2 if len(annex_row) == 1 else None">
+                                <b><i t-out="cell[0]"/></b>
+                                <ul t-if="len(cell) &gt; 1" style="font-style: italic;"><li t-foreach="cell[1:]" t-as="line" t-out="line"/></ul>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2" class="bold">NOTE: Detailed information and data for all the above are part of the audit evidences described in the relevant checklist(s)</td></tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ================================================================= -->
+    <!-- PNAC audit report                                                 -->
+    <!-- ================================================================= -->
+    <template id="report_pnac_audit_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit report'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="ratings" t-value="dict(o.par_deviation_ids._fields['rating'].selection)"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <t t-call="tuv_audit_reports.acc_ar_style"/>
+
+                    <!-- 1. and 2. -->
+                    <t t-call="tuv_audit_reports.acc_ar_pnac_sections"/>
+
+                    <!-- 3. Audit objectives, 4. Audit criteria -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc acc-text">
+                        <tr><td class="bar">3. Audit Objectives</td></tr>
+                        <tr><td><t t-call="tuv_audit_reports.acc_ar_objectives_list"/></td></tr>
+                        <tr><td>
+                            *) RATING of audit findings:
+                            <ol style="list-style: none; padding-left: 14px;">
+                                <li>1:&#160;&#160;&#160;&#160;Fully compliant</li>
+                                <li>2:&#160;&#160;&#160;&#160;Opportunity for improvement / Observation</li>
+                                <li>3:&#160;&#160;&#160;&#160;Minor nonconformity: Correction through submission of documents and Effectiveness of client’s corrective action is reviewed during the next audit</li>
+                                <li>4:&#160;&#160;&#160;&#160;Major nonconformity: Correction through Re-audit</li>
+                                <li>NA: Not applicable or/and excluded</li>
+                            </ol>
+                        </td></tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <table class="tap acc acc-text">
+                        <tr><td class="bar">4. Audit Criteria</td></tr>
+                        <tr><td>The audit was carried out according to the relevant applicable procedure for Management Systems Certification and the relevant Regulation for Certification of TÜV AUSTRIA. The basic information documenting the results of the audit are included into this report, and in total, into the audit questionnaire, the copies of documents and other evidence obtained during the audit.</td></tr>
+                    </table>
+
+                    <!-- 4. Detailed result: stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc"><tr><td class="bar">4. Detailed Result of the Audit</td></tr></table>
+                    <table class="tap acc">
+                        <tr>
+                            <td class="lbl" style="width: 16%; height: 40px;">Result of Audit Stage 1</td>
+                            <td><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="o.par_stage1_result"/></t></td>
+                        </tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.acc_ar_stage1">
+                        <t t-set="rows" t-value="o.par_stage1_row_ids"/>
+                        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:4]"/>
+                        <t t-set="n_std" t-value="4"/>
+                        <t t-set="esyd" t-value="False"/>
+                        <t t-set="grade_text" t-value="'Rating / Evidence / Comment'"/>
+                    </t>
+
+                    <!-- deviations of stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_deviations">
+                        <t t-set="devs" t-value="o.par_deviation_ids"/>
+                        <t t-set="title" t-value="'LIST OF DEVIATIONS FOR STAGE 1'"/>
+                        <t t-set="time_text" t-value="'Time allowed to close deviations until maximum 6 months after the completion of stage 1'"/>
+                        <t t-set="heads" t-value="['No.', 'Description of Finding', 'Relevant Standard', 'Clause of the Standard', 'Corrective Action', 'Correction Evidence', 'Rating of Corrective Action']"/>
+                        <t t-set="use_verification" t-value="False"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signoff">
+                        <t t-set="place_date" t-value="o.par_dev_place_date"/>
+                        <t t-set="rep_date" t-value="o.par_dev_rep_place_date"/>
+                        <t t-set="lead_date" t-value="o.par_dev_lead_place_date"/>
+                        <t t-set="place_word" t-value="'Place, Date:'"/>
+                        <t t-set="lead_word" t-value="'Lead Auditor'"/>
+                        <t t-set="rep_word" t-value="'Company Representative'"/>
+                        <t t-set="completion_word" t-value="'Completion of Corrective Actions'"/>
+                    </t>
+
+                    <!-- audit conclusions, positive findings -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc">
+                        <colgroup><col style="width: 82%;"/><col style="width: 9%;"/><col/></colgroup>
+                        <tr>
+                            <td class="light bold" style="font-size: 14px; height: 24px;">Audit Conclusions</td>
+                            <td class="light bold center">Audited</td>
+                            <td class="light bold center">Rating *)</td>
+                        </tr>
+                        <t t-call="tuv_audit_reports.acc_ar_conclusion_rows">
+                            <t t-set="rows" t-value="o.par_conclusion_row_ids"/>
+                        </t>
+                    </table>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.acc_ar_positives">
+                        <t t-set="positives" t-value="o.par_positive_ids"/>
+                        <t t-set="min_rows" t-value="5"/>
+                    </t>
+
+                    <!-- findings / nonconformities -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_findings">
+                        <t t-set="findings" t-value="o.par_finding_ids"/>
+                        <t t-set="min_rows" t-value="7"/>
+                        <t t-set="title_lines" t-value="['LIST OF FINDINGS / NONCONFORMITIES']"/>
+                        <t t-set="heads" t-value="['No.', 'Relevant Standard', 'Clause of the Standard', 'Description of Finding', 'Rating *)', 'Root Cause and Corrective Action', 'Completion of Corrective Action until:', 'Correction Evidence for Non-Conformities', 'Evaluation/Verification of Corrective Action']"/>
+                        <t t-set="legend" t-value="'*) Rating: 1 = Fully compliant; 2 = Opportunity for improvement / Observation; 3 = Minor nonconformity; 4 = Major nonconformity; NA = not applicable or/and excluded'"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signoff">
+                        <t t-set="place_date" t-value="o.par_nc_place_date"/>
+                        <t t-set="rep_date" t-value="o.par_nc_rep_place_date"/>
+                        <t t-set="lead_date" t-value="o.par_nc_lead_place_date"/>
+                        <t t-set="place_word" t-value="'Place, Date:'"/>
+                        <t t-set="lead_word" t-value="'Lead Auditor'"/>
+                        <t t-set="rep_word" t-value="'Company Representative'"/>
+                        <t t-set="completion_word" t-value="'Completion of corrective action'"/>
+                    </t>
+
+                    <!-- 5. Recommendation, signatures, client acceptance -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_recommendation">
+                        <t t-set="title" t-value="'5. Recommendation of the Audit Team'"/>
+                        <t t-set="scope" t-value="o.par_scope_appropriate"/>
+                        <t t-set="objectives" t-value="o.par_objectives_fulfilled"/>
+                        <t t-set="findings_raised" t-value="None"/>
+                        <t t-set="standards" t-value="o.par_rec_standards"/>
+                        <t t-set="suggestion" t-value="o.par_rec_suggestion"/>
+                        <t t-set="after" t-value="o.par_rec_after"/>
+                        <t t-set="sugg_opts" t-value="o._fields['par_rec_suggestion'].selection"/>
+                        <t t-set="after_opts" t-value="o._fields['par_rec_after'].selection"/>
+                        <t t-set="yes_word" t-value="'Yes'"/>
+                        <t t-set="no_word" t-value="'No'"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signatures">
+                        <t t-set="place_word" t-value="'Place, Date:'"/>
+                        <t t-set="place_date" t-value="o.par_place_date"/>
+                        <t t-set="lead_signature" t-value="o.par_lead_signature"/>
+                        <t t-set="auditor_signature" t-value="o.par_auditor_signature"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_client_acceptance">
+                        <t t-set="name_label" t-value="'Company Representative (Name)'"/>
+                        <t t-set="client_name" t-value="o.par_client_name"/>
+                        <t t-set="client_signature" t-value="o.par_client_signature"/>
+                        <t t-set="next_audit" t-value="o.par_next_audit"/>
+                    </t>
+
+                    <!-- disclaimer, 6. distribution list -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_disclaimer"/>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.acc_ar_footer_pnac"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ================================================================= -->
+    <!-- SAAC audit report IMS                                             -->
+    <!-- ================================================================= -->
+    <template id="report_saac_audit_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit report'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-010-AR-Audit report_IMS'"/>
+                <t t-set="form_revision" t-value="'08/30.07.2024'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+                <t t-set="ratings" t-value="dict(o.sar_deviation_ids._fields['rating'].selection)"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <t t-call="tuv_audit_reports.acc_ar_style"/>
+
+                    <!-- 1. and 2.: same layout as the TUV Austria audit report -->
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="scope_label" t-value="'Scope of certification'"/>
+                        <t t-set="duration_label" t-value="'acc. plan'"/>
+                        <t t-set="category_label" t-value="'Category (ISO 22003/ISO 13485):'"/>
+                    </t>
+
+                    <!-- 3. Audit objectives -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc acc-text">
+                        <tr><td class="bar">3. Audit objectives</td></tr>
+                        <tr><td>
+                            <t t-call="tuv_audit_reports.acc_ar_objectives_list"/>
+                            The audit was carried out according to the relevant applicable procedure for Management Systems Certification and the relevant Regulation for Certification of TÜV AUSTRIA. The basic information documenting the results of the audit are included into this report, and in total, into the audit questionnaire, the copies of documents and other evidence obtained during the audit.
+                        </td></tr>
+                        <tr><td>
+                            *) RATING of audit findings:
+                            <ol style="list-style: none; padding-left: 14px;">
+                                <li>1:&#160;&#160;&#160;&#160;Fully compliant</li>
+                                <li>2:&#160;&#160;&#160;&#160;Opportunity for improvement</li>
+                                <li>3:&#160;&#160;&#160;&#160;Minor nonconformity: Effectiveness of client’s corrective action is reviewed during the next audit</li>
+                                <li>4:&#160;&#160;&#160;&#160;Major nonconformity: Correction through submission of documents</li>
+                                <li>5:&#160;&#160;&#160;&#160;Major nonconformity: Correction through Re-audit</li>
+                                <li>NA: Not applicable or/and excluded</li>
+                            </ol>
+                        </td></tr>
+                    </table>
+
+                    <!-- 4. Detailed result: stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc"><tr><td class="bar">4. Detailed result of the audit</td></tr></table>
+                    <table class="tap acc">
+                        <tr>
+                            <td class="lbl" style="width: 16%; height: 40px;">Result of Audit stage 1</td>
+                            <td><t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="o.sar_stage1_result"/></t></td>
+                        </tr>
+                    </table>
+                    <div class="tap-gap"/>
+                    <t t-call="tuv_audit_reports.acc_ar_stage1">
+                        <t t-set="rows" t-value="o.sar_stage1_row_ids"/>
+                        <t t-set="std_lines" t-value="o.ap_standard_line_ids[:5]"/>
+                        <t t-set="n_std" t-value="5"/>
+                        <t t-set="esyd" t-value="False"/>
+                        <t t-set="grade_text" t-value="'Rating / Evidence / Comment'"/>
+                    </t>
+
+                    <!-- deviations of stage 1 -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_deviations">
+                        <t t-set="devs" t-value="o.sar_deviation_ids"/>
+                        <t t-set="title" t-value="'LIST OF DEVIATIONS FOR STAGE 1'"/>
+                        <t t-set="time_text" t-value="'Time allowed to close deviations until maximum 6 months after the completion of stage 1'"/>
+                        <t t-set="heads" t-value="['No.', 'Description of finding', 'Relevant standard', 'Clause of the standard', 'Corrective action', 'Correction evidence', 'Rating of corrective action']"/>
+                        <t t-set="use_verification" t-value="False"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signoff">
+                        <t t-set="place_date" t-value="o.sar_dev_place_date"/>
+                        <t t-set="rep_date" t-value="o.sar_dev_rep_place_date"/>
+                        <t t-set="lead_date" t-value="o.sar_dev_lead_place_date"/>
+                        <t t-set="place_word" t-value="'Place, date:'"/>
+                        <t t-set="lead_word" t-value="'Lead auditor'"/>
+                        <t t-set="rep_word" t-value="'Company representative'"/>
+                        <t t-set="completion_word" t-value="'Completion of corrective actions'"/>
+                    </t>
+
+                    <!-- audit conclusions -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc">
+                        <colgroup><col style="width: 82%;"/><col style="width: 9%;"/><col/></colgroup>
+                        <tr>
+                            <td class="light bold" style="font-size: 14px; height: 24px;">Audit conclusions</td>
+                            <td class="light bold center">Audited</td>
+                            <td class="light bold center">Rating *)</td>
+                        </tr>
+                        <t t-call="tuv_audit_reports.acc_ar_conclusion_rows">
+                            <t t-set="rows" t-value="o.sar_conclusion_row_ids"/>
+                        </t>
+                    </table>
+
+                    <!-- information security specific requirements (ISO 27001) -->
+                    <div style="page-break-before: always;"/>
+                    <table class="tap acc">
+                        <colgroup><col style="width: 90%;"/><col/></colgroup>
+                        <t t-foreach="o.sar_isms_row_ids" t-as="row">
+                            <tr t-if="row.kind == 'head'"><td colspan="2" class="dark" t-out="row.label"/></tr>
+                            <tr t-elif="row.kind == 'sub' and row.label == 'Locations'">
+                                <td class="grey bold" t-out="row.label"/><td class="grey bold center">Audited</td>
+                            </tr>
+                            <tr t-elif="row.kind == 'sub'"><td colspan="2" class="grey bold" t-out="row.label"/></tr>
+                            <tr t-elif="row.kind == 'location'">
+                                <td><b t-out="row.label.split(':')[0] + ':'"/> <t t-out="row.comment or 'Address'"/></td>
+                                <td class="center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                            </tr>
+                            <tr t-elif="row.kind == 'comment'">
+                                <td colspan="2" style="height: 22px;"><b t-out="row.label"/>
+                                    <t t-call="tuv_audit_reports.acc_ar_lines"><t t-set="text" t-value="row.comment"/></t></td>
+                            </tr>
+                            <tr t-else="">
+                                <td colspan="2">
+                                    <t t-call="tuv_audit_reports.acc_ar_lines">
+                                        <t t-set="text" t-value="row.comment if (row.replace_label and row.comment) else row.label"/>
+                                    </t>
+                                    <t t-if="row.comment and not row.replace_label"> <t t-out="row.comment"/></t>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <!-- inspected requirements: (section, title row, CA/1.SA/2.SA boxes, new page) -->
+                    <t t-foreach="[('iso27001_2013', True, True, True), ('iso27001', True, True, True), ('iso27701', True, True, False), ('sikat', False, True, False), ('iso20000', True, False, True), ('iso22301', True, False, True)]" t-as="spec">
+                        <div t-if="spec[3]" style="page-break-before: always;"/>
+                        <table class="tap acc" style="margin-bottom: 14px;">
+                            <colgroup>
+                                <t t-if="spec[2]"><col style="width: 82%;"/><col style="width: 6%;"/><col style="width: 6%;"/><col/></t>
+                                <t t-else=""><col style="width: 90%;"/><col/></t>
+                            </colgroup>
+                            <tr t-if="spec[1]"><td t-att-colspan="4 if spec[2] else 2" class="dark">Inspected requirements of the standard according to the audit plan</td></tr>
+                            <t t-foreach="o['sar_' + spec[0] + '_row_ids']" t-as="row">
+                                <tr t-if="row.kind == 'head' and spec[2]">
+                                    <td t-att-class="'grey bold' if spec[1] else 'dark'" t-out="row.label"/>
+                                    <td t-att-class="'grey bold center' if spec[1] else 'dark center'">CA / R</td>
+                                    <td t-att-class="'grey bold center' if spec[1] else 'dark center'">1. SA</td>
+                                    <td t-att-class="'grey bold center' if spec[1] else 'dark center'">2. SA</td>
+                                </tr>
+                                <tr t-elif="row.kind == 'head'">
+                                    <td class="grey bold" t-out="row.label"/><td class="grey bold center">Audited</td>
+                                </tr>
+                                <tr t-elif="spec[2]">
+                                    <td t-out="row.label"/>
+                                    <td class="center tap-box" t-out="'☒' if row.ca else '☐'"/>
+                                    <td class="center tap-box" t-out="'☒' if row.sa1 else '☐'"/>
+                                    <td class="center tap-box" t-out="'☒' if row.sa2 else '☐'"/>
+                                </tr>
+                                <tr t-else="">
+                                    <td t-out="row.label"/>
+                                    <td class="center tap-box" t-out="'☒' if row.audited else '☐'"/>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+
+                    <!-- positive findings -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_positives">
+                        <t t-set="positives" t-value="o.sar_positive_ids"/>
+                        <t t-set="min_rows" t-value="3"/>
+                    </t>
+
+                    <!-- findings / nonconformities -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_findings">
+                        <t t-set="findings" t-value="o.sar_finding_ids"/>
+                        <t t-set="min_rows" t-value="7"/>
+                        <t t-set="title_lines" t-value="['LIST OF FINDINGS / NONCONFORMITIES']"/>
+                        <t t-set="heads" t-value="['No.', 'Relevant standard', 'Clause of the standard', 'Description of finding', 'Rating *)', 'Root cause and corrective action', 'Completion of corrective action until:', 'Correction evidence for nonconformities', 'Evaluation/Verification of corrective action']"/>
+                        <t t-set="legend" t-value="'*) Rating: 1 = Fully compliant; 2 = Opportunity for improvement; 3 = Minor nonconformity; 4/5 = Major nonconformity; NA = not applicable or/and excluded'"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signoff">
+                        <t t-set="place_date" t-value="o.sar_nc_place_date"/>
+                        <t t-set="rep_date" t-value="o.sar_nc_rep_place_date"/>
+                        <t t-set="lead_date" t-value="o.sar_nc_lead_place_date"/>
+                        <t t-set="place_word" t-value="'Place, date:'"/>
+                        <t t-set="lead_word" t-value="'Lead Auditor'"/>
+                        <t t-set="rep_word" t-value="'Company representative'"/>
+                        <t t-set="completion_word" t-value="'Completion of corrective action'"/>
+                    </t>
+
+                    <!-- 5. Recommendation, signatures -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_recommendation">
+                        <t t-set="title" t-value="'5. Recommendation of the audit team'"/>
+                        <t t-set="scope" t-value="o.sar_scope_appropriate"/>
+                        <t t-set="objectives" t-value="o.sar_objectives_fulfilled"/>
+                        <t t-set="findings_raised" t-value="None"/>
+                        <t t-set="standards" t-value="o.sar_rec_standards"/>
+                        <t t-set="suggestion" t-value="o.sar_rec_suggestion"/>
+                        <t t-set="after" t-value="o.sar_rec_after"/>
+                        <t t-set="sugg_opts" t-value="o._fields['sar_rec_suggestion'].selection"/>
+                        <t t-set="after_opts" t-value="o._fields['sar_rec_after'].selection"/>
+                        <t t-set="yes_word" t-value="'Yes'"/>
+                        <t t-set="no_word" t-value="'No'"/>
+                    </t>
+                    <t t-call="tuv_audit_reports.acc_ar_signatures">
+                        <t t-set="place_word" t-value="'Place, date:'"/>
+                        <t t-set="place_date" t-value="o.sar_place_date"/>
+                        <t t-set="lead_signature" t-value="o.sar_lead_signature"/>
+                        <t t-set="auditor_signature" t-value="o.sar_auditor_signature"/>
+                    </t>
+
+                    <!-- disclaimer, 6. distribution list -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.acc_ar_disclaimer"/>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

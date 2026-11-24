@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Mandays Calculation tab of the project: the boxes of the 3 MDC / ATJF Word forms
+         (PNAC, ESYD Austrian & FSSC, ESYD IMS & ISO 50001) that had no field yet. -->
+    <record id="edit_project_mandays_mdc_docx" model="ir.ui.view">
+        <field name="name">project.project.form.mandays.mdc.docx</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_austria_customization.edit_project_mandays_tuv_austria_customization"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_company_description']" position="after">
+                <field name="mdc_effective_employees"/>
+                <field name="mdc_rgn"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_certification_scope']" position="after">
+                <field name="mdc_scope_change" widget="radio" options="{'horizontal': true}"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_category']" position="after">
+                <field name="mdc_risk_category"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_audit_language']" position="after">
+                <field name="mdc_audit_method"/>
+                <field name="mdc_announced"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_remote_auditing']" position="after">
+                <field name="mdc_comments"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_other_participants']" position="after">
+                <field name="mdc_stage1_md"/>
+                <field name="mdc_stage2_md"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md_other_participants']/../.." position="after">
+                <group string="Planned Audit Team / Multi-site / Approval (ESYD IMS form)">
+                    <group>
+                        <field name="mdc_la_md"/>
+                        <field name="mdc_la_technical_area"/>
+                        <field name="mdc_ca_md"/>
+                        <field name="mdc_ca_technical_area"/>
+                        <field name="mdc_planned_audit_date"/>
+                        <field name="mdc_no_stage1_justification"/>
+                    </group>
+                    <group>
+                        <field name="mdc_sampling_square_root"/>
+                        <field name="mdc_sampling_all_facilities"/>
+                        <field name="mdc_appendix_1"/>
+                        <field name="mdc_appendix_2"/>
+                        <field name="mdc_appendix_3"/>
+                        <field name="mdc_approval_place"/>
+                        <field name="mdc_approval_date"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md1_c_equation']" position="after">
+                <field name="mdc_event_scope"/>
+                <field name="mdc_event_min_md"/>
+                <field name="mdc_events_per_year"/>
+                <field name="mdc_suppliers"/>
+                <field name="mdc_org_locations"/>
+                <field name="mdc_event_locations"/>
+            </xpath>
+            <xpath expr="//page[@name='mandays_calculation']//field[@name='md4_combined_audit_pct']" position="after">
+                <field name="mdc_ims_reduction"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

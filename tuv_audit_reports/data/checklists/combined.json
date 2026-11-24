@@ -1,0 +1,4650 @@
+{
+ "key": "combined",
+ "meta": {
+  "show_email": true,
+  "scope_label": "Scope of certification",
+  "duration_label": "value",
+  "category_label": "Category (ISO 22003/ISO 13485):",
+  "title": "Audit Checklist Combined QM/EM/HSE/EN",
+  "subtitle": "Certification of Management Systems",
+  "code": "FM-TAGMBH-MSZ-033-Audit-Checklist-combined-QM-EM-HSE-EN-EN",
+  "revision": "03/05.09.2025",
+  "vkl": "Internal"
+ },
+ "elements": [
+  {
+   "group": "QM",
+   "clause": "4.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "4.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "4.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "4.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "5.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "5.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "5.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "6.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "6.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "6.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "7.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "7.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "7.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "7.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "7.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.6",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "8.7",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "9.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "9.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "9.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "10.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "10.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "QM",
+   "clause": "10.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "4.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "4.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "4.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "4.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "5.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "5.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "5.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "6.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "6.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "7.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "7.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "7.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "7.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "7.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "8.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "8.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "9.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "9.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "9.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "10.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "10.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EM",
+   "clause": "10.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "4.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "4.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "4.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "4.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "5.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "5.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "5.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "6.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "6.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "7.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "7.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "7.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "7.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "7.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "8.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "8.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "9.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "9.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "9.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "10.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "10.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "HSE",
+   "clause": "10.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "4.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "4.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "4.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "4.4",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "5.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "5.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "5.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "6.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "6.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "7.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "7.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "7.3",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "7.4",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "7.5",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "8.1",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "8.2",
+   "mand": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "9.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "9.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "9.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "9.3",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "10.1",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "group": "EN",
+   "clause": "10.2",
+   "mand": [
+    true,
+    true,
+    true
+   ]
+  }
+ ],
+ "blocks": [
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "table",
+   "widths": [
+    6.17,
+    4.89,
+    5.07,
+    5.09,
+    19.45,
+    0.26,
+    19.69,
+    0.35,
+    18.46,
+    0.88,
+    19.69
+   ],
+   "rows": [
+    [
+     {
+      "cs": 11,
+      "bg": "red",
+      "t": "3. Process-orientated audit: requirements of the standards",
+      "b": true
+     }
+    ],
+    [
+     {
+      "cs": 4
+     },
+     {
+      "cs": 7,
+      "t": "List of required/obligatory documents¹",
+      "b": true
+     }
+    ],
+    [
+     {
+      "t": "ISO\n9001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "t": "ISO 14001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "t": "ISO\n45001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "t": "ISO\n50001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "t": "ISO 9001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "ISO 14001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "t": "ISO 45001",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "ISO 50001",
+      "b": true,
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "MDE-01\n4.1\n4.2\n4.3\n4.4",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-01\n4.1\n4.2\n4.3\n4.4",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-01\n4.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-01\n4.1\n4.2\n4.3\n4.4",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7,
+      "t": "Company description"
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3
+     },
+     {
+      "t": "Scope of application of the HSE management system"
+     },
+     {
+      "cs": 2,
+      "t": "Manual, company profile, company description, company statutes, etc."
+     }
+    ],
+    [
+     {
+      "t": "MDE-02\n5.1.1\n5.2.1\n5.2.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-02\n5.1\n5.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-02\n5.2\n5.4",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-02\n5.1\n5.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Leadership, quality policy"
+     },
+     {
+      "cs": 3,
+      "t": "Environmental policy ( marking, date of issue, name of the person signing )"
+     },
+     {
+      "t": "OH&S policy"
+     },
+     {
+      "cs": 2,
+      "t": "Manual, Company profile,  Energy policy"
+     }
+    ],
+    [
+     {
+      "t": "MDE-03\n5.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-03\n5.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-03\n5.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-03\n5.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "Organization chart and/or job descriptions"
+     },
+     {
+      "t": "Organization chart and/or job descriptions"
+     },
+     {
+      "cs": 3,
+      "t": "Responsibilities and authorities within OH&SMS"
+     },
+     {
+      "t": "Organisational chart and/or job descriptions"
+     }
+    ],
+    [
+     {
+      "t": "MDE-04\n6.1\n6.2\n6.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-04\n6.1.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-04\n&\nRDI-01\n6.1.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-05\n6.1.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Risks and opportunities, objectives and planning"
+     },
+     {
+      "cs": 3,
+      "t": "Definition of environmental risk management, planning and targets"
+     },
+     {
+      "t": "HSE risks and opportunities and measures to overcome them"
+     },
+     {
+      "cs": 2,
+      "t": "Measures to manage risks and opportunities"
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-05\n6.1.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-05\n6.1.2.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-06\n6.1.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Determination of environmental aspects"
+     },
+     {
+      "t": "Assessment of HSE risks and other risks for the HSE management system"
+     },
+     {
+      "cs": 2,
+      "t": "Measures to manage risks and opportunities"
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-06\n6.1.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-02\n6.1.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Definition of compliance obligations"
+     },
+     {
+      "t": "Determination of legal obligations and other requirements"
+     },
+     {
+      "cs": 2
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-07\n6.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-06\n6.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-07 & MDE-08&\nMDE-09\n6.2\n6.3\n6.4\n6.5\n6.6",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Definition of environmental targets and plans to achieve these targets"
+     },
+     {
+      "t": "Planning to achieve the HSE goals"
+     },
+     {
+      "cs": 2,
+      "t": "Objectives, energy targets and planning to achieve them\nAnalysing the energy situation:\n- What is the current situation?\n- Where do we want to go?\n- How will we get there?\nMeasuring and testing equipment"
+     }
+    ],
+    [
+     {
+      "t": "MDE-05\n7.1.1\n7.1.2\n7.1.3\n7.1.4\n7.1.6\n7.2\n7.3\n7.4",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-08\n7.2\n7.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-03\n7.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-10\n7.2\n7.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Support and resources"
+     },
+     {
+      "cs": 3,
+      "t": "Determination of the required competences\nDetermination of training requirements"
+     },
+     {
+      "t": "Proof of competence"
+     },
+     {
+      "cs": 2,
+      "t": "Determination of the required competences\nDetermination of training requirements"
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-09\n7.4.1\n7.4.2\n7.4.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-04\n7.4.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-11\n7.4",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Proof of communication"
+     },
+     {
+      "t": "Proof of communication"
+     },
+     {
+      "cs": 2,
+      "t": "Brief description of the relevant procedure and/or the means of communication used"
+     }
+    ],
+    [
+     {
+      "t": "MDE-06\n7.1.5.1\n7.1.5.2",
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "Records for traceability"
+     },
+     {
+      "cs": 3
+     },
+     {},
+     {
+      "cs": 2
+     }
+    ],
+    [
+     {
+      "t": "MDE-07\n7.5\n8.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-10\n7.5",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-07\n8.1.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-12\n7.5.1\n7.5.2\n7.5.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Brief description of procedures, documents and updated files"
+     },
+     {
+      "cs": 3,
+      "t": "Documented procedure or/and brief description of the applicable process for the documented control of information"
+     },
+     {
+      "t": "Documented information that provides assurance that the processes have been carried out and defined as planned"
+     },
+     {
+      "cs": 2,
+      "t": "Documented procedure or/and brief description of the applicable process for the documented control of information"
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-11\n8.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-13 MDE-14\n8.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Monitoring in accordance with environmental requirements (i.e: Environmental requirements (design to final product), environmental work instructions)\nControl of outsourced processes (subcontractors, etc.)\nConsideration of the life cycle"
+     },
+     {},
+     {
+      "cs": 2,
+      "t": "Operational planning and control\nControl of outsourced processes (subcontractors, etc.)"
+     }
+    ],
+    [
+     {
+      "t": "MDE-08\n5.1.2\n8.2.1\n8.5.1\n8.5.2\n8.5.3\n8.5.4\n8.5.5",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-15\n8.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Customer focus and customer satisfaction"
+     },
+     {
+      "cs": 3
+     },
+     {},
+     {
+      "cs": 2,
+      "t": "Design"
+     }
+    ],
+    [
+     {
+      "t": "MDE-09\n8.2.2\n8.2.3\n8.2.4\n8.3\n8.5.6\n8.6\n8.7",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-16\n8.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Development and manufacture of products and/or services"
+     },
+     {
+      "cs": 3
+     },
+     {},
+     {
+      "cs": 2,
+      "t": "Beschaffung"
+     }
+    ],
+    [
+     {
+      "t": "MDE-10\n8.4",
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {
+      "al": "c"
+     },
+     {},
+     {
+      "t": "External services, products and providers"
+     },
+     {
+      "cs": 3
+     },
+     {},
+     {
+      "cs": 2
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-12\n8.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDI-08\n&\nRDI-05\n8.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Emergency and preparedness plan (measures to prevent impacts and consequences, response to actual emergency situations, drills, etc.)"
+     },
+     {
+      "t": "Emergency planning and response process\nPlans for responding to potential emergency situations"
+     },
+     {
+      "cs": 2
+     }
+    ],
+    [
+     {
+      "t": "MDE-11\n9.1.1\n9.1.2\n9.1.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-13\n9.1.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-06\n&\nRDI-07\n9.1.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-17\n9.1",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Brief description of the evaluation report and the KPIs"
+     },
+     {
+      "cs": 3,
+      "t": "Brief description of the assessment report, objectives, KPIs"
+     },
+     {
+      "t": "Results of monitoring, measurement, analysis and performance evaluation\nMaintenance, calibration or inspection of measuring devices"
+     },
+     {
+      "cs": 2,
+      "t": "Monitoring, measuring, analysing and evaluating energy performance and the EnMS"
+     }
+    ],
+    [
+     {
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-14\n9.1.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-08\n9.1.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-18\n9.1.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {},
+     {
+      "cs": 3,
+      "t": "Assessment of compliance with the regulations"
+     },
+     {
+      "t": "Assessment of compliance with the regulations"
+     },
+     {
+      "cs": 2,
+      "t": "Assessment of compliance with the regulations"
+     }
+    ],
+    [
+     {
+      "t": "MDE-12\n9.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-15\n9.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-09\n&\nRDI-10\n9.2.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-19\n9.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Internal audit procedure"
+     },
+     {
+      "cs": 3,
+      "t": "a) Procedure for internal audits, b) Frequency of internal audits, c) Record of the last internal audit"
+     },
+     {
+      "t": "Internal audit programme\nInternal audit report"
+     },
+     {
+      "cs": 2,
+      "t": "a) Procedure for internal audits, b) Frequency of internal audits, c) Record of the last internal audit"
+     }
+    ],
+    [
+     {
+      "t": "MDE-13\n9.3\n10.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-16\n9.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-11\n9.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-20\n9.3",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Management Review"
+     },
+     {
+      "cs": 3,
+      "t": "a) Frequency of the management review\nb) Date and participants of the last management review"
+     },
+     {
+      "t": "Results of the management review"
+     },
+     {
+      "cs": 2,
+      "t": "a) Frequency of the management review\nb) Date and participants of the last management review"
+     }
+    ],
+    [
+     {
+      "t": "MDE-14\n10.1\n10.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-17\n10.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "RDI-12\nRDI-13\n10.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "t": "MDE-21\nMDE-22\n10.1\n10.2",
+      "al": "c",
+      "rs": 2
+     },
+     {
+      "cs": 7
+     }
+    ],
+    [
+     {
+      "t": "Records of corrective actions"
+     },
+     {
+      "cs": 3,
+      "t": "Records of corrective actions"
+     },
+     {
+      "t": "Nature of incidents or non-conformities and any actions taken in response\nResults of actions and corrective measures, including their effectiveness"
+     },
+     {
+      "cs": 2,
+      "t": "Records of corrective actions\nContinuous improvement"
+     }
+    ],
+    [
+     {
+      "al": "c"
+     },
+     {
+      "t": "RDI-14\n10.3",
+      "al": "c"
+     },
+     {
+      "t": "RDI-14\n10.3",
+      "al": "c"
+     },
+     {},
+     {},
+     {
+      "cs": 3
+     },
+     {
+      "t": "Proof of the results of continuous improvement"
+     },
+     {
+      "cs": 2
+     }
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "1. mandatory documents must be documented with date and revision status and, if applicable, audited process."
+  },
+  {
+   "type": "p",
+   "t": "Standard elements ²",
+   "b": true
+  },
+  {
+   "type": "table",
+   "widths": [
+    17.11,
+    18.9,
+    27.64,
+    36.35
+   ],
+   "rows": [
+    [
+     {
+      "box": "static",
+      "t": "checked"
+     },
+     {
+      "box": "static",
+      "t": "not checked"
+     },
+     {},
+     {}
+    ]
+   ]
+  },
+  {
+   "type": "table",
+   "widths": [
+    3.44,
+    0.74,
+    2.7,
+    1.51,
+    1.94,
+    2.28,
+    1.17,
+    3.05,
+    0.4,
+    3.45,
+    0.37,
+    3.08,
+    1.14,
+    2.31,
+    1.92,
+    1.53,
+    2.69,
+    0.76,
+    3.46,
+    3.45,
+    0.77,
+    2.68,
+    1.54,
+    1.91,
+    2.31,
+    1.14,
+    3.08,
+    0.37,
+    3.45,
+    0.42,
+    3.03,
+    1.19,
+    2.26,
+    1.96,
+    1.49,
+    2.73,
+    0.72,
+    3.45,
+    0.05,
+    3.39,
+    0.82,
+    2.62,
+    1.6,
+    1.85,
+    2.37,
+    1.08,
+    3.14,
+    0.31,
+    3.45,
+    0.47,
+    2.97
+   ],
+   "rows": [
+    [
+     {
+      "t": "QM",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.4",
+      "al": "c"
+     },
+     {
+      "t": "5.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.2",
+      "al": "c"
+     },
+     {
+      "t": "6.3",
+      "al": "c"
+     },
+     {
+      "t": "7.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.5",
+      "al": "c"
+     },
+     {
+      "t": "8.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.5",
+      "al": "c"
+     },
+     {
+      "t": "8.6",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.7",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.1",
+      "al": "c"
+     },
+     {
+      "t": "10.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.3",
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "CA/RA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       0,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       1,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       2,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       3,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       5,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       6,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       7,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       8,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       11,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       12,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       13,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       14,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       16,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       17,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       18,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       19,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       21,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       22,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       23,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       24,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       25,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       26,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       27,
+       0
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "1. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       0,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       1,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       2,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       3,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       5,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       6,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       7,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       8,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       11,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       12,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       13,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       14,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       16,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       17,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       18,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       19,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       21,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       22,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       23,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       24,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       25,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       26,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       27,
+       1
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "t": "2. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       0,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       1,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       2,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       3,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       4,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       5,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       6,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       7,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       8,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       9,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       10,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       11,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       12,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       13,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       14,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       15,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       16,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       17,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       18,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       19,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       20,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       21,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       22,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       23,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       24,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       25,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "box": [
+       26,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       27,
+       2
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "EM",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.3",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "4.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.3",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "7.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.5",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.2",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "9.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.2",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "10.3",
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "CA/RA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       28,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       29,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       30,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       31,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       32,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       33,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       34,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       35,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       36,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       37,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       38,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       39,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       40,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       41,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       42,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       43,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       44,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       45,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       46,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       47,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       48,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       49,
+       0
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "1. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       28,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       29,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       30,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       31,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       32,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       33,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       34,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       35,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       36,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       37,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       38,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       39,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       40,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       41,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       42,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       43,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       44,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       45,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       46,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       47,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       48,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       49,
+       1
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "2. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       28,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       29,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       30,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       31,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       32,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       33,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       34,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       35,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       36,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       37,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       38,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       39,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       40,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       41,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       42,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       43,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       44,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       45,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       46,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       47,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       48,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       49,
+       2
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "HSE",
+      "b": true
+     },
+     {
+      "cs": 2,
+      "t": "4.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.3",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "4.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.3",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "7.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.5",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.2",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "9.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.2",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "10.3",
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "CA/RA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       50,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       51,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       52,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       53,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       54,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       55,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       56,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       57,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       58,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       59,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       60,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       61,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       62,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       63,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       64,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       65,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       66,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       67,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       68,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       69,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       70,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       71,
+       0
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "1. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       50,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       51,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       52,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       53,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       54,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       55,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       56,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       57,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       58,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       59,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       60,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       61,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       62,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       63,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       64,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       65,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       66,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       67,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       68,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       69,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       70,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       71,
+       1
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "2. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       50,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       51,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       52,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       53,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       54,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       55,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       56,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       57,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       58,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       59,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       60,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       61,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       62,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       63,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       64,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       65,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       66,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       67,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       68,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       69,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       70,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       71,
+       2
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "EN",
+      "b": true,
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "4.3",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "4.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "5.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "6.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.3",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "7.4",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "7.5",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "8.2",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "9.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.1",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.2",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "9.3",
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "t": "10.1",
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "t": "10.2",
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "CA/RA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       72,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       73,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       74,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       75,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       76,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       77,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       78,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       79,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       80,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       81,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       82,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       83,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       84,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       85,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       86,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       87,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       88,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       89,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       90,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       91,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       92,
+       0
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       93,
+       0
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "1. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       72,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       73,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       74,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       75,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       76,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       77,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       78,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       79,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       80,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       81,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       82,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       83,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       84,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       85,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       86,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       87,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       88,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       89,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       90,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       91,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       92,
+       1
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       93,
+       1
+      ],
+      "al": "c"
+     }
+    ],
+    [
+     {
+      "cs": 2,
+      "t": "2. SA"
+     },
+     {
+      "cs": 2,
+      "box": [
+       72,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       73,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       74,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       75,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       76,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       77,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       78,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       79,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       80,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       81,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       82,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       83,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       84,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       85,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       86,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       87,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       88,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       89,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       90,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       91,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 2,
+      "box": [
+       92,
+       2
+      ],
+      "al": "c"
+     },
+     {
+      "cs": 3,
+      "box": [
+       93,
+       2
+      ],
+      "al": "c"
+     }
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "t": "2. All fields marked in grey are mandatory fields and must be audited for each audit type. The other standard requirements are split up so that all these standard requirements are assessed at least once in the sum of the two surveillance audits."
+  }
+ ],
+ "notes_title": "Notes of the auditor"
+}

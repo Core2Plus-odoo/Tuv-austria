@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_certificate_form_dispatch" model="ir.ui.view">
+        <field name="name">tuv.certificate.form.review.dispatch</field>
+        <field name="model">tuv.certificate</field>
+        <field name="inherit_id" ref="tuv_austria_customization.view_tuv_certificate_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_cancel']" position="before">
+                <button name="action_approve_certificate" type="object" string="Approve Certificate"
+                    class="btn-primary" invisible="state != 'prepared'"
+                    groups="tuv_austria_customization.group_certificate_approver,base.group_system"/>
+                <button name="action_return_to_preparation" type="object" string="Return to Preparation"
+                    invisible="state != 'prepared'"
+                    groups="tuv_austria_customization.group_certificate_approver,base.group_system"/>
+                <button name="action_print_certificate" type="object" string="Print Certificate"
+                    class="btn-primary" icon="fa-print" invisible="state != 'approved'"/>
+                <button name="action_print_certificate" type="object" string="Reprint" icon="fa-print"
+                    invisible="state not in ('printed', 'dispatched')"/>
+                <button name="action_open_dispatch" type="object" string="Log Dispatch"
+                    class="btn-primary" icon="fa-truck" invisible="state != 'printed'"/>
+                <button name="action_open_dispatch" type="object" string="Log Another Dispatch"
+                    icon="fa-truck" invisible="state != 'dispatched'"/>
+            </xpath>
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">preparation,prepared,approved,printed,dispatched</attribute>
+            </field>
+            <xpath expr="//widget[@name='web_ribbon']" position="attributes">
+                <attribute name="title">Dispatched</attribute>
+                <attribute name="invisible">state != 'dispatched'</attribute>
+            </xpath>
+            <xpath expr="//sheet/group" position="after">
+                <group invisible="state in ('preparation', 'cancelled')">
+                    <group string="Review &amp; Approval">
+                        <field name="chk_holder" readonly="state != 'prepared'"/>
+                        <field name="chk_standard_scope" readonly="state != 'prepared'"/>
+                        <field name="chk_ea" readonly="state != 'prepared'"/>
+                        <field name="chk_dates" readonly="state != 'prepared'"/>
+                        <field name="review_comments" readonly="state != 'prepared'"
+                            placeholder="Required when returning it to preparation"/>
+                        <field name="approved_by"/>
+                        <field name="approved_on"/>
+                    </group>
+                    <group string="Printing">
+                        <field name="printed_by"/>
+                        <field name="printed_on"/>
+                        <field name="print_count"/>
+                        <field name="final_pdf_id" widget="many2one_binary" invisible="not final_pdf_id"/>
+                        <field name="dispatched_on"/>
+                    </group>
+                </group>
+                <separator string="Dispatch Log" invisible="not dispatch_ids"/>
+                <field name="dispatch_ids" nolabel="1" readonly="1" invisible="not dispatch_ids">
+                    <list>
+                        <field name="dispatch_date"/>
+                        <field name="method" widget="badge"/>
+                        <field name="courier_name"/>
+                        <field name="tracking_number"/>
+                        <field name="recipient_name"/>
+                        <field name="email_to"/>
+                        <field name="note"/>
+                        <field name="logged_by"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_tuv_certificate_dispatch_wizard_form" model="ir.ui.view">
+        <field name="name">tuv.certificate.dispatch.wizard.form</field>
+        <field name="model">tuv.certificate.dispatch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Log Dispatch">
+                <group>
+                    <group>
+                        <field name="certificate_id" readonly="1"/>
+                        <field name="partner_id"/>
+                        <field name="dispatch_date"/>
+                        <field name="method" widget="radio"/>
+                    </group>
+                    <group>
+                        <field name="courier_name" invisible="method != 'courier'" required="method == 'courier'"/>
+                        <field name="tracking_number" invisible="method != 'courier'" required="method == 'courier'"/>
+                        <field name="recipient_name" invisible="method != 'in_person'" required="method == 'in_person'"/>
+                        <field name="email_to" invisible="method != 'email'"/>
+                        <div class="text-muted" colspan="2" invisible="method != 'email'">
+                            The approved certificate is e-mailed to the client as PDF.
+                        </div>
+                        <field name="note"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Log Dispatch" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tuv_certificate_dispatch_list" model="ir.ui.view">
+        <field name="name">tuv.certificate.dispatch.list</field>
+        <field name="model">tuv.certificate.dispatch</field>
+        <field name="arch" type="xml">
+            <list string="Certificate Dispatch Log" create="0">
+                <field name="dispatch_date"/>
+                <field name="certificate_number"/>
+                <field name="partner_id"/>
+                <field name="method" widget="badge"/>
+                <field name="courier_name"/>
+                <field name="tracking_number"/>
+                <field name="recipient_name"/>
+                <field name="email_to"/>
+                <field name="logged_by"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_tuv_certificate_dispatch" model="ir.actions.act_window">
+        <field name="name">Certificate Dispatch Log</field>
+        <field name="res_model">tuv.certificate.dispatch</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_tuv_certificate_dispatch"
+        action="action_tuv_certificate_dispatch"
+        name="Certificate Dispatch Log"
+        parent="project.menu_main_pm"
+        sequence="18"/>
+
+</odoo>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Geometry of "8. Application Review Form.docx" (TUV/BA/FM/02-2, Rev 00):
+         A4, margins 25 / 10 / 25 / 20 mm, so the table is 175 mm wide; the header
+         band is 25 mm tall and starts 10 mm below the paper edge. -->
+    <record id="paperformat_review_form" model="report.paperformat">
+        <field name="name">TUV Review Form (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">36</field>
+        <field name="margin_bottom">18</field>
+        <field name="margin_left">25</field>
+        <field name="margin_right">10</field>
+        <field name="header_spacing">26</field>
+        <field name="header_line" eval="False"/>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="action_report_sale_order_review_form" model="ir.actions.report">
+        <field name="name">Review Form</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_sale_order_review_form</field>
+        <field name="report_file">tuv_austria_customization.report_sale_order_review_form</field>
+        <field name="print_report_name">'Review Form - %s' % (object.name)</field>
+        <field name="paperformat_id" ref="paperformat_review_form"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_sale_order_review_form_style">
+        <style>
+            /* The original is Arial 9 pt throughout, 14 pt header title, 8 pt footer,
+               with a 0.75 pt continuous grid. wkhtmltopdf turns 1 CSS px into 0.6 pt
+               here, so every size below is the wanted point size divided by 0.6. */
+            .o_body_pdf { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+            .tuv_rf { font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+                      color: #000000; font-size: 15px; }
+            .tuv_rf table { width: 100%; table-layout: fixed; border-collapse: collapse !important;
+                            margin: 0; background-color: transparent !important; }
+            .tuv_rf table tr, .tuv_rf table tbody { background-color: transparent !important; }
+            .tuv_rf table td { border: 1.25px solid #000000 !important;
+                               background-color: transparent !important;
+                               padding: 2px 6px; vertical-align: middle; font-size: 15px;
+                               word-wrap: break-word; }
+            .tuv_rf td.rf_bar { text-align: center; font-weight: bold; }
+            .tuv_rf td.rf_c { text-align: center; }
+            .tuv_rf td.rf_i { font-style: italic; }
+            .tuv_rf .rf_it { font-style: italic; }
+            .tuv_rf .rf_box { display: inline-block; width: 14.2px; height: 14.2px;
+                              line-height: 13px; border: 1.25px solid #000000; text-align: center;
+                              font-size: 11.7px; margin-right: 6.7px; vertical-align: middle; }
+            .tuv_rf .rf_title { font-size: 23.3px; font-weight: bold; text-align: center; }
+            .tuv_rf .rf_logo { max-height: 71px; max-width: 127px; }
+            .tuv_rf .rf_sub { font-size: 15px; font-style: italic; text-align: center;
+                              padding: 6px 0 8px 0; }
+            .tuv_rf .rf_code { font-size: 13.3px; text-align: right; }
+        </style>
+    </template>
+
+    <template id="report_sale_order_review_form_header">
+        <div class="header tuv_rf">
+            <t t-call="tuv_austria_customization.report_sale_order_review_form_style"/>
+            <table>
+                <colgroup><col style="width: 77.14%;"/><col style="width: 22.86%;"/></colgroup>
+                <tr>
+                    <td class="rf_title" style="line-height: 65px;">Management Systems Application Review Form</td>
+                    <td class="rf_c">
+                        <img t-if="doc.company_id.logo" class="rf_logo"
+                             t-att-src="image_data_uri(doc.company_id.logo)"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_sale_order_review_form_footer">
+        <div class="footer tuv_rf">
+            <t t-call="tuv_austria_customization.report_sale_order_review_form_style"/>
+            <div class="rf_code">TUV/BA/FM/02-2, Rev 00, Issue 01, Dated 26/12/2025</div>
+        </div>
+    </template>
+
+    <template id="report_sale_order_review_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="tuv_austria_customization.report_sale_order_review_form_header"/>
+                <t t-call="tuv_austria_customization.report_sale_order_review_form_footer"/>
+                <div class="article tuv_rf" t-att-data-oe-model="doc and doc._name"
+                     t-att-data-oe-id="doc and doc.id">
+                    <t t-call="tuv_austria_customization.report_sale_order_review_form_style"/>
+                    <t t-set="tick" t-value="'X'"/>
+
+                    <div class="rf_sub">(to be filled in by Application Reviewer of Certification Body)</div>
+
+                    <table>
+                        <colgroup>
+                            <col style="width: 61.1%;"/><col style="width: 18.7%;"/><col style="width: 20.2%;"/>
+                        </colgroup>
+                        <tr><td class="rf_bar" colspan="3">COMPETENCE EVALUATION &amp; IMPARTIALITY CHECK</td></tr>
+                        <tr>
+                            <td>Is TUV competent to perform certification activity?</td>
+                            <td class="rf_c"><span class="rf_box"><t t-if="doc.rf_competent == 'yes'"><t t-out="tick"/></t></span>Yes</td>
+                            <td class="rf_c"><span class="rf_box"><t t-if="doc.rf_competent == 'no'"><t t-out="tick"/></t></span>No</td>
+                        </tr>
+                        <tr>
+                            <td>Is the information provided by client sufficient to develop Audit Program?</td>
+                            <td class="rf_c"><span class="rf_box"><t t-if="doc.rf_info_sufficient == 'yes'"><t t-out="tick"/></t></span>Yes</td>
+                            <td class="rf_c"><span class="rf_box"><t t-if="doc.rf_info_sufficient == 'no'"><t t-out="tick"/></t></span>No</td>
+                        </tr>
+                        <tr>
+                            <td>Is there any information which can influence certification activity like
+                                threats to impartiality, safety conditions, sites, operations etc.?</td>
+                            <td class="rf_c"><span class="rf_box"><t t-if="doc.rf_impartiality_risk == 'yes'"><t t-out="tick"/></t></span>Yes</td>
+                            <td class="rf_c"><span class="rf_box"><t t-if="doc.rf_impartiality_risk == 'no'"><t t-out="tick"/></t></span>No</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20.2%;">If yes, please specify</td>
+                            <td colspan="2"><span t-field="doc.rf_specify"/>&#160;</td>
+                        </tr>
+                        <tr><td class="rf_bar" colspan="3">AUDIT TYPE</td></tr>
+                        <tr>
+                            <td style="width: 49.7%;">INITIAL CERTIFICATION
+                                <span class="rf_box" style="margin-left: 40px;"><t t-if="doc.rf_audit_type == 'initial_certification'"><t t-out="tick"/></t></span></td>
+                            <td colspan="2">RECERTIFICATION
+                                <span class="rf_box" style="margin-left: 40px;"><t t-if="doc.rf_audit_type == 'recertification'"><t t-out="tick"/></t></span></td>
+                        </tr>
+                        <tr><td class="rf_bar" colspan="3">CLIENT INFORMATION</td></tr>
+                        <tr>
+                            <td>CLIENT NAME</td>
+                            <td colspan="2"><span t-field="doc.partner_id.name"/>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 38px;">SCOPE</td>
+                            <td colspan="2"><span t-field="doc.rf_scope"/>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td>APPLICABLE IAF CODE&#160; <span t-field="doc.rf_iaf_code"/></td>
+                            <td colspan="2">STANDARDS&#160; <span t-field="doc.rf_standards"/></td>
+                        </tr>
+                        <tr>
+                            <td class="rf_bar" colspan="3">CERTIFICATION HISTORY
+                                <span class="rf_it">(for recertification only)</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                This client is certified since
+                                <span t-field="doc.rf_certified_since"/> as per the following standards:
+                                <div style="text-align: center; padding-top: 3px;">
+                                    <span style="display: inline-block; width: 45%; text-align: left;">
+                                        <span class="rf_box"><t t-if="doc.rf_iso_9001"><t t-out="tick"/></t></span>ISO 9001:2015</span>
+                                    <span style="display: inline-block; width: 45%; text-align: left;">
+                                        <span class="rf_box"><t t-if="doc.rf_iso_45001"><t t-out="tick"/></t></span>ISO 45001:2018</span>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span style="display: inline-block; width: 45%; text-align: left;">
+                                        <span class="rf_box"><t t-if="doc.rf_iso_14001"><t t-out="tick"/></t></span>ISO 14001:2015</span>
+                                    <span style="display: inline-block; width: 45%; text-align: left;">
+                                        <span class="rf_box"><t t-if="doc.rf_iso_22000"><t t-out="tick"/></t></span>ISO 22000:2018</span>
+                                </div>
+                                <div style="padding-left: 12%;">
+                                    <span class="rf_box"><t t-if="doc.rf_others"><t t-out="tick"/></t></span>OTHERS:
+                                    <span t-field="doc.rf_others_text"/></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div><span class="rf_box"><t t-if="doc.rf_docs_reviewed"><t t-out="tick"/></t></span>All audit documentation from the previous cycle has been reviewed.</div>
+                                <div><span class="rf_box"><t t-if="doc.rf_reports_evaluated"><t t-out="tick"/></t></span>Reports were evaluated and the following activities were verified as closed.</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="rf_bar" colspan="3">RECERTIFICATION AUDIT SUMMARY
+                                <span class="rf_it">(if applicable)</span></td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <colgroup>
+                            <col style="width: 20.6%;"/><col style="width: 19.5%;"/><col style="width: 20.6%;"/>
+                            <col style="width: 17.0%;"/><col style="width: 22.3%;"/>
+                        </colgroup>
+                        <tr>
+                            <td class="rf_c">AUDIT ACTIVITY</td>
+                            <td class="rf_c">AUDIT DATES</td>
+                            <td class="rf_c">REPORT REVIEWED (YES/NO)</td>
+                            <td class="rf_c">NON-CONFORMITIES</td>
+                            <td class="rf_c">STATUS OF NONCONFORMITIES</td>
+                        </tr>
+                        <tr>
+                            <td class="rf_c" style="line-height: 33px;">Initial Certification</td>
+                            <td class="rf_c"><span t-field="doc.rf_ic_dates"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_ic_report_reviewed"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_ic_nc"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_ic_nc_status"/>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td class="rf_c" style="line-height: 31px;">Surveillance 01</td>
+                            <td class="rf_c"><span t-field="doc.rf_s1_dates"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_s1_report_reviewed"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_s1_nc"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_s1_nc_status"/>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td class="rf_c" style="line-height: 29px;">Surveillance 02</td>
+                            <td class="rf_c"><span t-field="doc.rf_s2_dates"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_s2_report_reviewed"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_s2_nc"/>&#160;</td>
+                            <td class="rf_c"><span t-field="doc.rf_s2_nc_status"/>&#160;</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <colgroup>
+                            <col style="width: 20.6%;"/><col style="width: 30.2%;"/>
+                            <col style="width: 10.9%;"/><col style="width: 38.3%;"/>
+                        </colgroup>
+                        <tr><td class="rf_bar" colspan="4">REVIEW OUTCOME</td></tr>
+                        <tr>
+                            <td colspan="2">APPLICATION ACCEPTED
+                                <span class="rf_box" style="margin-left: 20px;"><t t-if="doc.rf_outcome == 'accepted'"><t t-out="tick"/></t></span></td>
+                            <td colspan="2">APPLICATION NOT ACCEPTED
+                                <span class="rf_box" style="margin-left: 20px;"><t t-if="doc.rf_outcome == 'not_accepted'"><t t-out="tick"/></t></span></td>
+                        </tr>
+                        <tr>
+                            <td class="rf_c">REVIEWER NAME</td>
+                            <td colspan="3"><span t-field="doc.rf_reviewer_name"/>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td class="rf_c" style="line-height: 26px;">SIGNATURE</td>
+                            <td>
+                                <img t-if="doc.rf_signature" style="max-height: 24px;"
+                                     t-att-src="image_data_uri(doc.rf_signature)"/>
+                                <t t-else="">&#160;</t>
+                            </td>
+                            <td class="rf_c">DATE</td>
+                            <td><span t-field="doc.rf_date"/>&#160;</td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

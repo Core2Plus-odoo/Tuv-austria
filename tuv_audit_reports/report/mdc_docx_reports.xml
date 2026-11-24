@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- MDC / ATJF Word forms in the project's Print (gear) menu, downloaded as .docx.
+         Shown by the document type of the project's sale order. -->
+    <record id="action_report_mdc_pnac" model="ir.actions.report">
+        <field name="name">MDC / ATJF - PNAC</field>
+        <field name="model">project.project</field>
+        <field name="report_type">docx</field>
+        <field name="report_name">tuv_audit_reports.mdc_pnac</field>
+        <field name="domain">[('md_sale_order_id.document_type', '=', 'pnac_contract')]</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_mdc_esyd_fssc" model="ir.actions.report">
+        <field name="name">MDC / ATJF - Austrian &amp; FSSC 22000 (ESYD)</field>
+        <field name="model">project.project</field>
+        <field name="report_type">docx</field>
+        <field name="report_name">tuv_audit_reports.mdc_esyd_fssc</field>
+        <field name="domain">[('md_sale_order_id.document_type', '=', 'contract_form')]</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_mdc_esyd_ims" model="ir.actions.report">
+        <field name="name">MDC / ATJF - ESYD Integrated Management System &amp; ISO 50001</field>
+        <field name="model">project.project</field>
+        <field name="report_type">docx</field>
+        <field name="report_name">tuv_audit_reports.mdc_esyd_ims</field>
+        <field name="domain">[('md_sale_order_id.document_type', '=', 'contract_form')]</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

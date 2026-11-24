@@ -1,0 +1,6074 @@
+{
+"key": "aqg_saac_9001",
+"meta": {
+"title": "Audit checklist ISO 9001",
+"subtitle": "Management systems certification",
+"code": "FM-BA-ZET-MS-All-009b-AQG-Audit-checklist-9001",
+"revision": "02/11.08.2023",
+"vkl": "Intern",
+"landscape": true,
+"sz": 20
+},
+"lines": [
+{
+"list": "element",
+"label": "4.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "4.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "4.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "4.4",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "5.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "5.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "5.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "6.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "6.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "6.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "7.1.",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "7.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "7.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "7.4",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "7.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.5.",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "7.5",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "5.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.5",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "9.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.5",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.6",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.7",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "8.4",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+false,
+false
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "9.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "9.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "9.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "10.1",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "10.2",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+},
+{
+"list": "element",
+"label": "10.3",
+"section": "",
+"ref": "",
+"box": [
+false,
+false,
+false
+],
+"mand": [
+true,
+true,
+true
+],
+"text": [
+"",
+"",
+""
+]
+}
+],
+"blocks": [
+{
+"type": "table",
+"widths": [
+28.16,
+71.84
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 18.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"1. Company information"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company name"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "partner"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Address"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 22.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "address"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 25.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Other audited sites"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 25.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "sites"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 26.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Company representative"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 26.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "representative"
+}
+]
+}
+]
+},
+{
+"type": "table",
+"widths": [
+16.32,
+0.55,
+6.25,
+10.86,
+16.52,
+16.5,
+16.37,
+16.64
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 18.4pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"2. Audit information"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 8
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 19.6pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit date"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 19.6pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Stage 1:"
+]
+],
+"ap": "stage1"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 19.6pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Stage 2:"
+]
+],
+"ap": "stage2"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 19.6pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"until:"
+]
+],
+"ap": "until"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 19.6pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Remote:"
+]
+],
+"ap": "remote"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 34.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit method:"
+]
+],
+"st": "font-weight: bold;",
+"ap": "method"
+}
+],
+"cs": 3
+},
+{
+"st": "vertical-align: middle; height: 34.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"No. of employees:"
+]
+],
+"ap": "employees"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 34.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"No. of employees in scope:"
+]
+],
+"ap": "employees_scope"
+}
+],
+"cs": 2
+},
+{
+"st": "vertical-align: middle; height: 34.8pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit duration: acc. plan"
+]
+]
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit standard(s)"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"rs": 2
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 1:"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 3
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 2:"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 3:"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 4:"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Standard 5:"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 22.1pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "color: #808080;"
+}
+],
+"cs": 3,
+"ap": "std:1"
+},
+{
+"st": "vertical-align: middle; height: 22.1pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "color: #808080;"
+}
+],
+"ap": "std:2"
+},
+{
+"st": "vertical-align: middle; height: 22.1pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "color: #808080;"
+}
+],
+"ap": "std:3"
+},
+{
+"st": "vertical-align: middle; height: 22.1pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "color: #808080;"
+}
+],
+"ap": "std:4"
+},
+{
+"st": "vertical-align: middle; height: 22.1pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "color: #808080;"
+}
+],
+"ap": "std:5"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type \nper standard"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 3,
+"ap": "stdtype:1"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"ap": "stdtype:2"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"ap": "stdtype:3"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"ap": "stdtype:4"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Audit type:"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"ap": "stdtype:5"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Registration no."
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"cs": 3,
+"ap": "stdreg:1"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "stdreg:2"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "stdreg:3"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "stdreg:4"
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"ap": "stdreg:5"
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 35.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Scope"
+]
+],
+"st": "font-weight: bold;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 35.2pt;",
+"ps": [
+{
+"parts": [
+[
+{
+"ap": "scope_nochange"
+},
+"No changes"
+]
+]
+},
+{
+"parts": [
+[
+{
+"ap": "scope_adjust"
+},
+"Adjustment required"
+]
+]
+}
+],
+"cs": 3
+},
+{
+"st": "vertical-align: middle; height: 35.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"EAC scope:"
+]
+],
+"st": "font-weight: bold;",
+"ap": "eac"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 35.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"NACE code (only for EMAS):"
+]
+],
+"ap": "nace"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 35.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Category (ISO 22003/ISO 13485/ISO 50003):"
+]
+],
+"st": "font-weight: bold;",
+"ap": "category"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Lead Auditor"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Auditor"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 2
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Expert"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 20.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"cs": 4,
+"ap": "lead"
+},
+{
+"st": "vertical-align: middle; height: 20.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"cs": 2,
+"ap": "team:0:1"
+},
+{
+"st": "vertical-align: middle; height: 20.7pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"cs": 2,
+"ap": "expert"
+}
+]
+}
+]
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+5.83,
+3.88,
+3.88,
+3.88,
+6.79,
+6.8,
+68.93
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 17pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Process oriented audit"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 7
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Required Standard-"
+]
+],
+"st": "font-weight: bold;"
+},
+{
+"parts": [
+[
+null,
+"Element per audit type¹"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 31.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"List of required/mandatory documents²"
+]
+],
+"st": "font-weight: bold;"
+}
+],
+"cs": 3,
+"rs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"CA/"
+]
+],
+"st": "font-size: 8pt;"
+},
+{
+"parts": [
+[
+null,
+"RA"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"1. SA"
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"2. SA"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+0,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+0,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+0,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-01"
+]
+]
+}
+],
+"rs": 4
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"4.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"4.3"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"4.4"
+]
+]
+}
+],
+"rs": 4
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Manual, company profile, company description, company charter, etc."
+]
+]
+}
+],
+"rs": 4
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+1,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+1,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+1,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+2,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+2,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+2,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"4.4"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+3,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+3,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+3,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+4,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+4,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+4,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-02"
+]
+]
+}
+],
+"rs": 3
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"5.2.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"5.2.2"
+]
+]
+}
+],
+"rs": 3
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Leadership, quality policy"
+]
+]
+}
+],
+"rs": 3
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+5,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+5,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+5,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 35.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+],
+"cs": 4
+},
+{
+"st": "vertical-align: middle; height: 35.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-03"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle; height: 35.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"5.2.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"5.2.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"5.3"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle; height: 35.5pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Organization chart and/or job descriptions"
+]
+]
+}
+],
+"rs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+6,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+6,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+6,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+7,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+7,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+7,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-04"
+]
+]
+}
+],
+"rs": 3
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"6.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"6.3"
+]
+]
+}
+],
+"rs": 3
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Risks and opportunities, objectives and planning"
+]
+]
+}
+],
+"rs": 3
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+8,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+8,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+8,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"6.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+9,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+9,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+9,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.1."
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+10,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+10,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+10,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-05"
+]
+]
+}
+],
+"rs": 8
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.1.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.1.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.1.3"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.1.4"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.1.6"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.3"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.4"
+]
+]
+}
+],
+"rs": 8
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Support and resources"
+]
+]
+}
+],
+"rs": 8
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: middle; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+11,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+11,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+11,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+12,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+12,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+12,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.4"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+13,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+13,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+13,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+14,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+14,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+14,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-06"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: top; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.1.5.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"7.1.5.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.5.2"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Traceability records"
+]
+]
+}
+],
+"rs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.5."
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+15,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+15,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle; height: 17.2pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+15,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.5"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+16,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+16,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+16,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-07"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"7.5"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.1"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Brief description of the procedures, documents and updated files"
+]
+]
+}
+],
+"rs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+17,
+"box_1"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+17,
+"box_2"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+17,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+18,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+18,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+18,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-08"
+]
+]
+}
+],
+"rs": 7
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"5.1.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.2.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.5.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.5.3"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.5.4"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.5.5"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"9.1.12"
+]
+]
+}
+],
+"rs": 7
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Customer orientation and customer satisfaction"
+]
+]
+}
+],
+"rs": 7
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+19,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+19,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+19,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.5"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+20,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+20,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+20,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+21,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+21,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+21,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+22,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+22,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+22,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-09"
+]
+]
+}
+],
+"rs": 7
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.2.2"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.2.3"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.2.4"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.3"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.5.6"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.6"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"8.7"
+]
+]
+}
+],
+"rs": 7
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Development and production of products and/or services"
+]
+]
+}
+],
+"rs": 7
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+23,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+23,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+23,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.5"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+24,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+24,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+24,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.6"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+25,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+25,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+25,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.7"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+26,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+26,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+26,
+"box_3"
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.4"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+27,
+"box_1"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+27,
+"box_2"
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+27,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-10"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"8.4"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"External services, products, and suppliers"
+]
+]
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+28,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+28,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+28,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-11"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.1.1"
+]
+]
+},
+{
+"parts": [
+[
+null,
+"9.1.3"
+]
+]
+}
+],
+"rs": 2
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Brief description of the evaluation report and KPIs"
+]
+]
+}
+],
+"rs": 2
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+},
+{
+"st": "vertical-align: top; height: 3pt; padding: 0;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.2"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+29,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+29,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+29,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-12"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.2"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Internal audit"
+]
+]
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.3"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+30,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+30,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+30,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-13"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"9.3"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Management review"
+]
+]
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"10.1"
+]
+],
+"st": "font-size: 8pt;"
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+31,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+31,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "font-size: 8pt; text-align: center;"
+}
+],
+"in": [
+31,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"MDE-14"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"10.1"
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Corrective action records"
+]
+]
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"10.2"
+]
+]
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+32,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+32,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+32,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+"10.3"
+]
+]
+}
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+33,
+"box_1"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+33,
+"box_2"
+]
+},
+{
+"st": "background: #D9D9D9; vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+],
+"st": "text-align: center;"
+}
+],
+"in": [
+33,
+"box_3"
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: top;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+},
+{
+"st": "vertical-align: middle;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "p",
+"p": {
+"parts": [
+[
+null,
+"1. All fields marked in gray are mandatory fields and must be audited for each audit type. The other standard requirements are split up so that all these standard requirements are assessed at least once in the sum of the two surveillance audits."
+]
+],
+"st": "font-size: 9pt;"
+}
+},
+{
+"type": "p",
+"p": {
+"parts": [
+[
+null,
+"2. Mandatory documents are to be documented with date and revision status and audited process if applicable."
+]
+],
+"st": "font-size: 9pt;"
+}
+},
+{
+"type": "pagebreak"
+},
+{
+"type": "table",
+"widths": [
+100.0
+],
+"head": 0,
+"rows": [
+{
+"cells": [
+{
+"st": "background: #C00000; color: #FFFFFF; vertical-align: middle; height: 17pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+"Notes of auditor(s)"
+]
+],
+"st": "font-weight: bold; color: #FFFFFF;"
+}
+]
+}
+]
+},
+{
+"cells": [
+{
+"st": "vertical-align: top; height: 324pt;",
+"ps": [
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+},
+{
+"parts": [
+[
+null,
+""
+]
+]
+}
+],
+"f": "notes"
+}
+]
+}
+]
+}
+]
+}

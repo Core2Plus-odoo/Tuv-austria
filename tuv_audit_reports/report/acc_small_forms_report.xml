@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Smaller ESYD / PNAC / SAAC forms. The PNAC technical expert report prints with the TUV
+         expert report (action_report_audit_expert): the Word forms are the same. -->
+
+    <!-- ============ Report actions ============ -->
+    <record id="action_report_esyd_certificate_text" model="ir.actions.report">
+        <field name="name">ESYD Certificate Text</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_esyd_certificate_text</field>
+        <field name="report_file">tuv_audit_reports.report_esyd_certificate_text</field>
+        <field name="print_report_name">'Certificate Text - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+    <record id="action_report_pnac_certificate_text" model="ir.actions.report">
+        <field name="name">PNAC Certificate Text</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_pnac_certificate_text</field>
+        <field name="report_file">tuv_audit_reports.report_pnac_certificate_text</field>
+        <field name="print_report_name">'Certificate Text - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+    <record id="action_report_pnac_client_response" model="ir.actions.report">
+        <field name="name">PNAC Client Response Form</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_pnac_client_response</field>
+        <field name="report_file">tuv_audit_reports.report_pnac_client_response</field>
+        <field name="print_report_name">'Client Response Form - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+    <record id="action_report_saac_participation_list" model="ir.actions.report">
+        <field name="name">SAAC Participation List</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_saac_participation_list</field>
+        <field name="report_file">tuv_audit_reports.report_saac_participation_list</field>
+        <field name="print_report_name">'Participation List - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+    <record id="action_report_saac_auditor_assignment" model="ir.actions.report">
+        <field name="name">SAAC Auditor Assignment</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_saac_auditor_assignment</field>
+        <field name="report_file">tuv_audit_reports.report_saac_auditor_assignment</field>
+        <field name="print_report_name">'Audit Assignment - %s' % (object.saa_client or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_tuv_letter"/>
+    </record>
+    <record id="action_report_saac_audit_program" model="ir.actions.report">
+        <field name="name">SAAC Audit Program</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_saac_audit_program</field>
+        <field name="report_file">tuv_audit_reports.report_saac_audit_program</field>
+        <field name="print_report_name">'Audit Program - %s' % (object.sapg_company_name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <!-- ============ Shared pieces ============ -->
+    <!-- Single-line tables of these forms (the Word tables have plain 1px borders) -->
+    <template id="acc_sf_style">
+        <style>
+            .sf { width: 100%; border-collapse: collapse; font-family: Arial, Helvetica, sans-serif;
+                  font-size: 12px; color: #000; margin: 0; }
+            .sf td { border: 1px solid #000; padding: 2px 5px; vertical-align: middle; }
+            .sf tr { page-break-inside: avoid; }
+            .sf .g { background: #D9D9D9; font-weight: bold; }
+            .sf .gl { background: #F2F2F2; font-weight: bold; }
+            .sf .b { font-weight: bold; }
+            .sf .c { text-align: center; }
+            .sf .t { vertical-align: top; }
+            .sf .box { text-align: center; font-size: 14px; }
+            .sf-note, .sf td.sf-note { font-family: Arial, Helvetica, sans-serif; font-size: 9px; color: #000; }
+            .sf-text { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000; }
+            .sf + .sf { border-top: 0; }
+        </style>
+    </template>
+
+    <!-- Header of the "TÜV AUSTRIA Group" forms (ESYD certificate text, SAAC auditor assignment):
+         title, "TÜV AUSTRIA Group", logo, "KFM-002b, Rev.01" under the box.
+         Expects: logo, form_title -->
+    <template id="acc_sf_header_group">
+        <t t-set="form_subtitle" t-value="'TÜV AUSTRIA Group'"/>
+        <t t-call="tuv_audit_reports.form_page_header"/>
+        <div style="text-align: right; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">KFM-002b, Rev.01</div>
+    </template>
+
+    <!-- Header of the PNAC forms: one row, title and logo. Expects: logo, form_title -->
+    <template id="acc_sf_header_title">
+        <t t-call="tuv_audit_reports.audit_plan_style"/>
+        <table class="tap">
+            <tr>
+                <td class="center" style="font-size: 20px; font-weight: bold; height: 70px;" t-out="form_title"/>
+                <td class="center" style="width: 20%; padding: 2px;">
+                    <img t-att-src="logo" style="max-height: 62px; max-width: 100%;" alt="TUV Austria"/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- Footer of the PNAC forms: the document reference, right aligned. Expects: footer_text -->
+    <template id="acc_sf_footer_text">
+        <div style="text-align: right; font-family: Arial, Helvetica, sans-serif; font-size: 11px; padding-right: 40px;"
+            t-out="footer_text"/>
+    </template>
+
+    <!-- Rows of the "Address of Head Office" / "Address of other sites" tables. Expects: rows -->
+    <template id="acc_sf_address_rows">
+        <tr>
+            <td class="g" style="width: 13%;">Language</td>
+            <td class="g" style="width: 22%;">Company's Name, P.C., Address, Country<sup>(2)</sup></td>
+            <td class="g">Certified Scope <sup>(1), (4)</sup></td>
+            <td class="g c" style="width: 7%;">A3</td>
+            <td class="g c" style="width: 7%;">A4</td>
+        </tr>
+        <tr t-foreach="rows" t-as="row" style="height: 22px;">
+            <td class="t" t-out="row and row.language or ''"/>
+            <td class="t"><t t-foreach="(row and row.company_text or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+            <td class="t"><t t-foreach="(row and row.scope or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+            <td class="box" t-out="'☒' if row and row.a3 else '☐'"/>
+            <td class="box" t-out="'☒' if row and row.a4 else '☐'"/>
+        </tr>
+    </template>
+
+    <!-- A "question - YES - NO" row of the certificate texts. Expects: label, value -->
+    <template id="acc_sf_yes_no_row">
+        <tr>
+            <td colspan="3" t-out="label"/>
+            <td style="width: 10%;"><t t-out="'☒' if value == 'yes' else '☐'"/>YES</td>
+            <td style="width: 10%;"><t t-out="'☒' if value == 'no' else '☐'"/>NO</td>
+        </tr>
+    </template>
+
+    <!-- Bottom of both certificate texts: yes/no questions, other sites, signatures, representative.
+         Expects: o, p (field prefix 'ect' or 'pct'), head_rows, site_rows -->
+    <template id="acc_sf_certificate_text_body">
+        <table class="sf">
+            <tr><td colspan="5" class="g">Address of Head Office</td></tr>
+            <t t-call="tuv_audit_reports.acc_sf_address_rows"><t t-set="rows" t-value="head_rows"/></t>
+            <t t-call="tuv_audit_reports.acc_sf_yes_no_row">
+                <t t-set="label" t-value="'In case you own a registered trademark of the company, do you wish to include it on the Certificate?'"/>
+                <t t-set="value" t-value="o[p + '_trademark']"/>
+            </t>
+            <t t-call="tuv_audit_reports.acc_sf_yes_no_row">
+                <t t-set="label" t-value="'The scope refers to legislation'"/>
+                <t t-set="value" t-value="o[p + '_legislation']"/>
+            </t>
+            <t t-call="tuv_audit_reports.acc_sf_yes_no_row">
+                <t t-set="label" t-value="'The scope refers to Subcontracted processes'"/>
+                <t t-set="value" t-value="o[p + '_subcontracted']"/>
+            </t>
+            <tr><td colspan="5" class="g">Address of other sites (in case of group certification)</td></tr>
+            <t t-call="tuv_audit_reports.acc_sf_address_rows"><t t-set="rows" t-value="site_rows"/></t>
+        </table>
+        <table class="sf">
+            <tr>
+                <td rowspan="2" class="g" style="width: 19%;">Place, Date</td>
+                <td colspan="2" class="g">Signatures and Stamp of Company</td>
+            </tr>
+            <tr>
+                <td class="g" style="width: 45%;">Lead Auditor <sup>(3)</sup></td>
+                <td class="g">Company Representative<sup>(3)</sup></td>
+            </tr>
+            <tr style="height: 56px;">
+                <td class="t">
+                    <t t-out="o[p + '_place'] or ''"/><br t-if="o[p + '_place'] and o[p + '_date']"/>
+                    <t t-if="o[p + '_date']" t-out="o[p + '_date'].strftime('%d.%m.%Y')"/>
+                </td>
+                <td class="t">
+                    <t t-out="o[p + '_lead_auditor_id'].name or ''"/><br/>
+                    <img t-if="o[p + '_lead_auditor_signature']" t-att-src="image_data_uri(o[p + '_lead_auditor_signature'])"
+                        style="max-height: 40px;" alt="Signature"/>
+                </td>
+                <td class="t">
+                    <img t-if="o[p + '_company_signature']" t-att-src="image_data_uri(o[p + '_company_signature'])"
+                        style="max-height: 50px;" alt="Signature"/>
+                </td>
+            </tr>
+        </table>
+        <table class="sf">
+            <tr><td colspan="4" class="g">Company Representative Details</td></tr>
+            <tr>
+                <td class="g" style="width: 19%;">Tel:</td>
+                <td style="width: 31%;" t-out="o[p + '_rep_phone'] or ''"/>
+                <td class="g" style="width: 14%;">Email:</td>
+                <td t-out="o[p + '_rep_email'] or ''"/>
+            </tr>
+            <tr>
+                <td colspan="4" class="sf-note" style="line-height: 1.6;">
+                    (1): -the translation in other languages must be an accurate translation of the texts in the original language<br/>
+                    &#160;&#160;&#160;&#160;- please write the text uniformly, without bullets, or numbering<br/>
+                    (2): - write the official name of the company and the commercial title<br/>
+                    &#160;&#160;&#160;&#160;- compete translation of the company’s information in other languages<br/>
+                    &#160;&#160;&#160;&#160;- please write all the facilities / branches / stores that are certified<br/>
+                    (3): - sign and stamp of the legal representative of the company and the name, signature and date of approval by the Lead Auditor
+                    <t t-if="p == 'ect'"><br/>(4): - In case of GLOBALG.A.P. Certification: the cultivated area in hectares shall be appeared next to each crop. In case of CFM, record the produced tones per scope (feed or fish feed). In case of AGRO 2, record the cultivated area in acres and the number of producers. Fill in certificate text form in surveillance audits</t>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <!-- ============ ESYD certificate text, FM-BA-ZET-MS-All-013-CT-EN (revision 00) ============
+         A4 portrait. Page 1: standards, addresses, signatures; page 2: IFS and GLOBALG.A.P. -->
+    <template id="report_esyd_certificate_text">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Certificate Text'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-013-CT-EN'"/>
+                <t t-set="form_revision" t-value="'00'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.acc_sf_header_group"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.acc_sf_style"/>
+                    <!-- ===== Page 1 ===== -->
+                    <table class="sf">
+                        <tr><td colspan="5" class="g">Certification Standard – Audit Type</td></tr>
+                        <tr t-foreach="o._ect_standard_grid()" t-as="grid_row">
+                            <td t-if="grid_row_first" rowspan="2" class="g" style="width: 13%;">Applicable standard</td>
+                            <td t-foreach="grid_row[0]" t-as="cell" style="width: 21%;">
+                                <t t-out="'☒' if cell[1] else '☐'"/> <t t-out="cell[0]"/>
+                            </td>
+                            <td t-out="grid_row[1]"/>
+                        </tr>
+                    </table>
+                    <t t-call="tuv_audit_reports.acc_sf_certificate_text_body">
+                        <t t-set="p" t-value="'ect'"/>
+                        <t t-set="head_rows" t-value="o._ect_head_rows()"/>
+                        <t t-set="site_rows" t-value="o._ect_site_rows()"/>
+                    </t>
+
+                    <!-- ===== Page 2 ===== -->
+                    <div style="page-break-before: always;"/>
+                    <table class="sf">
+                        <tr><td colspan="2" class="g">IFS CERTIFICATES - ADDITIONAL INFORMATION</td></tr>
+                        <t t-foreach="[('COID', o.ect_ifs_coid), ('Product scopes', o.ect_ifs_product_scopes),
+                                       ('Exclusions', o.ect_ifs_exclusions), ('Technology scopes', o.ect_ifs_technology_scopes),
+                                       ('Audit result', o.ect_ifs_audit_result), ('Audit date(s)', o.ect_ifs_audit_dates),
+                                       ('Certificate issue date', o.ect_ifs_issue_date and o.ect_ifs_issue_date.strftime('%d.%m.%Y')),
+                                       ('Certificate valid until:', o.ect_ifs_valid_until and o.ect_ifs_valid_until.strftime('%d.%m.%Y')),
+                                       ('Next audit period:', o.ect_ifs_next_period), ('Outsourcing', o.ect_ifs_outsourcing),
+                                       ('Unannounced', o.ect_ifs_unannounced)]" t-as="ifs">
+                            <tr style="height: 20px;">
+                                <td class="gl" style="width: 23%;" t-out="ifs[0]"/>
+                                <td t-out="ifs[1] or ''"/>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <div style="height: 22px;"/>
+                    <table class="sf">
+                        <tr><td colspan="5" class="g">GLOBALG.A. P CERTIFICATES - ADDITIONAL INFORMATION</td></tr>
+                        <tr>
+                            <td class="gl" style="width: 13%;">Version <sup>(7)</sup></td>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_opt1_individual else '☐'"/> OPTION 1 – Individual Producer</td>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_opt2_group else '☐'"/> OPTION 2 – Producer Group</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" class="t" t-out="o.ect_gg_version or ''"/>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_opt1_multi_qms else '☐'"/> OPTION 1 – Individual multisite producer with QMS</td>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_opt1_multi_no_qms else '☐'"/> OPTION 1 – Individual multisite producer without a QMS</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_coc_fruits else '☐'"/> Chain of Custody – Fruits and vegetables</td>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_coc_aquaculture else '☐'"/> Chain of Custody – Aquaculture</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_cfm else '☐'"/> Compound Feed Manufacturing</td>
+                            <td colspan="2"><t t-out="'☒' if o.ect_gg_grasp else '☐'"/> GRASP</td>
+                        </tr>
+                        <tr><td colspan="5" class="g">Special requirements</td></tr>
+                        <tr>
+                            <td class="gl" style="width: 13%;">Valid for the operation</td>
+                            <td class="gl" style="width: 36%;">Company Name and Address, sub-GLN or GGN for the PMUs or / and the produce handling units (PHU)<sup>(6)</sup></td>
+                            <td class="gl">Products and Description where required<sup>(5)</sup></td>
+                            <td class="gl c" style="width: 7%;">YES</td>
+                            <td class="gl c" style="width: 7%;">NO</td>
+                        </tr>
+                        <tr t-foreach="o.ect_ggap_line_ids" t-as="gg" style="height: 20px;">
+                            <td t-out="gg.name or ''"/>
+                            <td><t t-foreach="(gg.company_text or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                            <td><t t-foreach="(gg.products or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                            <td class="box" t-out="'☒' if gg.valid == 'yes' else '☐'"/>
+                            <td class="box" t-out="'☒' if gg.valid == 'no' else '☐'"/>
+                        </tr>
+                    </table>
+                    <table class="sf">
+                        <tr><td colspan="6" class="g">CHAIN OF CUSTODY - Special requirements</td></tr>
+                        <tr>
+                            <td class="gl" style="width: 22%;">STANDARDIZATION</td>
+                            <td><t t-out="'☒' if o.ect_gg_standardization == 'yes' else '☐'"/>YES</td>
+                            <td><t t-out="'☒' if o.ect_gg_standardization == 'no' else '☐'"/>NO</td>
+                            <td class="gl" style="width: 15%;">GFSI SCHEME</td>
+                            <td><t t-out="'☒' if o.ect_gg_gfsi == 'yes' else '☐'"/>YES</td>
+                            <td><t t-out="'☒' if o.ect_gg_gfsi == 'no' else '☐'"/>NO</td>
+                        </tr>
+                    </table>
+                    <table class="sf">
+                        <tr><td colspan="5" class="g">GRASP - Special requirements</td></tr>
+                        <tr>
+                            <td class="gl" style="width: 22%;">TOTAL NUMBER OF EMPLOYEES</td>
+                            <td class="gl" style="width: 23%;">NUMBER OF EMPLOYEES ON RURAL PRODUCTION</td>
+                            <td class="gl" style="width: 19%;">NUMBER OF EMPLOYEES ON PACKAGING</td>
+                            <td class="gl">LOCAL</td>
+                            <td class="gl">MIGRANTS</td>
+                        </tr>
+                        <tr style="height: 20px;">
+                            <td t-out="o.ect_gg_total_employees or ''"/>
+                            <td t-out="o.ect_gg_rural_employees or ''"/>
+                            <td t-out="o.ect_gg_packaging_employees or ''"/>
+                            <td t-out="'☒' if o.ect_gg_local else '☐'"/>
+                            <td t-out="'☒' if o.ect_gg_migrants else '☐'"/>
+                        </tr>
+                        <tr><td colspan="5" class="g">ANNEXES</td></tr>
+                        <tr>
+                            <td colspan="2" class="b"><t t-out="'☒' if o.ect_gg_annex_members else '☐'"/>GROUP MEMBER PRODUCERS</td>
+                            <td colspan="1" class="b"><t t-out="'☒' if o.ect_gg_annex_packaging else '☐'"/>PACKAGING &amp; HANDLING FACILITIES</td>
+                            <td colspan="2" class="b"><t t-out="'☒' if o.ect_gg_annex_sites else '☐'"/>PRODUCTION SITES</td>
+                        </tr>
+                    </table>
+                    <table class="sf">
+                        <tr><td colspan="3" class="g">DATA AVAILABLE ONLINE</td></tr>
+                        <tr>
+                            <td class="b" style="font-style: italic;">NAME, SURNAME, ADDRESS, PO, GROUP COUNTRY</td>
+                            <td style="width: 10%;"><t t-out="'☒' if o.ect_gg_online_group == 'yes' else '☐'"/>YES</td>
+                            <td style="width: 10%;"><t t-out="'☒' if o.ect_gg_online_group == 'no' else '☐'"/>NO</td>
+                        </tr>
+                        <tr>
+                            <td class="b" style="font-style: italic;">NAME, SURNAME, ADDRESS, PO, PRODUCER COUNTRY</td>
+                            <td><t t-out="'☒' if o.ect_gg_online_producer == 'yes' else '☐'"/>YES</td>
+                            <td><t t-out="'☒' if o.ect_gg_online_producer == 'no' else '☐'"/>NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="sf-note">
+                                (5):- Product description filled in only in case of parallel production<br/>
+                                (6):- “production handling”, record of all units, central or the producer’s, where it is carried out one or more of the following processes: storage, sorting, grading, packaging<br/>
+                                (7):-Record the exact version of the standard – eg. 5-x-y_month_year
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ PNAC certificate text, TUV/BA/FM/04-2 (Rev 02, 16/05/2024) ============
+         A4 portrait, one page. -->
+    <template id="report_pnac_certificate_text">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Certificate Text'"/>
+                <t t-set="footer_text" t-value="'TUV/BA/FM/04-2, Rev 02, Dated 16/05/2024'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.acc_sf_header_title"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.acc_sf_style"/>
+                    <table class="sf">
+                        <tr><td colspan="5" class="g">Certification Standard – Audit Type</td></tr>
+                        <tr>
+                            <td rowspan="2" class="g" style="width: 13%;">Applicable standard</td>
+                            <td style="width: 21%;"><t t-out="'☒' if o.pct_std_iso9001 else '☐'"/> ISO 9001</td>
+                            <td style="width: 13%;"><t t-out="'☒' if o.pct_std_iso22000 else '☐'"/> ISO 22000</td>
+                            <td style="width: 13%;"><t t-out="'☒' if o.pct_std_others else '☐'"/> Others</td>
+                            <td t-out="o.pct_std_others_text or ''"/>
+                        </tr>
+                        <tr>
+                            <td><t t-out="'☒' if o.pct_std_iso14001 else '☐'"/> ISO 14001</td>
+                            <td><t t-out="'☒' if o.pct_std_iso45001 else '☐'"/> ISO 45001</td>
+                            <td t-out="'☒' if o.pct_std_other2 else '☐'"/>
+                            <td t-out="o.pct_std_other2_text or ''"/>
+                        </tr>
+                    </table>
+                    <t t-call="tuv_audit_reports.acc_sf_certificate_text_body">
+                        <t t-set="p" t-value="'pct'"/>
+                        <t t-set="head_rows" t-value="o._pct_head_rows()"/>
+                        <t t-set="site_rows" t-value="o._pct_site_rows()"/>
+                    </t>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.acc_sf_footer_text"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ PNAC client response form, TUV/BA/FM/09-1 (Rev 00, Issue 01, 11/08/2025) ============
+         A4 portrait, one page. -->
+    <template id="report_pnac_client_response">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Client Response Form'"/>
+                <t t-set="footer_text" t-value="'TUV/BA/FM/09-1, Rev 00, Issue 01, Dated 11/08/2025'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.acc_sf_header_title"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.acc_sf_style"/>
+                    <t t-set="sections" t-value="o._pcr_sections()"/>
+                    <t t-set="columns" t-value="o._pcr_rating_columns()"/>
+                    <div class="sf-text" style="font-size: 10px; text-align: center; margin: 0 10px 10px 10px;">
+                        <p style="margin: 0 0 8px 0;">TUV Austria Bureau of Inspection and Certification (Pvt.) Ltd. values our clients’ views on our services and would be grateful if you would take a few minutes to complete this document to express your opinion on the performance of our auditors and the value of the audit.</p>
+                        <p style="margin: 0;">The information you supply will remain confidential and will be used to maintain and improve the quality of the service to all our clients.</p>
+                    </div>
+                    <table class="sf">
+                        <tr style="height: 20px;"><td class="b" style="width: 29%;">Client Name</td><td t-out="o.pcr_client_name or ''"/></tr>
+                        <tr style="height: 20px;"><td class="b">Audit Date(s)</td><td t-out="o.pcr_audit_dates or ''"/></tr>
+                        <tr style="height: 20px;"><td class="b">Lead Auditor / Auditor Name</td><td t-out="o.pcr_auditor_name or ''"/></tr>
+                        <tr style="height: 20px;"><td class="b">Standard Audited</td><td t-out="o.pcr_standard or ''"/></tr>
+                    </table>
+
+                    <t t-foreach="[('Section 1: Professional Conduct', sections[0], 24), ('Section 2: Audit Execution', sections[1], 18)]" t-as="sec">
+                        <p class="sf-text b" style="margin: 14px 0 4px 0; font-weight: bold;" t-out="sec[0]"/>
+                        <p t-if="sec_first" class="sf-text" style="margin: 0 0 6px 0; font-family: 'Times New Roman', serif;">Please rate the Lead Auditor’s performance in the following areas:</p>
+                        <table class="sf">
+                            <tr>
+                                <td class="b c" style="width: 44%;">Criteria</td>
+                                <td t-foreach="columns" t-as="col" class="b c" t-out="col[1]"/>
+                            </tr>
+                            <tr t-foreach="sec[1]" t-as="crit" t-att-style="'height: ' + str(sec[2]) + 'px;'">
+                                <td t-out="crit[0]"/>
+                                <td t-foreach="columns" t-as="col" class="box b" t-out="'X' if crit[1] == col[0] else ''"/>
+                            </tr>
+                        </table>
+                    </t>
+
+                    <p class="sf-text" style="margin: 10px 0 4px 0; font-weight: bold;">Section 3: Client Feedback</p>
+                    <ol class="sf-text" style="margin: 0; padding-left: 36px;">
+                        <t t-foreach="[('What aspects of the auditor’s performance were most effective?', o.pcr_effective),
+                                       ('Were there any areas where the audit could have been improved?', o.pcr_improvement),
+                                       ('Additional comments or feedback:', o.pcr_comments)]" t-as="q">
+                            <li style="margin-bottom: 4px;"><t t-out="q[0]"/>
+                                <div style="min-height: 22px; font-style: italic;">
+                                    <t t-foreach="(q[1] or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t>
+                                </div>
+                            </li>
+                        </t>
+                    </ol>
+
+                    <table class="sf-text" style="margin-top: 12px; border-collapse: collapse; width: 60%;">
+                        <t t-foreach="[('Completed by:', o.pcr_completed_by), ('Position:', o.pcr_position)]" t-as="line">
+                            <tr><td class="b" style="width: 32%; height: 26px; font-weight: bold;" t-out="line[0]"/>
+                                <td style="border-bottom: 1px solid #000;" t-out="line[1] or ''"/></tr>
+                        </t>
+                        <tr><td style="height: 26px; font-weight: bold;">Signature:</td>
+                            <td style="border-bottom: 1px solid #000;">
+                                <img t-if="o.pcr_signature" t-att-src="image_data_uri(o.pcr_signature)" style="max-height: 30px;" alt="Signature"/>
+                            </td></tr>
+                        <tr><td style="height: 26px; font-weight: bold;">Date:</td>
+                            <td style="border-bottom: 1px solid #000;" t-out="o.pcr_date and o.pcr_date.strftime('%d.%m.%Y') or ''"/></tr>
+                    </table>
+
+                    <div class="sf-text" style="margin-top: 14px; font-weight: bold;">
+                        Return to:<br/>
+                        Scheme Manager / Certification &amp; Controlling Manager<br/>
+                        TUV Austria Bureau of Inspection and Certification (Pvt.) Ltd.<br/>
+                        Tel: +92 (042) 111-284-284, Ext. 110<br/>
+                        Email: <span style="font-weight: normal; color: #0563C1; text-decoration: underline;">qaiser.raza@tuvat.com.pk</span> /
+                        <span style="font-weight: normal; color: #0563C1; text-decoration: underline;">maryam.fayyaz@tuvat.com.pk</span>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.acc_sf_footer_text"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ SAAC participation list, FM-BA-ZET-MS-All-012-TNL (revision 02/02.08.2023) ============
+         The TUV participation list (same fields) with the SAAC header and footer.
+         Page 1: sections 1 and 2; then the list (26 rows, filled ones first), header repeated. -->
+    <template id="report_saac_participation_list">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Participation list'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-012-TNL-Participation list'"/>
+                <t t-set="form_revision" t-value="'02/02.08.2023'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+                <t t-set="no_total" t-value="True"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>.tap thead { display: table-header-group; }</style>
+
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="show_email" t-value="False"/>
+                        <t t-set="duration_label" t-value="'acc. plan'"/>
+                    </t>
+
+                    <div style="page-break-before: always;"/>
+                    <table class="tap">
+                        <thead>
+                            <tr>
+                                <td class="lbl center" style="width: 20%; height: 40px;">Name</td>
+                                <td class="lbl center" style="width: 20%;">Company</td>
+                                <td class="lbl center" style="width: 20%;">Function / Department</td>
+                                <td class="lbl center" style="width: 15%;">Participation at the closing meeting</td>
+                                <td class="lbl center">Signature</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o._pl_rows()" t-as="row" style="height: 34px;">
+                                <td t-out="row and row.name or ''"/>
+                                <td t-out="row and row.company or ''"/>
+                                <td t-out="row and row.function or ''"/>
+                                <td class="center">
+                                    <span t-out="'☒' if row and row.closing_meeting == 'yes' else '☐'"/> Yes
+                                    &#160;&#160;
+                                    <span t-out="'☒' if row and row.closing_meeting == 'no' else '☐'"/> No
+                                </td>
+                                <td class="center">
+                                    <img t-if="row and row.signature" t-att-src="image_data_uri(row.signature)"
+                                        style="max-height: 28px;" alt="Signature"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ SAAC auditor assignment, FM-BA-ZET-MS-All-007-AAS-EN (revision 00) ============
+         A4 portrait. Page 1: the assignment table; page 2: impartiality, GDPR notice, confirmation. -->
+    <template id="report_saac_auditor_assignment">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit Assignment'"/>
+                <t t-set="form_code" t-value="'FM-BA-ZET-MS-All-007-AAS-EN-Auditor assignment'"/>
+                <t t-set="form_revision" t-value="'00'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.acc_sf_header_group"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.acc_sf_style"/>
+                    <style>
+                        .aas td { font-size: 12px; }
+                        .aas .lb { background: #F2F2F2; font-weight: bold; width: 50%; height: 19px; }
+                        .aas .bar { background: #D9D9D9; font-weight: bold; text-align: center; }
+                        .aas .txt { text-align: justify; line-height: 1.4; }
+                    </style>
+                    <table class="sf aas" style="margin-top: 16px;">
+                        <tr>
+                            <td class="lb c" style="width: 25%;">Name of Auditor</td>
+                            <td colspan="2" t-out="o.saa_auditor_id.name or ''"/>
+                        </tr>
+                        <tr><td colspan="3">please find your assignment below/your audit assignment has been created/ changed</td></tr>
+                        <tr><td colspan="3" t-out="o.saa_assignment or 'Audit Assignment_Client name_Standard_Version_Type of Audit'"/></tr>
+                        <t t-foreach="[('Client', o.saa_client), ('Standard(s) / Version', o.saa_standards),
+                                       ('Certificate Number(s)', o.saa_certificate_numbers), ('Accreditation', o.saa_accreditation),
+                                       ('Audit type', o.saa_audit_type), ('Certification Decision / Release', o.saa_decision_release),
+                                       ('Other important information', o.saa_other_info),
+                                       ('Possible scope during application', o.saa_possible_scope),
+                                       ('Location', o.saa_location), ('Audit', o.saa_audit), ('Order', o.saa_order),
+                                       ('Offer', o.saa_offer), ('Client address', o.saa_client_address),
+                                       ('Client contact information', o.saa_client_contact),
+                                       ('Client contact persons', o.saa_client_contact_persons),
+                                       ('Audit scopes\nTo be confirmed during the Audit', o.saa_audit_scopes),
+                                       ('Client relationship', o.saa_client_relationship),
+                                       ('Number of personnel\n(To be confirmed during the Audit)', o.saa_personnel),
+                                       ('Client additional data', o.saa_client_additional),
+                                       ('Audit team', o.saa_audit_team), ('Duration in days (hours)', o.saa_duration),
+                                       ('External Auditors payment (€)', o.saa_payment)]" t-as="row">
+                            <tr>
+                                <td colspan="2" class="lb"><t t-foreach="row[0].split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                                <td><t t-foreach="(row[1] or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="2" class="lb">Additional costs (Accommodation, tickets, transfer, etc.)</td>
+                            <td class="c">
+                                <t t-if="o.saa_additional_costs == 'included'">Included</t>
+                                <t t-elif="o.saa_additional_costs == 'excluded'">Excluded</t>
+                                <t t-else="">Included / Excluded</t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="3" class="bar">Important information:</td></tr>
+                        <tr><td colspan="3">It is not allowed to issue an invoice to TÜV AUSTRIA without this written assignment.<br/>
+                            The Audit Documentation has to be delivered to the Certification Body the <u>latest two weeks</u> after the Audit conduction.</td></tr>
+                        <tr><td colspan="3" class="bar">Declaration of <span style="font-weight: normal;">impartiality</span></td></tr>
+                        <tr><td colspan="3" class="txt">All the members of the audit team have signed the declaration of independence/impartiality, in which they are committed that there is no professional relationship of any kind and have not provided any kind of advisory service or any kind of service (internal audits, design / development of management system) for the company being audited, or another company legally associated with this company, during the last two (2) years, at least. Also they are committed that they will not develop any kind of cooperation and / or advisory service, during the next two (2) years after the audit. Finally they are committed that there is no conflict of interest with the company being audited due to previous or current relationship. If any of the above is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA HELLAS in writing</td></tr>
+                        <tr><td colspan="3" class="bar">GDPR Notice</td></tr>
+                        <tr><td colspan="3" class="txt" style="font-size: 11px;">
+                            <p style="margin: 0 0 10px 0;">TÜV AUSTRIA has decided, to <u>not</u> include personal information of identified natural persons of any kind (in short “personal data”) in the documentation files. Because of this decision, the auditors will conduct the audit as described by the relevant audit and certification documents of TÜV AUSTRIA, applicable for each specific service, and record the evidence of conformity, in the documentation, in such a way that no natural person can, directly or indirectly, be identified. (e.g. the auditor can choose to use initials or first names only when recording the data subjects name). This prohibition of recording personal data applies also to information in hard copies (paper) or in electronic formats (screenshots, electronic files etc). The auditor will check before accepting the above mentioned evidence that the natural person this evidence concerns can not be identified. If this is not the case, the auditor will not accept to receive the evidence until proper measures are taken.</p>
+                            <p style="margin: 0 0 10px 0;">If there is a need for processing information of natural persons in the documentation, the personal data protocol document will need to be filled in and signed by both parties. The auditor is obligated to inform the DPO of the applicable TÜV AUSTRIA Company immediately and no later than the end of the audit, regarding the exchange of personal data, and submit the document for safe keeping to the company. The auditor will not keep a copy of the relevant file.</p>
+                            <p style="margin: 0 0 10px 0;">All files and data regarding the audit has to be kept and transferred in a secure way. (e.g. encrypted e-mail attachments, encrypted disk folders etc). In case the auditor does not know how to enforce these measures, the auditor should communicate with the TÜV AUSTRIA Company IT personnel in order to receive guidance. Failure to comply with these rules, is eligible for disciplinary action.</p>
+                            <p style="margin: 0;">In case of an incident (breach), contact immediately the DPO of the relevant TÜV AUSTRIA Company.  (dpo-xx@tuv.at)</p>
+                        </td></tr>
+                        <tr><td colspan="3"><t t-out="'☒' if o.saa_confirmed else '☐'"/> I hereby confirm the compliance to the above-mentioned regulations of TÜV AUSTRIA (Checkbox for the Auditor – to be checked and sent to the Certification Body)</td></tr>
+                        <tr><td colspan="3" style="height: 80px; vertical-align: top;">
+                            For further questions please contact <t t-out="o.saa_contact_user or 'USER'"/><br/>
+                            Best regards,<br/>
+                            <t t-out="o.saa_contact_user or 'USER'"/><br/>
+                            phone: <t t-out="o.saa_contact_phone or ''"/><br/>
+                            e-mail: <t t-out="o.saa_contact_email or ''"/><br/>
+                            web: <t t-out="o.saa_contact_web or ''"/>
+                        </td></tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Clause rows of the audit program: per audit column the box and clause of standard 1, then
+         the box and free clause of standard 2. Expects: rows, stages -->
+    <template id="acc_sf_sapg_item_rows">
+        <tr t-foreach="rows" t-as="item">
+            <t t-foreach="stages" t-as="st">
+                <td class="box"><t t-if="item.clause" t-out="'☒' if item[st['key'] + '_a'] else '☐'"/></td>
+                <td class="c" style="width: 5%;" t-out="item.clause or ''"/>
+                <td class="box" t-out="'☒' if item[st['key'] + '_b'] else '☐'"/>
+                <td style="width: 5%;" t-out="item[st['key'] + '_b_clause'] or ''"/>
+            </t>
+        </tr>
+    </template>
+
+    <!-- Question rows of the audit program: heading bars, questions, an answer per column.
+         Expects: rows, stages -->
+    <template id="acc_sf_sapg_question_rows">
+        <t t-foreach="rows" t-as="q">
+            <tr t-if="q.is_section"><td colspan="20" class="g c" t-out="q.name or ''"/></tr>
+            <t t-else="">
+                <tr><td colspan="20" class="gl c" t-out="q.name or ''"/></tr>
+                <tr style="height: 14px;">
+                    <td t-foreach="stages" t-as="st" colspan="4" t-out="q[st['key']] or ''"/>
+                </tr>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============ SAAC audit program, FM-BA-ZET-MS-All-008-AT-EN (Rev.02 / 01.04.2024) ============
+         A4 landscape. Page 1: company data and clauses up to 7.2; page 2: the other clauses and the
+         changes; page 3: company performance data and the update signature. -->
+    <template id="report_saac_audit_program">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="stages" t-value="o._sapg_stages()"/>
+                <t t-set="items" t-value="o.sapg_item_ids"/>
+                <t t-set="question_pages" t-value="o._sapg_question_pages()"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <table style="width: 100%; border-collapse: collapse; border: 2px solid #000; font-family: Arial, Helvetica, sans-serif;">
+                        <tr>
+                            <td style="background: #D9D9D9; text-align: center; font-weight: bold; font-size: 15px; height: 52px; border-right: 2px solid #000;">Audit Program</td>
+                            <td style="width: 9%; text-align: center; padding: 2px;">
+                                <img t-att-src="logo" style="max-height: 46px; max-width: 100%;" alt="TUV Austria"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center; font-weight: bold; font-size: 11px; height: 20px; border-top: 2px solid #000;">TÜV AUSTRIA</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.acc_sf_style"/>
+                    <style>
+                        .ap td { font-size: 10px; padding: 1px 3px; }
+                        .ap .box { font-size: 11px; width: 3%; }
+                    </style>
+                    <!-- company data -->
+                    <table class="sf ap">
+                        <colgroup>
+                            <col style="width: 13%;"/><col style="width: 10%;"/><col style="width: 9%;"/><col style="width: 11%;"/>
+                            <col style="width: 11%;"/><col style="width: 12%;"/><col style="width: 11%;"/><col/>
+                        </colgroup>
+                        <tr><td class="g" style="height: 14px;">Company Name:</td><td colspan="7" t-out="o.sapg_company_name or ''"/></tr>
+                        <tr><td class="g">COMPANY ADDRESSES (Headquarters, Branch, Factory, Construction Site):</td>
+                            <td colspan="7"><t t-foreach="(o.sapg_addresses or '').split('\n')" t-as="n"><t t-out="n"/><br t-if="not n_last"/></t></td></tr>
+                        <tr>
+                            <td class="g">SCOPE</td><td colspan="2" t-out="o.sapg_scope or ''"/>
+                            <td class="g">NON-APPLICABLE SUBSTANCE(S)</td><td colspan="2" t-out="o.sapg_non_applicable or ''"/>
+                            <td class="gl" style="font-weight: normal;">EA/NACE CODE:<br/>Category :</td>
+                            <td><t t-out="o.sapg_ea_nace or ''"/><br/><t t-out="o.sapg_category or ''"/></td>
+                        </tr>
+                        <tr>
+                            <td class="g">NUMBER OF EMPLOYEES</td><td t-out="o.sapg_employees or ''"/>
+                            <td class="g">SHIFT AND NUMBER OF EMPLOYEES</td><td t-out="o.sapg_shift_employees or ''"/>
+                            <td class="g">STANDARD / STANDARDS</td><td t-out="o.sapg_standards or ''"/>
+                            <td class="g">COMMITTEE DECISION</td><td t-out="o.sapg_committee_decision or ''"/>
+                        </tr>
+                        <tr>
+                            <td class="g">Others</td><td t-out="o.sapg_others or ''"/>
+                            <td class="g">NUMBER OF BRANCH EMPLOYEES</td><td t-out="o.sapg_branch_employees or ''"/>
+                            <td class="g">COMPANY AUDIT RESPONSIBLE:</td><td t-out="o.sapg_audit_responsible or ''"/>
+                            <td class="g">CERTIFICATE NO AND EXCHANGE DATE:</td><td t-out="o.sapg_certificate or ''"/>
+                        </tr>
+                    </table>
+
+                    <!-- the five audit columns -->
+                    <table class="sf ap">
+                        <tr><td t-foreach="stages" t-as="st" colspan="4" class="b c" style="font-size: 11px;" t-out="st['title']"/></tr>
+                        <tr><td t-foreach="stages" t-as="st" colspan="4">
+                            <t t-out="'Total Number of Employees:' if st_first else 'Number of Employees:'"/> <t t-out="st['employees']"/></td></tr>
+                        <tr><td t-foreach="stages" t-as="st" colspan="4" style="font-size: 9px;">Risk \ Complexity Rate: <t t-out="st['risk']"/></td></tr>
+                        <tr><td t-foreach="stages" t-as="st" colspan="4" class="g c">Items to be Examined</td></tr>
+                        <tr>
+                            <t t-foreach="stages" t-as="st">
+                                <td colspan="2" class="g c" t-out="st['std1'] or 'ISO xxx'"/>
+                                <td colspan="2" class="g c" t-out="st['std2']"/>
+                            </t>
+                        </tr>
+                        <t t-call="tuv_audit_reports.acc_sf_sapg_item_rows"><t t-set="rows" t-value="items[:16]"/></t>
+                    </table>
+
+                    <!-- Word page break after clause 7.2 -->
+                    <div style="page-break-before: always;"/>
+                    <table class="sf ap">
+                        <t t-call="tuv_audit_reports.acc_sf_sapg_item_rows"><t t-set="rows" t-value="items[16:]"/></t>
+                        <tr><td t-foreach="stages" t-as="st" colspan="4" class="b">
+                            <t t-out="'Planned date:' if st_first else 'PT:'"/> <t t-out="st['planned']"/></td></tr>
+                        <tr><td t-foreach="stages" t-as="st" colspan="4" class="b">
+                            <t t-out="'Actual Date:' if st_first else 'GT:'"/> <t t-out="st['actual']"/></td></tr>
+                        <t t-call="tuv_audit_reports.acc_sf_sapg_question_rows"><t t-set="rows" t-value="question_pages[0]"/></t>
+                    </table>
+
+                    <t t-if="question_pages[1]">
+                        <div style="page-break-before: always;"/>
+                        <table class="sf ap">
+                            <t t-call="tuv_audit_reports.acc_sf_sapg_question_rows"><t t-set="rows" t-value="question_pages[1]"/></t>
+                        </table>
+                    </t>
+
+                    <table class="sf" style="width: 50%; margin-top: 26px;">
+                        <tr style="height: 30px;"><td class="gl" style="width: 28%; font-size: 11px;">Date of update:</td>
+                            <td t-out="o.sapg_update_date and o.sapg_update_date.strftime('%d.%m.%Y') or ''"/></tr>
+                        <tr style="height: 30px;"><td class="gl" style="font-size: 11px;">Updated By:</td>
+                            <td t-out="o.sapg_updated_by or ''"/></tr>
+                        <tr style="height: 30px;"><td class="gl" style="font-size: 11px;">Signature:</td>
+                            <td><img t-if="o.sapg_signature" t-att-src="image_data_uri(o.sapg_signature)"
+                                    style="max-height: 28px;" alt="Signature"/></td></tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <table class="sf" style="font-size: 10px;">
+                        <tr>
+                            <td style="width: 31%;">FM-BA-ZET-MS-All-008-AT-EN Audit Program</td>
+                            <td class="c" style="width: 32%;">Rev.02 / 01.04.2024</td>
+                            <td style="width: 30%;"/>
+                            <td style="text-align: right;">Page <b class="page"/> / <b class="topage"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

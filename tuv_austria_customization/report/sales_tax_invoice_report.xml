@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_sales_tax_invoice_body">
+        <div class="page tuv_md">
+            <style>
+                .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 12px; }
+                .tuv_md .md_title { text-align: center; font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+                .tuv_md .md_subtitle { text-align: center; font-size: 12px; margin-bottom: 14px; }
+                .tuv_md table.md_tbl { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 14px; }
+                .tuv_md table.md_tbl td, .tuv_md table.md_tbl th { border: 1px solid #000000; padding: 5px 7px; vertical-align: top; }
+                .tuv_md table.md_tbl th, .tuv_md table.md_tbl td.md_lbl { background-color: #D9D9D9; font-weight: 700; }
+                .tuv_md table.md_tbl td.md_section { background-color: #D9D9D9; font-weight: 700; text-align: center; }
+                .tuv_md .num { text-align: right; }
+            </style>
+            <t t-set="sup" t-value="doc.company_id.partner_id"/>
+            <t t-set="buy" t-value="doc.partner_id"/>
+
+            <div class="md_title">SALES TAX INVOICE</div>
+            <div class="md_subtitle">
+                <t t-if="doc.state == 'issued'">No. <b t-out="doc.name"/></t>
+                <t t-else="">DRAFT - not issued</t>
+            </div>
+
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 22%;"/><col style="width: 28%;"/>
+                    <col style="width: 22%;"/><col style="width: 28%;"/>
+                </colgroup>
+                <tr>
+                    <td class="md_lbl">STI Date</td>
+                    <td><span t-field="doc.issued_on" t-options="{'widget': 'date'}"/></td>
+                    <td class="md_lbl">Tax Period</td><td><span t-field="doc.tax_period"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Commercial Invoice</td><td><span t-field="doc.commercial_invoice_id.name"/></td>
+                    <td class="md_lbl">Invoice Date</td><td><span t-field="doc.invoice_date"/></td>
+                </tr>
+            </table>
+
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 22%;"/><col style="width: 28%;"/>
+                    <col style="width: 22%;"/><col style="width: 28%;"/>
+                </colgroup>
+                <tr>
+                    <td class="md_section" colspan="2">SUPPLIER</td>
+                    <td class="md_section" colspan="2">BUYER</td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Name</td><td><span t-out="sup.name"/></td>
+                    <td class="md_lbl">Name</td><td><span t-out="buy.name"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">Address</td>
+                    <td><t t-out="', '.join(p for p in (sup.street, sup.street2, sup.city, sup.country_id.name) if p)"/></td>
+                    <td class="md_lbl">Address</td>
+                    <td><t t-out="', '.join(p for p in (buy.street, buy.street2, buy.city, buy.country_id.name) if p)"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">NTN</td><td><span t-out="sup.vat"/></td>
+                    <td class="md_lbl">NTN / CNIC</td><td><span t-out="buy.vat or buy.cnic"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">STRN</td><td><span t-out="sup.strn"/></td>
+                    <td class="md_lbl">STRN</td><td><span t-out="buy.strn"/></td>
+                </tr>
+            </table>
+
+            <table class="md_tbl">
+                <colgroup>
+                    <col style="width: 40%;"/><col style="width: 17%;"/><col style="width: 9%;"/>
+                    <col style="width: 15%;"/><col style="width: 19%;"/>
+                </colgroup>
+                <tr>
+                    <th>Description of Service</th><th class="num">Value Excl. Sales Tax</th>
+                    <th class="num">Rate</th><th class="num">Sales Tax</th><th class="num">Value Incl. Sales Tax</th>
+                </tr>
+                <tr>
+                    <td><span t-field="doc.description"/></td>
+                    <td class="num"><span t-field="doc.amount_untaxed"/></td>
+                    <td class="num"><t t-out="'%g' % doc.tax_rate"/>%</td>
+                    <td class="num"><span t-field="doc.amount_tax"/></td>
+                    <td class="num"><span t-field="doc.amount_total"/></td>
+                </tr>
+                <tr>
+                    <td class="md_lbl">TOTAL</td>
+                    <td class="num md_lbl"><span t-field="doc.amount_untaxed"/></td>
+                    <td class="md_lbl"></td>
+                    <td class="num md_lbl"><span t-field="doc.amount_tax"/></td>
+                    <td class="num md_lbl"><span t-field="doc.amount_total"/></td>
+                </tr>
+            </table>
+            <p><b>Sales Tax (<span t-field="doc.tax_name"/>) in words:</b>
+                <t t-out="doc.currency_id.amount_to_text(doc.amount_tax)"/></p>
+
+            <table class="md_tbl" style="margin-top: 30px;">
+                <colgroup><col style="width: 25%;"/><col style="width: 75%;"/></colgroup>
+                <tr><td class="md_lbl">Issued By (Tax Manager)</td><td><span t-field="doc.issued_by.name"/></td></tr>
+                <tr><td class="md_lbl">Signature</td><td style="height: 50px;"></td></tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_sales_tax_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-call="tuv_austria_customization.report_sales_tax_invoice_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_sales_tax_invoice" model="ir.actions.report">
+        <field name="name">Sales Tax Invoice</field>
+        <field name="model">tuv.sales.tax.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_sales_tax_invoice</field>
+        <field name="report_file">tuv_austria_customization.report_sales_tax_invoice</field>
+        <field name="print_report_name">'Sales Tax Invoice - %s' % (object.name.replace('/', '-'))</field>
+        <field name="binding_model_id" ref="model_tuv_sales_tax_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The audit checklists: one predefined form and one Reports card each.
+         noupdate: what the users filled in on the predefined forms is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="checklist_iso9001_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 9001</field></record>
+        <record id="checklist_iso45001_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 45001</field></record>
+        <record id="checklist_iso14001_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 14001</field></record>
+        <record id="checklist_iso50001_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 50001</field></record>
+        <record id="checklist_iso13485_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 13485</field></record>
+        <record id="checklist_iso20000_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO/IEC 20000-1</field></record>
+        <record id="checklist_iso37301_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 37301</field></record>
+        <record id="checklist_combined_form" model="tuv.audit.plan"><field name="name">Audit Checklist Combined QM/EM/HSE/EN</field></record>
+        <record id="checklist_iso27001_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 27001</field></record>
+    </data>
+
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso27001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso27001', 'audit_report_uses_info': False, 'form_subtitle': 'Information Security Management System (ISO/IEC 27001:2022)', 'form_reference': 'FM-TAGMBH-MSZ-023_Audit-Checklist-ISO-27001-EN | Rev.01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_isms_checklist">
+        <value eval="[ref('checklist_iso27001_form')]"/>
+    </function>
+
+    <!-- what identifies each predefined form, kept up to date on every upgrade -->
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso9001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso9001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-010_Audit-Checklist-ISO-9001-EN | Revision: 04/24.03.2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso45001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso45001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-012_Audit-Checklist-ISO-45001-EN | Revision: 03/03.07.2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso14001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso14001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-014_Audit-checklist-ISO-14001-EN | Revision: 02/24.03.2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso50001_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso50001', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-016_Audit-Checklist-ISO-50001-EN | Revision: 02/24.03.2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso13485_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso13485', 'form_subtitle': 'Certification of Managementsystems', 'form_reference': 'FM-TAGMBH-MSZ-018_Audit-Checklist-13485-EN | Revision: 01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso20000_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso20000', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-020_Audit-Checklist-20000-1-EN | Revision: 03/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_iso37301_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_iso37301', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-025_Audit-Checklist-ISO-37301-EN | Revision: 01/17.10.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('checklist_combined_form')]"/>
+        <value eval="{'audit_report_key': 'checklist_combined', 'form_subtitle': 'Certification of Management Systems', 'form_reference': 'FM-TAGMBH-MSZ-033-Audit-Checklist-combined-QM-EM-HSE-EN-EN | Revision: 03/05.09.2025'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_checklist">
+        <value eval="[ref('checklist_iso9001_form'), ref('checklist_iso45001_form'), ref('checklist_iso14001_form'),
+                      ref('checklist_iso50001_form'), ref('checklist_iso13485_form'), ref('checklist_iso20000_form'),
+                      ref('checklist_iso37301_form'), ref('checklist_combined_form')]"/>
+    </function>
+
+    <!-- Reports cards -->
+    <record id="audit_report_checklist_iso9001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 9001</field>
+        <field name="sequence">100</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-010</field>
+        <field name="revision">04/24.03.2025</field>
+        <field name="document_name">FM-TAGMBH-MSZ-010_Audit-Checklist-ISO-9001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso9001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso9001</field>
+    </record>
+    <record id="audit_report_checklist_iso45001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 45001</field>
+        <field name="sequence">110</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-012</field>
+        <field name="revision">03/03.07.2025</field>
+        <field name="document_name">FM-TAGMBH-MSZ-012_Audit-Checklist-ISO-45001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso45001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso45001</field>
+    </record>
+    <record id="audit_report_checklist_iso14001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 14001</field>
+        <field name="sequence">120</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-014</field>
+        <field name="revision">02/24.03.2025</field>
+        <field name="document_name">FM-TAGMBH-MSZ-014_Audit-checklist-ISO-14001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso14001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso14001</field>
+    </record>
+    <record id="audit_report_checklist_iso50001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 50001</field>
+        <field name="sequence">130</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-016</field>
+        <field name="revision">02/24.03.2025</field>
+        <field name="document_name">FM-TAGMBH-MSZ-016_Audit-Checklist-ISO-50001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso50001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso50001</field>
+    </record>
+    <record id="audit_report_checklist_iso13485" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 13485</field>
+        <field name="sequence">140</field>
+        <field name="subtitle">Certification of Managementsystems</field>
+        <field name="code">FM-TAGMBH-MSZ-018</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-018_Audit-Checklist-13485-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso13485_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso13485</field>
+    </record>
+    <record id="audit_report_checklist_iso20000" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO/IEC 20000-1</field>
+        <field name="sequence">150</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-020</field>
+        <field name="revision">03/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-020_Audit-Checklist-20000-1-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso20000_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso20000</field>
+    </record>
+    <record id="audit_report_checklist_iso37301" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 37301</field>
+        <field name="sequence">160</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-025</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-025_Audit-Checklist-ISO-37301-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso37301_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_iso37301</field>
+    </record>
+    <record id="audit_report_checklist_combined" model="tuv.audit.report">
+        <field name="name">Audit Checklist Combined QM/EM/HSE/EN</field>
+        <field name="sequence">170</field>
+        <field name="subtitle">Certification of Management Systems</field>
+        <field name="code">FM-TAGMBH-MSZ-033</field>
+        <field name="revision">03/05.09.2025</field>
+        <field name="document_name">FM-TAGMBH-MSZ-033-Audit-Checklist-combined-QM-EM-HSE-EN-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_combined_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist</field>
+        <field name="report_key">checklist_combined</field>
+    </record>
+    <record id="audit_report_checklist_iso27001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 27001</field>
+        <field name="sequence">180</field>
+        <field name="subtitle">Information Security Management System (ISO/IEC 27001:2022)</field>
+        <field name="code">FM-TAGMBH-MSZ-023</field>
+        <field name="revision">01/17.10.2024</field>
+        <field name="document_name">FM-TAGMBH-MSZ-023_Audit-Checklist-ISO-27001-EN.xlsx</field>
+        <field name="record_xmlid">tuv_audit_reports.checklist_iso27001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_audit_checklist_isms</field>
+        <field name="report_key">checklist_iso27001</field>
+        <field name="uses_audit_info" eval="False"/>
+    </record>
+
+</odoo>

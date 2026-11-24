@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tuv_audit_document_list" model="ir.ui.view">
+        <field name="name">tuv.audit.document.list</field>
+        <field name="model">tuv.audit.document</field>
+        <field name="arch" type="xml">
+            <list string="Audit Documents" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="certification_standard_ids" widget="many2many_tags"
+                    placeholder="every standard"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_tuv_audit_document" model="ir.actions.act_window">
+        <field name="name">Audit Documents</field>
+        <field name="res_model">tuv.audit.document</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add the first document</p>
+            <p>The documents a client has to prepare before the audit. They are listed
+               in the audit plan e-mail; leave Only For Standards empty to ask for a
+               document in every audit.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tuv_audit_document"
+        action="action_tuv_audit_document"
+        name="Audit Documents"
+        parent="project.menu_project_config"
+        sequence="30"/>
+
+</odoo>

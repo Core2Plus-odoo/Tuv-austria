@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Expert report, form FM-TAGMBH-MSZ-004 (revision 05/17.10.2024, footer "Seite x von y").
+         Page 1: sections 1 and 2; page 2: declaration, technical assessment, signature. -->
+    <record id="action_report_audit_expert" model="ir.actions.report">
+        <field name="name">Expert Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_expert</field>
+        <field name="report_file">tuv_audit_reports.report_audit_expert</field>
+        <field name="print_report_name">'Expert Report - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <template id="report_audit_expert">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Expert Report'"/>
+                <t t-set="form_subtitle" t-value="'Certification of Managementsystems'"/>
+                <t t-set="form_code" t-value="'FM-TAGMBH-MSZ-004_Expert-Report-EN'"/>
+                <t t-set="form_revision" t-value="'05/17.10.2024'"/>
+                <t t-set="form_vkl" t-value="'Intern'"/>
+                <t t-set="page_word" t-value="'Seite'"/>
+                <t t-set="of_word" t-value="'von'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>
+                        .tap-exp { width: 100%; border-collapse: collapse; font-family: Arial, Helvetica, sans-serif; font-size: 13px;
+                                   page-break-inside: avoid; border: 0 !important; }
+                        .tap-exp td { padding: 2px 6px; vertical-align: bottom; border: 0 !important; }
+                        .tap-exp .red { color: #C00000; font-weight: bold; }
+                        .tap-exp .rot { height: 70px; vertical-align: bottom; text-align: center; }
+                        .tap-exp .rot div { transform: rotate(-90deg); -webkit-transform: rotate(-90deg); white-space: nowrap;
+                                            color: #C00000; font-weight: bold; font-size: 12px; width: 18px; margin: 0 auto; }
+                        .tap-exp td.line { border-bottom: 1px solid #000 !important; }
+                        .tap-exp .box { text-align: center; font-size: 16px; }
+                    </style>
+
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="scope_label" t-value="'Company description, business activities'"/>
+                        <t t-set="duration_label" t-value="'value'"/>
+                    </t>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_declaration_independence"/>
+                    <p class="tap-text" style="margin: 2px 0 8px 0;">The technical assessment of the QM system provided the following result:</p>
+                    <table class="tap-exp">
+                        <colgroup>
+                            <col style="width: 21%;"/><col style="width: 5%;"/><col style="width: 5%;"/>
+                            <col style="width: 5%;"/><col style="width: 3%;"/><col/>
+                        </colgroup>
+                        <tr>
+                            <td class="red" style="vertical-align: middle;">Requirement</td>
+                            <td class="rot"><div>fulfilled</div></td>
+                            <td class="rot"><div>not fulfilled</div></td>
+                            <td class="rot"><div>not applicable</div></td>
+                            <td/>
+                            <td class="red center" style="vertical-align: middle; text-align: center;">Comments:</td>
+                        </tr>
+                        <tr t-foreach="o.er_requirement_ids" t-as="req">
+                            <td t-att-class="'' if req.name else 'line'" t-out="req.name or ''"/>
+                            <td class="box" t-out="'☒' if req.result == 'fulfilled' else '☐'"/>
+                            <td class="box" t-out="'☒' if req.result == 'not_fulfilled' else '☐'"/>
+                            <td class="box" t-out="'☒' if req.result == 'not_applicable' else '☐'"/>
+                            <td/>
+                            <td class="line" t-out="req.comments or ''"/>
+                        </tr>
+                    </table>
+                    <p class="tap-text" style="margin: 12px 0 4px 0;">Supplementary statement (comments/findings), if any:</p>
+                    <div class="tap-text" style="min-height: 34px;">
+                        <t t-foreach="(o.er_supplementary or '').split('\n')" t-as="n"><t t-out="n"/><br/></t>
+                    </div>
+                    <table class="tap-exp" style="margin-top: 8px;">
+                        <tr>
+                            <td class="line" style="width: 28%; height: 34px; text-align: center;">
+                                <t t-out="o.er_place or ''"/>
+                                <t t-if="o.er_place and o.er_date">, </t>
+                                <t t-if="o.er_date" t-out="o.er_date.strftime('%d.%m.%Y')"/>
+                            </td>
+                            <td/>
+                            <td class="line" style="width: 28%; text-align: center;">
+                                <img t-if="o.er_expert_signature" t-att-src="image_data_uri(o.er_expert_signature)"
+                                    style="max-height: 34px;" alt="Signature"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; vertical-align: top;">Place/Date</td>
+                            <td/>
+                            <td style="text-align: center; vertical-align: top;">Signature of Expert
+                                <t t-if="o.er_expert_id"><br/><t t-out="o.er_expert_id.name"/></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

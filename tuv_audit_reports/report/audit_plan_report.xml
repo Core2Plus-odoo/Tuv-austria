@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit plan, form FM-TAGMBH-MSZ-001 (4 pages). Shared blocks: report/common_templates.xml -->
+    <record id="action_report_audit_plan" model="ir.actions.report">
+        <field name="name">Audit Plan</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_plan</field>
+        <field name="report_file">tuv_audit_reports.report_audit_plan</field>
+        <field name="print_report_name">'Audit Plan - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <template id="report_audit_plan">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit plan'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-TAGMBH-MSZ-001_Auditplan-EN'"/>
+                <t t-set="form_revision" t-value="'08/22.01.2026'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+
+                    <!-- ================= Page 1 ================= -->
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="scope_label" t-value="'Scope of application / Certificate text'"/>
+                        <t t-set="duration_label" t-value="'hours'"/>
+                        <t t-set="emp_note" t-value="True"/>
+                        <t t-set="category_label" t-value="'Category (ISO 22003/ISO 13485):'"/>
+                    </t>
+
+                    <!-- ================= Page 2 ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_declaration_independence"/>
+                    <table class="tap">
+                        <tr><td colspan="2" class="head">General</td></tr>
+                        <tr>
+                            <td class="center bold light" style="width: 10%;">Audit Objectives</td>
+                            <td class="light" style="font-size: 15px; line-height: 1.25;">
+                                Conformity of the management system with the respective standard/s<br/>
+                                Ability of the management system to fulfil the applicable legal, regulatory and contractual requirements<br/>
+                                Effectiveness of the implemented management system and<br/>
+                                Suitability of the management system to fulfil the defined objectives in the long term.<br/>
+                                Framework for possible improvements to the management system
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="center bold light">Audit Language</td>
+                            <td class="light" style="font-size: 15px;"><span t-field="o.ap_audit_language"/></td>
+                        </tr>
+                    </table>
+                    <div class="tap-gap"/>
+
+                    <!-- audit schedule: up to the "General" bar on page 2, the rest on page 3,
+                         the way the Word form is laid out -->
+                    <t t-set="schedule_parts" t-value="o._ap_schedule_pages()"/>
+                    <table class="tap">
+                        <t t-call="tuv_audit_reports.report_audit_plan_schedule_head"/>
+                        <t t-call="tuv_audit_reports.report_audit_plan_schedule_rows">
+                            <t t-set="rows" t-value="schedule_parts[0]"/>
+                        </t>
+                    </table>
+                    <t t-if="schedule_parts[1]">
+                        <div style="page-break-before: always;"/>
+                        <table class="tap">
+                            <colgroup>
+                                <col style="width: 10%;"/><col style="width: 59%;"/><col style="width: 17%;"/><col/>
+                            </colgroup>
+                            <t t-call="tuv_audit_reports.report_audit_plan_schedule_rows">
+                                <t t-set="rows" t-value="schedule_parts[1]"/>
+                            </t>
+                        </table>
+                    </t>
+
+                    <!-- ================= Page 4 ================= -->
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_plan_signatures">
+                        <t t-set="place" t-value="o.ap_sign_place"/>
+                        <t t-set="sign_date" t-value="o.ap_sign_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.ap_lead_auditor_signature"/>
+                        <t t-set="auditor_signature" t-value="o.ap_auditor_signature"/>
+                    </t>
+                    <div class="tap-small" style="margin: 10px 0 12px 8px; line-height: 1.15;">
+                        Changes of the audit action are possible<br/>
+                        <sup>2</sup> Is to be appointed by the company<br/>
+                        <sup>3</sup> for ISO 45001: 1) management legally responsible for occupational health and safety.
+                        2) personnel responsible for monitoring employees’ health (e.g., doctors and nurses) 3) employees’
+                        representative(s) with responsibility for occupational health and safety 4) managers and permanent
+                        and temporary employees 5) managers and employees performing activities related to prevention of
+                        occupational health and safety risks 6) contractors’ management and employees.<br/>
+                        <sup>4</sup> The participants in the closing meeting must always be updated here in the event of a
+                        change or listed separately in the audit report.<br/>
+                        &#160;&#160;&#160;for ISO 45001: A justification must be provided if certain people are unable to
+                        attend the closing meeting.<br/>
+                        <sup>5</sup> The required number of shifts must be taken from the OEB and the audit planning must be
+                        entered in the audit plan.<br/>
+                        <sup>6)</sup>The customer has agreed to the figures stated here.
+                    </div>
+                    <table class="tap">
+                        <tr><td class="head">Significant issues impacting on the audit plan</td></tr>
+                        <tr>
+                            <td class="top" style="height: 60px;">
+                                <b>Notes:</b><br/>
+                                <t t-if="o.ap_significant_issues">
+                                    <t t-foreach="o.ap_significant_issues.split('\n')" t-as="n"><t t-out="n"/><br/></t>
+                                </t>
+                                <t t-if="o.ap_customer_confirmed">The audit plan has been confirmed by the customer.</t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

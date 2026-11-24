@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="module_category_tuv_austria" model="ir.module.category">
+        <field name="name">TUV Austria</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Odoo 19 groups their access rights under a privilege instead of a category. -->
+    <record id="privilege_tuv_austria" model="res.groups.privilege">
+        <field name="name">TUV Austria</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- The team that reviews an application before sales may continue. The project
+         is their workspace - they move it through the stages and run the audit from
+         it - so they need the project manager rights, not just the reader ones. -->
+    <record id="group_planning_team" model="res.groups">
+        <field name="name">Planning Team</field>
+        <field name="privilege_id" ref="privilege_tuv_austria"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_manager')),
+                                         (4, ref('project.group_project_stages'))]"/>
+    </record>
+
+    <!-- Its own privilege: a planning user may or may not also review reports, and
+         two groups under one privilege are offered as a single choice in Odoo 19. -->
+    <record id="privilege_tuv_technical_review" model="res.groups.privilege">
+        <field name="name">TUV Austria - Technical Review</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">51</field>
+    </record>
+
+    <!-- Reviews the audit report before the certification decision. Competence in
+         the EA code and standard comes from the user's own contact (Approved EA
+         Codes / Certification Standards Competent In). -->
+    <record id="group_technical_reviewer" model="res.groups">
+        <field name="name">Technical Reviewer</field>
+        <field name="privilege_id" ref="privilege_tuv_technical_review"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
+    </record>
+
+    <record id="privilege_tuv_tax_manager" model="res.groups.privilege">
+        <field name="name">TUV Austria - Finance / Tax</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">52</field>
+    </record>
+
+    <!-- Issues the Sales Tax Invoices; fills in the buyer's STRN on the contact. -->
+    <record id="group_tax_manager" model="res.groups">
+        <field name="name">Finance / Tax Manager</field>
+        <field name="privilege_id" ref="privilege_tuv_tax_manager"/>
+        <field name="implied_ids" eval="[(4, ref('account.group_account_invoice')),
+                                         (4, ref('base.group_partner_manager'))]"/>
+    </record>
+
+    <record id="privilege_tuv_certificate_approver" model="res.groups.privilege">
+        <field name="name">TUV Austria - Certificate Approval</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">53</field>
+    </record>
+
+    <!-- Reviews and approves prepared certificates; the authorised signatory. -->
+    <record id="group_certificate_approver" model="res.groups">
+        <field name="name">Certificate Approver</field>
+        <field name="privilege_id" ref="privilege_tuv_certificate_approver"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
+    </record>
+
+    <record id="privilege_tuv_certification_manager" model="res.groups.privilege">
+        <field name="name">TUV Austria - Certification Manager</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <!-- Reviews client feedback and owns corrective / improvement actions -->
+    <record id="group_certification_manager" model="res.groups">
+        <field name="name">Certification Manager</field>
+        <field name="privilege_id" ref="privilege_tuv_certification_manager"/>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_user'))]"/>
+    </record>
+
+    <record id="privilege_tuv_register_viewer" model="res.groups.privilege">
+        <field name="name">TUV Austria - Certificate Register</field>
+        <field name="category_id" ref="module_category_tuv_austria"/>
+        <field name="sequence">54</field>
+    </record>
+
+    <!-- Read-only access to the certificate register, e.g. for a PNAC assessor -->
+    <record id="group_register_viewer" model="res.groups">
+        <field name="name">Certificate Register Viewer</field>
+        <field name="privilege_id" ref="privilege_tuv_register_viewer"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit plans of the accreditation bodies (models/acc_audit_plans.py): the blocks under
+         sections 1 and 2 on the project's Audit Plan tab.
+         tools/gen_standalone_views.py copies them to the standalone form. -->
+
+    <!-- ESYD audit plan (FM-BA-ZET-MS-All-008-AP-EN) -->
+    <record id="project_block_esyd_audit_plan" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.esyd_audit_plan</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_esyd_audit_plan" invisible="audit_report_key != 'esyd_audit_plan'">
+                    <p class="text-muted small">
+                        "Company description, business activities" of the form is the field
+                        "Scope of Certification / Certificate Text" above; "Audit type" is printed
+                        from the audit types of the standards.
+                    </p>
+
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional relationship of any kind
+                        and have not provided any kind of advisory service or any kind of service (internal
+                        audits, design / development of management system) for the company being audited,
+                        or another company legally associated with this company, during the last two (2)
+                        years, at least. Also, they are committed that they will not develop any kind of
+                        cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <separator string="Audit Schedule"/>
+                    <field name="eap_schedule_line_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="date"/>
+                            <field name="time_from" widget="float_time"/>
+                            <field name="time_to" widget="float_time"/>
+                            <field name="department"/>
+                            <field name="representative"/>
+                            <field name="processes"/>
+                            <field name="auditors"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="eap_schedule_observations" string="Observations"/>
+                    </group>
+                    <div class="text-muted small">
+                        <p>Changes of the audit action are possible.</p>
+                        <p>Representatives are to be appointed by the company.</p>
+                        <p>For ISO 45001: 1) management legally responsible for occupational health and
+                            safety. 2) personnel responsible for monitoring employees' health (e.g. doctors
+                            and nurses) 3) employees' representative(s) with responsibility for occupational
+                            health and safety 4) managers and permanent and temporary employees 5) managers
+                            and employees performing activities related to prevention of occupational health
+                            and safety risks 6) contractors' management and employees.</p>
+                        <p>For ISO 45001: Justification in case of absence of defined people shall be recorded.</p>
+                    </div>
+
+                    <separator string="Signatures"/>
+                    <group>
+                        <group>
+                            <field name="eap_sign_place"/>
+                            <field name="eap_sign_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="eap_lead_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Co-Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="eap_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                    </group>
+
+                    <separator string="Significant Issues Impacting on the Audit Program"/>
+                    <field name="eap_significant_issues" placeholder="Notes..."/>
+
+                    <separator string="Participants List (to be filled during the audit)"/>
+                    <group>
+                        <group>
+                            <field name="eap_opening_date"/>
+                            <field name="eap_closing_date"/>
+                        </group>
+                    </group>
+                    <field name="eap_participant_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="name"/>
+                            <field name="position"/>
+                            <field name="opening_meeting"/>
+                            <field name="closing_meeting"/>
+                            <field name="signature" widget="signature"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="eap_participant_observations" string="Observations"/>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- PNAC audit plan (TUV/BA/FM/04-1) -->
+    <record id="project_block_pnac_audit_plan" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.pnac_audit_plan</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_pnac_audit_plan" invisible="audit_report_key != 'pnac_audit_plan'">
+                    <p class="text-muted small">
+                        "Certification Scope" of the form is the field "Scope of Certification /
+                        Certificate Text" above; "Audit type" is printed from the audit types of the standards.
+                    </p>
+
+                    <separator string="PNAC: Company and Audit Information"/>
+                    <group>
+                        <field name="pap_company_description"/>
+                        <field name="pap_audit_objectives"/>
+                        <field name="pap_audit_criteria"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="pap_iaf_code"/>
+                            <field name="pap_risk_category"/>
+                        </group>
+                    </group>
+
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional &amp; personal relationship
+                        of any kind and have not provided any kind of advisory service or any kind of service
+                        (internal audits, design / development of management system) for the company being
+                        audited, or another company legally associated with this company, during the last
+                        two (2) years, at least. Also, they are committed that they will not develop any kind
+                        of cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally, they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <separator string="Audit Schedule"/>
+                    <field name="pap_schedule_line_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="date"/>
+                            <field name="time_from" widget="float_time"/>
+                            <field name="time_to" widget="float_time"/>
+                            <field name="department"/>
+                            <field name="representative"/>
+                            <field name="processes"/>
+                            <field name="auditors"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="pap_schedule_observations" string="Observations"/>
+                    </group>
+                    <div class="text-muted small">
+                        <p>Changes of the audit action are possible.</p>
+                        <p>Representatives are to be appointed by the company.</p>
+                        <p>For ISO 45001: 1) management legally responsible for occupational health and
+                            safety. 2) personnel responsible for monitoring employees' health (e.g. doctors
+                            and nurses) 3) employees' representative(s) with responsibility for occupational
+                            health and safety 4) managers and permanent and temporary employees 5) managers
+                            and employees performing activities related to prevention of occupational health
+                            and safety risks 6) contractors' management and employees.</p>
+                        <p>For ISO 45001: Justification in case of absence of defined people shall be recorded.</p>
+                    </div>
+
+                    <separator string="Signatures"/>
+                    <group>
+                        <group>
+                            <field name="pap_sign_place"/>
+                            <field name="pap_sign_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="pap_lead_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Co-Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="pap_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                    </group>
+
+                    <separator string="Significant Issues Impacting on the Audit Program"/>
+                    <field name="pap_significant_issues" placeholder="Notes..."/>
+
+                    <separator string="Participants List (to be filled during the audit)"/>
+                    <group>
+                        <group>
+                            <field name="pap_opening_date"/>
+                            <field name="pap_closing_date"/>
+                        </group>
+                    </group>
+                    <field name="pap_participant_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="name"/>
+                            <field name="position"/>
+                            <field name="opening_meeting"/>
+                            <field name="closing_meeting"/>
+                            <field name="signature" widget="signature"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="pap_participant_observations" string="Observations"/>
+                    </group>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- SAAC audit plan (FM-BA-ZET-MS-All-008-AP-Audit_plan_EN) -->
+    <record id="project_block_saac_audit_plan" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.saac_audit_plan</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_saac_audit_plan" invisible="audit_report_key != 'saac_audit_plan'">
+                    <div class="fw-bold">Audit Objectives</div>
+                    <ol class="text-muted">
+                        <li>Determination of the conformity of the client’s management system, or parts of it, with audit criteria within the scope of the Management System.</li>
+                        <li>Determination of the ability of the management system to ensure the client organization meets applicable statutory, regulatory, and contractual requirements.</li>
+                        <li>Determination of the effectiveness of the management system to ensure the client organization can reasonably expect to achieve its specified objectives.</li>
+                        <li>As applicable, identification of areas for potential improvement of the management system.</li>
+                        <li>Review of any management system’s changes.</li>
+                        <li>Validation that the management system was effectively applied in the previous period (valid for surveillance or recertification audits) and to verify its readiness for the coming period.</li>
+                    </ol>
+
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional relationship of any kind
+                        and have not provided any kind of advisory service or any kind of service (internal
+                        audits, design / development of management system) for the company being audited,
+                        or another company legally associated with this company, during the last two (2)
+                        years, at least. Also, they are committed that they will not develop any kind of
+                        cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally, they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <separator string="Audit Schedule"/>
+                    <field name="sap_schedule_line_ids">
+                        <list editable="bottom" decoration-bf="is_section" decoration-info="is_section">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="is_section" optional="show"/>
+                            <field name="date"/>
+                            <field name="time_from" widget="float_time"/>
+                            <field name="time_to" widget="float_time"/>
+                            <field name="content"/>
+                            <field name="participants"/>
+                            <field name="auditors"/>
+                        </list>
+                    </field>
+                    <div class="text-muted small">
+                        <p>Changes of the audit action are possible.</p>
+                        <p>Participants are to be appointed by the company.</p>
+                        <p>For ISO 45001: 1) management legally responsible for occupational health and
+                            safety. 2) personnel responsible for monitoring employees' health (e.g., doctors
+                            and nurses) 3) employees' representative(s) with responsibility for occupational
+                            health and safety 4) managers and permanent and temporary employees 5) managers
+                            and employees performing activities related to prevention of occupational health
+                            and safety risks 6) contractors' management and employees.</p>
+                        <p>The participants in the closing meeting must always be updated here in the event
+                            of a change or listed separately in the audit report. For ISO 45001: a
+                            justification must be provided if certain people are unable to attend the
+                            closing meeting.</p>
+                    </div>
+
+                    <separator string="Signatures"/>
+                    <group>
+                        <group>
+                            <field name="sap_sign_place"/>
+                            <field name="sap_sign_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="sap_lead_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="sap_auditor_signature" widget="signature" string="Signature(s)"/>
+                        </group>
+                    </group>
+
+                    <separator string="Significant Issues Impacting on the Audit Program"/>
+                    <field name="sap_significant_issues"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- SAAC audit plan ISO 27001 (FM-BA-ZET-MS-All-008a-AP-Audit_plan_27001_EN) -->
+    <record id="project_block_saac_audit_plan_27001" model="ir.ui.view">
+        <field name="name">project.project.form.tuv.block.saac_audit_plan_27001</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <div name="tuv_form_blocks" position="inside">
+                <div name="tuv_block_saac_audit_plan_27001" invisible="audit_report_key != 'saac_audit_plan_27001'">
+                    <div class="fw-bold">Audit Objectives</div>
+                    <ol class="text-muted">
+                        <li>Determination of the conformity of the client’s management system, or parts of it, with audit criteria within the scope of the Management System.</li>
+                        <li>Determination of the ability of the management system to ensure the client organization meets applicable statutory, regulatory, and contractual requirements.</li>
+                        <li>Determination of the effectiveness of the management system to ensure the client organization can reasonably expect to achieve its specified objectives.</li>
+                        <li>As applicable, identification of areas for potential improvement of the management system.</li>
+                        <li>Review of any management system’s changes.</li>
+                        <li>Validation that the management system was effectively applied in the previous period (valid for surveillance or recertification audits) and to verify its readiness for the coming period.</li>
+                    </ol>
+
+                    <separator string="Declaration of Independence"/>
+                    <p class="text-muted">
+                        All the members of the audit team have signed the declaration of independence,
+                        in which they are committed that there is no professional relationship of any kind
+                        and have not provided any kind of advisory service or any kind of service (internal
+                        audits, design / development of management system) for the company being audited,
+                        or another company legally associated with this company, during the last two (2)
+                        years, at least. Also, they are committed that they will not develop any kind of
+                        cooperation and / or advisory service, during the next two (2) years after the
+                        audit. Finally, they are committed that there is no conflict of interest with the
+                        company being audited due to previous or current relationship. If any of the above
+                        is not fulfilled, the member of the audit team shall notify to TÜV AUSTRIA in writing.
+                    </p>
+
+                    <separator string="Audit Schedule"/>
+                    <div class="text-muted small mb-1">
+                        In "Audit content": first line bold, a line starting with "- " is a bullet,
+                        "[blue]" / "[red]" before a line (or after "- ") colours it, "[note]" prints a
+                        centred line on yellow.
+                    </div>
+                    <field name="sapi_schedule_line_ids">
+                        <list editable="bottom" decoration-bf="is_section" decoration-info="is_section">
+                            <field name="sequence" widget="handle"/>
+                            <field name="kind" column_invisible="1"/>
+                            <field name="is_section" optional="show"/>
+                            <field name="date"/>
+                            <field name="time_from" widget="float_time"/>
+                            <field name="time_to" widget="float_time"/>
+                            <field name="content"/>
+                            <field name="participants"/>
+                            <field name="auditors"/>
+                        </list>
+                    </field>
+                    <div class="text-muted small">
+                        <p>Changes of the audit action are possible.</p>
+                        <p>Participants are to be appointed by the company.</p>
+                        <p>The participants in the closing meeting must always be updated here in the event
+                            of a change or listed separately in the audit report. For ISO 45001: a
+                            justification must be provided if certain people are unable to attend the
+                            closing meeting.</p>
+                    </div>
+
+                    <separator string="Signatures"/>
+                    <group>
+                        <group>
+                            <field name="sapi_sign_place"/>
+                            <field name="sapi_sign_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Lead Auditor">
+                            <field name="ap_lead_auditor_id" readonly="1" string="Name"/>
+                            <field name="sapi_lead_auditor_signature" widget="signature" string="Signature"/>
+                        </group>
+                        <group string="Auditor(s)">
+                            <field name="ap_auditor_names" string="Name(s)"/>
+                            <field name="sapi_auditor_signature" widget="signature" string="Signature(s)"/>
+                        </group>
+                    </group>
+
+                    <separator string="Significant Issues Impacting on the Audit Program"/>
+                    <field name="sapi_significant_issues"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

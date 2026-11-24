@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit plan ISMS, form FM-TAGMBH-MSZ-002 (revision 07/20.05.2025).
+         Page 1: sections 1 and 2; then the declaration and the ISO 27001 / 27701 schedule
+         (header row repeated on every page); last page: signatures, notes, significant issues. -->
+    <record id="action_report_audit_plan_isms" model="ir.actions.report">
+        <field name="name">Audit Plan ISMS</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_audit_reports.report_audit_plan_isms</field>
+        <field name="report_file">tuv_audit_reports.report_audit_plan_isms</field>
+        <field name="print_report_name">'Audit Plan ISMS - %s' % (object.ap_partner_id.name or object.name)</field>
+        <field name="paperformat_id" ref="paperformat_audit_plan"/>
+    </record>
+
+    <template id="report_audit_plan_isms">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="logo" t-value="o._ap_logo_data_uri()"/>
+                <t t-set="form_title" t-value="'Audit plan'"/>
+                <t t-set="form_subtitle" t-value="'Management systems certification'"/>
+                <t t-set="form_code" t-value="'FM-TAGMBH-MSZ-002_Auditplan-ISMS-EN'"/>
+                <t t-set="form_revision" t-value="'07/20.05.2025'"/>
+                <t t-set="form_vkl" t-value="'Internal'"/>
+
+                <div class="header">
+                    <t t-call="tuv_audit_reports.form_page_header"/>
+                </div>
+
+                <div class="article" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id">
+                    <t t-call="tuv_audit_reports.audit_plan_style"/>
+                    <style>.tap thead { display: table-header-group; }</style>
+
+                    <t t-call="tuv_audit_reports.form_sections_company_audit">
+                        <t t-set="scope_label" t-value="'Scope of certification'"/>
+                        <t t-set="duration_label" t-value="'value'"/>
+                    </t>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_declaration_independence"/>
+                    <table class="tap">
+                        <thead>
+                            <t t-call="tuv_audit_reports.report_audit_plan_schedule_head"/>
+                        </thead>
+                        <tbody>
+                            <t t-call="tuv_audit_reports.report_audit_plan_schedule_rows">
+                                <t t-set="rows" t-value="o.ip_schedule_line_ids"/>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div style="page-break-before: always;"/>
+                    <t t-call="tuv_audit_reports.form_plan_signatures">
+                        <t t-set="place" t-value="o.ip_sign_place"/>
+                        <t t-set="sign_date" t-value="o.ip_sign_date"/>
+                        <t t-set="lead_name" t-value="o.ap_lead_auditor_id.name"/>
+                        <t t-set="auditor_names" t-value="o.ap_auditor_names"/>
+                        <t t-set="lead_signature" t-value="o.ip_lead_auditor_signature"/>
+                        <t t-set="auditor_signature" t-value="o.ip_auditor_signature"/>
+                    </t>
+                    <div class="tap-small" style="margin: 10px 0 24px 8px; line-height: 1.15;">
+                        Changes of the audit action are possible<br/>
+                        <sup>2</sup> Is to be appointed by the company<br/>
+                        <sup>3</sup> for ISO 45001: 1) management legally responsible for occupational health and safety.
+                        2) personnel responsible for monitoring employees’ health (e.g., doctors and nurses) 3) employees’
+                        representative(s) with responsibility for occupational health and safety 4) managers and permanent
+                        and temporary employees 5) managers and employees performing activities related to prevention of
+                        occupational health and safety risks 6) contractors’ management and employees.<br/>
+                        <sup>4</sup> The participants in the closing meeting must always be updated here in the event of a
+                        change or listed separately in the audit report.<br/>
+                        &#160;&#160;&#160;for ISO 45001: A justification must be provided if certain people are unable to
+                        attend the closing meeting.
+                    </div>
+                    <table class="tap">
+                        <tr><td class="head">Significant issues impacting on the audit program</td></tr>
+                        <tr>
+                            <td class="top bold" style="height: 60px;">
+                                <t t-foreach="(o.ip_significant_issues or '').split('\n')" t-as="n"><t t-out="n"/><br/></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <t t-call="tuv_audit_reports.form_page_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

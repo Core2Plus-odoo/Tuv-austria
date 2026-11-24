@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Audit Execution tab (after Audit Checklist): the fields of the "Audit Execution
+         Acknowledgement by Client" (FM 04-10), with Print on top. No scheme or report pick. -->
+    <record id="edit_project_audit_execution_ack_tab" model="ir.ui.view">
+        <field name="name">project.project.form.audit.execution.ack.tab</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="tuv_audit_reports.edit_project_audit_plan_tab"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='audit_execution']" position="after">
+                <page name="audit_execution_ack" string="Audit Execution">
+                    <div class="mb-3">
+                        <button name="action_print_execution_acknowledgement" type="object" string="Print"
+                            icon="fa-print" class="btn-secondary"/>
+                    </div>
+                    <div class="text-muted mb-2">
+                        Audit Execution Acknowledgement by Client - FM 04-10, Revision 01, 05.12.2022.
+                        It is hereby confirmed that Management System Certification Audit of our organization
+                        has been conducted as details mentioned hereunder.
+                    </div>
+
+                    <separator string="1. Company Information"/>
+                    <group>
+                        <group>
+                            <field name="ap_partner_id" string="Company Name"/>
+                        </group>
+                        <group>
+                            <field name="ap_company_address" string="Address"/>
+                        </group>
+                    </group>
+
+                    <separator string="2. Audit Information"/>
+                    <group>
+                        <group>
+                            <field name="aea_audit_type" widget="radio"/>
+                            <field name="aea_eac_scope"/>
+                            <field name="aea_audit_duration"/>
+                        </group>
+                        <group string="Audit Date(s)">
+                            <field name="aea_date_stage1" string="Stage 1"/>
+                            <field name="aea_date_stage2" string="Stage 2"/>
+                            <field name="aea_date_surveillance" string="Surveillance"/>
+                            <field name="aea_date_recert" string="Recertification"/>
+                        </group>
+                    </group>
+                    <group string="Audited Standard(s)">
+                        <group>
+                            <field name="aea_standard_1" string="Standard 1"/>
+                            <field name="aea_standard_2" string="Standard 2"/>
+                        </group>
+                        <group>
+                            <field name="aea_standard_3" string="Standard 3"/>
+                            <field name="aea_standard_4" string="Standard 4 (further)"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="aea_lead_auditor_id" string="Lead Auditor"/>
+                            <field name="aea_technical_expert_id"/>
+                        </group>
+                        <group>
+                            <field name="aea_co_auditor_id" string="Co-Auditor"/>
+                        </group>
+                    </group>
+
+                    <separator string="3. Signatures"/>
+                    <group>
+                        <group>
+                            <field name="aea_lead_auditor_signature" widget="signature" string="Lead Auditor"/>
+                            <field name="aea_company_representative" string="Company Representative (Name &amp; Designation)"/>
+                            <field name="aea_place" string="Place"/>
+                            <field name="aea_date" string="Date"/>
+                        </group>
+                        <group>
+                            <field name="aea_co_auditor_signature" widget="signature" string="Co-Auditor(s)"/>
+                            <field name="aea_company_stamp" widget="signature" string="Sign &amp; Stamp by Company"/>
+                        </group>
+                    </group>
+
+                    <separator string="4. For Official Use"/>
+                    <div class="text-muted mb-1">To be filled by TUV AUSTRIA Bureau of Inspection &amp; Certification (Pvt.) Ltd.</div>
+                    <group>
+                        <group>
+                            <field name="aea_payment_status" string="Payment Status" widget="radio"/>
+                            <field name="aea_sales_tax_invoice" widget="radio" options="{'horizontal': true}"/>
+                            <field name="aea_file_received" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group>
+                            <field name="aea_payment_date" string="Payment - Date of Receipt"/>
+                            <field name="aea_payment_signature" widget="signature" string="Payment - Sign"/>
+                            <field name="aea_sales_tax_invoice_date" string="Sales Tax Invoice - Issue Date"/>
+                            <field name="aea_sales_tax_invoice_signature" widget="signature" string="Sales Tax Invoice - Sign"/>
+                            <field name="aea_file_date" string="Audit File - Date of Receipt"/>
+                            <field name="aea_file_signature" widget="signature" string="Audit File - Sign"/>
+                        </group>
+                    </group>
+                    <div class="text-danger small">
+                        NOTE: This acknowledgment form, which is duly filled, signed &amp; stamped, shall be sent by the
+                        CLIENT upon completion of audit activity by email or fax.
+                        e: controller.ba@tuvat.com.pk || f: +92-(42)-35872179-80
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

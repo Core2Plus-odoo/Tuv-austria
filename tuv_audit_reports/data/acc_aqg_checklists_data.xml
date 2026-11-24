@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The AQG audit questionnaires / checklists of ESYD, PNAC and SAAC: one predefined form
+         each and one Reports card each. The ISO 9001/22000 questionnaire is the same Word file in
+         ODOO_ESYD and ODOO_PNAC: one form, two cards (same report key).
+         noupdate: what the users filled in on the predefined forms is kept on upgrade. -->
+    <data noupdate="1">
+        <record id="aqg_esyd_27001_form" model="tuv.audit.plan"><field name="name">Audit Questionnaire ISO 27001</field></record>
+        <record id="aqg_esyd_9001_14001_45001_form" model="tuv.audit.plan"><field name="name">Audit Questionnaire ISO 9001/14001/45001</field></record>
+        <record id="aqg_esyd_9001_14001_form" model="tuv.audit.plan"><field name="name">Audit Questionnaire ISO 9001/14001</field></record>
+        <record id="aqg_9001_22000_form" model="tuv.audit.plan"><field name="name">Audit Questionnaire ISO 9001/22000</field></record>
+        <record id="aqg_pnac_22000_form" model="tuv.audit.plan"><field name="name">Audit Questionnaire ISO 22000</field></record>
+        <record id="aqg_saac_9001_form" model="tuv.audit.plan"><field name="name">Audit Checklist ISO 9001</field></record>
+    </data>
+
+    <!-- what identifies each predefined form, kept up to date on every upgrade -->
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('aqg_esyd_27001_form')]"/>
+        <value eval="{'audit_report_key': 'aqg_esyd_27001', 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-008-AQG-27001-EN_CHECKLIST | Revision: 01_01.06.2023'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('aqg_esyd_9001_14001_45001_form')]"/>
+        <value eval="{'audit_report_key': 'aqg_esyd_9001_14001_45001', 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-008-AQG-9001-14001-45001-EN_CHECKLIST-EXAMPLES | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('aqg_esyd_9001_14001_form')]"/>
+        <value eval="{'audit_report_key': 'aqg_esyd_9001_14001', 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-008-AQG-9001-14001-EN_CHECKLIST-EXAMPLES | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('aqg_9001_22000_form')]"/>
+        <value eval="{'audit_report_key': 'aqg_9001_22000', 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-008-AQG-9001-22000-EN_CHECKLIST-EXAMPLES | Revision: 00'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('aqg_pnac_22000_form')]"/>
+        <value eval="{'audit_report_key': 'aqg_pnac_22000', 'form_subtitle': 'TÜV AUSTRIA Group', 'form_reference': 'FM-BA-ZET-MS-All-008-AQG-22000-EN_CHECKLIST | Revision: 01_15.02.2024'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="write">
+        <value eval="[ref('aqg_saac_9001_form')]"/>
+        <value eval="{'audit_report_key': 'aqg_saac_9001', 'form_subtitle': 'Management systems certification', 'form_reference': 'FM-BA-ZET-MS-All-009b-AQG-Audit-checklist-9001 | Revision: 02/11.08.2023'}"/>
+    </function>
+    <function model="tuv.audit.plan" name="_tuv_fill_aqg">
+        <value eval="[ref('aqg_esyd_27001_form'), ref('aqg_esyd_9001_14001_45001_form'), ref('aqg_esyd_9001_14001_form'),
+                      ref('aqg_9001_22000_form'), ref('aqg_pnac_22000_form'), ref('aqg_saac_9001_form')]"/>
+    </function>
+
+    <!-- Reports cards -->
+    <record id="audit_report_aqg_esyd_27001" model="tuv.audit.report">
+        <field name="name">Audit Questionnaire ISO 27001</field>
+        <field name="sequence">600</field>
+        <field name="accreditation">esyd</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AQG-27001-EN</field>
+        <field name="revision">01_01.06.2023</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AQG-27001-EN.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_esyd_27001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_portrait</field>
+        <field name="report_key">aqg_esyd_27001</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+    <record id="audit_report_aqg_esyd_9001_14001_45001" model="tuv.audit.report">
+        <field name="name">Audit Questionnaire ISO 9001/14001/45001</field>
+        <field name="sequence">610</field>
+        <field name="accreditation">esyd</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AQG-9001-14001-45001-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AQG-9001-14001-45001-EN_CHECKLIST-EXAMPLES.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_esyd_9001_14001_45001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_landscape</field>
+        <field name="report_key">aqg_esyd_9001_14001_45001</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+    <record id="audit_report_aqg_esyd_9001_14001" model="tuv.audit.report">
+        <field name="name">Audit Questionnaire ISO 9001/14001</field>
+        <field name="sequence">620</field>
+        <field name="accreditation">esyd</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AQG-9001-14001-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AQG-9001-14001-EN_CHECKLIST-EXAMPLES.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_esyd_9001_14001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_landscape</field>
+        <field name="report_key">aqg_esyd_9001_14001</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+    <record id="audit_report_aqg_esyd_9001_22000" model="tuv.audit.report">
+        <field name="name">Audit Questionnaire ISO 9001/22000</field>
+        <field name="sequence">630</field>
+        <field name="accreditation">esyd</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AQG-9001-22000-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AQG-9001-22000-EN_CHECKLIST-EXAMPLES.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_9001_22000_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_landscape</field>
+        <field name="report_key">aqg_9001_22000</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+    <record id="audit_report_aqg_pnac_9001_22000" model="tuv.audit.report">
+        <field name="name">Audit Questionnaire ISO 9001/22000</field>
+        <field name="sequence">640</field>
+        <field name="accreditation">pnac</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AQG-9001-22000-EN</field>
+        <field name="revision">00</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AQG-9001-22000-EN_CHECKLIST-EXAMPLES.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_9001_22000_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_landscape</field>
+        <field name="report_key">aqg_9001_22000</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+    <record id="audit_report_aqg_pnac_22000" model="tuv.audit.report">
+        <field name="name">Audit Questionnaire ISO 22000</field>
+        <field name="sequence">650</field>
+        <field name="accreditation">pnac</field>
+        <field name="subtitle">TÜV AUSTRIA Group</field>
+        <field name="code">FM-BA-ZET-MS-All-008-AQG-22000-EN</field>
+        <field name="revision">01_15.02.2024</field>
+        <field name="document_name">FM-BA-ZET-MS-All-008-AQG-22000-EN_CHECKLIST.docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_pnac_22000_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_landscape</field>
+        <field name="report_key">aqg_pnac_22000</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+    <record id="audit_report_aqg_saac_9001" model="tuv.audit.report">
+        <field name="name">Audit Checklist ISO 9001</field>
+        <field name="sequence">660</field>
+        <field name="accreditation">saac</field>
+        <field name="subtitle">Management systems certification</field>
+        <field name="code">FM-BA-ZET-MS-All-009b-AQG</field>
+        <field name="revision">02/11.08.2023</field>
+        <field name="document_name">ENG-Form 'FM-BA-ZET-MS-All-009b-AQG-Audit-Checkliste-9001' [English].docx</field>
+        <field name="record_xmlid">tuv_audit_reports.aqg_saac_9001_form</field>
+        <field name="view_xmlid">tuv_audit_reports.tuv_audit_plan_view_form</field>
+        <field name="report_action_xmlid">tuv_audit_reports.action_report_aqg_landscape</field>
+        <field name="report_key">aqg_saac_9001</field>
+        <field name="uses_audit_info" eval="True"/>
+    </record>
+
+</odoo>

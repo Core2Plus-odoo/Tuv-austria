@@ -1,0 +1,5 @@
+// Preview Document popup of the sale order: the PDF fills most of the screen height
+.o_tuv_document_preview iframe {
+    height: 75vh !important;
+    width: 100%;
+}

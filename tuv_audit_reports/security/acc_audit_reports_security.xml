@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Line models of the ESYD / PNAC / SAAC audit reports -->
+    <record id="access_tuv_form_acc_report_row_user" model="ir.model.access">
+        <field name="name">tuv.form.acc.report.row.user</field>
+        <field name="model_id" ref="model_tuv_form_acc_report_row"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_acc_report_finding_user" model="ir.model.access">
+        <field name="name">tuv.form.acc.report.finding.user</field>
+        <field name="model_id" ref="model_tuv_form_acc_report_finding"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

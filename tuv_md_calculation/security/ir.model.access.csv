@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_md_scheme_user,md.scheme.user,model_md_scheme,base.group_user,1,0,0,0
+access_md_scheme_manager,md.scheme.manager,model_md_scheme,group_md_manager,1,1,1,1
+access_md_duration_line_user,md.duration.line.user,model_md_duration_line,base.group_user,1,0,0,0
+access_md_duration_line_manager,md.duration.line.manager,model_md_duration_line,group_md_manager,1,1,1,1
+access_md_adjustment_factor_user,md.adjustment.factor.user,model_md_adjustment_factor,base.group_user,1,0,0,0
+access_md_adjustment_factor_manager,md.adjustment.factor.manager,model_md_adjustment_factor,group_md_manager,1,1,1,1
+access_md_scheme_section_user,md.scheme.section.user,model_md_scheme_section,base.group_user,1,0,0,0
+access_md_scheme_section_manager,md.scheme.section.manager,model_md_scheme_section,group_md_manager,1,1,1,1
+access_md_risk_category_user,md.risk.category.user,model_md_risk_category,base.group_user,1,0,0,0
+access_md_risk_category_manager,md.risk.category.manager,model_md_risk_category,group_md_manager,1,1,1,1
+access_md_scheme_import_manager,md.scheme.import.manager,model_md_scheme_import,group_md_manager,1,1,1,1

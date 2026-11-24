@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_audit_reports_root" name="Reports"
+        web_icon="tuv_audit_reports,static/description/icon.png" sequence="67"
+        action="tuv_audit_report_action" groups="base.group_user"/>
+
+</odoo>

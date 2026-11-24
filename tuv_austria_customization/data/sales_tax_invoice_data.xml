@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: the STI serial must never restart, and the client may reword the mail -->
+    <data noupdate="1">
+
+        <!-- Drawn when the Tax Manager issues it, so drafts never burn a serial number -->
+        <record id="seq_tuv_sales_tax_invoice" model="ir.sequence">
+            <field name="name">TUV Sales Tax Invoice</field>
+            <field name="code">tuv.sales.tax.invoice</field>
+            <field name="prefix">STI/%(year)s/</field>
+            <field name="padding">4</field>
+            <!-- a tax document serial must have no gaps, even when a transaction rolls back -->
+            <field name="implementation">no_gap</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="mail_template_sales_tax_invoice" model="mail.template">
+            <field name="name">TUV: Sales Tax Invoice to Client</field>
+            <field name="model_id" ref="model_tuv_sales_tax_invoice"/>
+            <field name="subject">{{ object.company_id.name }} - Sales Tax Invoice {{ object.name }}</field>
+            <field name="email_from">{{ (object.issued_by.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent to the client when the Tax Manager issues the Sales Tax Invoice</field>
+            <field name="report_template_ids" eval="[(6, 0, [ref('tuv_austria_customization.action_report_sales_tax_invoice')])]"/>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        Please find attached Sales Tax Invoice <b t-out="object.name or ''">STI/2026/0001</b>
+        against our commercial invoice
+        <b t-out="object.commercial_invoice_id.name or ''">INV/2026/00001</b>:
+        sales tax <b t-out="format_amount(object.amount_tax, object.currency_id) or ''">PKR 0</b>
+        (<t t-out="object.tax_name or ''">16%</t>).
+    </p>
+    <p>Kind regards,<br/><t t-out="object.company_id.name or ''">TUV Austria</t></p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <!-- Hourly: draft the missing Sales Tax Invoices, flag those past 48 hours -->
+        <record id="ir_cron_sales_tax_invoice" model="ir.cron">
+            <field name="name">TUV: Sales Tax Invoices (draft and 48h check)</field>
+            <field name="model_id" ref="model_tuv_sales_tax_invoice"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_sales_tax_invoices()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

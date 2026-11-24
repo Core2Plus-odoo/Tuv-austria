@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ Suspension / withdrawal notice letter ============ -->
+    <template id="report_certificate_notice_body">
+        <div class="page tuv_md">
+            <style>
+                .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 12.5px; }
+                .tuv_md .title { text-align: center; font-size: 19px; font-weight: 800; margin: 10px 0 18px 0; }
+                .tuv_md table.md_tbl { width: 100%; border-collapse: collapse; margin: 12px 0; }
+                .tuv_md table.md_tbl td { border: 1px solid #000; padding: 5px 7px; }
+                .tuv_md table.md_tbl td.lbl { background-color: #D9D9D9; font-weight: 700; width: 30%; }
+            </style>
+            <t t-set="ba" t-value="doc.env.company._ba_contact()"/>
+            <p>
+                <b>No. <span t-field="doc.name"/></b><br/>
+                Date: <span t-field="doc.notice_date"/>
+            </p>
+            <p>
+                <b t-out="doc.partner_id.name"/><br/>
+                <t t-out="', '.join(p for p in (doc.partner_id.street, doc.partner_id.city, doc.partner_id.country_id.name) if p)"/>
+            </p>
+            <div class="title" t-if="doc.notice_type == 'suspension'">NOTICE OF SUSPENSION OF CERTIFICATION</div>
+            <div class="title" t-else="">NOTICE OF WITHDRAWAL OF CERTIFICATION</div>
+
+            <table class="md_tbl">
+                <tr><td class="lbl">Certificate No.</td><td t-out="doc.certificate_number"/></tr>
+                <tr><td class="lbl">Standard(s)</td><td t-out="doc.standards"/></tr>
+                <tr><td class="lbl">Surveillance Audit Was Due</td><td><span t-field="doc.missed_due_date"/></td></tr>
+                <tr t-if="doc.notice_type == 'suspension'"><td class="lbl">Respond By</td><td><b><span t-field="doc.grace_end"/></b></td></tr>
+                <tr t-if="doc.suspension_id"><td class="lbl">Suspension Notice</td>
+                    <td><span t-field="doc.suspension_id.name"/> of <span t-field="doc.suspension_id.notice_date"/></td></tr>
+            </table>
+
+            <t t-if="doc.notice_type == 'suspension'">
+                <p>
+                    The surveillance audit required to maintain your certification was due on
+                    <b><span t-field="doc.missed_due_date"/></b> and has not been carried out within the
+                    stipulated timeframe. Your certification is therefore <b>suspended</b> with effect from
+                    <span t-field="doc.notice_date"/>.
+                </p>
+                <p>
+                    During the suspension the certificate is temporarily invalid and must not be used or
+                    referred to. If we do not receive your response by <b><span t-field="doc.grace_end"/></b>,
+                    the certification will be withdrawn. Please contact us to schedule the surveillance audit.
+                </p>
+            </t>
+            <t t-else="">
+                <p>
+                    Following our suspension notice <span t-field="doc.suspension_id.name"/>, no response
+                    was received within the grace period. Your certification is therefore <b>withdrawn</b> with
+                    effect from <span t-field="doc.notice_date"/>.
+                </p>
+                <p>
+                    The certificate is no longer valid. Please stop all use of the certificate and of the
+                    certification mark, and return the original certificate to us. A new certification
+                    will require an initial certification audit.
+                </p>
+            </t>
+
+            <p style="margin-top: 18px;"><b t-out="ba[0]"/><br/>
+                <t t-if="ba[1]"><t t-out="ba[1]"/><br/></t>
+                <t t-if="ba[2]">E-mail: <t t-out="ba[2]"/><br/></t>
+                <t t-if="ba[3]">Phone: <t t-out="ba[3]"/></t>
+            </p>
+            <p style="margin-top: 40px;">______________________________<br/>Certification Manager<br/>
+                <t t-out="doc.env.company.name"/></p>
+        </div>
+    </template>
+
+    <template id="report_certificate_notice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-call="tuv_austria_customization.report_certificate_notice_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_certificate_notice" model="ir.actions.report">
+        <field name="name">Suspension / Withdrawal Notice</field>
+        <field name="model">tuv.certificate.notice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_certificate_notice</field>
+        <field name="report_file">tuv_austria_customization.report_certificate_notice</field>
+        <field name="print_report_name">'%s Notice - %s' % (object.notice_type.capitalize(), object.name.replace('/', '-'))</field>
+        <field name="binding_model_id" ref="model_tuv_certificate_notice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- ============ Management review ============ -->
+    <template id="report_management_review_body">
+        <div class="page tuv_md">
+            <style>
+                .tuv_md { font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 11.5px; }
+                .tuv_md .title { text-align: center; font-size: 18px; font-weight: 800; }
+                .tuv_md .sub { text-align: center; margin-bottom: 14px; }
+                .tuv_md table.md_tbl { width: 100%; border-collapse: collapse; margin-bottom: 12px; page-break-inside: avoid; }
+                .tuv_md table.md_tbl td, .tuv_md table.md_tbl th { border: 1px solid #000; padding: 4px 6px; }
+                .tuv_md table.md_tbl th, .tuv_md td.sec { background-color: #D9D9D9; font-weight: 700; }
+                .tuv_md td.sec { text-align: center; }
+                .tuv_md td.num { text-align: right; width: 22%; }
+            </style>
+            <t t-set="d" t-value="doc._review_data()"/>
+            <div class="title">BA DIVISION MANAGEMENT REVIEW - CONTINUOUS IMPROVEMENT DATA</div>
+            <div class="sub">Period <span t-field="doc.date_from"/> to <span t-field="doc.date_to"/></div>
+
+            <table class="md_tbl">
+                <tr><td class="sec" colspan="2">1. CERTIFICATION</td></tr>
+                <tr><td>Certificates issued in the period</td><td class="num" t-out="d['issued']"/></tr>
+                <tr t-foreach="d['issued_by_type']" t-as="row"><td>&#160;&#160;- <t t-out="row[0]"/></td><td class="num" t-out="row[1]"/></tr>
+                <tr><td>Current register: valid / suspended / withdrawn / expired</td>
+                    <td class="num"><t t-out="d['status_counts']['valid']"/> / <t t-out="d['status_counts']['suspended']"/> /
+                        <t t-out="d['status_counts']['withdrawn']"/> / <t t-out="d['status_counts']['expired']"/></td></tr>
+                <tr><td>Suspension notices / withdrawal notices / suspensions lifted</td>
+                    <td class="num"><t t-out="d['suspensions']"/> / <t t-out="d['withdrawals']"/> / <t t-out="d['lifted']"/></td></tr>
+            </table>
+
+            <table class="md_tbl">
+                <tr><td class="sec" colspan="2">2. CLIENT FEEDBACK</td></tr>
+                <tr><td>Feedback forms answered</td><td class="num" t-out="d['feedback']['count']"/></tr>
+                <tr t-foreach="d['feedback']['questions']" t-as="q"><td>Average: <t t-out="q[0]"/> (out of 5)</td><td class="num" t-out="q[1]"/></tr>
+                <tr><td>Overall average (out of 5)</td><td class="num"><b t-out="d['feedback']['average']"/></td></tr>
+                <tr><td>Low feedback (needs attention)</td><td class="num" t-out="d['feedback']['low']"/></tr>
+                <tr><td>Reviewed by the Certification Manager</td><td class="num"><t t-out="d['feedback']['reviewed_pct']"/>%</td></tr>
+            </table>
+
+            <table class="md_tbl">
+                <tr><td class="sec" colspan="2">3. CORRECTIVE &amp; IMPROVEMENT ACTIONS</td></tr>
+                <tr><td>Corrective / improvement actions raised</td>
+                    <td class="num"><t t-out="d['actions']['corrective']"/> / <t t-out="d['actions']['improvement']"/></td></tr>
+                <tr><td>Verified effective / still open</td>
+                    <td class="num"><t t-out="d['actions']['verified']"/> / <t t-out="d['actions']['open']"/></td></tr>
+                <tr><td>Overdue today</td><td class="num" t-out="d['actions']['overdue_now']"/></tr>
+            </table>
+
+            <table class="md_tbl">
+                <tr><td class="sec" colspan="2">4. AUDIT NONCONFORMITIES</td></tr>
+                <tr><td>Major / minor NCs raised</td><td class="num"><t t-out="d['nc']['major']"/> / <t t-out="d['nc']['minor']"/></td></tr>
+                <tr><td>Closed / closed within the deadline</td>
+                    <td class="num"><t t-out="d['nc']['closed']"/> / <t t-out="d['nc']['closed_on_time_pct']"/>%</td></tr>
+                <tr><td>Overdue today</td><td class="num" t-out="d['nc']['overdue_now']"/></tr>
+            </table>
+
+            <table class="md_tbl">
+                <tr><td class="sec" colspan="2">5. AUDIT PROCESS</td></tr>
+                <tr><td>Audits completed</td><td class="num" t-out="d['process']['audits']"/></tr>
+                <tr><td>Audit reports submitted within 5 days</td><td class="num"><t t-out="d['process']['reports_on_time_pct']"/>%</td></tr>
+                <tr><td>Technical reviews (returned to auditor)</td>
+                    <td class="num"><t t-out="d['process']['reviews']"/> (<t t-out="d['process']['reviews_returned']"/>)</td></tr>
+                <tr><td>Approved by technical review first time</td><td class="num"><t t-out="d['process']['first_pass_pct']"/>%</td></tr>
+            </table>
+
+            <table class="md_tbl">
+                <tr><td class="sec" colspan="4">6. AUDITOR PERFORMANCE (confirmed job records)</td></tr>
+                <tr><th>Auditor</th><th>Jobs</th><th>Average Job Score</th><th>Client Rating</th></tr>
+                <tr t-foreach="d['auditors']" t-as="a">
+                    <td t-out="a[0]"/><td class="num" t-out="a[1]"/><td class="num" t-out="a[2]"/><td class="num" t-out="a[3]"/>
+                </tr>
+                <tr t-if="not d['auditors']"><td colspan="4">No confirmed job record in the period.</td></tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_management_review">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-call="tuv_austria_customization.report_management_review_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_management_review" model="ir.actions.report">
+        <field name="name">Management Review Report</field>
+        <field name="model">tuv.management.review</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tuv_austria_customization.report_management_review</field>
+        <field name="report_file">tuv_austria_customization.report_management_review</field>
+        <field name="print_report_name">'Management Review %s - %s' % (object.date_from, object.date_to)</field>
+    </record>
+
+</odoo>

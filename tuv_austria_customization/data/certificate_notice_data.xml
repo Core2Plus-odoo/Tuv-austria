@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_tuv_notice_suspension" model="ir.sequence">
+            <field name="name">TUV Suspension Notice</field>
+            <field name="code">tuv.notice.suspension</field>
+            <field name="prefix">SN/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="implementation">no_gap</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_tuv_notice_withdrawal" model="ir.sequence">
+            <field name="name">TUV Withdrawal Notice</field>
+            <field name="code">tuv.notice.withdrawal</field>
+            <field name="prefix">WN/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="implementation">no_gap</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="mail_template_certificate_suspension" model="mail.template">
+            <field name="name">TUV: Notice of Suspension</field>
+            <field name="model_id" ref="model_tuv_certificate_notice"/>
+            <field name="subject">{{ object.env.company.name }} - Suspension of certification {{ object.certificate_number }}</field>
+            <field name="email_from">{{ object.env.company.email_formatted or user.email_formatted }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent automatically when a surveillance audit is 3 months overdue</field>
+            <field name="report_template_ids" eval="[(6, 0, [ref('tuv_austria_customization.action_report_certificate_notice')])]"/>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        The surveillance audit for certificate <b t-out="object.certificate_number or ''">TUV/CERT/2026/0001</b>
+        (<t t-out="object.standards or ''">ISO 9001:2015</t>) was due on
+        <b t-out="format_date(object.missed_due_date) or ''">01/01/2027</b> and has not been carried out.
+        Your certification is <b>suspended</b> - please find our notice <t t-out="object.name or ''">SN/2026/0001</t> attached.
+    </p>
+    <p>
+        Please respond by <b t-out="format_date(object.grace_end) or ''">01/02/2027</b> to schedule the audit;
+        otherwise the certification will be withdrawn.
+    </p>
+    <p>Kind regards,<br/><t t-out="object.env.company.name or ''">TUV Austria</t></p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <record id="mail_template_certificate_withdrawal" model="mail.template">
+            <field name="name">TUV: Notice of Withdrawal</field>
+            <field name="model_id" ref="model_tuv_certificate_notice"/>
+            <field name="subject">{{ object.env.company.name }} - Withdrawal of certification {{ object.certificate_number }}</field>
+            <field name="email_from">{{ object.env.company.email_formatted or user.email_formatted }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent automatically when a suspended client does not respond within the grace period</field>
+            <field name="report_template_ids" eval="[(6, 0, [ref('tuv_austria_customization.action_report_certificate_notice')])]"/>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p>Dear <t t-out="object.partner_id.name or ''">Client</t>,</p>
+    <p>
+        No response was received to our suspension notice
+        <t t-out="object.suspension_id.name or ''">SN/2026/0001</t>. Certificate
+        <b t-out="object.certificate_number or ''">TUV/CERT/2026/0001</b> (<t t-out="object.standards or ''">ISO 9001:2015</t>)
+        is therefore <b>withdrawn</b> - please find our notice <t t-out="object.name or ''">WN/2026/0001</t> attached.
+    </p>
+    <p>Kind regards,<br/><t t-out="object.env.company.name or ''">TUV Austria</t></p>
+</div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <!-- Daily: suspend at 3 months overdue, withdraw after the grace period -->
+        <record id="ir_cron_certificate_notice" model="ir.cron">
+            <field name="name">TUV: Suspension / Withdrawal Check</field>
+            <field name="model_id" ref="model_tuv_certificate_notice"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_check()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

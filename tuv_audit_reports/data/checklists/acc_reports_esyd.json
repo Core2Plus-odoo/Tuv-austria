@@ -1,0 +1,157 @@
+{
+ "form": "esyd",
+ "document": "FM-BA-ZET-MS-All-008-AR-EN_rev02.docx",
+ "rows": [
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "Α. Management System\n(Justification of any Exclusion for ISO 9001)"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "Β. Management Review"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "C. Internal Audit"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "D. Legislative Requirements (License of Operation, Authorizations etc.)"
+  },
+  {
+   "section": "stage1",
+   "kind": "topic",
+   "label": "E. Scope of the quality management system"
+  },
+  {
+   "section": "conclusions",
+   "label": "Compliance to all the requirements of the relevant management system standard (or other normative document related to the management system)",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Monitoring of the performance, measurement, reports and reviews in comparison to the main goals and objectives (related to the expected outcomes that are resulted from the requirements of the applicable management systems standards)",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Management System performance in relation to statutory/regulatory/ contractual requirements",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Monitoring of processes ⁽²⁾",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Internal Audit and Management Review",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Upper Management Responsibility for the stated Policies",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Management System Effectiveness",
+   "kind": "item",
+   "dark": true
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "The corrective actions from the previous audit (action list) were reviewed and their effectiveness was verified",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Complaint management and handling",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Changes review",
+   "kind": "item",
+   "dark": true
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  },
+  {
+   "section": "conclusions",
+   "label": "Use of the logo and / or any reference to the certification",
+   "kind": "item"
+  },
+  {
+   "section": "conclusions",
+   "label": "Conclusion / Comment:",
+   "kind": "comment"
+  }
+ ],
+ "annex2": [
+  [
+   "ISO 14001\n• Layout and site adequacy\n• Environmental aspects (ie. wastewater, air pollution, energy consumption etc.)\n• Storage, transport and dangerous goods, special working materials\n• Emergency precautions (fire and explosion protection, media leakage, etc.) Pro-duction area(s)",
+   "ISO 50001\n• Energy evaluation – SEUs\n• Energy performance indicators\n• Energy baseline\n• Energy performance improvemen"
+  ],
+  [
+   "ISO 45001\n• Risk identification and assessment\n• Preventive measures\n• Accidents and incidents\n• Precautions for emergency preparedness",
+   "ISO 22000\n• HACCP plan\n• Prerequisite programs\n• Product processing and handling infrastructure"
+  ],
+  [
+   "SCC (Sicherheits-Certifikat-Contraktoren)- specific requirements\n• SCC** Please chose of the possible 9 supplementary questions were answered positively\n• SCCP Please chose of the possible 5 supplementary questions were answered positively.\n• SHE: policy, organization and commitment of management, preventive service support\n• SHE hazard assessment\n• SHE training, information and instruction\n• SHE awareness\n• SHE project plan\n• Environmental protection\n• Preparation for emergency situations\n• SHE inspections\n• Occupational health care\n• Procurement and testing of machines, devices, equipment and working materials.\n• Procurement of services\n• Reporting, registration and investigation of accidents, near misses and unsafe situations",
+   "SCP (Sicherheits-Certifikat-Personaldienstleister)-specific requirements\n• SCP Please chose of the possible 6 supplementary questions were answered positively.\n• SHE: policy, organization and management commitment, preventive service care.\n• SHE hazard assessment\n• SHE training, information and instruction\n• SHE awareness\n• SHE project supervision\n• Occupational health examination and care\n• Reporting, registration and investigation of accidents, near misses and unsafe situations\n• SHE: policy, organization and management commitment, preventive service care."
+  ]
+ ]
+}

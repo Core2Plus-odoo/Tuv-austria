@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Lines of the ESYD / PNAC / SAAC audit plans (models/acc_audit_plans.py) -->
+    <record id="access_tuv_form_eap_schedule_user" model="ir.model.access">
+        <field name="name">tuv.form.eap.schedule.user</field>
+        <field name="model_id" ref="model_tuv_form_eap_schedule"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_eap_participant_user" model="ir.model.access">
+        <field name="name">tuv.form.eap.participant.user</field>
+        <field name="model_id" ref="model_tuv_form_eap_participant"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_tuv_form_sap_schedule_user" model="ir.model.access">
+        <field name="name">tuv.form.sap.schedule.user</field>
+        <field name="model_id" ref="model_tuv_form_sap_schedule"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

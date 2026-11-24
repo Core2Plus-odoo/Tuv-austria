@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_unit_of_billing_list" model="ir.ui.view">
+        <field name="name">unit.of.billing.list</field>
+        <field name="model">unit.of.billing</field>
+        <field name="arch" type="xml">
+            <list string="Unit of Billing" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_unit_of_billing" model="ir.actions.act_window">
+        <field name="name">Unit of Billing</field>
+        <field name="res_model">unit.of.billing</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_unit_of_billing"
+        action="action_unit_of_billing"
+        name="Unit of Billing"
+        parent="stock.menu_product_in_config_stock"
+        sequence="11"/>
+
+</odoo>
