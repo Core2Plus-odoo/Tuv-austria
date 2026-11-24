@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- One Application Annex per Word file the client supplied ("application annexures").
+         Created once, then left to the users (noupdate): their rows are filled per client. -->
+    <data noupdate="1">
+        <record id="application_annex_application_form" model="tuv.application.annex">
+            <field name="name">1. Application Form</field>
+            <field name="annex_type">application_form</field>
+        </record>
+        <record id="application_annex_iso45001" model="tuv.application.annex">
+            <field name="name">2. Application Form 45001</field>
+            <field name="annex_type">iso45001</field>
+        </record>
+        <record id="application_annex_fssc_iso22000" model="tuv.application.annex">
+            <field name="name">3. FSSC_ISO22000_Application Form</field>
+            <field name="annex_type">iso22000_fssc22000</field>
+        </record>
+        <record id="application_annex_iso27001_esyd" model="tuv.application.annex">
+            <field name="name">4. ISO 27001_27701_ESYD_Application Form</field>
+            <field name="annex_type">iso27001_27701</field>
+        </record>
+        <record id="application_annex_iso27001_austrian" model="tuv.application.annex">
+            <field name="name">4.1 ISO 27001_27701_AUSTRIAN_Application Form</field>
+            <field name="annex_type">iso27001_austrian</field>
+        </record>
+        <record id="application_annex_iso20000_1" model="tuv.application.annex">
+            <field name="name">5. ISO20000-1_Application Form</field>
+            <field name="annex_type">iso20000_1</field>
+        </record>
+        <record id="application_annex_iso50001" model="tuv.application.annex">
+            <field name="name">6. ISO50001_Application Form</field>
+            <field name="annex_type">iso50001</field>
+        </record>
+        <record id="application_annex_13485" model="tuv.application.annex">
+            <field name="name">7. Annex_13485</field>
+            <field name="annex_type">iso13485</field>
+        </record>
+        <record id="application_annex_ghg_14064_1" model="tuv.application.annex">
+            <field name="name">8. GHG_14064-1_Application Form</field>
+            <field name="annex_type">ghg_14064_1</field>
+        </record>
+        <record id="application_annex_ghg_14064_2" model="tuv.application.annex">
+            <field name="name">9. GHG_14064-2_Application Form</field>
+            <field name="annex_type">ghg_14064_2</field>
+        </record>
+        <record id="application_annex_en15343_ok_recycled" model="tuv.application.annex">
+            <field name="name">10. EN15343_OK Recycled_ESYD_Application Form</field>
+            <field name="annex_type">en15343_ok_recycled</field>
+        </record>
+        <record id="application_annex_fsc" model="tuv.application.annex">
+            <field name="name">11. FSC_Application Form</field>
+            <field name="annex_type">fsc</field>
+        </record>
+        <record id="application_annex_iso41001" model="tuv.application.annex">
+            <field name="name">12. 41001_Application Form</field>
+            <field name="annex_type">iso41001</field>
+        </record>
+        <record id="application_annex_ifs" model="tuv.application.annex">
+            <field name="name">13. IFS_Application Form</field>
+            <field name="annex_type">ifs</field>
+        </record>
+        <record id="application_annex_iso37001" model="tuv.application.annex">
+            <field name="name">14. ISO37001_Application Form</field>
+            <field name="annex_type">iso37001</field>
+        </record>
+        <record id="application_annex_iso37301" model="tuv.application.annex">
+            <field name="name">15. ISO37301_Application Form</field>
+            <field name="annex_type">iso37301</field>
+        </record>
+        <record id="application_annex_13485_fm" model="tuv.application.annex">
+            <field name="name">Application Form-ISO 13485 (FM-BA-ZET-MS-All-001-Ann-AF-13485-EN)</field>
+            <field name="annex_type">iso13485</field>
+        </record>
+        <record id="application_annex_fssc22000_fm" model="tuv.application.annex">
+            <field name="name">FM-BA-ZET-MS-All-001-Ann-AF-FSCC-22000-EN_rev01</field>
+            <field name="annex_type">iso22000_fssc22000</field>
+        </record>
+        <record id="application_annex_ok_recycled_annex_1" model="tuv.application.annex">
+            <field name="name">FM-BA-ZET-PR-All-001-AF Annex 1 -OKR-ES_rev8 (EN)</field>
+            <field name="annex_type">ok_recycled_annex_1</field>
+        </record>
+        <record id="application_annex_ok_recycled_application" model="tuv.application.annex">
+            <field name="name">FM-BA-ZET-PR-All-001-AF-OKR-ES_rev8 (EN)</field>
+            <field name="annex_type">ok_recycled_application</field>
+        </record>
+    </data>
+</odoo>

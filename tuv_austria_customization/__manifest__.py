@@ -33,6 +33,7 @@ Centralized module for client-specific customizations across:
         'views/res_partner_views.xml',
         'views/product_template_views.xml',
         'views/application_annex_views.xml',
+        'data/application_annex_data.xml',
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
         'views/project_views.xml',
